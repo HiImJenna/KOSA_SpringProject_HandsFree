@@ -18,7 +18,7 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 
 <!-- Custom styles -->
-<link href="${path}/resources/css/search.css" rel="stylesheet" />
+<link href="${path}/resources/user/css/search.css" rel="stylesheet" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
 	integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
@@ -45,7 +45,7 @@
 				<div class="list-group list-group-flush mx-2 mt-4">
 					<div class="shopList" >
 						<img class="shop_img" alt="없음"
-							src="${path}/resources/assets/img/shop.jpg">
+							src="${path}/resources/user/assets/img/shop.jpg">
 						<div class="shop_info">
 							짐 보관소<br>
 							<h4>루피가게</h4>

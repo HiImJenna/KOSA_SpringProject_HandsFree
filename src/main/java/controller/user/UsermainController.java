@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UsermainController {
 	
+	
 	@GetMapping("mainSearch.user")
 	public String home(HttpServletRequest httpServletRequest, Model model) {
 		String destination = httpServletRequest.getParameter("destination");		
@@ -18,6 +19,6 @@ public class UsermainController {
 		model.addAttribute("dropDate", dropDate);
 		model.addAttribute("pickupDate", pickupDate);
 		
-		return "search";
+		return "/user/search";
 	}
 }

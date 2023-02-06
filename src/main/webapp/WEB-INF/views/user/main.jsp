@@ -9,7 +9,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>HandsFree main</title>
-        <link rel="icon" type="image/x-icon" href="${path}/resources/assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${path}/resources/css/user_main.css" rel="stylesheet" />
+        <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -50,7 +50,7 @@
             </div>
         </nav>
         <!-- 메인 -->
-        <form name = "bookingform" action="${pageContext.request.contextPath}/mainSearch.user" >
+        <form name = "bookingform" action="${path}/mainSearch.user" >
 	        <header class="masthead">
 	            <div class="container px-5">
 	                <div class="row gx-5 align-items-center">
@@ -69,13 +69,12 @@
 	
 	                            </p>
 	                            <div class="d-flex flex-column flex-lg-row align-items-center">
-	                              <!--   <button class="custom-btn btn-1">검색하기</button> -->
 	                                <button class="custom-btn btn-1">검색하기</button>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-6">
-	                        <img class = "main-img" src="${path}/resources/assets/img/main.png" alt="main image" width="500" height="500">
+	                        <img class = "main-img" src="${path}/resources/user/assets/img/main.png" alt="main image" width="500" height="500">
 	                    </div>
 	                </div>
 	            </div>
@@ -128,7 +127,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 order-lg-0">
-                        <img class = "main2-img" src="${path}/resources/assets/img/main2.png" alt="mian image" width="500" height="500">
+                        <img class = "main2-img" src="${path}/resources/user/assets/img/main2.png" alt="mian image" width="500" height="500">
                     </div>
                 </div>
             </div>
@@ -147,7 +146,7 @@
                         </p>
                     </div>
                     <div class="col-sm-8 col-md-6">
-                        <div class="px-5 px-sm-0"><img style="width: 500px; height: 500px;" src="${path}/resources/assets/img/coin.png" alt="coin" /></div>
+                        <div class="px-5 px-sm-0"><img style="width: 500px; height: 500px;" src="${path}/resources/user/assets/img/coin.png" alt="coin" /></div>
                     </div>
                 </div>
             </div>
@@ -350,7 +349,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="${path}/resources/js/scripts.js"></script>
+        <script src="${path}/resources/user/js/scripts.js"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
