@@ -21,4 +21,9 @@ public class UsermainController {
 		
 		return "/user/search";
 	}
+	
+	@GetMapping("/users/register")
+	public String userRegister() {
+		return "user/register";
+	}
 }
