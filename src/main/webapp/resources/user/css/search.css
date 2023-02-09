@@ -4043,7 +4043,7 @@ fieldset:disabled .btn {
 .nav-tabs .nav-link.active {
   color: #616161;
   background-color: #fff;
-  border-color: #e0e0e0 #e0e0e0 #fff;
+  border-color: #e0e0e0 #e0e0e0 #fff; 
 }
 .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -4059,7 +4059,7 @@ fieldset:disabled .btn {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  text-align: center;
+  text-align: center; 
 }
 .nav-justified .nav-item,
 .nav-justified > .nav-link {
@@ -4068,7 +4068,7 @@ fieldset:disabled .btn {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  text-align: center;
+  text-align: center; 
 }
 .tab-content > .tab-pane {
   display: none;
@@ -15486,6 +15486,8 @@ fieldset:disabled .btn-group-vertical {
   border-bottom-right-radius: 0;
 }
 .nav-tabs {
+  margin: 0 auto;
+  width:300px;
   border-bottom: 0;
 }
 .nav-tabs .nav-link {
@@ -16036,6 +16038,27 @@ fieldset:disabled .btn-group-vertical {
 	float: left;
 }
 
+
+.itemDetails{
+	background-color: white;
+	width: 380px;
+	height: 500px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: #c8cacc;
+}
+
+.item_img {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+	border-radius: 5px;
+	display: block;
+}
+
+.detailsHeader{
+}
+
 .shop_info {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -16053,6 +16076,12 @@ fieldset:disabled .btn-group-vertical {
 	margin: 10px;
 }
 
+.details-container .nanny-opinions {
+    padding: 30px 20px;
+    min-height: 80vh;
+    background-color: #fff;
+}
 
-
-
+.comments {
+    font-size: 15px;
+}

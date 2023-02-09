@@ -50,7 +50,7 @@
             </div>
         </nav>
         <!-- 메인 -->
-        <form name = "bookingform" action="${path}/mainSearch.user" >
+        <form name = "bookingform" action="${path}/search" method=get>
 	        <header class="masthead">
 	            <div class="container px-5">
 	                <div class="row gx-5 align-items-center">

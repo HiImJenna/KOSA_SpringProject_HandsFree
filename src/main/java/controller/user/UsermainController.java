@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UsermainController {
 	
 	
-	@GetMapping("mainSearch.user")
+	@GetMapping("search")
 	public String home(HttpServletRequest httpServletRequest, Model model) {
 		String destination = httpServletRequest.getParameter("destination");		
 		String dropDate = httpServletRequest.getParameter("dropDate");
