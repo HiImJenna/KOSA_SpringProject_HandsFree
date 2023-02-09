@@ -201,13 +201,11 @@
 					<li class="nav-item"><a class="nav-link me-lg-3" href="#guide">FAQ</a></li>
 					<li class="nav-item"><a class="nav-link me-lg-3" href="#">Korean</a></li>
 				</ul>
-				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0"
-					data-bs-toggle="modal" data-bs-target="#loginModal">
+				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
 					<span class="d-flex align-items-center"> <span class="small">로그인</span>
 					</span>
 				</button>
-				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0"
-					data-bs-toggle="modal" data-bs-target="#registerModal">
+				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/register'">
 					<span class="d-flex align-items-center"> <span class="small">회원가입</span>
 					</span>
 				</button>

@@ -22,8 +22,13 @@ public class UsermainController {
 		return "/user/search";
 	}
 	
+	@GetMapping("/users/login")
+	public String getloginView() {
+		return "user/login";
+	}
+	
 	@GetMapping("/users/register")
-	public String userRegister() {
+	public String getRegisterView() {
 		return "user/register";
 	}
 }
