@@ -21,4 +21,14 @@ public class UsermainController {
 		
 		return "/user/search";
 	}
+	
+	@GetMapping("/users/login")
+	public String getloginView() {
+		return "user/login";
+	}
+	
+	@GetMapping("/users/register")
+	public String getRegisterView() {
+		return "user/register";
+	}
 }
