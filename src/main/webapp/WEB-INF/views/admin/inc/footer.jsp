@@ -6,7 +6,7 @@
 	<!-- MDB -->
 	<script type="text/javascript" src="${path}/resources/admin/js/mdb.min.js"></script>
 	<!-- Custom scripts -->
-	<script type="text/javascript" src="${path}/resources/admin/js/admin.js"></script>
+	<<%-- script type="text/javascript" src="${path}/resources/admin/js/admin.js"></script> --%>
 	
 	
 	
