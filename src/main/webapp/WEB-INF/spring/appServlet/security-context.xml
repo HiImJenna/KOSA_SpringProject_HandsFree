@@ -11,13 +11,13 @@
       <security:csrf disabled="true" />
       <security:form-login
                            login-page="/users/login.htm" 
-                           default-target-url="/index.htm"  
-                           authentication-failure-url="/security/login.htm?error" />
+                           default-target-url="/"  
+                           authentication-failure-url="/users/login.htm?error" />
       
       <security:logout logout-success-url="/security/join.htm" />
       
-      <security:intercept-url pattern="/security/**" access="permitAll" />
-      <security:intercept-url pattern="/customer/**" access="hasRole('ROLE_USER')" />
+      <security:intercept-url pattern="/**" access="permitAll" />
+      <security:intercept-url pattern="/users/**" access="hasRole('ROLE_USER')" />
       <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
   </security:http>
 

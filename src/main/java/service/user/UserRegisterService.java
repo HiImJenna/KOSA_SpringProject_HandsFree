@@ -4,15 +4,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dao.user.UserRegisterDao;
+import vo.user.Users;
 
 @Service
 public class UserRegisterService {
 	
-	@Autowired
 	private SqlSession sqlsession;
+	
+	@Autowired
+	public void setSqlsession(SqlSession sqlsession) {
+		this.sqlsession = sqlsession;
+	}
 
 	//회원가입
-	public void insert(vo.user.Users users){
+	public void insert(Users users){
 		UserRegisterDao dao = sqlsession.getMapper(UserRegisterDao.class);
 		int result = dao.insertMember(users);
 		if(result > 0){

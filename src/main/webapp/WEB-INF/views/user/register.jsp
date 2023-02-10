@@ -232,7 +232,7 @@
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; width: 526px; padding: 0px;">
 						<div class="col-10">
-							<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<input style="height: 51px;" class="form-control" name="userid" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 						</div>
@@ -252,7 +252,7 @@
 					<!-- 비밀번호 -->
 					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col">
-							<input style="height: 51px;" class="form-control" name="password" id="password" type="password"
+							<input style="height: 51px;" class="form-control" name="userpwd" id="password" type="password"
 							placeholder="비밀번호" data-sb-validations="required" /> 
 							<label for="password">password</label>
 							<div class="invalid-feedback"
@@ -274,11 +274,11 @@
 					<!-- 이름 -->
 					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col-6">
-							<input style="height: 51px;" class="form-control" name="firstName" id="firstName" type="text"
+							<input style="height: 51px;" class="form-control" name="first_name" id="firstName" type="text"
 							placeholder="성" data-sb-validations="required" />
 						</div>
 						<div class="col-6">
-							<input style="height: 51px;" class="form-control" name="lastName" id="firstName" type="text"
+							<input style="height: 51px;" class="form-control" name="last_name" id="lastName" type="text"
 							placeholder="이름" data-sb-validations="required" />
 						</div>
 					</div>

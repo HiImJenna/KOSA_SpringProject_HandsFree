@@ -38,8 +38,9 @@
                         <li class="nav-item"><a class="nav-link me-lg-3" href="#">Korean</a></li>
                     </ul>
                     
-                    
-                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
+                   <se:authentication property="name"/> <!-- 유저 이름 보여줌 -->
+                   
+                   <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">로그인</span>
 						</span>
