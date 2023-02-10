@@ -16085,3 +16085,41 @@ fieldset:disabled .btn-group-vertical {
 .comments {
     font-size: 15px;
 }
+
+
+
+/* 채팅 */
+
+.balloon {
+    display: inline-block;
+    position: relative;
+    left: 65%;
+    top: 50%;
+    background: #3B47F5;
+    height: 70px;
+    width: 120px;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+.balloon:after {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    z-index: -1;
+    background: #fff;
+    bottom: -20px;
+    left: 50px;
+}
+.balloon:before {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    z-index: -1;
+    background: #3B47F5;
+    bottom: -15px;
+    left: 35px;
+}
