@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,16 +37,25 @@
                         <li class="nav-item"><a class="nav-link me-lg-3" href="#guide">FAQ</a></li>
                         <li class="nav-item"><a class="nav-link me-lg-3" href="#">Korean</a></li>
                     </ul>
+                    
+                    
                     <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">로그인</span>
 						</span>
 					</button>
+					
+					
+					
+						<li>
+							<a href="${pageContext.request.contextPath}/logout">${loginuser}:로그아웃</a>
+						</li>
 					<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/register'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">회원가입</span>
 						</span>
 					</button>
+					
                 </div>
             </div>
         </nav>

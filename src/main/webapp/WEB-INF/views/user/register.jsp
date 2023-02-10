@@ -31,7 +31,7 @@
 			if (active == 'left') {
 				left.classList.add('active');
 				right.classList.remove('active');
-				const temp = `<form action="/users" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
+				const temp = `<form action="/users/register" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; width: 526px; padding: 0px;">
 						<div class="col-10">
@@ -227,12 +227,12 @@
 			
 			<div id="form-box" class="container" style="padding: 0px;">
 			
-				<form action="/users" method="post" data-sb-form-api-token="API_TOKEN">
+				<form action="/users/register" method="post" data-sb-form-api-token="API_TOKEN">
 				
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; width: 526px; padding: 0px;">
 						<div class="col-10">
-							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 						</div>
