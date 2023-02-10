@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -35,7 +36,7 @@
 								<!-- 이메일 -->
 								<div class="row" style="height:58px; padding: 0px;">
 									<div class="col">
-										<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+										<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 										<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 										<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 									</div>
@@ -55,7 +56,6 @@
 									<button class="btn btn-primary rounded-pill btn-lg"
 										id="submitButton" type="submit">로그인</button>
 								</div>
-								
 							</form>`;
 				$('#form-box').append(temp);
 			} else {
@@ -66,7 +66,7 @@
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; padding: 0px;">
 						<div class="col">
-							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 						</div>
@@ -143,12 +143,12 @@
 			
 			<div id="form-box" class="container" style="padding: 0px;">
 			
-				<form action="/users" method="post" data-sb-form-api-token="API_TOKEN">
+				<form action="${pageContext.request.contextPath}/login" method="post" data-sb-form-api-token="API_TOKEN">
 				
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; padding: 0px;">
 						<div class="col">
-							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 						</div>
