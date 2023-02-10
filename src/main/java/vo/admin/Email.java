@@ -4,13 +4,13 @@ import lombok.Data;
 
 @Data
 public class Email {
-	private int emailIdx;			// ë§¤ì¼ ìˆœë²ˆ
-	private String userId;		// ë©”ì¼ ë³´ë‚´ëŠ”ì‚¬ëŒ ì•„ì´ë””
-	private String title;			// ë©”ì¼ ì œëª©
-	private String content;		//  ë©”ì¼ ë‚´ìš©
-	private String fromMail;	//	ë³´ë‚´ëŠ”ì‚¬ëŒ Mail
-	private String[] toMail;		//  ì¶”ê°€ëœ Mail ìˆ˜ì‹ ì
-	private String[] ccMail;		//  ì¶”ê°€ëœ ì°¸ì¡° Mail ìˆ˜ì‹ ì
+	private int emailIdx;			// ¸ŞÀÏ¼ø¹ø
+	private String userId;		// ¸ŞÀÏº¸³»´Â »ç¶÷ ¾ÆÀÌµğ
+	private String title;			// ¸ŞÀÏÁ¦¸ñ
+	private String content;		//  ¸ŞÀÏ³»¿ë
+	private String fromMail;	//	º¸³»´Â»ç¶÷ Mail
+	private String[] toMail;		//  Ãß°¡µÈ Mail ¼ö½ÅÀÚ
+	private String[] ccMail;		//  Ãß°¡µÈ ÂüÁ¶ Mail ¼ö½ÅÀÚ
 	
 	
 }

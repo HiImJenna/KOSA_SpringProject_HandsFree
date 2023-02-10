@@ -26,7 +26,7 @@
 		<!-- Right links -->
 		<ul class="navbar-nav ms-auto d-flex flex-row">
 			<!-- 사용자페이지 이동 -->
-			<li class="nav-item"><a class="nav-link me-3 me-lg-0" href="#">[사이트]홈페이지</a>
+			<li class="nav-item"><a class="nav-link me-3 me-lg-0" href="${path}/">[사이트]홈페이지</a>
 			</li>
 			<!-- 프리미엄 서비스 가입하기 -->
 			<li class="nav-item"><a class="nav-link me-3 me-lg-0" href="#">프리미엄가입</a>

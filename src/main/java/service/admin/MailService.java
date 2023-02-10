@@ -24,7 +24,7 @@ public class MailService{
 	@Autowired
 	private JavaMailSender emailSender;
 	
-//	파일 첨부 기능 있는 메일
+//	파일 첨부기능 있는 메일
 	public void sendEmail(String fromAddress, Email email, MultipartFile file) throws MessagingException, IOException {
 		MimeMessage message = emailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
@@ -45,8 +45,8 @@ public class MailService{
 			String subject, String msgBody) throws MessagingException, IOException {
 		MimeMessage message = emailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-		//helper.setFrom(fromAddress); //보낸이
-		message.setFrom(new InternetAddress(fromAddress,"관리자")); //보낸이
+		//helper.setFrom(fromAddress); //蹂대궦�씠
+		message.setFrom(new InternetAddress(fromAddress,"관리자")); //보내닝
 		helper.setTo(toAddress); //받는이
 		helper.setSubject(subject);
 		helper.setText(msgBody, true);

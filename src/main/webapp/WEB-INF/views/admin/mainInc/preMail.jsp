@@ -11,7 +11,7 @@
 		$('#preMailForm').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preMailForm",
+				url : "/preMailForm",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
