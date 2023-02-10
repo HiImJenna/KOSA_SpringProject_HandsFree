@@ -10,8 +10,6 @@
 <body>
 	<h1>Hello world!</h1>
 
-	<a href="${path}/admin/admin"> BOSS </a>
-	<a href="${path}/admin/preMailAAA">MAIL</a>
 </body>
 </html>
 

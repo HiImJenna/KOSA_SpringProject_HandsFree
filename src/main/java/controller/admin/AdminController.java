@@ -12,55 +12,55 @@ import vo.admin.Email;
 
 
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("/")
 public class AdminController {
 
-	//�젏二쇳럹�씠吏� �씠�룞
+	//
 	@GetMapping("admin") 
 	public String admin() {
-		return "aadmin";
+		return "admin/adminMain";
 	}
-	
-	//留덉씠�럹�씠吏�
-	@GetMapping("mypage")   
+
+	//
+	@GetMapping("adminMypage")   
 	public String mypage() {
-		return "admin/mypage";
+		return "admin/mainInc/mypage";
 	}
 	
 	//
-	@GetMapping("reserve")   
+	@GetMapping("adminReserve")   
 	public String reserve() {
-		return "admin/reserve";
+		return "admin/mainInc/reserve";
 	}
 	
 	//
-	@GetMapping("chatting")   
+	@GetMapping("adminChatting")   
 	public String chatting() {
-		return "admin/chatting";
+		return "admin/mainInc/chatting";
 	}
 	
 	//
-	@GetMapping("review")   
+	@GetMapping("adminReview")   
 	public String review() {
-		return "admin/review";
+		return "admin/mainInc/review";
 	}
 	
 	//
 	@GetMapping("preMain")   
 	public String preMain() {
-		return "admin/preMain";
+		return "admin/mainInc/preMain";
 	}
 	
 	//
 	@GetMapping("preMarketing")   
 	public String preMarketing() {
-		return "admin/preMarketing";
+		return "admin/mainInc/preMarketing";
 	}
 	
 	//
 	@GetMapping("preMail")   
 	public String preMail() {
-		return "admin/preMail";
+		return "admin/mainInc/preMail";
 	}
 	
 	//
@@ -72,13 +72,13 @@ public class AdminController {
 	//
 	@GetMapping("preSchedule")   
 	public String preSchedule() {
-		return "admin/preSchedule";
+		return "admin/mainInc/preSchedule";
 	}
 
 	//
 	@GetMapping("preStastics")   
 	public String preStastics() {
-		return "admin/preStastics";
+		return "admin/mainInc/preStastics";
 	}
 	
 	
@@ -90,12 +90,12 @@ public class AdminController {
 	@Autowired
 	private MailService mailService;
 	
-	@GetMapping("/preMailForm")
+	@GetMapping("preMailForm")
 	public String emailForm() {		
-		return "admin/preMailForm";
+		return "admin/mainInc/preMailForm";
 	}
 	
-	@PostMapping("/preMailForm")
+	@PostMapping("preMailForm")
 	public String sendEmail(Email email, MultipartFile file) throws Exception{
 		System.out.println(email.toString());
 		
@@ -107,7 +107,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/preMailForm";
+		return "admin/mainInc/preMailForm";
 	}
 	
 	

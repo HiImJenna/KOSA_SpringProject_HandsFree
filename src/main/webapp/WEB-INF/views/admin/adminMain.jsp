@@ -46,12 +46,12 @@
 	
 <!-- 비동기 처리 -->
 <script type="text/javascript">
-	$(document).ready( ()=> {
+	$(document).ready(() => {
 		/* 기본정보 */
 		$('#admin').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/admin",
+				url : "/admin",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -67,7 +67,7 @@
 		$('#mypage').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/mypage",
+				url : "/adminMypage",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -83,7 +83,7 @@
 		$('#reserve').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/reserve",
+				url : "/adminReserve",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -99,7 +99,7 @@
 		$('#chatting').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/chatting",
+				url : "/adminChatting",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -115,7 +115,7 @@
 		$('#review').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/review",
+				url : "/adminReview",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -131,7 +131,7 @@
 		$('#preMain').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preMain",
+				url : "/preMain",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -147,7 +147,7 @@
 		$('#preMarketing').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preMarketing",
+				url : "/preMarketing",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -163,7 +163,7 @@
 		$('#preMail').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preMail",
+				url : "/preMail",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -179,7 +179,7 @@
 		$('#preMailForm').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preMailForm",
+				url : "/preMailForm",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -194,7 +194,7 @@
 		$('#preSchedule').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preSchedule",
+				url : "/preSchedule",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -210,7 +210,7 @@
 		$('#preStastics').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/admin/preStastics",
+				url : "/preStastics",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -227,22 +227,14 @@
 	});
 </script>
 
-
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/admin/inc/sidebar.jsp" />
 	<jsp:include page="/WEB-INF/views/admin/inc/header.jsp" />
 
 	<div id="main">
-		<jsp:include page="/WEB-INF/views/admin/admin.jsp" />
-
-
-
+		<jsp:include page="/WEB-INF/views/admin/mainInc/admin.jsp" />
 	</div>
-	<!--Main layout-->
-	
-
 	
 	<jsp:include page="/WEB-INF/views/admin/inc/footer.jsp" />
 
