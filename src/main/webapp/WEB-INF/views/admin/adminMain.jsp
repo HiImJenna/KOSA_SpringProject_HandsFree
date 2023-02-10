@@ -44,9 +44,10 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	
 	
+	
 <!-- 비동기 처리 -->
 <script type="text/javascript">
-	$(document).ready(() => {
+	$(document).ready(function() {
 		/* 기본정보 */
 		$('#admin').click(function(){
 			$.ajax({
