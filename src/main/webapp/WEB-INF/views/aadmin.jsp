@@ -51,7 +51,7 @@
 		$('#admin').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/admin",
+				url : "/admin/admin",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -67,7 +67,7 @@
 		$('#mypage').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/mypage",
+				url : "/admin/mypage",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -83,7 +83,7 @@
 		$('#reserve').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/reserve",
+				url : "/admin/reserve",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -99,7 +99,7 @@
 		$('#chatting').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/chatting",
+				url : "/admin/chatting",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -115,7 +115,7 @@
 		$('#review').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/review",
+				url : "/admin/review",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -131,7 +131,7 @@
 		$('#preMain').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preMain",
+				url : "/admin/preMain",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -147,7 +147,7 @@
 		$('#preMarketing').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preMarketing",
+				url : "/admin/preMarketing",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -163,7 +163,7 @@
 		$('#preMail').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preMail",
+				url : "/admin/preMail",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -179,7 +179,7 @@
 		$('#preMailForm').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preMailForm",
+				url : "/admin/preMailForm",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -194,7 +194,7 @@
 		$('#preSchedule').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preSchedule",
+				url : "/admin/preSchedule",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
@@ -210,7 +210,7 @@
 		$('#preStastics').click(function(){
 			$.ajax({
 				type : "GET",
-				url : "/kosa/admin/preStastics",
+				url : "/admin/preStastics",
 				dataType : "html",
 				error : function(){
 					alert("새로고침 해주세요");
