@@ -15,13 +15,13 @@ import vo.admin.Email;
 @RequestMapping("/admin/")
 public class AdminController {
 
-	//점주페이지 이동
+	//�젏二쇳럹�씠吏� �씠�룞
 	@GetMapping("admin") 
 	public String admin() {
 		return "aadmin";
 	}
 	
-	//마이페이지
+	//留덉씠�럹�씠吏�
 	@GetMapping("mypage")   
 	public String mypage() {
 		return "admin/mypage";
@@ -64,10 +64,10 @@ public class AdminController {
 	}
 	
 	//
-	@GetMapping("preMailForm")   
-	public String preMailForm() {
-		return "admin/preMailForm";
-	}
+//	@GetMapping("preMailForm")   
+//	public String preMailForm() {
+//		return "admin/preMailForm";
+//	}
 	
 	//
 	@GetMapping("preSchedule")   
@@ -90,12 +90,12 @@ public class AdminController {
 	@Autowired
 	private MailService mailService;
 	
-	@GetMapping("/preMailAAA")
+	@GetMapping("/preMailForm")
 	public String emailForm() {		
-		return "admin/preMailAAA";
+		return "admin/preMailForm";
 	}
 	
-	@PostMapping("/preMailAAA")
+	@PostMapping("/preMailForm")
 	public String sendEmail(Email email, MultipartFile file) throws Exception{
 		System.out.println(email.toString());
 		
@@ -107,7 +107,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/preMailAAA";
+		return "admin/preMailForm";
 	}
 	
 	
@@ -125,8 +125,8 @@ public class AdminController {
 //	}
 //	@PostMapping(value="noticeReg.htm")
 //	public String noticeReg(Notice n , HttpServletRequest request) {
-//		//예외가 던져질 경우라도
-//		String url = "redirect:notice.htm"; //다시 리스트 볼 수 있게 처리 .....
+//		//�삁�쇅媛� �뜕�졇吏� 寃쎌슦�씪�룄
+//		String url = "redirect:notice.htm"; //�떎�떆 由ъ뒪�듃 蹂� �닔 �엳寃� 泥섎━ .....
 //		try {
 //			url = customerservice.noticeReg(n, request);
 //		} catch (Exception e) {
@@ -159,7 +159,7 @@ public class AdminController {
 //	public String noticeDel(String seq){
 //		return customerservice.noticeDel(seq);
 //	}
-//	//파일 다운로드
+//	//�뙆�씪 �떎�슫濡쒕뱶
 //	@RequestMapping("download.htm")
 //	public void download(String p , String f , HttpServletRequest request , HttpServletResponse response) throws IOException {
 //		  customerservice.download(p, f, request, response);
