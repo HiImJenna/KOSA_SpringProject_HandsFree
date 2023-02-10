@@ -3,6 +3,7 @@ package controller.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import service.user.UserRegisterService;
 import vo.user.Users;
@@ -34,5 +35,24 @@ public class UserSecurityController {
 		
 		return "redirect:/";
     }
+	
+	//GET 요청
+	//user/register.jsp 회원가입 페이지로 이동
+	@GetMapping("/users/register")
+	public String getRegisterView() {
+		return "user/register";
+	}
+	
+	
+	////////////////////// 로그인 //////////////////////
+	
+
+	//GET요청
+	//login.jsp **로그인 페이지로 이동**
+	@GetMapping("/users/login")
+	public String login() {
+		return "user/login";
+	}
+
 
 }

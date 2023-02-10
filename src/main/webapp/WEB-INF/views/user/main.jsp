@@ -39,23 +39,26 @@
                     </ul>
                     
                    <se:authentication property="name"/> <!-- 유저 이름 보여줌 -->
-                   
+                   <se:authorize access="!hasRole('ROLE_USER')"> 
                    <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">로그인</span>
 						</span>
 					</button>
+					</se:authorize>
 					
+						
+					<se:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" ><!-- if문 -->
+					<a href="${pageContext.request.contextPath}/logout">${loginuser}:로그아웃</a>
+					</se:authorize>
 					
-					
-						<li>
-							<a href="${pageContext.request.contextPath}/logout">${loginuser}:로그아웃</a>
-						</li>
+					<se:authorize access="!hasRole('ROLE_USER')">		
 					<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/register'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">회원가입</span>
 						</span>
 					</button>
+					</se:authorize>
 					
                 </div>
             </div>
