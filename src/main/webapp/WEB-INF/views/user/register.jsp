@@ -173,11 +173,11 @@
 				</form>
 				
 				<!-- 점주 회원 가입 -->
-				<form id="storeRegister" style="display: none;" action="/storekeepers" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
+				<form id="storeRegister" style="display: none;" action="${path}/admin/register" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; width: 526px; padding: 0px;">
 						<div class="col-10">
-							<input style="height: 51px;" class="form-control" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
 						</div>
@@ -188,14 +188,14 @@
 					<!-- 이메일 인증 번호 입력 -->
 					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col">
-							<input style="height: 51px;" class="form-control" id="emailNumber" type="text" placeholder="이메일 인증번호" />
+							<input style="height: 51px;" class="form-control" name="validateNumber" id="emailNumber" type="text" placeholder="이메일 인증번호" />
 						</div>
 					</div>
 					
 					<!-- 비밀번호 -->
 					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col">
-							<input style="height: 51px;" class="form-control" id="password" type="password"
+							<input style="height: 51px;" class="form-control" name="password" id="password" type="password"
 							placeholder="비밀번호" data-sb-validations="required" /> 
 							<label for="password">password</label>
 							<div class="invalid-feedback"
@@ -216,11 +216,11 @@
 					<!-- 이름 -->
 					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
+							<input style="height: 51px;" class="form-control" name="lastName" id="name" type="text"
 							placeholder="성" data-sb-validations="required" />
 						</div>
 						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
+							<input style="height: 51px;" class="form-control" name="firstName" id="name" type="text"
 							placeholder="이름" data-sb-validations="required" />
 						</div>
 					</div>
@@ -228,7 +228,7 @@
 					<!-- 주소 ==> 좌표 -->
 					<div class="row" style="height: 58px; width: 526px; padding: 0px;">
 						<div class="col-10">
-							<input style="height: 51px;" readonly class="form-control" id="address" type="text" placeholder="주소" data-sb-validations="required" />
+							<input style="height: 51px;" readonly class="form-control" name="address" id="address" type="text" placeholder="주소" data-sb-validations="required" />
 						</div>
 						<div class="col-2">
 							<button style="width: 80px; height: 50px; 
@@ -251,7 +251,7 @@
 					<!-- 파일 업로드 -->
 					<div style="margin-top: 15px;">
 					  <label for="formFileLg" class="form-label">개인사업등록증</label>
-					  <input class="form-control form-control-lg" id="formFileLg" type="file">
+					  <input class="form-control form-control-lg" name="file" id="formFileLg" type="file">
 					</div>
 					
 					<!-- 제출 버튼 -->
