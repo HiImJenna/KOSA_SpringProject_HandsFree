@@ -203,13 +203,6 @@
 						</div>
 					</div>
 					
-					<!-- 파일 업로드 -->
-					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
-						<div class="col">
-							<input class="form-control" type="file" id="formFile">
-						</div>
-					</div>
-					
 					<!-- 주소 ==> 좌표 -->
 					<div class="row" style="height: 58px; width: 526px; padding: 0px;">
 						<div class="col-10">
@@ -218,6 +211,21 @@
 						<div class="col-2">
 							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">주소찾기</button>
 						</div>
+					</div>
+					
+					<!-- 파일 업로드 -->
+					<!--
+					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
+						<div class="col">
+							<input class="form-control" type="file" id="formFile" placeholder="개인사업 등록증">
+						</div>
+					</div>
+					-->
+					
+					<!-- 파일 업로드 -->
+					<div>
+					  <label for="formFileLg" class="form-label">개인사업등록증</label>
+					  <input class="form-control form-control-lg" id="formFileLg" type="file">
 					</div>
 					
 					<!-- 제출 버튼 -->
