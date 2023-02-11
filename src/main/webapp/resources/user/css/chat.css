@@ -14,7 +14,7 @@
     left: 100%;
     top: 30%;
     z-index: 10;
-    /* display: none; */
+    /* display: none; */ 
     /* transform: translate(0%, 0%); */
 }
 
@@ -25,7 +25,7 @@
 
 
 .chat .chat_body {
-  	background: rgb(195, 204, 221);
+  	background: #fff;
 	height: 100%;
 	width: 70%;
     order: 1;
