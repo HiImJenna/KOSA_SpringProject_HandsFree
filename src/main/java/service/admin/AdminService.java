@@ -17,10 +17,10 @@ public class AdminService {
 	private SqlSession sqlsession;
 	
 	@Transactional
-	public int registerAdmin(Admin admin, StoreKeeper storeKeeper, Store store) {
+	public int registerAdmin(Admin admin, StoreKeeper storeKepper, Store store) {
 		AdminDao dao = sqlsession.getMapper(AdminDao.class);
 		dao.registerAdmin(admin);
-		dao.registerStoreKeeper(storeKeeper);
+		dao.registerStoreKeeper(storeKepper);
 		return dao.registerStore(store);
 	}
 }

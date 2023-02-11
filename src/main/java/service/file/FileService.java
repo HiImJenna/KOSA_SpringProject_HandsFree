@@ -2,32 +2,26 @@ package service.file;
 
 import java.io.FileOutputStream;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+
+import controller.admin.dto.AdminRegisterDto;
 
 @Service
 public class FileService {
 	
+	// 임시 사라질 수 있음
 	private final String PATH = "/files/upload";
 	
 	// 사업자 등록증 저장 후 경로 반환
-	public String saveAdminBusinesslicense(MultipartFile file, String userId,
-										   HttpServletRequest request) 
-	{
-		String fileName = file.getOriginalFilename();
-		String path = request.getServletContext().getRealPath(PATH);
-		String fpath = "";
-		
-		if (!fileName.equals("")) {
-			fpath = path + "\\" + userId + "\\" + fileName;
+	public void saveAdminBusinesslicense(AdminRegisterDto dto) {
+		if (!dto.getFile().getOriginalFilename().equals("")) {
+			String fpath = dto.getRealFilePath();
 			System.out.println("파일 저장 경로");
 			System.out.println(fpath);
 			FileOutputStream fs = null;
 			try {
 				fs = new FileOutputStream(fpath);
-				fs.write(file.getBytes());
+				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -38,6 +32,5 @@ public class FileService {
 				}
 			}
 		}
-		return fpath;
 	}
 }

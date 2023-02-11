@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
 import vo.admin.Email;
@@ -97,27 +98,18 @@ public class AdminController {
 	@Autowired
 	private FileService fileService;
 	
+	@Autowired
+	private AdminService adminService; 
+	
 	@PostMapping("/admin/register")
-	public String adminRegister(AdminRegisterDto dto, 
-							    HttpServletRequest request) 
-	{
-		// 경로 얻기
-		String filePath = dto.getFileRealPath(request);
-		//= fileService.saveAdminBusinesslicense(dto.getFile(), dto.getEmail(), request);
-		
-		// 주소 기반 좌표 얻기
-		
-		// Admin 파일경로 채워서 객체 얻기 
-		
-		// StoreKeeper 객체 얻기 
-		
-		// Store 객체 얻기
-		
+	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request) {
+		// 경로 얻기 , 주소 기반 좌표 얻기
+		dto.findFileRealPath(request);
+		dto.findCoordinates();
 		// DB 저장
-		
+		adminService.registerAdmin(dto.toAdmin(), dto.toStoreKeeper(), dto.toStore());
 		// 사업자 등록증 파일 저장
-		
-		//
+		fileService.saveAdminBusinesslicense(dto);
 		return "redirect:/users/login";
 	}
 }
