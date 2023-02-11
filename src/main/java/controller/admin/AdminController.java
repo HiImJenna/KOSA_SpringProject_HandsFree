@@ -101,9 +101,23 @@ public class AdminController {
 	public String adminRegister(AdminRegisterDto dto, 
 							    HttpServletRequest request) 
 	{
-		// 파일 저장 및 경로 얻기
-		String filePath = fileService.saveAdminBusinesslicense(dto.getFile(), dto.getEmail(), request);
+		// 경로 얻기
+		String filePath = dto.getFileRealPath(request);
+		//= fileService.saveAdminBusinesslicense(dto.getFile(), dto.getEmail(), request);
 		
+		// 주소 기반 좌표 얻기
+		
+		// Admin 파일경로 채워서 객체 얻기 
+		
+		// StoreKeeper 객체 얻기 
+		
+		// Store 객체 얻기
+		
+		// DB 저장
+		
+		// 사업자 등록증 파일 저장
+		
+		//
 		return "redirect:/users/login";
 	}
 }
