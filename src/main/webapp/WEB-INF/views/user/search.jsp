@@ -45,6 +45,33 @@
  -->
 
 
+
+
+<style>
+body{
+	font-family:"맑은 고딕", "고딕", "굴림";
+}
+
+html, body {
+margin: 0px; 
+padding: 0px;
+}
+
+#wrapper{
+	width: 1200px;
+	margin: 0 auto;	
+}
+
+
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;margin:10px 0 30px 10px;padding:5px;}
+
+
+</style>
+
+
+
+
+
 </head>
 	<!-- 지도 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0f8465e5d46edf4274cf5a48ed2ce318&libraries=services"></script>
@@ -84,28 +111,37 @@
 			// 장소 검색 객체를 생성합니다
 			var ps = new kakao.maps.services.Places(); 
 			
-			if (navigator.geolocation) {
-				  navigator.geolocation.getCurrentPosition(function(position) {
-				        lat = position.coords.latitude; // 위도
-				        lon = position.coords.longitude; // 경도
-				        var locPosition = new kakao.maps.LatLng(lat, lon);
-				        console.log(locPosition);
-				        displayMarker(locPosition);
-				  });
+			if("${destination}" == ""){
+				if (navigator.geolocation) {
+					  navigator.geolocation.getCurrentPosition(function(position) {
+					        lat = position.coords.latitude; // 위도
+					        lon = position.coords.longitude; // 경도
+					        var locPosition = new kakao.maps.LatLng(lat, lon);
+					        console.log(locPosition);
+					        var bounds = new kakao.maps.LatLngBounds();
+						    var marker = new kakao.maps.Marker({position: locPosition });
+						    marker.setMap(map);
+						    bounds.extend(locPosition);
+						    map.setBounds(bounds);
+					  });
+				}
+			}else{
+				// 키워드로 장소를 검색합니다
+				console.log("2");
+				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);	
 			}
 			
-			
-			// 키워드로 장소를 검색합니다
-			ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);	
-			
+
+		
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB (data, status, pagination) {
+				console.log("몇번째임");
+
 			    if (status === kakao.maps.services.Status.OK) {
-			
 			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 			        // LatLngBounds 객체에 좌표를 추가합니다
 			        var bounds = new kakao.maps.LatLngBounds();
-			
+
 			        for (var i=0; i<data.length; i++) {
 			            displayMarker(data[i]);    
 			            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
@@ -131,6 +167,119 @@
 			    });
 			}
 			
+			//지도끝
+			
+			
+			
+			
+			// 드래그 커스텀
+			
+/* 			var content = document.createElement('div');
+			content.className = 'overlay';
+			content.innerHTML = '드래그 해주세요 :D'; */
+			
+			
+			
+			
+
+			// 커스텀 오버레이를 드래그 하기 위해 필요한  
+			// 드래그 시작좌표, 커스텀 오버레이의 위치좌표를 넣을 변수를 선업합니다
+			var startX, startY, startOverlayPoint;
+
+			// 커스텀 오버레이에 mousedown이벤트를 등록합니다 
+			addEventHandle(content, 'mousedown', onMouseDown);
+
+			// mouseup 이벤트가 일어났을때 mousemove 이벤트를 제거하기 위해
+			// document에 mouseup 이벤트를 등록합니다 
+			addEventHandle(document, 'mouseup', onMouseUp);
+
+			// 커스텀 오버레이에 mousedown 했을 때 호출되는 핸들러 입니다 
+			function onMouseDown(e) {
+			    // 커스텀 오버레이를 드래그 할 때, 내부 텍스트가 영역 선택되는 현상을 막아줍니다.
+			    if (e.preventDefault) {
+			        e.preventDefault();
+			    } else {
+			        e.returnValue = false;
+			    }
+
+			   /*  var proj = map.getProjection(), // 지도 객체로 부터 화면픽셀좌표, 지도좌표간 변환을 위한 MapProjection 객체를 얻어옵니다 
+			        overlayPos = customoverlay.getPosition(); // 커스텀 오버레이의 현재 위치를 가져옵니다
+
+			    // 커스텀오버레이에서 마우스 관련 이벤트가 발생해도 지도가 움직이지 않도록 합니다
+			    kakao.maps.event.preventMap(); */
+
+			    // mousedown된 좌표를 설정합니다 
+			    startX = e.clientX; 
+			    startY = e.clientY;
+
+			    // mousedown됐을 때의 커스텀 오버레이의 좌표를
+			    // 지도 컨테이너내 픽셀 좌표로 변환합니다 
+			    startOverlayPoint = proj.containerPointFromCoords(overlayPos);
+
+			    // document에 mousemove 이벤트를 등록합니다 
+			    addEventHandle(document, 'mousemove', onMouseMove);       
+			}
+
+			// 커스텀 오버레이에 mousedown 한 상태에서 
+			// mousemove 하면 호출되는 핸들러 입니다 
+			function onMouseMove(e) {
+			    // 커스텀 오버레이를 드래그 할 때, 내부 텍스트가 영역 선택되는 현상을 막아줍니다.
+			    if (e.preventDefault) {
+			        e.preventDefault();
+			    } else {
+			        e.returnValue = false;
+			    }
+
+/* 			    var proj = map.getProjection(),// 지도 객체로 부터 화면픽셀좌표, 지도좌표간 변환을 위한 MapProjection 객체를 얻어옵니다 
+			        deltaX = startX - e.clientX, // mousedown한 픽셀좌표에서 mousemove한 좌표를 빼서 실제로 마우스가 이동된 픽셀좌표를 구합니다 
+			        deltaY = startY - e.clientY,
+			        // mousedown됐을 때의 커스텀 오버레이의 좌표에 실제로 마우스가 이동된 픽셀좌표를 반영합니다 
+			        newPoint = new kakao.maps.Point(startOverlayPoint.x - deltaX, startOverlayPoint.y - deltaY), 
+			        // 계산된 픽셀 좌표를 지도 컨테이너에 해당하는 지도 좌표로 변경합니다 
+			        newPos = proj.coordsFromContainerPoint(newPoint);
+
+			    // 커스텀 오버레이의 좌표를 설정합니다 
+			    customoverlay.setPosition(newPos); */
+			}
+
+			// mouseup 했을 때 호출되는 핸들러 입니다 
+			function onMouseUp(e) {
+			    // 등록된 mousemove 이벤트 핸들러를 제거합니다 
+			    removeEventHandle(document, 'mousemove', onMouseMove);
+			}
+
+			// target node에 이벤트 핸들러를 등록하는 함수힙니다  
+			function addEventHandle(target, type, callback) {
+			    if (target.addEventListener) {
+			        target.addEventListener(type, callback);
+			    } else {
+			        target.attachEvent('on' + type, callback);
+			    }
+			}
+
+			// target node에 등록된 이벤트 핸들러를 제거하는 함수힙니다 
+			function removeEventHandle(target, type, callback) {
+			    if (target.removeEventListener) {
+			        target.removeEventListener(type, callback);
+			    } else {
+			        target.detachEvent('on' + type, callback);
+			    }
+			}
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			//클릭 이벤트
@@ -146,7 +295,7 @@
 						title : list_data.find("h4").text(),
 						name : 'asd'
 				};
-				console.log(data);
+				//console.log(data);
 				/* console.log(JSON.stringify(data)); */
  			$.ajax({
 					type : "get",
@@ -664,7 +813,7 @@
 			
 			
 			
-				<div class="chat">
+			<!-- 	<div class="chat">
 					<div>
 						<div class="chat_body">
 							<h2 class="chat_title">1번방</h2>
@@ -687,7 +836,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			
 			
 			
@@ -709,17 +858,50 @@
 				<section class="mb-4">
 					<div class="card">
 						<div class="card-header py-3">
-							<h5 id="">${destination}</h5>
+							<h5 id="searchKey">${destination}</h5>
 							<h5>${dropDate}</h5>
 							<h5>${pickupDate}</h5>
 						</div>
 						<div id="map" class="card-body">
-							<canvas class="my-4 w-100" height="380"></canvas>
+							<canvas class="my-4 w-100" height="380"></canvas>							
 						</div>
+
+
+						<div id="menu_wrap" class="chat">
+							<div>
+								<div class="chat_body">
+									<h2 class="chat_title">1번방</h2>
+									<button class="chat_back">◀</button>
+	
+									<ul class="chat_list">
+										<li></li>
+									</ul>
+	
+									<div class="chat_input">
+										<div class="chat_input_area">
+											<textarea class="textareaF"></textarea>
+										</div>
+	
+										<div class="chat_button_area">
+											<button>전송</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						
+
+
 					</div>
 				</section>
 				<section class="mb-4"></section>
 			</div>
+			
+			
+							
 		</main>
 </body>
 <%pageContext.include("/WEB-INF/views/include/footer.jsp");%>
