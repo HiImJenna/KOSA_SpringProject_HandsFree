@@ -1,10 +1,9 @@
 package vo.admin;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
-@Data
+@Getter
 public class Admin {
 	private String userId;
 	private String password;
