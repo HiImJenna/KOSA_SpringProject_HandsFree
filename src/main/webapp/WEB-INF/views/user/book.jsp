@@ -8,6 +8,11 @@
 <link href="${path}/resources/user/css/book.css" rel="stylesheet" /> 
 </head>
 <body>
+		<!-- header -->
+		<%
+		pageContext.include("/WEB-INF/views/include/header.jsp");
+		%>
+
 	<div class="form">
 		<header>
 			<h2>예약하기</h2>
