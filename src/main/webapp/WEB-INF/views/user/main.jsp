@@ -47,7 +47,7 @@
 					</button>
 					</se:authorize>
 					
-						
+					
 					<se:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" ><!-- if문 -->
 					<a href="${pageContext.request.contextPath}/logout">${loginuser}:로그아웃</a>
 					</se:authorize>
