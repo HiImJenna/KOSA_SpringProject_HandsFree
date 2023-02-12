@@ -116,10 +116,11 @@ padding: 0px;
 					  navigator.geolocation.getCurrentPosition(function(position) {
 					        lat = position.coords.latitude; // 위도
 					        lon = position.coords.longitude; // 경도
+
 					        var locPosition = new kakao.maps.LatLng(lat, lon);
-					        console.log(locPosition);
 					        var bounds = new kakao.maps.LatLngBounds();
 						    var marker = new kakao.maps.Marker({position: locPosition });
+
 						    marker.setMap(map);
 						    bounds.extend(locPosition);
 						    map.setBounds(bounds);
@@ -127,16 +128,11 @@ padding: 0px;
 				}
 			}else{
 				// 키워드로 장소를 검색합니다
-				console.log("2");
 				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);	
 			}
-			
-
 		
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB (data, status, pagination) {
-				console.log("몇번째임");
-
 			    if (status === kakao.maps.services.Status.OK) {
 			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 			        // LatLngBounds 객체에 좌표를 추가합니다
@@ -166,8 +162,36 @@ padding: 0px;
 			        infowindow.open(map, marker);
 			    });
 			}
-			
 			//지도끝
+
+			
+			//DragAndDrop
+			
+			
+			//태그값 가져오려면  document.getElementById("menu_wrap");
+			var chatData = $('#menu_wrap')[0]; 
+			chatData.addEventListener("dragstart", dragStart);
+			chatData.addEventListener("drag", drag);
+			chatData.addEventListener("dragover", dragOver);
+			chatData.addEventListener("dragend", dragEnd);
+
+			
+			function dragStart(e){}
+			
+			function drag(e){
+				this.style.left = e.clientX - this.offsetWidth + 'px';
+				this.style.top = e.clientY - this.offsetHeight / 2 + 'px';
+			}
+			
+			function dragOver(e){
+			}
+			
+			function dragEnd(e){
+				this.style.left = e.clientX - this.offsetWidth / 2 + 'px';
+				this.style.top = e.clientY - this.offsetHeight / 2 + 'px';
+			}
+			//DragAndDrop
+			
 			
 			//클릭 이벤트
 			$(document).on("click", "#detailBtn", function(){
@@ -177,7 +201,7 @@ padding: 0px;
 				console.log(data1); */
 				var list_data = $(this).parents().eq(1);
 				var title = list_data.find("h4").text();
-				console.log(title);
+
 				var data = {
 						title : list_data.find("h4").text(),
 						name : 'asd'
@@ -651,7 +675,6 @@ padding: 0px;
 	})
 	</script>	
 
-
 <body>
 	<!--Main Navigation-->
 	<header>
@@ -698,8 +721,6 @@ padding: 0px;
 				</div>
 			</div>
 			
-			
-			
 			<!-- 	<div class="chat">
 					<div>
 						<div class="chat_body">
@@ -724,10 +745,6 @@ padding: 0px;
 						</div>
 					</div>
 				</div> -->
-			
-			
-			
-			
 				<div id="chatBtn" class="balloon"> </div>
 			</div>
 		</nav>
@@ -737,8 +754,6 @@ padding: 0px;
 		<%
 			pageContext.include("/WEB-INF/views/include/header.jsp");
 		%>
-
-
 		<!--Main layout-->
 		<main style="margin-top: 58px">
 			<div class="container pt-4">
@@ -752,11 +767,9 @@ padding: 0px;
 						<div id="map" class="card-body">
 							<canvas class="my-4 w-100" height="380"></canvas>							
 						</div>
-
-
-						<div id="menu_wrap" class="chat">
+						<div id="menu_wrap" class="chat" draggable="true">
 							<div>
-								<div class="chat_body">
+								<div id="chat_body" class="chat_body">
 									<h2 class="chat_title">1번방</h2>
 									<button class="chat_back">◀</button>
 	
@@ -776,12 +789,6 @@ padding: 0px;
 								</div>
 							</div>
 						</div>
-
-
-
-						
-
-
 					</div>
 				</section>
 				<section class="mb-4"></section>
