@@ -102,7 +102,7 @@ public class AdminController {
 	private AdminService adminService; 
 	
 	@PostMapping("/admin/register")
-	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request) {
+	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request){
 		// 경로 얻기 , 주소 기반 좌표 얻기
 		dto.findFileRealPath(request);
 		dto.findCoordinates();
