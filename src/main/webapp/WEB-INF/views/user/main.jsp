@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
     </head>

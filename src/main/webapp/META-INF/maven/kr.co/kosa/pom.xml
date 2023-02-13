@@ -210,6 +210,13 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.2.20.RELEASE</version>
        </dependency>
+       
+       <dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>4.2.20.RELEASE</version>
+		</dependency>
+       
           
       <!--JSON-->
       <dependency>
@@ -267,6 +274,14 @@
          <version>${org.springframework-version}</version>
       </dependency>
       <!-- 심승복 추가 부분 -->
+      
+      <!-- 위도 및 경도 구할 때 사용 -->
+	<dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+      
       
    </dependencies>
     <build>

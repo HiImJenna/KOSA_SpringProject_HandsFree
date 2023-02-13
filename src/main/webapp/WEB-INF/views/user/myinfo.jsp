@@ -8,7 +8,7 @@
 <html lang="en-US" dir="ltr" style="-height-screen: 1185px;">
 <head>
 	<link href="${path}/resources/user/css/myinfo.css" rel="stylesheet" /> 
-
+	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 <title>내 정보</title>
 <meta data-n-head="ssr" charset="utf-8">
 <body class=" ">
