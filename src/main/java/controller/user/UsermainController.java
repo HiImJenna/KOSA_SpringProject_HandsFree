@@ -22,10 +22,5 @@ public class UsermainController {
 		return "/user/search";
 	}
 	
-	@GetMapping("search/login")
-	public String searchLogin() {
-		
-		return "/user/loginplz";
-	}
 	
 }
