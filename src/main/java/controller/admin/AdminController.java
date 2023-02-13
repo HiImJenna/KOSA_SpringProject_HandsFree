@@ -3,6 +3,7 @@ package controller.admin;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -99,17 +100,27 @@ public class AdminController {
 	private FileService fileService;
 	
 	@Autowired
-	private AdminService adminService; 
+	private AdminService adminService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@PostMapping("/admin/register")
 	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request) {
-		// 경로 얻기 , 주소 기반 좌표 얻기
+		// 경로 얻기 , 주소 기반 좌표 얻기, 비밀번호 암호화
 		dto.findFileRealPath(request);
 		dto.findCoordinates();
+		dto.encryptPassword(bCryptPasswordEncoder);
 		// DB 저장
 		adminService.registerAdmin(dto.toAdmin(), dto.toStoreKeeper(), dto.toStore());
 		// 사업자 등록증 파일 저장
 		fileService.saveAdminBusinesslicense(dto);
 		return "redirect:/users/login";
+	}
+	
+	@PostMapping("/storeLogin")
+	public String storeLogin() {
+		//System.out.println("점주로그인");
+		return "redirect:/";
 	}
 }
