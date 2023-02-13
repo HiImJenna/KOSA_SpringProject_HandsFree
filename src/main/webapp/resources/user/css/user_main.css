@@ -1973,7 +1973,7 @@ progress {
   border-color: #dee2e6;
 }
 .table > :not(caption) > * > * {
-  /* padding: 0.5rem 0.5rem; */
+  padding: 0.5rem 0.5rem;
   background-color: var(--bs-table-bg);
   border-bottom-width: 1px;
   box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
@@ -3936,9 +3936,8 @@ textarea.form-control-lg {
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
-  margin-bottom: revert;
+  margin-bottom: 0;
   list-style: none;
-  justify-content: space-between;
 }
 
 .nav-link {
@@ -3963,7 +3962,7 @@ textarea.form-control-lg {
 }
 
 .nav-tabs {
-  /* border-bottom: 1px solid #dee2e6; */
+  border-bottom: 1px solid #dee2e6;
 }
 .nav-tabs .nav-link {
   margin-bottom: -1px;
@@ -3998,6 +3997,12 @@ textarea.form-control-lg {
   border: 0;
   border-radius: 0.25rem;
 }
+.nav-pills .nav-link.active_user,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #2937f0;
+}
+
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: black;

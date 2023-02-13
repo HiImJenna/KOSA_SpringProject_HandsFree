@@ -24,14 +24,14 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		function activateTab(active) {
+		function activateTab(active_user) {
 			let left = document.getElementById('leftTab');
 			let right = document.getElementById('rightTab');
 			
 			$('#form-box').empty();
-			if (active == 'left') {
-				left.classList.add('active');
-				right.classList.remove('active');
+			if (active_user == 'left') {
+				left.classList.add('active_user');
+				right.classList.remove('active_user');
 				const temp = `<form action="/users/login" method="post" data-sb-form-api-token="API_TOKEN">
 								<!-- 이메일 -->
 								<div class="row" style="height:58px; padding: 0px;">
@@ -59,8 +59,8 @@
 							</form>`;
 				$('#form-box').append(temp);
 			} else {
-				left.classList.remove('active');
-				right.classList.add('active');
+				left.classList.remove('active_user');
+				right.classList.add('active_user');
 				const temp = `<form action="/storekeepers/login" method="post" data-sb-form-api-token="API_TOKEN">
 				
 					<!-- 이메일 -->
@@ -135,7 +135,7 @@
 		<div style="width: 520px; margin: 0 auto">
 		
 			<nav class="nav nav-pills nav-justified">
-			  <a id="leftTab" class="nav-link active" aria-current="page" onclick="activateTab('left')">일반회원</a>
+			  <a id="leftTab" class="nav-link active_user" aria-current="page" onclick="activateTab('left')">일반회원</a>
 			  <a id="rightTab" class="nav-link" aria-current="page" onclick="activateTab('right')">개인사업자</a>
 			</nav>
 			
