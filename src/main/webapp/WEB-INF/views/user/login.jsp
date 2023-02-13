@@ -28,67 +28,14 @@
 			let left = document.getElementById('leftTab');
 			let right = document.getElementById('rightTab');
 			
-			$('#form-box').empty();
 			if (active == 'left') {
 				left.classList.add('active');
 				right.classList.remove('active');
-				const temp = `<form action="/users/login" method="post" data-sb-form-api-token="API_TOKEN">
-								<!-- 이메일 -->
-								<div class="row" style="height:58px; padding: 0px;">
-									<div class="col">
-										<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
-										<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-										<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-									</div>
-								</div>
-								
-								<!-- 비밀번호 -->
-								<div class="row" style="height: 58px; padding: 0px;">
-									<div class="col">
-										<input style="height: 51px;" class="form-control" name="password" id="password" type="password" placeholder="비밀번호" data-sb-validations="required" /> 
-										<!-- <label for="password">password</label> -->
-										<div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
-									</div>
-								</div>
-								
-								<!-- 제출 버튼 -->
-								<div class="d-grid" style="margin-top: 30px;">
-									<button class="btn btn-primary rounded-pill btn-lg"
-										id="submitButton" type="submit">로그인</button>
-								</div>
-							</form>`;
-				$('#form-box').append(temp);
+				$("#loginForm").attr("action", "/login");
 			} else {
 				left.classList.remove('active');
 				right.classList.add('active');
-				const temp = `<form action="/storekeepers/login" method="post" data-sb-form-api-token="API_TOKEN">
-				
-					<!-- 이메일 -->
-					<div class="row" style="height:58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" name="username" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
-							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-						</div>
-					</div>
-					
-					<!-- 비밀번호 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" name="password" id="password" type="password" placeholder="비밀번호" data-sb-validations="required" /> 
-							<!-- <label for="password">password</label> -->
-							<div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
-						</div>
-					</div>
-					
-					<!-- 제출 버튼 -->
-					<div class="d-grid" style="margin-top: 30px;">
-						<button class="btn btn-primary rounded-pill btn-lg"
-							id="submitButton" type="submit">로그인</button>
-					</div>
-					
-				</form>`;
-				$('#form-box').append(temp);
+				$("#loginForm").attr("action", "/storeLogin");
 			}
 		}
 	</script>
@@ -143,7 +90,7 @@
 			
 			<div id="form-box" class="container" style="padding: 0px;">
 			
-				<form action="${pageContext.request.contextPath}/login" method="post" data-sb-form-api-token="API_TOKEN">
+				<form id="loginForm" action="${path}/login" method="post" data-sb-form-api-token="API_TOKEN">
 				
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; padding: 0px;">

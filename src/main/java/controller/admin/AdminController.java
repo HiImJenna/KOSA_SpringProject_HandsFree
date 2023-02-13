@@ -112,4 +112,10 @@ public class AdminController {
 		fileService.saveAdminBusinesslicense(dto);
 		return "redirect:/users/login";
 	}
+	
+	@PostMapping("/storeLogin")
+	public String storeLogin() {
+		//System.out.println("점주로그인");
+		return "redirect:/";
+	}
 }
