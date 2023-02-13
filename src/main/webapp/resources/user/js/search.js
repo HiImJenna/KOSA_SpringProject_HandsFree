@@ -231,28 +231,51 @@ window.onload = function(){
 	function createForm(data, way){
 		$('#listGroup').empty();
 		const itemDetail =`
-							<div class="itemDetails" >
-							<img class="item_img" alt="없음"
-								src="resources/user/assets/img/shop.jpg">
-								<div class="detailsHeader">
-									짐 보관소<br>
-									<h4>${data.title}</h4>
-									옷가게<br> <i class="fa-solid fa-star"></i>
-								</div>
-								<ul class="nav nav-tabs">
-								  <li class="nav-item">
-								    <a id="information" class="nav-link active" aria-current="page" href="#">정보</a>
-								  </li>
-								  <li class="nav-item">
-								    <a id="review" class="nav-link" href="#">리뷰</a>
-								  </li>
-								  <li class="nav-item">
-								    <a id="suggestion" class="nav-link" href="#">추천</a>
-								  </li>
-								</ul>
-								<div id="tabView"></div>
-						</div>
-						`;
+						<table class="itemDetails table table-borderless">
+						    <tr>
+						
+						        <th>
+						            <img class="item_img" alt="없음" src="resources/user/assets/img/shop.jpg">
+						        </th>
+						    </tr>
+						
+						    <tr>
+						        <th>
+						            <div class="detailsHeader">
+						                짐 보관소<br>
+						                <h4>${data.title}</h4>
+						
+						
+						                옷가게<br> <i class="fa-solid fa-star"></i>
+						            </div>
+						        </th>
+						    </tr>
+						
+						    <tr class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
+						        <th class="nav-item" role="presentation">
+						            <a id="firstTab" class="nav-link firstTab active" aria-current="page" onclick="activateTab('first')">
+						                <div id="information">정보</div>
+						            </a>
+						        </th>
+						        <th class="nav-item" role="presentation">
+						            <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
+						                <div id="review">리뷰</div>
+						            </a>
+						        </th>
+						        <th class="nav-item" role="presentation">
+						            <a id="thirdTab" class="nav-link" aria-current="page" onclick="activateTab('third')">
+						                <div id="suggestion">추천</div>
+						            </a>
+						        </th>
+						    </tr>
+						    </th>
+						    </tr>
+						    <tr>
+						        <th>
+						            <div id="tabView"></div>
+						        </th>
+						    </tr>
+						</table>`;
 		$('#listGroup').append(itemDetail);
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
 		    "<th>EMPNO</th>"+
@@ -271,6 +294,25 @@ window.onload = function(){
 		opr+="<tr><td colspan='10'><input type='button' onclick='createinput(this)' value='추가'></td></tr></tbody></table>"; */
 
 	}
+	
+   function activateTab(active){
+      let first = document.getElementById('firstTab');
+      let second = document.getElementById('secondTab');
+      let third = document.getElementById('thirdTab');
+      if(active == 'first'){
+         first.classList.add('active');
+         second.classList.remove('active');
+         third.classList.remove('active');
+      }else if(active == 'second'){
+         first.classList.remove('active');
+         second.classList.add('active');
+         third.classList.remove('active');
+      }else{
+         first.classList.remove('active');
+         second.classList.remove('active');
+         third.classList.add('active');
+      }
+   }
 	
 	
 }
