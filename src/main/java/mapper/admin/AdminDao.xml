@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "dao.admin.AdminDao">
+	<insert id="registerAdmin" parameterType="vo.admin.Admin">
+		insert into users(userid, userpwd, joindate, first_name, last_name, mail_accept, profile_path) 
+		values(#{userId}, #{password}, sysdate, #{firstName}, #{lastName}, #{mailReceptionStatus}, #{profilePath})
+	</insert>
+	
+	<insert id="registerStoreKeeper" parameterType="vo.admin.StoreKeeper">
+		insert into storekeeper(storeid, status)
+		values(#{storeId}, 'OPEN')
+	</insert>
+	
+	<insert id="registerStore" parameterType="vo.admin.Store">
+		insert into store(storeid, name, phone, address, latitude, logitude)
+		values(#{storeId}, #{name}, #{phone}, #{address}, #{latitude}, #{longitude})
+	</insert>
+</mapper>

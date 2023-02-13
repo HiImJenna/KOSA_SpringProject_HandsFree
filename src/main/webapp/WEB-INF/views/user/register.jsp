@@ -26,157 +26,40 @@
 		function activateTab(active) {
 			let left = document.getElementById('leftTab');
 			let right = document.getElementById('rightTab');
-			
-			$('#form-box').empty();
 			if (active == 'left') {
 				left.classList.add('active');
 				right.classList.remove('active');
-				const temp = `<form action="/users/register" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
-					<!-- 이메일 -->
-					<div class="row" style="height:58px; width: 526px; padding: 0px;">
-						<div class="col-10">
-							<input style="height: 51px;" class="form-control" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
-							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-						</div>
-						
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">인증요청</button>
-						</div>
-					</div>
-					
-					<!-- 이메일 인증 번호 입력 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="emailNumber" type="text" placeholder="이메일 인증번호" />
-						</div>
-					</div>
-					
-					<!-- 비밀번호 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="password" type="password"
-							placeholder="비밀번호" data-sb-validations="required" /> 
-							<label for="password">password</label>
-							<div class="invalid-feedback"
-								data-sb-feedback="password:required">Password is required.</div>
-						</div>
-					</div>
-					
-					<!-- 비밀번호 확인 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="password" type="password"
-							placeholder="비밀번호 확인" data-sb-validations="required" /> 
-							<label for="password">password</label>
-							<div class="invalid-feedback"
-								data-sb-feedback="password:required">Password is required.</div>
-						</div>
-					</div>
-					
-					<!-- 이름 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
-							placeholder="성" data-sb-validations="required" />
-						</div>
-						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
-							placeholder="이름" data-sb-validations="required" />
-						</div>
-					</div>
-					
-					<!-- 제출 버튼 -->
-					<div class="d-grid" style="margin-top: 30px;">
-					<button class="btn btn-primary rounded-pill btn-lg"
-						id="submitButton" type="submit">회원가입</button>
-					</div>
-					
-				</form>`;
-				$('#form-box').append(temp);
+				$("#userRegister").show();
+				$("#storeRegister").hide();
 			} else {
 				left.classList.remove('active');
 				right.classList.add('active');
-				const temp = `<form action="/storekeepers" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
-					<!-- 이메일 -->
-					<div class="row" style="height:58px; width: 526px; padding: 0px;">
-						<div class="col-10">
-							<input style="height: 51px;" class="form-control" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
-							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-						</div>
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">인증요청</button>
-						</div>
-					</div>
-					<!-- 이메일 인증 번호 입력 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="emailNumber" type="text" placeholder="이메일 인증번호" />
-						</div>
-					</div>
-					
-					<!-- 비밀번호 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="password" type="password"
-							placeholder="비밀번호" data-sb-validations="required" /> 
-							<label for="password">password</label>
-							<div class="invalid-feedback"
-								data-sb-feedback="password:required">Password is required.</div>
-						</div>
-					</div>
-					
-					<!-- 비밀번호 확인 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="password" type="password"
-							placeholder="비밀번호 확인" data-sb-validations="required" /> 
-							<label for="password">password</label>
-							<div class="invalid-feedback"
-								data-sb-feedback="password:required">Password is required.</div>
-						</div>
-					</div>
-					
-					<!-- 이름 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
-							placeholder="성" data-sb-validations="required" />
-						</div>
-						<div class="col-6">
-							<input style="height: 51px;" class="form-control" id="name" type="text"
-							placeholder="이름" data-sb-validations="required" />
-						</div>
-					</div>
-					
-					<!-- 파일 업로드 -->
-					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
-						<div class="col">
-							<input class="form-control" type="file" id="formFile">
-						</div>
-					</div>
-					
-					<!-- 주소 ==> 좌표 -->
-					<div class="row" style="height: 58px; width: 526px; padding: 0px;">
-						<div class="col-10">
-							<input style="height: 51px;" class="form-control" id="address" type="text" placeholder="주소" data-sb-validations="required" />
-						</div>
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">주소찾기</button>
-						</div>
-					</div>
-					
-					<!-- 제출 버튼 -->
-					<div class="d-grid" style="margin-top: 30px;">
-					<button class="btn btn-primary rounded-pill btn-lg"
-						id="submitButton" type="submit">회원가입</button>
-					</div>
-					
-				</form>`;
-				$('#form-box').append(temp);
+				$("#userRegister").hide();
+				$("#storeRegister").show();
 			}
 		}
+		
+		function execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+
+	                // 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById("address").value = addr;
+	            }
+	        }).open();
+	    }
 	</script>
 	
 </head>
@@ -227,8 +110,7 @@
 			
 			<div id="form-box" class="container" style="padding: 0px;">
 			
-				<form action="/users/register" method="post" data-sb-form-api-token="API_TOKEN">
-				
+				<form id="userRegister" action="/users/register" method="post" data-sb-form-api-token="API_TOKEN">
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; width: 526px; padding: 0px;">
 						<div class="col-10">
@@ -283,37 +165,107 @@
 						</div>
 					</div>
 					
-					<!-- 파일 업로드 -->
-<!-- 					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
-						<div class="col">
-							<input class="form-control" type="file" id="formFile">
-						</div>
-					</div> -->
-					
-					<!-- 주소 ==> 좌표 -->
-<!-- 					<div class="row" style="height: 58px; width: 526px; padding: 0px;">
-						<div class="col-10">
-							<input style="height: 51px;" class="form-control" id="address" type="text" placeholder="주소" data-sb-validations="required" />
-						</div>
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">주소찾기</button>
-						</div>
-					</div> -->
-					
 					<!-- 제출 버튼 -->
 					<div class="d-grid" style="margin-top: 30px;">
 						<button class="btn btn-primary rounded-pill btn-lg"
 							id="submitButton" type="submit">회원가입</button>
 					</div>
+				</form>
+				
+				<!-- 점주 회원 가입 -->
+				<form id="storeRegister" style="display: none;" action="${path}/admin/register" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
+					<!-- 이메일 -->
+					<div class="row" style="height:58px; width: 526px; padding: 0px;">
+						<div class="col-10">
+							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
+							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+						</div>
+						<div class="col-2">
+							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">인증요청</button>
+						</div>
+					</div>
+					<!-- 이메일 인증 번호 입력 -->
+					<div class="row" style="height: 58px; padding: 0px;">
+						<div class="col">
+							<input style="height: 51px;" class="form-control" name="validateNumber" id="emailNumber" type="text" placeholder="이메일 인증번호" />
+						</div>
+					</div>
 					
+					<!-- 비밀번호 -->
+					<div class="row" style="height: 58px; padding: 0px;">
+						<div class="col">
+							<input style="height: 51px;" class="form-control" name="password" id="password" type="password"
+							placeholder="비밀번호" data-sb-validations="required" /> 
+							<label for="password">password</label>
+							<div class="invalid-feedback"
+								data-sb-feedback="password:required">Password is required.</div>
+						</div>
+					</div>
+					
+					<!-- 비밀번호 확인 -->
+					<div class="row" style="height: 58px; padding: 0px;">
+						<div class="col">
+							<input style="height: 51px;" class="form-control" id="password" type="password"
+							placeholder="비밀번호 확인" data-sb-validations="required" /> 
+							<label for="password">password</label>
+							<div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
+						</div>
+					</div>
+					
+					<!-- 이름 -->
+					<div class="row" style="height: 58px; padding: 0px;">
+						<div class="col-6">
+							<input style="height: 51px;" class="form-control" name="lastName" id="name" type="text"
+							placeholder="성" data-sb-validations="required" />
+						</div>
+						<div class="col-6">
+							<input style="height: 51px;" class="form-control" name="firstName" id="name" type="text"
+							placeholder="이름" data-sb-validations="required" />
+						</div>
+					</div>
+					
+					<!-- 주소 ==> 좌표 -->
+					<div class="row" style="height: 58px; width: 526px; padding: 0px;">
+						<div class="col-10">
+							<input style="height: 51px;" readonly class="form-control" name="address" id="address" type="text" placeholder="주소" data-sb-validations="required" />
+						</div>
+						<div class="col-2">
+							<button style="width: 80px; height: 50px; 
+								    padding: 0px;" type="button" class="btn btn-primary btn-sm"
+								    onclick="execDaumPostcode()">
+								    주소찾기
+							</button>
+						</div>
+					</div>
+					
+					<!-- 파일 업로드 -->
+					<!--
+					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
+						<div class="col">
+							<input class="form-control" type="file" id="formFile" placeholder="개인사업 등록증">
+						</div>
+					</div>
+					-->
+					
+					<!-- 파일 업로드 -->
+					<div style="margin-top: 15px;">
+					  <label for="formFileLg" class="form-label">개인사업등록증</label>
+					  <input class="form-control form-control-lg" name="file" id="formFileLg" type="file">
+					</div>
+					
+					<!-- 제출 버튼 -->
+					<div class="d-grid" style="margin-top: 30px;">
+						<button class="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit">회원가입</button>
+					</div>
 				</form>
 			</div>
-		
 		</div>
 	</header>
 
-	<!-- Footer-->
-<!-- 	<footer class="bg-black text-center py-5">
+	<!-- Footer -->
+	<!--
+	<footer class="bg-black text-center py-5">
 		<div class="container px-5">
 			<div class="text-white-50 small">
 				<div class="mb-2">&copy; Enjo2 2023. All Rights Reserved.</div>
@@ -321,7 +273,8 @@
 					class="mx-1">&middot;</span>
 			</div>
 		</div>
-	</footer> -->
+	</footer>
+	-->
 
 	<!-- Bootstrap core JS-->
 	<script
@@ -333,5 +286,6 @@
 	<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
 	<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
