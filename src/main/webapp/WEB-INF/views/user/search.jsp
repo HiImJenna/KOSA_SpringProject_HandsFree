@@ -28,55 +28,34 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
 		integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
 		crossorigin="anonymous"></script>
-	
 	<!-- 아이콘 -->
 	<script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
-	
 	<!-- sock js -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<!-- STOMP -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	
-	<!--Main layout-->
-	<!-- MDB -->
-<!-- 	<script type="text/javascript" src="js/mdb.min.js"></script>
-	Custom scripts
-	<script type="text/javascript" src="js/admin.js"></script>
- -->
-
-
-
-
+	<!-- 커스텀 js -->
+	<script type="text/javascript" src="${path}/resources/user/js/search.js"></script>
 <style>
 body{
 	font-family:"맑은 고딕", "고딕", "굴림";
 }
-
 html, body {
 margin: 0px; 
 padding: 0px;
 }
-
 #wrapper{
 	width: 1200px;
 	margin: 0 auto;	
 }
-
-
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;margin:10px 0 30px 10px;padding:5px;}
 
-
 </style>
-
-
-
 
 
 </head>
 	<!-- 지도 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0f8465e5d46edf4274cf5a48ed2ce318&libraries=services"></script>
-
-
 		<script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -92,7 +71,6 @@ padding: 0px;
 			stomp.connect({}, function(){
 				main();
 			});
-			
 			
 			// ***************** 카카오API *****************
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -163,149 +141,8 @@ padding: 0px;
 			    });
 			}
 			//지도끝
+			
 
-			
-			//DragAndDrop
-			
-			
-			//태그값 가져오려면  document.getElementById("menu_wrap");
-			var chatData = $('#menu_wrap')[0]; 
-			chatData.addEventListener("dragstart", dragStart);
-			chatData.addEventListener("drag", drag);
-			chatData.addEventListener("dragover", dragOver);
-			chatData.addEventListener("dragend", dragEnd);
-
-			
-			function dragStart(e){}
-			
-			function drag(e){
-				this.style.left = e.clientX - this.offsetWidth + 'px';
-				this.style.top = e.clientY - this.offsetHeight / 2 + 'px';
-			}
-			
-			function dragOver(e){
-			}
-			
-			function dragEnd(e){
-				this.style.left = e.clientX - this.offsetWidth / 2 + 'px';
-				this.style.top = e.clientY - this.offsetHeight / 2 + 'px';
-			}
-			//DragAndDrop
-			
-			
-			//클릭 이벤트
-			$(document).on("click", "#detailBtn", function(){
-/* 				var data = $(this).parent();
-				console.log(data);
-				var data1 = $(this).parents()
-				console.log(data1); */
-				var list_data = $(this).parents().eq(1);
-				var title = list_data.find("h4").text();
-
-				var data = {
-						title : list_data.find("h4").text(),
-						name : 'asd'
-				};
-				//console.log(data);
-				/* console.log(JSON.stringify(data)); */
- 			$.ajax({
-					type : "get",
-					url : 'item',
-					data:data,
-					success : function(data){
-						console.log(data);
-						createForm(data);
-						
-						/* $('#listGroup').empty();
-						var jsonData = JSON.parse(data);
-						$('#listGroup').append */
-						
-					},
-					error:function (request, status, error){
-		                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-		            }
-				}) 
-			});
-
-			
-			
-			
-			
-			$(document).on("click", "#information", function(){
-				var list_data = $(this).parents().eq(1);
-				var title = list_data.find("h4").text();
-				console.log(title);
-				var data = {
-						title : title,
-						type : 'information'
-				};
-				
-				$.ajax({
-					type : "get",
-					url : 'item/information',
-					data:data,
-					success : function(data){
-						console.log(data);
-						createTabView(data, 'information');
-					},
-					error:function (request, status, error){
-		                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-		            }
-				}) 
-			});
-			
-			$(document).on("click", "#review", function(){
-				var list_data = $(this).parents().eq(1);
-				var title = list_data.find("h4").text();
-				console.log(title);
-				var data = {
-						title : title,
-						type : 'review'
-				};
-
-				$.ajax({
-					type : "get",
-					url : 'item/review',
-					data:data,
-					success : function(data){
-						console.log(data);
-						createTabView(data, 'review');
-
-						
-					},
-					error:function (request, status, error){
-		                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-		            }
-				}) 
-			});
-			
-			
-			$(document).on("click", "#suggestion", function(){
-				var list_data = $(this).parents().eq(1);
-				var title = list_data.find("h4").text();
-				console.log(title);
-				var data = {
-						title : title,
-						type : 'suggestion'
-				};
-				$.ajax({
-					type : "get",
-					url : 'item/suggestion',
-					data:data,
-					success : function(data){
-						console.log(data);
-						createForm(data);
-						
-						/* $('#listGroup').empty();
-						var jsonData = JSON.parse(data);
-						$('#listGroup').append */
-						
-					},
-					error:function (request, status, error){
-		                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-		            }
-				}) 
-			});
 			
 			
 			/*  채팅   */
@@ -313,138 +150,6 @@ padding: 0px;
 			$(document).on("click", "#chatBtn", function(){
 				createRoom("세션아이디")
 			})
-			
-			
-			
-			
-			//Json 전용 table 생성
-			function createForm(data, way){
-				$('#listGroup').empty();
-				const itemDetail =`
-									<div class="itemDetails" >
-									<img class="item_img" alt="없음"
-										src="${path}/resources/user/assets/img/shop.jpg">
-										<div class="detailsHeader">
-											짐 보관소<br>
-											<h4>\${data.title}</h4>
-											옷가게<br> <i class="fa-solid fa-star"></i>
-										</div>
-										<ul class="nav nav-tabs">
-										  <li class="nav-item">
-										    <a id="information" class="nav-link active" aria-current="page" href="#">정보</a>
-										  </li>
-										  <li class="nav-item">
-										    <a id="review" class="nav-link" href="#">리뷰</a>
-										  </li>
-										  <li class="nav-item">
-										    <a id="suggestion" class="nav-link" href="#">추천</a>
-										  </li>
-										</ul>
-										<div id="tabView"></div>
-								</div>
-								`;
-				$('#listGroup').append(itemDetail);
-				/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
-				    "<th>EMPNO</th>"+
-	            	"<th>ENAME</th>"+
-	            	"<th>JOB</th>"+
-	            	"<th>SAL</th>"+
-	            	"<th>EDIT</th><th>DELETE</th></tr></thead><tbody>";
-				$.each(data,function(index,emp){
-					opr += "<tr><td>"+emp.empno+
-					"</td><td>"+emp.ename+
-					"</td><td>"+emp.job+
-					"</td><td>"+emp.sal+
-					"</td><td><input type='button' onclick='empupdate(this)' value='수정' class ='update'  value2="+emp.empno+
-					"></td><td><input type='button' value='삭제' class ='delete' value2="+emp.empno+"></td></tr>";
-				});
-				opr+="<tr><td colspan='10'><input type='button' onclick='createinput(this)' value='추가'></td></tr></tbody></table>"; */
-
-			}
-			
-			function createTabView(data, type){
-				$('#tabView').empty();
-				let itemTab = '';
-				if(type === 'information')
-				{
-					itemTab = `
-						<div class="">
-							<div id="">공지 : </div>
-							<div id="">주소 : </div>
-							<div id="">운영시간 : </div>
-							<div id="">번호 : </div>
-						</div>`;
-				}else if(type == 'review'){
-					itemTab = `
-						<div class="nanny-opinions">
-					    <div class="comments">
-					        <div>
-					            <div class="d-flex resume-review">
-					                <div class="nanny-icon yellow star"></div>
-					                5/5
-					                <span class="type-point">
-					                    •
-					                </span>
-					                366 reviews
-					            </div>
-					            <hr class="nanny-s<div class=" nanny-opinions">
-					            <div class="comments">
-					                <div class="comment">
-					                    <div class="top-part d-flex justify-content-between align-items-center">
-					                        <div class="d-flex">
-					                            <div class="user-infos">
-					                                <div class="picture"
-					                                    style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
-					                                </div>
-					                            </div>
-					                            <div class="name-date">
-					                                <div class="name"><b>Sylva</b>
-					                                </div>
-					                                <div class="date">
-					                                    09/10/2022
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <div class="stars">
-					                            <div class="score">
-					                                5/5
-					                            </div>
-					                            <div class="all-stars">
-					                                <div class="nanny-icon star yellow"></div>
-					                                <div class="nanny-icon star yellow"></div>
-					                                <div class="nanny-icon star yellow"></div>
-					                                <div class="nanny-icon star yellow"></div>
-					                                <div class="nanny-icon star yellow"></div>
-					                            </div>
-					                        </div>
-					                    </div>
-					                    <div class="comment-content"><b> It was very useful. Would use this service again.</b><br>
-					                        Nannybag is a brilliant idea and a genuinely needed service. I only wish the distance mentioned
-					                        was more accurate before choosing the location. It mentioned .2km while it was actually .5km
-					                        once the accurate address was given.
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-							`;
-				}else if(type == 'suggestion'){
-					itemTab = `
-						<div class="">
-							<div id="">공지 : </div>
-							<div id="">주소 : </div>
-							<div id="">운영시간 : </div>
-							<div id="">번호 : </div>
-						</div>`;	
-				}
-				
-				
-				$('#tabView').append(itemTab);
-			}
-			
-			
-			
 			
 			/* 채팅  */
 			
@@ -663,12 +368,9 @@ padding: 0px;
 	 		                </div>
 	 		            </div>
 	 		        </li>`;
-	 		        
 	 			$(".chat ul.chat_list").append(chatHtml);
-				
 	 			$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
-	  
-	 			
+			
 	 		}
 			
 			/* 뷰페이지 그리기 */
@@ -720,31 +422,6 @@ padding: 0px;
 					
 				</div>
 			</div>
-			
-			<!-- 	<div class="chat">
-					<div>
-						<div class="chat_body">
-							<h2 class="chat_title">1번방</h2>
-							<button class="chat_back">◀</button>
-
-							<ul class="chat_list">
-								<li>
-
-								</li>
-							</ul>
-
-							<div class="chat_input">
-								<div class="chat_input_area">
-									<textarea class="textareaF"></textarea>
-								</div>
-
-								<div class="chat_button_area">
-									<button>전송</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 				<div id="chatBtn" class="balloon"> </div>
 			</div>
 		</nav>
@@ -798,5 +475,6 @@ padding: 0px;
 							
 		</main>
 </body>
+
 <%pageContext.include("/WEB-INF/views/include/footer.jsp");%>
 </html>
