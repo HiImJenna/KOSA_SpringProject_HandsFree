@@ -9,6 +9,8 @@
     data-n-head="%7B%22lang%22:%7B%22ssr%22:%22en-US%22%7D,%22dir%22:%7B%22ssr%22:%22ltr%22%7D%7D"
     style="--height-screen:1185px;">
 	<link href="${path}/resources/user/css/myreserve.css" rel="stylesheet" /> 
+	<!-- Font -->
+	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 
     <head>
         <title>예약내역</title><meta data-n-head="ssr" charset="utf-8">

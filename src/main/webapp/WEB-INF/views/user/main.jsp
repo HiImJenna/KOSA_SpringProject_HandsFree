@@ -15,9 +15,17 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
-    </head>
+		<!-- Font -->
+		<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet"> 
+		<!-- Core theme CSS (includes Bootstrap)-->
+		<link
+			href="https://webfontworld.github.io/Jalpullineun/JalpullineunHaru.css"
+			rel="stylesheet" />
+
+</head>
     <body id="page-top">
 		<!-- header -->
+		
 		<%
 		pageContext.include("/WEB-INF/views/include/header.jsp");
 		%>
@@ -26,7 +34,7 @@
 	<form name="bookingform" action="${path}/search" method=get>
 		<header class="masthead">
 			<div class="container px-5">
-				<div class="row gx-5 align-items-center">
+				<div class="row gx-5 align-items-center"> 
 					<div class="col-lg-6">
 						<!-- Mashead text and app badges-->
 						<div class="mb-5 mb-lg-0 text-center text-lg-start">

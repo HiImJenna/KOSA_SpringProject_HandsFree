@@ -20,6 +20,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
+	<!-- Font -->
+	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">	
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	

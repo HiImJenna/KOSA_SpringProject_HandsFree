@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${path}/resources/user/css/book.css" rel="stylesheet" /> 
+<link href="${path}/resources/user/css/book.css" rel="stylesheet" />
+<!-- Font -->
+<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 </head>
 <body>
 		<!-- header -->
