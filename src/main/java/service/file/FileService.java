@@ -1,5 +1,6 @@
 package service.file;
 
+import java.io.File;
 import java.io.FileOutputStream;
 
 import org.springframework.stereotype.Service;
@@ -16,11 +17,15 @@ public class FileService {
 	public void saveAdminBusinesslicense(AdminRegisterDto dto) {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
 			String fpath = dto.getRealFilePath();
-			System.out.println("파일 저장 경로");
-			System.out.println(fpath);
 			FileOutputStream fs = null;
 			try {
-				fs = new FileOutputStream(fpath);
+				
+				File dir = new File(dto.getRealFilePath());
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				
+				fs = new FileOutputStream(fpath + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();

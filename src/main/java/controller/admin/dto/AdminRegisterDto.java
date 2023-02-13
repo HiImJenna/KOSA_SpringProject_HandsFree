@@ -38,8 +38,7 @@ public class AdminRegisterDto {
 	// 실제 파일 경로 얻기
 	public void findFileRealPath(HttpServletRequest request) {
 		String path = request.getServletContext().getRealPath("/files/upload");
-		String fileName = file.getOriginalFilename();
-		this.realFilePath = path + "\\" + email + "\\" + fileName;
+		this.realFilePath = path + "\\" + email + "\\";
 	}
 	
 	// 도로명주소 좌표 얻기
@@ -54,9 +53,6 @@ public class AdminRegisterDto {
 
 	        httpURLConnection.setRequestProperty("Content-type", "application/json; charset=utf-8");
 	        httpURLConnection.setRequestProperty("Authorization", "KakaoAK 4f42a6e1a004ceaf7fa6e850efa2de2b");
-	        
-	        System.out.println("좌표얻기 요청....");
-	        System.out.println(httpURLConnection.getResponseMessage());
 	        
 	        String messageBody = StreamUtils.copyToString(httpURLConnection.getInputStream(), StandardCharsets.UTF_8);
 	        
