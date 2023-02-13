@@ -31,11 +31,11 @@
 			if (active == 'left') {
 				left.classList.add('active');
 				right.classList.remove('active');
-				$("#loginForm").attr("action", "/login");
+				//$("#loginForm").attr("action", "/login");
 			} else {
 				left.classList.remove('active');
 				right.classList.add('active');
-				$("#loginForm").attr("action", "/storeLogin");
+				//$("#loginForm").attr("action", "/login");
 			}
 		}
 	</script>
