@@ -83,7 +83,7 @@ public class AdminRegisterDto {
 				.lastName(lastName)
 				.mailReceptionStatus("TRUE")
 				.profilePath("/")
-				.accountType(1)
+				.accountType(0)
 				.build();
 	}
 	

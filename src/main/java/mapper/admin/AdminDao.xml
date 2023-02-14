@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace = "dao.admin.AdminDao">
 	<insert id="registerAdmin" parameterType="vo.admin.Admin">
-		insert into users(userid, userpwd, joindate, first_name, last_name, mail_accept, profile_path) 
-		values(#{userId}, #{password}, sysdate, #{firstName}, #{lastName}, #{mailReceptionStatus}, #{profilePath})
+		insert into users(userid, userpwd, joindate, first_name, last_name, mail_accept, status, profile_path) 
+		values(#{userId}, #{password}, sysdate, #{firstName}, #{lastName}, #{mailReceptionStatus}, #{accountType}, #{profilePath})
 	</insert>
 	
 	<insert id="registerStoreKeeper" parameterType="vo.admin.StoreKeeper">
