@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<insert id="registerStore" parameterType="vo.admin.Store">
-		insert into store(storeid, name, phone, address, latitude, logitude)
+		insert into store(storeid, name, phone, address, latitude, longitude)
 		values(#{storeId}, #{name}, #{phone}, #{address}, #{latitude}, #{longitude})
 	</insert>
 </mapper>
