@@ -27,14 +27,13 @@
 		function activateTab(active) {
 			let left = document.getElementById('leftTab');
 			let right = document.getElementById('rightTab');
-			
 			if (active == 'left') {
-				left.classList.add('active');
-				right.classList.remove('active');
+				left.classList.add('active_user');
+				right.classList.remove('active_user');
 				//$("#loginForm").attr("action", "/login");
 			} else {
-				left.classList.remove('active');
-				right.classList.add('active');
+				left.classList.remove('active_user');
+				right.classList.add('active_user');
 				//$("#loginForm").attr("action", "/login");
 			}
 		}
@@ -82,7 +81,7 @@
 		<div style="width: 520px; margin: 0 auto">
 		
 			<nav class="nav nav-pills nav-justified">
-			  <a id="leftTab" class="nav-link active" aria-current="page" onclick="activateTab('left')">일반회원</a>
+			  <a id="leftTab" class="nav-link active_user" aria-current="page" onclick="activateTab('left')">일반회원</a>
 			  <a id="rightTab" class="nav-link" aria-current="page" onclick="activateTab('right')">개인사업자</a>
 			</nav>
 			

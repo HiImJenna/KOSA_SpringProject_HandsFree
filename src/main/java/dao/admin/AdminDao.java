@@ -1,5 +1,9 @@
 package dao.admin;
 
+import java.sql.SQLException;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import vo.admin.Admin;
 import vo.admin.Store;
 import vo.admin.StoreKeeper;
