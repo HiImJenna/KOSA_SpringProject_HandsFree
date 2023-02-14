@@ -13,21 +13,19 @@ import vo.admin.Admin;
 import vo.admin.Store;
 import vo.admin.StoreKeeper;
 
-
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(readOnly = true)
 public class AdminService {
-	
+
 	@Autowired
 	private SqlSession sqlsession;
-	
-/*	@Transactional(rollbackFor = {Exception.class})*/
-	/* @Transactional(rollbackFor = {SQLException.class}) */
-	
+
+	/* @Transactional(rollbackFor = {Exception.class}) */
+	@Transactional
 	public int registerAdmin(Admin admin, StoreKeeper storeKepper, Store store) {
-			AdminDao dao = sqlsession.getMapper(AdminDao.class);
-			dao.registerAdmin(admin);
-			dao.registerStoreKeeper(storeKepper);
-			return dao.registerStore(store);			
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		dao.registerAdmin(admin);
+		dao.registerStoreKeeper(storeKepper);
+		return dao.registerStore(store);
 	}
 }
