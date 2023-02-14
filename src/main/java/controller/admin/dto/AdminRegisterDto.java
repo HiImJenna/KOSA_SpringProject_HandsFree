@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,11 @@ public class AdminRegisterDto {
 	private String realFilePath;
 	private String storeName;
 	private String phone;
+	
+	// 점주 비밀번호 암호화
+	public void encryptPassword(BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.password = bCryptPasswordEncoder.encode(this.password);
+	}
 	
 	// 실제 파일 경로 얻기
 	public void findFileRealPath(HttpServletRequest request) {
