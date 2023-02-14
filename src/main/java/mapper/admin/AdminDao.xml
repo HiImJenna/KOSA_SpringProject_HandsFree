@@ -18,4 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into store(storeid, name, phone, address, latitude, longitude)
 		values(#{storeId}, #{name}, #{phone}, #{address}, #{latitude}, #{longitude})
 	</insert>
+	
+	<insert id="registerStoreDetails" parameterType="vo.admin.StoreDetails">
+		insert into store_details(storeid, notice, status, way_to_find, manage_week_time, manage_sat_time, manage_sun_time, store_cnt, certificate_path) 
+		values(#{storeId}, '', 'START', '', '오전11:00~오후09:00', '오전11:00~오후09:00', '오전11:00~오후09:00', 0, #{certificatePath})
+	</insert>
 </mapper>
