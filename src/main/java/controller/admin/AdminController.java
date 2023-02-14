@@ -112,7 +112,7 @@ public class AdminController {
 		dto.findCoordinates();
 		dto.encryptPassword(bCryptPasswordEncoder);
 		// DB 저장
-		adminService.registerAdmin(dto.toAdmin(), dto.toStoreKeeper(), dto.toStore());
+		adminService.registerAdmin(dto.toAdmin(), dto.toStoreKeeper(), dto.toStore(), dto.toStoreDetails());
 		// 사업자 등록증 파일 저장
 		fileService.saveAdminBusinesslicense(dto);
 		return "redirect:/users/login";

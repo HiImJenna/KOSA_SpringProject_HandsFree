@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import vo.admin.Admin;
 import vo.admin.Store;
+import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
 
 @Getter
@@ -101,6 +102,13 @@ public class AdminRegisterDto {
 				.address(address)
 				.latitude(latitude)
 				.longitude(longitude)
+				.build();
+	}
+	
+	public StoreDetails toStoreDetails() {
+		return StoreDetails.builder()
+				.storeId(email)
+				.certificatePath(realFilePath + file.getOriginalFilename())
 				.build();
 	}
 }
