@@ -1,6 +1,5 @@
 package vo.user;
 
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
@@ -17,9 +16,9 @@ public class Users {
 	private String realFilePath;
 	
 	// 실제 파일 경로 얻기
-	public void findFileRealPath(HttpServletRequest request) {
-		String path = request.getServletContext().getRealPath("/files/upload");
-		this.realFilePath = path + "\\" + userid + "\\";
-	}
+//	public void findFileRealPath(HttpServletRequest request) {
+//		String path = request.getServletContext().getRealPath("/files/upload");
+//		this.realFilePath = path + "\\" + userid + "\\";
+//	}
 
 }

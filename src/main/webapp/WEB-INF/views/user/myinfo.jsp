@@ -9,6 +9,8 @@
 <head>
 	<link href="${path}/resources/user/css/myinfo.css" rel="stylesheet" /> 
 	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 <title>내 정보</title>
 <meta data-n-head="ssr" charset="utf-8">
 <body class=" ">
@@ -50,21 +52,21 @@
 								<div class="col-md-8 col-lg-9 col-12 mx-auto account desktop">
 									<h3 class="page-title color-nanny-dark">내 정보</h3>
 
-									<form action="${path}/userUpdate" method="post"
+									<form name="myinfo" action="${path}/userUpdate" method="post"
 										enctype="multipart/form-data" autocomplete="off">
 										<div class="row">
 											<div class="col-md-12 col-lg-8">
 												<div class="row">
 													<div class="col-md-6 pr-md-1">
-														<label class="form-label">성</label> <input name="lastname"
-															type="text" aria-describedby="lastname"
+														<label class="form-label">성</label> <input name="first_name"
+															type="text" aria-describedby="first_name"
 															class="form-style" value=${users.first_name}>
 														<div class="text-left" style="display: none;">
 														</div>
 													</div>
 													<div class="col-md-6 pl-md-1 mt-2 mt-md-0">
 														<label class="form-label">이름</label> <input
-															name="firstname" type="text" aria-describedby="firstname"
+															name="last_name" type="text" aria-describedby="last_name"
 															class="form-style" value=${users.last_name}>
 														<div class="text-left" style="display: none;">
 														</div>
@@ -76,28 +78,37 @@
 												<div class="row">
 													<div class="col-md-12 form-item">
 														<label for="email" class="form-label" >이메일 주소</label> <input
-															id="email" name="email " type="email"
+															id="email" name="userid " type="email"
 															aria-describedby="email" class="form-style" value=${users.userid}>
 													</div>
 													<div class="col-md-12 mt-2">
 														<p>이메일은 수정이 불가능합니다.</p>
 													</div>
 
-													<div class="col-md-5 form-item">
-														<label class="form-label">비밀번호</label> <input
-															name="lastname" type="text" aria-describedby="lastname"
+													<div class="row">
+													<div class="col-md-6 pr-md-1">
+														<label class="form-label">새 비밀번호</label> <input name="userpwd"
+															type="text" aria-describedby="userpwd"
 															class="form-style">
-														<div class="text-left" style="display: none;">												
+														<div class="text-left" style="display: none;">
 														</div>
-														<br>
 													</div>
-
+													<div class="col-md-6 pl-md-1 mt-2 mt-md-0">
+														<label class="form-label">새 비밀번호 확인</label> <input
+															name="userpwd2" type="text" aria-describedby="userpwd2"
+															class="form-style">
+														<div class="text-left" style="display: none;">
+														</div>
+													</div>
+												</div>
+													<!-- 
 													<div class="col-md-5 form-item">
 														<label for="formFileLg" class="form-label">프로필 사진</label>
 														<input class="form-control form-control-lg" name="file"
 															id="formFileLg" type="file">
 														<br>
 													</div>
+													 -->
 												</div>
 											</div>
 											<div class="col-md-12 col-lg-4 mt-3 mt-md-0">
@@ -110,8 +121,8 @@
 												</aside>
 											</div>
 											<div class="col-12 form-item">
-												<button type="submit" class="nanny-button rework">
-													저장 </span>
+												<button type="submit" id="submit" class="nanny-button rework" onclick="checkPwd()">
+													저장 
 												</button>
 											</div>
 										</div>
@@ -129,4 +140,5 @@
 		src="https://vars.hotjar.com/box-e031119f9e9e307a08fa610f85dbfb52.html"
 		style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe>
 </body>
+​
 </html>

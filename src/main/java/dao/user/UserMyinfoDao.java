@@ -8,5 +8,5 @@ public interface UserMyinfoDao {
 	Users userDetail(String userid) throws ClassNotFoundException, SQLException;
 	
 	//내 정보 수정
-	Users userUpdate(Users users) throws ClassNotFoundException, SQLException;
+	int userUpdate(Users users) throws ClassNotFoundException, SQLException;
 }

@@ -30,7 +30,6 @@ public class UserMyinfoService {
 	public Users userDetail(String userid) {
 		Users users = null;
 		try {
-				System.out.println("userid : " + userid);
 			 	UserMyinfoDao userdao = sqlsession.getMapper(UserMyinfoDao.class);
 			 	users = userdao.userDetail(userid);
 		} catch (ClassNotFoundException e) {
@@ -41,45 +40,45 @@ public class UserMyinfoService {
 		return users;		
 	}
 
-	// 내정보 수정하기 서비스
-	public Users userUpdate(String userid) {
-		Users users = null;
+	// 내 정보 수정하기 서비스
+	public int userUpdate(Users users) { //userid 잘 넘어옴
+		int result = 0;
 		try {
 
 			UserMyinfoDao usermyinfodao = sqlsession.getMapper(UserMyinfoDao.class);
 
-			users = usermyinfodao.userUpdate(users);
+			result = usermyinfodao.userUpdate(users);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return users;
+		return result;
 	}
 
-	// 내정보 수정하기 처리 서비스
-	public void noticeEdit(Users users) {
-		if (!users.getProfile_path().equals("")) {
-			String fpath = users.getRealFilePath();
-			FileOutputStream fs = null;
-			try {
-				
-				File dir = new File(users.getRealFilePath());
-				if (!dir.isDirectory()) {
-					dir.mkdir();
-				}
-				
-				fs = new FileOutputStream(fpath + users.getProfile_path().getOriginalFilename());
-				fs.write(users.getProfile_path().getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					fs.close();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-			}
-		}
-	}
+	// 내 정보 수정하기 처리 서비스
+//	public void noticeUpdate(Users users) {
+//		if (!users.getProfile_path().equals("")) {
+//			String fpath = users.getRealFilePath();
+//			FileOutputStream fs = null;
+//			try {
+//				
+//				File dir = new File(users.getRealFilePath());
+//				if (!dir.isDirectory()) {
+//					dir.mkdir();
+//				}
+//				
+//				fs = new FileOutputStream(fpath + users.getProfile_path().getOriginalFilename());
+//				fs.write(users.getProfile_path().getBytes());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				try {
+//					fs.close();
+//				} catch (Exception e2) {
+//					e2.printStackTrace();
+//				}
+//			}
+//		}
+//	}
 	
 	// 파일 다운로드 서비스 함수 -> 다운로드까지 할 지 말 지 물어보기
 	public void download(String p, String f, HttpServletRequest request, HttpServletResponse response)
@@ -89,7 +88,6 @@ public class UserMyinfoService {
 		response.setHeader("Content-Disposition", "attachment;filename=" + fname + ";");
 
 		String fullpath = request.getServletContext().getRealPath("/customer/" + p + "/" + f);
-		System.out.println(fullpath);
 		FileInputStream fin = new FileInputStream(fullpath);
 
 		ServletOutputStream sout = response.getOutputStream();

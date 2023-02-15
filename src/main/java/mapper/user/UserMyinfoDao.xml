@@ -4,9 +4,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "dao.user.UserMyinfoDao">
+	
 	<select id="userDetail" resultType="vo.user.Users">
-		 select userid , userpwd , first_name , last_name , profile_path
+		 select userid , userpwd , first_name , last_name
 		 from users
 		 where userid=#{userid}
 	</select>
+
+	<update id="userUpdate" parameterType="vo.user.Users">
+		update users
+			set userpwd=#{userpwd},
+			first_name=#{first_name},
+			last_name=#{last_name}
+		where userid=#{userid}
+	</update>
+	
+	
 </mapper>
