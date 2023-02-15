@@ -13,7 +13,7 @@
  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
  <!-- Core theme CSS (includes Bootstrap)-->
- <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
+ <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
@@ -48,7 +48,7 @@
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myinfo'" >내 정보</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myreserve'">예약 내역</button></li>
-					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/shopregister'">점주 등록</button></li>
+					    <li><button class="dropdown-item" type="button" onclick="location.href='/storekeepers'">점주 등록</button></li>
 					    <li><button class="dropdown-item" type="button"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></button></li>
 					  </ul>
 					</div>

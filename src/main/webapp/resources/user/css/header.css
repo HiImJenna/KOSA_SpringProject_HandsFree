@@ -3997,19 +3997,10 @@ textarea.form-control-lg {
   border: 0;
   border-radius: 0.25rem;
 }
-.nav-pills .nav-link.active_user,
+.nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #2937f0;
-}
-
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  color: black;
-  background-color: #fff;
-  font-weight: bold;
-  font-size:18px;
-  text-decoration: none;
 }
 
 .nav-fill > .nav-link,

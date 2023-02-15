@@ -11,5 +11,5 @@ public class Users {
 	private String first_name;
 	private String last_name;
 	//private String mail_accept;
-	///private String profile_path;
+	private String profile_path;
 }

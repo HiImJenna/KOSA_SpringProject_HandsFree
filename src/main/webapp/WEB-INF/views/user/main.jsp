@@ -13,11 +13,7 @@
         <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
     </head>
@@ -27,39 +23,47 @@
 		pageContext.include("/WEB-INF/views/include/header.jsp");
 		%>
 		
-        <!-- 메인 -->
-        <form name = "bookingform" action="${path}/search" method=get>
-	        <header class="masthead">
-	            <div class="container px-5">
-	                <div class="row gx-5 align-items-center">
-	                    <div class="col-lg-6">
-	                        <!-- Mashead text and app badges-->
-	                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
-	                            <h1 class="display-1 lh-1 mb-3">Hands free와 함께하는 <br>가벼운 여행의 시작</h1> <br> 
-	
-	                            <p class="lead fw-normal text-muted mb-5">
-	                                <i class="bi bi-geo-alt-fill"></i> &nbsp 
-	                                	<input class="input-text" type="text" placeholder="어디로 가시나요?" name="destination" id="destination"><br><br> 
-	                                <i class="bi bi-calendar3"></i> &nbsp
-	                                <input type="text" class="datebutton" name="dropDate" id="dropDate" placeholder = "맡기는 날"/>
-	                                <input type="text" class="datebutton" name="pickupDate" id="pickupDate" placeholder = "찾는 날"/> <br><br>
-	                                <i class="bi bi-handbag"></i> &nbsp 짐 1개
-	
-	                            </p>
-	                            <div class="d-flex flex-column flex-lg-row align-items-center">
-	                                <button class="custom-btn btn-1">검색하기</button>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="col-lg-6">
-	                        <img class = "main-img" src="${path}/resources/user/assets/img/main.png" alt="main image" width="500" height="500">
-	                    </div>
-	                </div>
-	            </div>
-	        </header>
-        </form>
+    <!-- 메인 -->
+	<form name="bookingform" action="${path}/search" method=get>
+		<header class="masthead">
+			<div class="container px-5">
+				<div class="row gx-5 align-items-center">
+					<div class="col-lg-6">
+						<!-- Mashead text and app badges-->
+						<div class="mb-5 mb-lg-0 text-center text-lg-start">
+							<h1 class="display-1 lh-1 mb-3">
+								Hands free와 함께하는 <br>가벼운 여행의 시작
+							</h1>
+							<br>
 
-        <!-- About us -->
+							<p class="lead fw-normal text-muted mb-5">
+								<i class="bi bi-geo-alt-fill"></i> &nbsp <input
+									class="input-text" type="text" placeholder="어디로 가시나요?"
+									name="destination" id="destination"><br> <br>
+								<i class="bi bi-calendar3"></i> &nbsp <input type="text"
+									class="datebutton" name="dropDate" id="dropDate"
+									placeholder="맡기는 날" /> <input type="text" class="datebutton"
+									name="pickupDate" id="pickupDate" placeholder="찾는 날" /> <br>
+								<br> <i class="bi bi-handbag"></i> &nbsp 짐 1개
+
+							</p>
+							<div class="d-flex flex-column flex-lg-row align-items-center">
+								<button class="custom-btn btn-1">검색하기</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<img class="main-img"
+							src="${path}/resources/user/assets/img/main.png" alt="main image"
+							width="500" height="500">
+					</div>
+				</div>
+			</div>
+		</header>
+	</form>
+
+
+	<!-- About us -->
         <section id="about us">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">

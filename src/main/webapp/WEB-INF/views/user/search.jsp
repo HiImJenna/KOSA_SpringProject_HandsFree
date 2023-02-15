@@ -15,10 +15,8 @@
 	<!-- Font Awesome -->
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-	<!-- Google Fonts Roboto -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-	
+	<!-- Google Fonts -->
+	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 	<!-- Custom styles -->
  	<link href="${path}/resources/user/css/search.css" rel="stylesheet" /> 
  	<link href="${path}/resources/user/css/customSearch.css" rel="stylesheet" />
