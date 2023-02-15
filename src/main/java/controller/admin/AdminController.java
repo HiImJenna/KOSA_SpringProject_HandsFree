@@ -28,6 +28,11 @@ public class AdminController {
 		return "admin/adminMain";
 	}
 
+	@GetMapping("adminManage") 
+	public String manage() {
+		return "admin/mainInc/manage";
+	}
+	
 	@GetMapping("adminMypage")   
 	public String mypage() {
 		return "admin/mainInc/mypage";
