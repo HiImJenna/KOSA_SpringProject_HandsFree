@@ -18,11 +18,18 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 										HttpServletResponse response,
 										Authentication      authentication) throws IOException, ServletException 
 	{
-		List<String> roleList = new ArrayList<String>();
-		authentication.getAuthorities().forEach(authority->{
-			roleList.add(authority.getAuthority());
-		});
-		String redirectURL = roleList.contains("ROLE_ADMIN") ? "/admin" : "/";
+		String userType = request.getParameter("type") == null ? "admin" : "default" ;
+		
+		String redirectURL = "/";
+		
+		if (userType.equals("admin")) {
+			List<String> roleList = new ArrayList<String>();
+			authentication.getAuthorities().forEach(authority->{
+				roleList.add(authority.getAuthority());
+			});
+			redirectURL = roleList.contains("ROLE_ADMIN") ? "/admin" : "/";
+		}
+		
 		response.sendRedirect(redirectURL);
 	}
 }
