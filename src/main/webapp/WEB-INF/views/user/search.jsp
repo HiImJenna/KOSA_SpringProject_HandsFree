@@ -57,6 +57,9 @@ padding: 0px;
 	<!-- 지도 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0f8465e5d46edf4274cf5a48ed2ce318&libraries=services"></script>
 		<script type="text/javascript">
+		var lat='';
+		var lon='';
+
 		$(document).ready(function(){
 			
 			//소켓 연결
@@ -75,8 +78,6 @@ padding: 0px;
 			// ***************** 카카오API *****************
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 			var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-			var lat='';
-			var lon='';
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -94,11 +95,12 @@ padding: 0px;
 					  navigator.geolocation.getCurrentPosition(function(position) {
 					        lat = position.coords.latitude; // 위도
 					        lon = position.coords.longitude; // 경도
-
 					        var locPosition = new kakao.maps.LatLng(lat, lon);
+					        console.log(lat);
+					        console.log(lon);
+					        console.log(locPosition);
 					        var bounds = new kakao.maps.LatLngBounds();
 						    var marker = new kakao.maps.Marker({position: locPosition });
-
 						    marker.setMap(map);
 						    bounds.extend(locPosition);
 						    map.setBounds(bounds);
@@ -106,9 +108,70 @@ padding: 0px;
 				}
 			}else{
 				// 키워드로 장소를 검색합니다
-				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);	
+				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB,{
+					radius : 100000
+				});	
 			}
 		
+			
+			
+			var data = {
+					latitude : lat,
+					longitude : lon
+				}
+				$.ajax({
+					type : "get",
+					url : '/selectStore',
+					data:data,
+					success : function(data){
+						$('#listGroup').empty();
+						$.each(data, function(index, obj){
+							console.log(obj.NAME);
+							console.log("asd");
+							createList(obj)
+						})
+					},
+					error:function(request, status, error){
+						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+					}
+				})
+				
+				
+				function createList(data){
+					const str = data.ADDRESS;
+					var address = '';
+					if(str.length >= 5){
+						console.log(str.length);
+						address = str.substr(0,9) + "...";
+					}
+					console.log("호출 몇번됨??")
+					const itemList = `
+					<div class="shopList" >
+						<img class="shop_img" alt="없음"
+							src="${path}/resources/user/assets/img/shop.jpg">
+						<div class="shop_info">
+								짐 보관소<br>
+							<h4>\${data.NAME}</h4>
+								\${address}<br>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+						</div>
+						<div class="list_button">
+							<button type="button" class="btn btn-primary" id="detailBtn"
+								style="margin-bottom: 15px">상세보기</button>
+							<br>
+							<button type="button" class="btn btn-primary">예약하기</button>
+						</div>
+					</div>`;
+					$('#listGroup').append(itemList);
+				}
+
+			
+			
+			
+			
+			
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB (data, status, pagination) {
 			    if (status === kakao.maps.services.Status.OK) {
@@ -132,7 +195,9 @@ padding: 0px;
 			        map: map,
 			        position: new kakao.maps.LatLng(place.y, place.x) 
 			    });
-			
+			    
+			    /* console.log(marker); */
+			    console.log(marker.getRange());
 			    // 마커에 클릭이벤트를 등록합니다
 			    kakao.maps.event.addListener(marker, 'click', function() {
 			        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
@@ -375,6 +440,14 @@ padding: 0px;
 			
 			/* 뷰페이지 그리기 */
 	})
+	//위도 경도
+/* 	window.onload = function(){
+			console.log("window onload 접근");
+			console.log(lat);
+			console.log(lon);
+			
+
+	} */
 	</script>	
 
 <body>
@@ -385,41 +458,7 @@ padding: 0px;
 		<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
 			<div class="position-sticky">
 				<div id="listGroup" class="list-group list-group-flush mx-2 mt-4">
-					<div class="shopList" >
-						<img class="shop_img" alt="없음"
-							src="${path}/resources/user/assets/img/shop.jpg">
-						<div class="shop_info">
-							짐 보관소<br>
-							<h4>루피가게</h4>
-							옷가게<br> <i class="fa-solid fa-star"></i><i
-								class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-								class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-						</div>
-						<div class="list_button">
-							<button type="button" class="btn btn-primary" id="detailBtn"
-								style="margin-bottom: 15px">상세보기</button>
-							<br>
-							<button type="button" class="btn btn-primary">예약하기</button>
-						</div>
-					</div>
-					<div class="shopList">
-						<img class="shop_img" alt="없음"
-							src="${path}/resources/user/assets/img/shop.jpg">
-						<div class="shop_info">
-							짐 보관소<br>
-							<h4 id="name">루피가게</h4>
-							옷가게<br> <i class="fa-solid fa-star"></i><i
-								class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-								class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-						</div>
-						<div class="list_button">
-							<button type="button" class="btn btn-primary" id="detailBtn"
-								style="margin-bottom: 15px">상세보기</button>
-							<br>
-							<button type="button" class="btn btn-primary">예약하기</button>
-						</div>
-					</div>
-					
+
 				</div>
 			</div>
 				<div id="chatBtn" class="balloon"> </div>
