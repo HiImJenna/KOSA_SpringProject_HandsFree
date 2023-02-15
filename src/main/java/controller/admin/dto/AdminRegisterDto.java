@@ -69,8 +69,8 @@ public class AdminRegisterDto {
 	        obj =  (JSONObject) jsonParser.parse(jsonArray.get(0).toString());
 	        obj = (JSONObject) jsonParser.parse(obj.get("road_address").toString());
 	        
-	        this.latitude = obj.get("x").toString();
-	        this.longitude = obj.get("y").toString();
+	        this.latitude = obj.get("y").toString();
+	        this.longitude = obj.get("x").toString();
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
