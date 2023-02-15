@@ -30,11 +30,11 @@
 			if (active == 'left') {
 				left.classList.add('active_user');
 				right.classList.remove('active_user');
-				//$("#loginForm").attr("action", "/login");
+				$("#loginForm").attr("action", "/login?type=default");
 			} else {
 				left.classList.remove('active_user');
 				right.classList.add('active_user');
-				//$("#loginForm").attr("action", "/login");
+				$("#loginForm").attr("action", "/login");
 			}
 		}
 	</script>
@@ -89,7 +89,7 @@
 			
 			<div id="form-box" class="container" style="padding: 0px;">
 			
-				<form id="loginForm" action="${path}/login" method="post" data-sb-form-api-token="API_TOKEN">
+				<form id="loginForm" action="${path}/login?type=default" method="post" data-sb-form-api-token="API_TOKEN">
 				
 					<!-- 이메일 -->
 					<div class="row" style="height:58px; padding: 0px;">
