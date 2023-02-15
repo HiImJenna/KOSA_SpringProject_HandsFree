@@ -26,4 +26,20 @@ public class AdminService {
 		dao.registerStore(store);
 		return dao.registerStoreDetails(storeDetails);
 	}
+	
+	public Admin getAdmin(String userid) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		Admin admin = dao.getAdmin(userid);
+		return admin;
+	}
+
+	public void updateAdmin(Admin admin) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		int result = dao.updateAdmin(admin);
+		if(result > 0) {
+			System.out.println("업데이트 성공");
+		} else {
+			System.out.println("업데이트 실패");
+		}
+	}
 }
