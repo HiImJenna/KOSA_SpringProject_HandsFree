@@ -46,7 +46,7 @@
 					    <se:authentication property="name"/>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myinfo'" >내 정보</button></li>
+					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/userDetail'" >내 정보</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myreserve'">예약 내역</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/storekeepers'">점주 등록</button></li>
 					    <li><button class="dropdown-item" type="button"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></button></li>
