@@ -20,11 +20,11 @@ public class UserNavController {
 		return "user/myinfo";
 	}
 	
-	@PostMapping("/users/myinfo")
-	public String myinfoEdit(Users users , HttpServletRequest request) {
-		return usermyinfoservice.myinfoEdit(users, request);
-		
-	}
+//	@PostMapping("/users/myinfo")
+//	public String myinfoEdit(Users users , HttpServletRequest request) {
+//		return usermyinfoservice.userUpdate(users, request);
+//		
+//	}
 	
 	@GetMapping("/users/myreserve")
 	public String myreserve() {
