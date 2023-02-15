@@ -49,7 +49,8 @@
 						<div class="row">
 							<div class="col-md-8 col-lg-9 col-12 mx-auto account desktop">
 								<h3 class="page-title color-nanny-dark">내 정보</h3>
-								<form autocomplete="off">
+								
+								<form action="users/myinfo" method="post" enctype="multipart/form-data" autocomplete="off">
 									<div class="row">
 										<div class="col-md-12 col-lg-8">
 											<div class="row">
@@ -81,20 +82,7 @@
 												<div class="col-md-12 mt-2">
 													<p>입력하신 이메일로 로그인하실 수 있고, 이 주소로 메일을 보내드려요.</p>
 												</div>
-												<div class="col-md-12 form-item">
-													<label class="form-label">전화번호</label>
-													<div class="vue-tel-input">
-														<input type="tel" autocomplete="on" id="" maxlength="25"
-															name="telephone" placeholder="Phone number (optional)"
-															tabindex="0" class="vti__input">
-													</div>
-													<div class="text-left" style="display: none;">
-														<!---->
-													</div>
-													<div class="text-left" style="display: none;">
-														<!---->
-													</div>
-												</div>
+												
 												<div class="col-md-5 form-item">
 													<label class="form-label">비밀번호</label> <input
 														name="lastname" type="text" aria-describedby="lastname"
@@ -104,6 +92,17 @@
 													</div>
 													<br>
 												</div>
+												<!--
+												<div class="col-md-5 form-item">
+													<label class="form-label">프로필사진</label> <input
+														name="lastname" type="text" aria-describedby="lastname"
+														class="form-style">
+													<div class="text-left" style="display: none;">
+														
+													</div>
+													<br>
+												</div>
+												-->
 											</div>
 										</div>
 										<div class="col-md-12 col-lg-4 mt-3 mt-md-0">
