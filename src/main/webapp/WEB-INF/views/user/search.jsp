@@ -96,6 +96,9 @@ padding: 0px;
 					        lat = position.coords.latitude; // 위도
 					        lon = position.coords.longitude; // 경도
 					        var locPosition = new kakao.maps.LatLng(lat, lon);
+					        console.log(lat);
+					        console.log(lon);
+					        console.log(locPosition);
 					        var bounds = new kakao.maps.LatLngBounds();
 						    var marker = new kakao.maps.Marker({position: locPosition });
 						    marker.setMap(map);
@@ -105,7 +108,9 @@ padding: 0px;
 				}
 			}else{
 				// 키워드로 장소를 검색합니다
-				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);	
+				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB,{
+					radius : 100000
+				});	
 			}
 		
 			
@@ -190,7 +195,9 @@ padding: 0px;
 			        map: map,
 			        position: new kakao.maps.LatLng(place.y, place.x) 
 			    });
-			
+			    
+			    /* console.log(marker); */
+			    console.log(marker.getRange());
 			    // 마커에 클릭이벤트를 등록합니다
 			    kakao.maps.event.addListener(marker, 'click', function() {
 			        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
