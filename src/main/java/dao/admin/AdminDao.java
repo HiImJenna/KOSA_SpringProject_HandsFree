@@ -10,4 +10,7 @@ public interface AdminDao {
 	public int registerStore(Store store);
 	public int registerStoreKeeper(StoreKeeper keeper);
 	public int registerStoreDetails(StoreDetails storeDetails);
+	
+	public Admin getAdmin(String userid);
+	public int updateAdmin(Admin admin);
 }

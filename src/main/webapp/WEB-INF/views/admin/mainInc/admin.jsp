@@ -3,6 +3,34 @@
 <%@ page session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
+<script type="text/javascript">
+$(document).ready(()=> {
+	
+	/* 기본정보 수정*/
+	$('#manage').click(function(){
+		$.ajax({
+			type : "GET",
+			url : "/adminManage",
+			dataType : "html",
+			error : function(){
+				alert("새로고침 해주세요11");
+			},
+			success : function(data){
+				$("#main").empty();
+				$("#main").append(data);
+			}
+			
+		});
+	});
+
+});
+
+</script>
+
+
+
+
 <!--Main layout-->
 <main style="margin-top: 58px">
 	<div class="container pt-4">
@@ -18,7 +46,7 @@
 				</div>
 				<div class="card-body">
 					<div style="text-align: right">
-						<a href="">변경하기</a>
+						<a href="javascript:;" id=manage>변경하기</a>
 					</div>
 					<h5>가게정보</h5>
 					<br /> <b>대표 이미지</b> <br /> <img
@@ -28,7 +56,7 @@
 					02-1234-5678 <br /> <br />
 					<hr />
 					<div style="text-align: right">
-						<a href="">변경하기</a>
+						<br>
 					</div>
 					<h5>영업시간</h5>
 					<br /> <b>월~금</b> : 오전 11:00 ~ 오후 09:00 <br /> <br /> <b>토요일</b>
@@ -36,7 +64,7 @@
 					09:00 <br /> <br />
 					<hr />
 					<div style="text-align: right">
-						<a href="">변경하기</a>
+						<br>
 					</div>
 					<h5>공지사항 안내</h5>
 					<br /> 여기 맛있어요 <br /> <br />
@@ -48,7 +76,8 @@
 						aria-expanded="false" aria-controls="collapseExample">펼쳐보기</a> <br />
 					<div class="collapse" id="collapseExample">
 						<div class="card card-body">
-							<img style="height: 70%; width: 30%" src="${path}/resources/admin/img/document.jpg" />
+							<img style="height: 70%; width: 30%"
+								src="${path}/resources/admin/img/document.jpg" />
 						</div>
 					</div>
 
