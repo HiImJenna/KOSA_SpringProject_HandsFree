@@ -505,7 +505,7 @@ padding: 0px;
 							<h5>${pickupDate}</h5>
 						</div>
 						<div id="map" class="card-body">
-							<canvas class="my-4 w-100" height="380"></canvas>							
+							<canvas class="my-4 w-100" height="500"></canvas>							
 						</div>
 						<div id="menu_wrap" class="chat" draggable="true">
 							<div>
