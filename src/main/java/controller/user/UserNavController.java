@@ -19,6 +19,7 @@ public class UserNavController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	//내 정보 상세보기
 	@GetMapping("/users/userDetail")
 	public String userDetail(Principal pri, Model model) {
 		String userid = pri.getName();
@@ -28,6 +29,7 @@ public class UserNavController {
 		return "user/myinfo";
 	}
 	
+	//내 정보 수정하기
 	@PostMapping("userUpdate")
 	public String userUpdate(Model model, Users users) {	
 		int result = 0;
@@ -59,11 +61,33 @@ public class UserNavController {
 		return "common/redirect"; 
 	}
 	
+	//내 정보에서 탈퇴하기
 	@PostMapping("userDelete")
 	public String userDelete(Principal pri, Model model) {
-		System.out.println("삭제 컨트롤러 @PostMapping(\"userDelete\")");
+		int result = 0;
+		String icon = "";
+		String msg = "";
+		String url = "";
+		
 		String userid = pri.getName();
-		return usermyinfoservice.userDelete(userid);
+		result = usermyinfoservice.userDelete(userid);
+		
+		//내 정보 수정이 제대로 되었는지 확인
+	      if (result == 1) {
+	         icon = "success";
+	         msg = "회원 탈퇴가 이루어졌습니다. 이용해주셔서 감사합니다.:)";
+	         url = "/";
+	      } else {
+	         icon = "error";
+	         msg = "회원 탈퇴에 실패했습니다 :(";
+	         url = "/users/userDetail";
+	      }
+	      
+	      model.addAttribute("msg", msg);
+	      model.addAttribute("url", url);
+	      model.addAttribute("icon", icon);
+
+		return "common/redirect";
 	}
 	
 	@GetMapping("/users/myreserve")
