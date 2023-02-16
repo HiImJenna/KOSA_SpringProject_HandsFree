@@ -32,8 +32,8 @@ public class UserNavController {
 	public String userUpdate(Model model, Users users) {	
 		int result = 0;
 		String icon = "";
-		 String msg = "";
-	     String url = "";
+		String msg = "";
+		String url = "";
  
 		String rawPwd = users.getUserpwd();
 		String encodedPwd = bCryptPasswordEncoder.encode(rawPwd);
@@ -57,6 +57,13 @@ public class UserNavController {
 	      model.addAttribute("icon", icon);
 		
 		return "common/redirect"; 
+	}
+	
+	@PostMapping("userDelete")
+	public String userDelete(Principal pri, Model model) {
+		System.out.println("삭제 컨트롤러 @PostMapping(\"userDelete\")");
+		String userid = pri.getName();
+		return usermyinfoservice.userDelete(userid);
 	}
 	
 	@GetMapping("/users/myreserve")

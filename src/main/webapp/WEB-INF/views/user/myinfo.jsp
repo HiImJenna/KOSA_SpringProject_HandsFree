@@ -125,9 +125,18 @@
 													저장 
 												</button>
 											</div>
+							
 										</div>
 									</form>
+									
 									<div class="bottom-mobile"></div>
+									<form name="userDelete" action="${path}/userDelete"
+										method="post">
+										<div class="col-12 form-item">
+											<button type="submit" id="submit" class="nanny-button rework">
+												탈퇴</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
