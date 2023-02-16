@@ -1,10 +1,13 @@
 package controller.admin;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +19,7 @@ import controller.admin.dto.AdminRegisterDto;
 import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
+import vo.admin.Admin;
 import vo.admin.Email;
 
 
@@ -128,4 +132,28 @@ public class AdminController {
 		//System.out.println("점주로그인");
 		return "redirect:/";
 	}
+	
+	@GetMapping("/admin/adminUpate")
+	public String adminUpdate(Model model, Principal principal) {
+		String userid = principal.getName();
+		Admin admin = adminService.getAdmin(userid);
+		model.addAttribute("admin", admin);
+		return "adminUpdate";
+	}
+		
+//	@PostMapping("/admin/adminUpdate")
+//	public String adminUpdate(Model model, Admin admin, Principal principal) {
+//		String userid = principal.getName();
+//		
+//		Admin adminupdate = adminService.getAdmin(userid);
+//		
+//		adminupdate.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
+//		adminupdate.setFirstName(admin.getFirstName());
+//		adminupdate.setLastName(admin.getLastName());
+//		adminService.updateAdmin(adminupdate);
+//
+//		return "redirect:/admin";
+//	}
+	
+	
 }

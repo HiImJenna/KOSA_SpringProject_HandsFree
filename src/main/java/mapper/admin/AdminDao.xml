@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="updateAdmin">
-		update admin set pwd = pwd, first_name, last_name where userid=#{userid}
+		update users set userpwd = #{userpwd}, first_name = #{first_name}, last_name = #{last_name} where userid= #{userid}		
 	</update>
 	
 	
