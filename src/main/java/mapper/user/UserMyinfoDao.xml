@@ -19,5 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid=#{userid}
 	</update>
 	
+	<delete id="userDelete" parameterType="vo.user.Users">
+		delete from users where userid=#{userid}
+	</delete>
+	
+	
 	
 </mapper>

@@ -53,6 +53,21 @@ public class UserMyinfoService {
 		}
 		return result;
 	}
+	
+	// 내 정보 삭제하기 서비스	
+	public String userDelete(String userid) {
+		int result = 0;
+		UserMyinfoDao usermyinfodao = sqlsession.getMapper(UserMyinfoDao.class);
+		try {
+			result = usermyinfodao.userDelete(userid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("삭제 서비스 public String userDelete(String userid)");
+		System.out.println("result: " + result);
+		return "/";
+		
+	}
 
 	// 내 정보 수정하기 처리 서비스
 //	public void noticeUpdate(Users users) {
