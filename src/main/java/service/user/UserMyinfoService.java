@@ -55,7 +55,7 @@ public class UserMyinfoService {
 	}
 	
 	// 내 정보 삭제하기 서비스	
-	public String userDelete(String userid) {
+	public int userDelete(String userid) {
 		int result = 0;
 		UserMyinfoDao usermyinfodao = sqlsession.getMapper(UserMyinfoDao.class);
 		try {
@@ -63,9 +63,7 @@ public class UserMyinfoService {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("삭제 서비스 public String userDelete(String userid)");
-		System.out.println("result: " + result);
-		return "/";
+		return result;
 		
 	}
 
