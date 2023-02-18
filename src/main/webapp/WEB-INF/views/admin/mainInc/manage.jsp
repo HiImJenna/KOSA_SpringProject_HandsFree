@@ -98,7 +98,8 @@
 			<div class="card-body">
 				<form method="post">
 					<div style="text-align: right">
-						<input class="btn btn-outline-success" type="submit" value="수정완료">
+						<input class="btn btn-outline-primary" type="submit" value="수정완료">
+						<input class="btn btn-outline-danger" style="width: 90px;" onclick="window.history.back();" value="취 소">
 					</div>
 					<h5>가게정보</h5>
 					<br /> <b>대표 이미지</b> <br /> <img
