@@ -80,10 +80,10 @@ body {
   --bs-white: #fff;
   --bs-black: #000;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", NYJGothic,
-    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Helvetica Neue", NYJGothic, "Noto Sans", "Liberation Sans", NYJGothic,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  --bs-font-monospace: NYJGothic, NYJGothic, NYJGothic, NYJGothic,
+    "Liberation Mono", "Courier New", NYJGothic;
   --bs-gradient: linear-gradient(
     180deg,
     hsla(0, 0%, 100%, 0.15),
