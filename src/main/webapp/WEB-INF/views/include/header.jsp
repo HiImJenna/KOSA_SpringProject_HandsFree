@@ -14,11 +14,16 @@
  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
  <!-- Core theme CSS (includes Bootstrap)-->
  <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
-
+ <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ 
+<body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="#page-top">Hands Free</a>
+                <a class="navbar-brand fw-bold" href="/">Hands Free</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
@@ -49,7 +54,7 @@
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/userDetail'" >내 정보</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myreserve'">예약 내역</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/storekeepers'">점주 등록</button></li>
-					    <li><button class="dropdown-item" type="button"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></button></li>
+					    <li><button class="dropdown-item" type="button" onclick="location.href='/logout'">로그아웃</button></li>
 					  </ul>
 					</div>
 					</se:authorize>
@@ -65,4 +70,5 @@
                 </div>
             </div>
         </nav>
+        </body>
 

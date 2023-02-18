@@ -1,34 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr" style="-height-screen: 1185px;">
 <head>
 	<link href="${path}/resources/user/css/myinfo.css" rel="stylesheet" /> 
 	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 <title>내 정보</title>
 <meta data-n-head="ssr" charset="utf-8">
+
 <body class=" ">
-	<noscript data-n-head="
-        ssr" data-hid="
-        gtm-noscript"
-		data-pbody="
-        true"="true"">
-		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MX4P352&"
-			height="0" width="0" style="display: none; visibility: hidden"
-			title="gtm"></iframe>
-	</noscript>
+	
 
 	<%
 		pageContext.include("/WEB-INF/views/include/header.jsp");
 	%>
 
-	<div id="_nuxt">
+	
 		<div class="loading-block">
 			<div id="loading-screen" class="inner-overlay overlay-black"
 				style="display: none;">
@@ -79,7 +71,7 @@
 													<div class="col-md-12 form-item">
 														<label for="email" class="form-label" >이메일 주소</label> <input
 															id="email" name="userid " type="email"
-															aria-describedby="email" class="form-style" value=${users.userid}>
+															aria-describedby="email" class="form-style" value=${users.userid} readonly>
 													</div>
 													<div class="col-md-12 mt-2">
 														<p>이메일은 수정이 불가능합니다.</p>
@@ -129,7 +121,6 @@
 										</div>
 									</form>
 									
-									<div class="bottom-mobile"></div>
 									<form name="userDelete" action="${path}/userDelete"
 										method="post">
 										<div class="col-12 form-item">
@@ -137,13 +128,13 @@
 												탈퇴</button>
 										</div>
 									</form>
-								</div>
+							</div>
 							</div>
 						</div>
 					</div>					
 				</div>
 			</div>
-		</div>
+
 		<iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame"
 		tabindex="-1" aria-hidden="true" id="_hjRemoteVarsFrame"
 		src="https://vars.hotjar.com/box-e031119f9e9e307a08fa610f85dbfb52.html"
