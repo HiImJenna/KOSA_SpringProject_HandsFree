@@ -46,7 +46,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 
-
 </head>
 <body>
 	<!--Main Navigation-->
@@ -62,7 +61,7 @@
 				data-toggle="pill" aria-current="true"> <i
 				class="fas fa-home fa-fw me-3"></i> <span>기본정보</span>
 			</a> <a href="javascript:;" onclick="location.href='/admin/reserve'"
-				class="list-group-item list-group-item-action py-2 ripple active"
+				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-tasks fa-fw me-3"></i><span>예약현황</span></a>
 			<a href="javascript:;" onclick="location.href='/admin/chatting'"
 				class="list-group-item list-group-item-action py-2 ripple"
@@ -71,7 +70,7 @@
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"> <i class="fas fa-edit fa-fw me-3"></i><span>리뷰관리</span>
 			</a> <a href="javascript:;" onclick="location.href='/admin/mail'"
-				class="list-group-item list-group-item-action py-2 ripple"
+				class="list-group-item list-group-item-action py-2 ripple active"
 				data-toggle="pill"><i class="fas fa-envelope-square fa-fw me-3"></i><span>메일서비스</span></a>
 			<a href="javascript:;" onclick="location.href='/admin/calendar'"
 				class="list-group-item list-group-item-action py-2 ripple"
@@ -92,109 +91,129 @@
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
 				</h5>
 				<br />
-				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 예약현황을
+				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 메일서비스를
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
 				<br />
-				<h2 style="text-align: center">예약현황</h2>
+				<h2 style="text-align: center">메일서비스</h2>
 				<br />
-				<table class="table table-bordered">
-					<tbody style="text-align: center">
-						<tr>
-							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-							<td>예약건수</td>
-							<td>40건</td>
-						</tr>
-						<tr>
-							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
-							<td>결제금액</td>
-							<td>300,000원</td>
-						</tr>
-					</tbody>
-				</table>
-				<br />
-				<table class="table" style="text-align: center">
+				<p style="text-align: right">
+					<button class="btn btn-outline-primary" onclick="location.href='/admin/mailForm'">전체
+						메일보내기</button>
+				</p>
+				<form>
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<label class="sr-only" for="inlineFormInput">Name</label>
+						</div>
+						<div class="col-auto">
+							<label class="sr-only" for="inlineFormInputGroup">고객조회하기</label>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+								<input type="text" class="form-control"
+									id="inlineFormInputGroup" placeholder="고객조회하기" />
+							</div>
+						</div>
+
+						<div class="col-auto">
+							<button type="submit" class="btn btn-outline-primary mb-2">
+								조회</button>
+						</div>
+					</div>
+				</form>
+
+				<table class="table table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
-							<th scope="col">예약번호</th>
-							<th scope="col">예약시간</th>
-							<th scope="col">이용날짜(시작)</th>
-							<th scope="col">이용날짜(종료)</th>
-							<th scope="col">짐 갯수</th>
-							<th scope="col">예약자명</th>
-							<th scope="col">결제금액</th>
-							<th scope="col">기타</th>
+							<tr>
+								<td>번호</td>
+								<td>고객이름</td>
+								<td>선택</td>
+								<td>메일전송</td>
+							</tr>
 						</tr>
 					</thead>
-					<tbody>
+
+					<tbody style="text-align: center">
+
 						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
+							<td>00001</td>
+							<td>장동건</td>
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="customCheck1" /> <label class="custom-control-label"
+										for="customCheck1"></label>
+								</div>
 							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
+							<td>
+								<button type="button" class="btn btn-info">메일전송</button>
 							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
 						</tr>
 						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
+							<td>00001</td>
+							<td>장동건</td>
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="customCheck2" /> <label class="custom-control-label"
+										for="customCheck2"></label>
+								</div>
 							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
+							<td>
+								<button type="button" class="btn btn-info">메일전송</button>
 							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
 						</tr>
 						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
+							<td>00001</td>
+							<td>장동건</td>
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="customCheck3" /> <label class="custom-control-label"
+										for="customCheck3"></label>
+								</div>
 							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
+							<td>
+								<button type="button" class="btn btn-info">메일전송</button>
 							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
 						</tr>
 						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
+							<td>00001</td>
+							<td>장동건</td>
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="customCheck4" /> <label class="custom-control-label"
+										for="customCheck4"></label>
+								</div>
 							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
+							<td>
+								<button type="button" class="btn btn-info">메일전송</button>
 							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
 						</tr>
 						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
+							<td>00001</td>
+							<td>장동건</td>
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input"
+										id="customCheck5" /> <label class="custom-control-label"
+										for="customCheck5"></label>
+								</div>
 							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
+							<td>
+								<button type="button" class="btn btn-info">메일전송</button>
 							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
 						</tr>
 					</tbody>
 				</table>
+
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
 					<li class="page-item disabled"><span class="page-link"><<</span>
@@ -206,12 +225,15 @@
 					<li class="page-item"><a class="page-link" href="#">>></a></li>
 				</ul>
 				</nav>
+
+
+
 				<canvas class="my-4 w-100" height="30"></canvas>
 			</div>
 		</div>
 		</section>
 	</div>
-	</main>
+	</main> <!--Main layout-->
 </body>
 
 <!-- MDB -->
@@ -219,7 +241,6 @@
 	src="${path}/resources/admin/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <%-- <script type="text/javascript" src="${path}/resources/admin/js/admin.js"></script> --%>
-
 </html>
 
 

@@ -45,7 +45,62 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#emailBtn').click(function(){
+				var formData = new FormData($('#fileForm')[0]);
+				$.ajax({
+					type: "post",
+					enctype: 'multipart/form-data', //필수
+					processData: false,
+ 				    contentType: false,
+ 				    data: formData,
+ 				    url : "mailForm",
+ 				    cache: false,
+					success : function(data){
+						swal("", "메일이 발송 되었습니다.", "success");
+					},
+					error: function(request, status, error){
+	     			      //alert("loading error:" + request.status);
+	     			      console.log("code : " +  request.statusText  + "\r\nmessage : " + request.responseText);
+	     			   
+	     			 }
+				});
+	
+				$('#joinSubmit').attr("disabled",false);
+			});
+			
+			
+			/* 비동기로 메일 수신인 추가 */
+			$('#addMail').click(function(){
+				const box = this.parentElement.parentElement;  
+				const newP = document.createElement("tr");
+				newP.innerHTML = "<tr class='form-group'><td></td><td><input type='text' class='form-control' name='toMail' ></td><td><input type='button' id='removeBtn' class='form-control' value='삭제' ></td></tr>";
+				box.parentNode.insertBefore(newP, box.nextSibling);
+			});
+			
+			$('#addccMail').click(function(){
+				const box = this.parentElement.parentElement;  
+				const newP = document.createElement("tr");
+				newP.innerHTML = "<tr class='form-group'><td></td><td><input type='text' class='form-control' name='toMail' ></td><td><input type='button' id='removeBtn' class='form-control' value='삭제'></td></tr>";
+				box.parentNode.insertBefore(newP, box.nextSibling);
+			});
+			
+			$(document).on("click","#removeBtn", function(){
+				$(this).parent().parent().remove();
+				console.log($(this).parent());
+			})
+			$('#removeBtn').click(function(){
+				alert("asd");
+				console.log($(this));
+				$(this).removeChild;
+			});
+			
+			
+			
+		});
+	</script>
 
 </head>
 <body>
@@ -62,7 +117,7 @@
 				data-toggle="pill" aria-current="true"> <i
 				class="fas fa-home fa-fw me-3"></i> <span>기본정보</span>
 			</a> <a href="javascript:;" onclick="location.href='/admin/reserve'"
-				class="list-group-item list-group-item-action py-2 ripple active"
+				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-tasks fa-fw me-3"></i><span>예약현황</span></a>
 			<a href="javascript:;" onclick="location.href='/admin/chatting'"
 				class="list-group-item list-group-item-action py-2 ripple"
@@ -71,7 +126,7 @@
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"> <i class="fas fa-edit fa-fw me-3"></i><span>리뷰관리</span>
 			</a> <a href="javascript:;" onclick="location.href='/admin/mail'"
-				class="list-group-item list-group-item-action py-2 ripple"
+				class="list-group-item list-group-item-action py-2 ripple active"
 				data-toggle="pill"><i class="fas fa-envelope-square fa-fw me-3"></i><span>메일서비스</span></a>
 			<a href="javascript:;" onclick="location.href='/admin/calendar'"
 				class="list-group-item list-group-item-action py-2 ripple"
@@ -82,7 +137,7 @@
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> <jsp:include
-		page="/WEB-INF/views/admin/inc/header.jsp" /> <!--Main layout--> <main
+		page="/WEB-INF/views/admin/inc/header.jsp" /> <main
 		style="margin-top: 58px">
 	<div class="container pt-4">
 		<section class="mb-4">
@@ -92,120 +147,55 @@
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
 				</h5>
 				<br />
-				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 예약현황을
+				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 메일서비스를
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
 				<br />
-				<h2 style="text-align: center">예약현황</h2>
+				<h2 style="text-align: center">메일보내기</h2>
 				<br />
-				<table class="table table-bordered">
-					<tbody style="text-align: center">
-						<tr>
-							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-							<td>예약건수</td>
-							<td>40건</td>
-						</tr>
-						<tr>
-							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
-							<td>결제금액</td>
-							<td>300,000원</td>
-						</tr>
-					</tbody>
-				</table>
-				<br />
-				<table class="table" style="text-align: center">
-					<thead class="table-primary">
-						<tr>
-							<th scope="col">예약번호</th>
-							<th scope="col">예약시간</th>
-							<th scope="col">이용날짜(시작)</th>
-							<th scope="col">이용날짜(종료)</th>
-							<th scope="col">짐 갯수</th>
-							<th scope="col">예약자명</th>
-							<th scope="col">결제금액</th>
-							<th scope="col">기타</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-				<nav aria-label="..." style="text-align: center">
-				<ul class="pagination">
-					<li class="page-item disabled"><span class="page-link"><<</span>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active" aria-current="page"><span
-						class="page-link">2</span></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">>></a></li>
-				</ul>
-				</nav>
+				<div class="container">
+					<div style="width: 100%;">
+						<form id="fileForm" action="" method="post"
+							enctype="multipart/form-data">
+							<!-- 인코딩 타입으로 이미지, 파일 서버로 전송할 경우 사용  -->
+							<table>
+								<tr id="box" class="form-group">
+									<td>받는 사람</td>
+									<td><input type="text" class="form-control" name="toMail"
+										placeholder="이메일 주소를 입력하세요"></td>
+									<td><input type="button" id="addMail"
+										class="form-control btn-outline-primary" value="추가"></td>
+								</tr>
+								<tr id="box2" class="form-group">
+									<td>참조 메일 주소</td>
+									<td><input type="text" class="form-control" name="ccMail"
+										placeholder="참조 수신인을 입력하세요"></td>
+									<td><input type="button" id="addccMail"
+										class="form-control btn-outline-primary" value="추가"></td>
+								</tr>
+								<tr class="form-group">
+									<td>제목</td>
+									<td><input type="text" class="form-control" name="title"
+										placeholder="제목을 입력하세요"></td>
+								</tr>
+								<tr class="form-group">
+									<td>내용</td>
+									<td><textarea class="form-control" name="content"
+											name="editor1" placeholder="보낼 내용을 입력하세요"> </textarea></td>
+								</tr>
+								<tr class="form-group">
+									<td>첨부 파일</td>
+									<td><input type="file" name="file" class="file-input" />
+									</td>
+								</tr>
+							</table>
+							<br>
+							<button id="emailBtn" type="button"
+								class="btn btn-default btn-info">발송</button>
+						</form>
+					</div>
+				</div>
 				<canvas class="my-4 w-100" height="30"></canvas>
 			</div>
 		</div>

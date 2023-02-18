@@ -29,68 +29,53 @@ public class AdminController {
 
 	@GetMapping("admin") 
 	public String admin() {
-		return "admin/adminMain";
+		return "admin/admin";
 	}
 
-	@GetMapping("adminManage") 
+	@GetMapping("admin/manage") 
 	public String manage() {
 		return "admin/mainInc/manage";
 	}
 	
-	@GetMapping("adminMypage")   
-	public String mypage() {
-		return "admin/mainInc/mypage";
-	}
-	
-	@GetMapping("adminReserve")   
+	@GetMapping("admin/reserve")   
 	public String reserve() {
 		return "admin/mainInc/reserve";
 	}
 	
-	@GetMapping("adminChatting")   
+	@GetMapping("admin/chatting")   
 	public String chatting() {
 		return "admin/mainInc/chatting";
 	}
 	
-	@GetMapping("adminReview")   
+	@GetMapping("admin/review")   
 	public String review() {
 		return "admin/mainInc/review";
 	}
 	
-	@GetMapping("preMain")   
-	public String preMain() {
-		return "admin/mainInc/preMain";
+	@GetMapping("admin/mail")   
+	public String mail() {
+		return "admin/mainInc/mail";
 	}
 	
-	@GetMapping("preMarketing")   
-	public String preMarketing() {
-		return "admin/mainInc/preMarketing";
-	}
-	
-	@GetMapping("preMail")   
-	public String preMail() {
-		return "admin/mainInc/preMail";
-	}
-	
-	@GetMapping("preSchedule")   
-	public String preSchedule() {
-		return "admin/mainInc/preSchedule";
+	@GetMapping("admin/calendar")   
+	public String calendar() {
+		return "admin/mainInc/calendar";
 	}
 
-	@GetMapping("preStastics")   
-	public String preStastics() {
-		return "admin/mainInc/preStastics";
+	@GetMapping("admin/chart")   
+	public String chart() {
+		return "admin/mainInc/chart";
 	}
 	
 	@Autowired
 	private MailService mailService;
 	
-	@GetMapping("preMailForm")
+	@GetMapping("admin/mailForm")
 	public String emailForm() {		
-		return "admin/mainInc/preMailForm";
+		return "admin/mainInc/mailForm";
 	}
 	
-	@PostMapping("preMailForm")
+	@PostMapping("admin/mailForm")
 	public String sendEmail(Email email, MultipartFile file) throws Exception{
 		System.out.println(email.toString());
 		
@@ -102,7 +87,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "admin/mainInc/preMailForm";
+		return "admin/mainInc/mailForm";
 	}
 	
 	@Autowired
@@ -133,13 +118,13 @@ public class AdminController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/admin/adminUpate")
-	public String adminUpdate(Model model, Principal principal) {
-		String userid = principal.getName();
-		Admin admin = adminService.getAdmin(userid);
-		model.addAttribute("admin", admin);
-		return "adminUpdate";
-	}
+//	@GetMapping("/admin/adminUpate")
+//	public String adminUpdate(Model model, Principal principal) {
+//		String userid = principal.getName();
+//		Admin admin = adminService.getAdmin(userid);
+//		model.addAttribute("admin", admin);
+//		return "adminUpdate";
+//	}
 		
 //	@PostMapping("/admin/adminUpdate")
 //	public String adminUpdate(Model model, Admin admin, Principal principal) {
