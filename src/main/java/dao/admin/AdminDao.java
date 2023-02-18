@@ -11,6 +11,6 @@ public interface AdminDao {
 	public int registerStoreKeeper(StoreKeeper keeper);
 	public int registerStoreDetails(StoreDetails storeDetails);
 	
-	public Admin getAdmin(String userid);
-	public int updateAdmin(Admin admin);
+//	public Admin getAdmin(String userid);
+//	public int updateAdmin(Admin admin);
 }

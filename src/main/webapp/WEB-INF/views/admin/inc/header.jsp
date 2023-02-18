@@ -19,7 +19,7 @@
 
 
 		<!-- Brand -->
-		<a class="navbar-brand" href="admin"> <img
+		<a class="navbar-brand" href="/admin"> <img
 			src="${path}/resources/admin/img/logo.png" height="30" /> 
 		</a>
 
@@ -27,9 +27,6 @@
 		<ul class="navbar-nav ms-auto d-flex flex-row">
 			<!-- 사용자페이지 이동 -->
 			<li class="nav-item"><a class="nav-link me-3 me-lg-0" href="${path}/">[사이트]홈페이지</a>
-			</li>
-			<!-- 프리미엄 서비스 가입하기 -->
-			<li class="nav-item"><a class="nav-link me-3 me-lg-0" href="#">프리미엄가입</a>
 			</li>
 
 			<!-- [이름] 점주님 -->
