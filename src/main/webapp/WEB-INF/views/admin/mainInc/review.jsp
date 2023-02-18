@@ -87,7 +87,7 @@
 		style="margin-top: 58px">
 	<div class="container pt-4">
 		<section class="mb-4">
-		<div class="card">
+		<div class="card" >
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
@@ -97,28 +97,31 @@
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
-				<br />
-				<form class="mb-3" name="myform" id="myform" method="post">
-					<fieldset>
-						<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
-							name="reviewStar" value="5" id="rate1" /><label for="rate1">★</label>
-						<input type="radio" name="reviewStar" value="4" id="rate2" /><label
-							for="rate2">★</label> <input type="radio" name="reviewStar"
-							value="3" id="rate3" /><label for="rate3">★</label> <input
-							type="radio" name="reviewStar" value="2" id="rate4" /><label
-							for="rate4">★</label> <input type="radio" name="reviewStar"
-							value="1" id="rate5" /><label for="rate5">★</label>
-					</fieldset>
-					<div>
-						<textarea class="col-auto form-control" type="text"
-							id="reviewContents"
-							placeholder="좋은 수강평을 남겨주시면 Cocolo에 큰 힘이 됩니다! 포인트 5000p도 지급!!"></textarea>
+				<div class="card border-success mb-3" style="max-width: 50rem;">
+					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
+					<div class="card-body" style="text-align:left;">
+						★★★★★
+						<br/>
+						<p class="card-text"> 여기 개 좋아요 </p>
 					</div>
-				</form>
-				<br /> <br />
-				<canvas class="my-4 w-100" height="30"></canvas>
+					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
+				</div>
 			</div>
-		</div>
+			
+			<div class="card-body">
+				<div class="card border-success mb-3" style="max-width: 50rem;">
+					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
+					<div class="card-body" style="text-align:left;">
+						★★★★★
+						<br/>
+						<p class="card-text"> 여기 개 좋아요 </p>
+					</div>
+					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
+				</div>
+			</div>
+			
+			</div>
+			<canvas class="my-4 w-100" height="30"></canvas>
 		</section>
 	</div>
 	</main>
