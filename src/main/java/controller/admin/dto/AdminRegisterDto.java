@@ -38,8 +38,8 @@ public class AdminRegisterDto {
 	private String phone;
 	
 	// 점주 비밀번호 암호화
-	public void encryptPassword(BCryptPasswordEncoder bCryptPasswordEncoder) {
-		this.password = bCryptPasswordEncoder.encode(this.password);
+	public void encryptPassword(String encryptedPassword) {
+		this.password = encryptedPassword;
 	}
 	
 	// 실제 파일 경로 얻기
@@ -97,8 +97,8 @@ public class AdminRegisterDto {
 	public Store toStore() {
 		return Store.builder()
 				.storeId(email)
-				.name("임시상호")
-				.phone("010-ABCD-EFG")
+				.name(storeName)
+				.phone(phone)
 				.address(address)
 				.latitude(latitude)
 				.longitude(longitude)

@@ -119,7 +119,7 @@ public class AdminController {
 		// 경로 얻기 , 주소 기반 좌표 얻기, 비밀번호 암호화
 		dto.findFileRealPath(request);
 		dto.findCoordinates();
-		dto.encryptPassword(bCryptPasswordEncoder);
+		dto.encryptPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
 		// DB 저장
 		adminService.registerAdmin(dto.toAdmin(), dto.toStoreKeeper(), dto.toStore(), dto.toStoreDetails());
 		// 사업자 등록증 파일 저장
