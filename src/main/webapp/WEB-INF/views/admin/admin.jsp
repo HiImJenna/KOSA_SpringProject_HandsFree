@@ -87,39 +87,37 @@
 		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
-					<strong>[Hands Free] 교촌치킨 서울역점</strong>
+					<strong>${storeName}</strong>
 				</h5>
 				<br />
-				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 기본정보를
-					볼 수 있는 페이지 입니다.</div>
+				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 기본정보를 볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
 				<div style="text-align: right">
 					<a href="javascript:;" onclick="location.href='/admin/manage'">변경하기</a>
 				</div>
 				<h5>가게정보</h5>
-				<br /> <b>대표 이미지</b> <br /> <img
-					src="${path}/resources/admin/img/kyochon.jpg" height="70px"
-					width="70px" /> <br /> <br /> <b>가게이름</b> <br /> 교촌치킨 서울역점 <br />
-				<br /> <b>주소 </b><br /> 서울시 중구 가나다로 123-45 <br /> <br /> <b>대표번호</b><br />
-				02-1234-5678 <br /> <br />
+				<br /> <b>대표 이미지</b> <br /> 
+				<img src="C:\KOSA_IT\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\2Team_Project\files\upload\admin1@naver.com\pikachu.png" height="70px" width="70px" /> 
+				<br /> <br /> <b>가게이름</b> <br /> ${storeName} <br />
+				<br /> <b>주소 </b><br /> ${address} <br /> <br /> <b>대표번호</b><br />
+				${phone} <br /> <br />
 				<b>짐 보관 갯수</b><br />
-				10 개 <br /> <br />
+				${cnt} 개 <br /> <br />
 				
 				<hr />
 				<div style="text-align: right">
 					<br>
 				</div>
 				<h5>영업시간</h5>
-				<br /> <b>월~금</b> : 오전 11:00 ~ 오후 09:00 <br /> <br /> <b>토요일</b>
-				: 오전 11:00 ~ 오후 09:00 <br /> <br /> <b>일요일</b> : 오전 11:00 ~ 오후
-				09:00 <br /> <br />
+				<br /> <b>월~금</b> : ${week} <br /> <br /> <b>토요일</b>
+				: ${sat} <br /> <br /> <b>일요일</b> : ${sun} <br /> <br />
 				<hr />
 				<div style="text-align: right">
 					<br>
 				</div>
 				<h5>공지사항 안내</h5>
-				<br /> 여기 맛있어요 <br /> <br />
+				<br /> ${notice} <br /> <br />
 				<hr />
 				<br />
 				<h5>사업자등록증</h5>
@@ -128,8 +126,7 @@
 					aria-expanded="false" aria-controls="collapseExample">펼쳐보기</a> <br />
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<img style="height: 70%; width: 30%"
-							src="${path}/resources/admin/img/document.jpg" />
+						<img style="height: 70%; width: 30%" src="C:\KOSA_IT\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\2Team_Project\files\upload\admin1@naver.com\pikachu.png" />
 					</div>
 				</div>
 
