@@ -241,14 +241,23 @@
 						</div>
 					</div>
 					
-					<!-- 파일 업로드 -->
-					<!--
-					<div class="row" style="height: 40px; margin-top: 1px; margin-bottom: 8px;">
+					<!-- 상호 -->
+					<div class="row" style="height: 58px; padding: 0px;">
 						<div class="col">
-							<input class="form-control" type="file" id="formFile" placeholder="개인사업 등록증">
+							<input style="height: 51px;" class="form-control" name="storeName" id="name" type="text" placeholder="상호명" data-sb-validations="required" />
+							<!-- <label for="password">password</label> -->
+							<!-- <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div> -->
 						</div>
 					</div>
-					-->
+					
+					<!-- 전화번호 -->
+					<div class="row" style="height: 58px; padding: 0px;">
+						<div class="col">
+							<input style="height: 51px;" class="form-control" name="phone" id="phone" type="text" placeholder="전화번호" data-sb-validations="required" />
+							<!-- <label for="password">password</label> -->
+							<!-- <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div> -->
+						</div>
+					</div>
 					
 					<!-- 파일 업로드 -->
 					<div style="margin-top: 15px;">
@@ -264,19 +273,6 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- Footer -->
-	<!--
-	<footer class="bg-black text-center py-5">
-		<div class="container px-5">
-			<div class="text-white-50 small">
-				<div class="mb-2">&copy; Enjo2 2023. All Rights Reserved.</div>
-				<span class="mx-1">&middot;</span> <a href="#!">Git</a> <span
-					class="mx-1">&middot;</span>
-			</div>
-		</div>
-	</footer>
-	-->
 
 	<!-- Bootstrap core JS-->
 	<script
