@@ -38,6 +38,8 @@ window.onload = function(){
 		console.log(data);
 		var data1 = $(this).parents()
 		console.log(data1); */
+		$("#chatBtn").css('display', 'inline-block');
+
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
 
@@ -109,8 +111,6 @@ window.onload = function(){
 			success : function(data){
 				console.log(data);
 				createTabView(data, 'review');
-
-				
 			},
 			error:function (request, status, error){
                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)

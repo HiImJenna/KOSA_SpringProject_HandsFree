@@ -8,7 +8,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select st.storeid, st.name, st.phone, st.address, st.latitude, st.longitude, std.notice, 
 		std.manage_week_time, std.manage_sat_time, std.manage_sun_time from store st inner join store_details std
 		on st.storeid = std.storeid
-		where
-		<![CDATA[st.latitude <= #{latitude} and st.longitude <=  #{longitude}]]>
 	</select>
 </mapper>
