@@ -1969,12 +1969,36 @@ select {
     box-shadow: none;
     border: none;
 }
+
+.nanny-button2 {
+    border-radius: 5px;
+    height: 39px;
+    background-color: #fff;
+    color: #0932ff;
+    padding: 9px 15px;
+    cursor: pointer;
+    box-shadow: none;
+    border: none;
+    margin-top: 100px;
+    float: right;
+}
+
 .nanny-button.rework {
     font-weight: 600;
     height: auto;
     padding: 14px 20px;
     letter-spacing: 0.7px;
+    margin-top: 50px;
 }
+
+.nanny-button2.rework2 {
+    font-weight: 600;
+    height: auto;
+    padding: 14px 20px;
+    letter-spacing: 0.7px;
+    
+}
+
 .nanny-button.reverse {
     border-radius: 8px;
     border: 0;
