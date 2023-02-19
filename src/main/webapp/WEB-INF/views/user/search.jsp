@@ -365,31 +365,24 @@ padding: 0px;
 				//메세지 받을 경로
 				const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
 					const message = JSON.parse(result.body);
-					console.log("메세지 구독")
-					console.log(result);
-					console.log(message);
 					//채팅 그리기
 					chating(message);
 				})
 				// 입장,퇴장 알림을 받을 경로
-			const id2 = stomp.subscribe("/topic/notification/" + roomNumber, function(result){
-				console.log(result);
-				const room = JSON.parse(result.body);
-				const message = room.message;
-				console.log("5 접근");
-				userList(room.users);
-			
-				const chatHtml = `
-			        <li>
-			        	<div class="notification">
-		            		<span>\${message}</span>
-		            	</div>
-			        </li>`;
-				
-				$(".chat ul.chat_list").append(chatHtml);
-				$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
-			})
-				
+				const id2 = stomp.subscribe("/topic/notification/" + roomNumber, function(result){
+					const room = JSON.parse(result.body);
+					const message = room.message;
+					userList(room.users);
+					const chatHtml = `
+				        <li>
+				        	<div class="notification">
+			            		<span>\${message}</span>
+			            	</div>
+				        </li>`;
+					
+					$(".chat ul.chat_list").append(chatHtml);
+					$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
+				})
 			}
 			
 			//에러메세지
