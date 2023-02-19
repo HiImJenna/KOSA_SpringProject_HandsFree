@@ -42,4 +42,9 @@ public class AdminService {
 		AdminDao dao = sqlsession.getMapper(AdminDao.class);
 		return dao.findStoreDetailsByStoreId(userId);
 	}
+	
+	@Transactional
+	public void updateStoreInfo(Users user, Store store, StoreDetails storeDetails) {
+		
+	}
 }

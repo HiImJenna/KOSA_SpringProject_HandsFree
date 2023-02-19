@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import controller.admin.dto.AdminViewTimeDto;
+import controller.admin.dto.StoreInfoUpdateDto;
 import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
@@ -67,15 +70,46 @@ public class AdminController {
 		// 프로필 이미지 임시
 		model.addAttribute("profilePath", storeDetails.getCertificatePath());
 		
-		System.out.println("profilePath");
-		System.out.println(storeDetails.getCertificatePath());
-		
 		return "admin/admin";
 	}
 
 	@GetMapping("admin/manage") 
-	public String manage() {
+	public String manage(Model model, Principal principal) {
+		
+		String userId = principal.getName();
+		
+		// users
+		//// 프로필 이미지 필요함!!, 아래 임시 코드 있음
+		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		
+		// store
+		//// 가게 이름, 주소 , 대표번호
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
+		model.addAttribute("address", store.getAddress());
+		model.addAttribute("phone", store.getPhone());
+		
+		// details
+		//// 짐 보관 개수, 영업 시간, 공시 사항, 사업자등록증
+		StoreDetails storeDetails = adminService.findStoreDetailsByUserId(userId);
+		model.addAttribute("cnt", storeDetails.getStoreCnt());
+		model.addAttribute("timeList", new AdminViewTimeDto(storeDetails).getTimes());
+		model.addAttribute("notice", storeDetails.getNotice());
+		model.addAttribute("cPath", storeDetails.getCertificatePath());
+		
+		// 프로필 이미지 임시
+		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		
 		return "admin/mainInc/manage";
+	}
+	
+	@PostMapping("admin/manage")
+	public String changeAdminBasicInfo(StoreInfoUpdateDto  dto,
+									   HttpServletRequest  request,
+									   Principal           principal) 
+	{
+		
+		return "redirect:/admin";
 	}
 	
 	@GetMapping("admin/reserve")   
@@ -146,28 +180,4 @@ public class AdminController {
 		//System.out.println("점주로그인");
 		return "redirect:/";
 	}
-	
-//	@GetMapping("/admin/adminUpate")
-//	public String adminUpdate(Model model, Principal principal) {
-//		String userid = principal.getName();
-//		Admin admin = adminService.getAdmin(userid);
-//		model.addAttribute("admin", admin);
-//		return "adminUpdate";
-//	}
-		
-//	@PostMapping("/admin/adminUpdate")
-//	public String adminUpdate(Model model, Admin admin, Principal principal) {
-//		String userid = principal.getName();
-//		
-//		Admin adminupdate = adminService.getAdmin(userid);
-//		
-//		adminupdate.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
-//		adminupdate.setFirstName(admin.getFirstName());
-//		adminupdate.setLastName(admin.getLastName());
-//		adminService.updateAdmin(adminupdate);
-//
-//		return "redirect:/admin";
-//	}
-	
-	
 }

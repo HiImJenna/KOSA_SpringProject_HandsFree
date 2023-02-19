@@ -41,4 +41,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from store_details
 		where storeid = #{storeid}
 	</select>
+	
+	<update id="updateProfile" parameterType="vo.user.Users">
+	  update notices
+	  set   title=#{title},
+	  		content=#{content},
+	  		filesrc=#{fileSrc, jdbcType = VARCHAR},
+	 		filesrc2=#{fileSrc2,jdbcType=VARCHAR}
+	  where seq=#{seq}
+	</update>
 </mapper>
