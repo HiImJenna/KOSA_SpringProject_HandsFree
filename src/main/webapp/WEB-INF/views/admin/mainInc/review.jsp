@@ -100,6 +100,31 @@
 				<h2 style="text-align: center">리뷰관리</h2>
 				<br />
 				
+				<!-- 리뷰 0 -->
+				<c:forEach var="reviewlist" items="${reviewList}" varStatus="status">
+					<div class="card border-success mb-3">
+						<div class="card-header bg-transparent" style="text-align: center;">
+							<b>${reviewlist.name} 님</b>
+						</div>
+						<div class="card-body" style="text-align: left;">
+							<p>${reviewlist.edate}</p>
+							${reviewlist.grade}<br />
+							<p class="card-text">${reviewlist.content}</p>
+						</div>
+						
+						<div class="card-footer bg-transparent ">
+							<b>[상호명] 점주님</b><br /> <br />
+							<p>2023-02-18 07:00 pm</p>
+							<textarea style="width: 100%; height: 6.25em; resize: none;" placeholder="리뷰 답변을 해주세요"></textarea>
+							<div style="text-align: right; margin: 10px;">
+								<button class="btn btn-outline-primary" >답글달기</button>
+							</div>
+						</div>
+					</div>				
+				</c:forEach>
+
+				<!-- 리뷰 0 끝 -->
+				
 				<!-- 리뷰 1 -->
 				<div class="card border-success mb-3">
 					<div class="card-header bg-transparent" style="text-align: center;">
@@ -110,14 +135,16 @@
 						★★★★★ <br />
 						<p class="card-text">여기 개 좋아요</p>
 					</div>
+					
 					<div class="card-footer bg-transparent ">
 						<b>[상호명] 점주님</b><br /> <br />
 						<p>2023-02-18 07:00 pm</p>
 						<textarea style="width: 100%; height: 6.25em; resize: none;" placeholder="리뷰 답변을 해주세요"></textarea>
 						<div style="text-align: right; margin: 10px;">
-							<button class="btn btn-outline-primary">답글달기</button>
+							<button class="btn btn-outline-primary" >답글달기</button>
 						</div>
 					</div>
+					
 				</div>
 				<!-- 리뷰 1 끝 -->
 				
