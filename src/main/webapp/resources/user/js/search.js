@@ -54,7 +54,6 @@ window.onload = function(){
 			url : 'item',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createForm(data);
 				
 				/* $('#listGroup').empty();
@@ -75,7 +74,7 @@ window.onload = function(){
 	$(document).on("click", "#information", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
+
 		var data = {
 				title : title,
 				type : 'information'
@@ -86,7 +85,6 @@ window.onload = function(){
 			url : 'item/information',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createTabView(data, 'information');
 			},
 			error:function (request, status, error){
@@ -98,7 +96,7 @@ window.onload = function(){
 	$(document).on("click", "#review", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
+		
 		var data = {
 				title : title,
 				type : 'review'
@@ -109,7 +107,6 @@ window.onload = function(){
 			url : 'item/review',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createTabView(data, 'review');
 			},
 			error:function (request, status, error){
@@ -122,7 +119,6 @@ window.onload = function(){
 	$(document).on("click", "#suggestion", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
 		var data = {
 				title : title,
 				type : 'suggestion'
@@ -132,7 +128,6 @@ window.onload = function(){
 			url : 'item/suggestion',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createForm(data);
 				
 				/* $('#listGroup').empty();

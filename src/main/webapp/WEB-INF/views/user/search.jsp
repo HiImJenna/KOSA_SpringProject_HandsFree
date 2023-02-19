@@ -70,8 +70,9 @@ padding: 0px;
 			
 			//	connect(header, connectCallback(연결에 성공하면 실행되는 메소드 ))
 			stomp.connect({}, function(){
-				main();
+				//main();
 			});
+			
 			
 			// ***************** 카카오API *****************
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -243,14 +244,12 @@ padding: 0px;
 					url : '/selectStore',
 					async :false,
 					success : function(data){
-						console.log(data);
 						retval = data;
 					},
 					error:function(request, status, error){
 						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 					}
 				});
-				console.log(retval);
 				return retval;
 			}
 
@@ -277,37 +276,61 @@ padding: 0px;
 			/*  채팅   */
 			
 			$(document).on("click", "#chatBtn", function(){
-				createRoom("세션아이디");
+				createRoom();
 			})
+			
+						//채팅 버튼 클릭 및 엔터
+			$(".chat_button_area button").click(function(){
+				console.log("메세지 클릭");
+				console.log(subscribe.length);
+				sendMessage();
+				$(".chat_input_area textarea").focus();
+			})
+			
+			$(".chat_input_area textarea").keypress(function(event){
+				console.log("메세지 엔터");
+				console.log(subscribe.length);
+				if(event.keyCode == 13){
+					if(!event.shiftKey){
+						event.preventDefault();
+						sendMessage();
+					}
+				}
+			})
+			
+			
+			
+			
 			
 			/* 채팅  */
 			
 			//채팅 만들기
-			function createRoom(roomName){
-				var nickname = "사용자아이디";
+			function createRoom(){
+				//var test = $('#dropdownMenu2').attr('value');
+				//var test = $('#dropdownMenu2').text();
 				
-					if(nickname){
-						var data ={
-								roomName : roomName,
-								nickname : nickname
-						}						
-						$.ajax({
-							url : "/chatingRoom",
-							type :  "POST",
-							data : data,
-							success : function(data){
-								//console.log(data);
-								//data값 기준으로 채팅창 페이지 만들다.
-								console.log("방만들어질때");
-								console.log(subscribe.length);
-								initRoom(data, nickname);
-							},
-			               error:function (request, status, error){
-			                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-			               }
+				var nickname = $('#dropdownMenu2').text().trim();
+					
+				$.ajax({
+					url : "/chatingRoom",
+					type :  "POST",
+					success : function(data){
+						//data값 기준으로 채팅창 페이지 만들다.
+						/* console.log(data); */
+						var roomData = data;
+						$.each(data.users, function(index, obj){
 
+							if(obj === nickname)
+							{
+								initRoom(roomData, nickname);
+							}		
 						})
-					}
+						
+					},
+	               error:function (request, status, error){
+	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+	               }
+				})
 			}
 			
 			//메세지 보낼때		
@@ -417,12 +440,11 @@ padding: 0px;
 			
 			function initRoom(roomData, nickname){
 				/* $("main").hide(); */
-				
 				info.setNickname(nickname);
 				info.setRoomNumber(roomData.roomNumber);
 
 				$(".chat").show();
-				$(".chat .chat_title").text(roomData.roomName);
+				/* $(".chat .chat_title").text(roomData.roomName); */
 				chatingConnect(roomData.roomNumber);
 				
 				$(".chat_input_area textarea").focus();
@@ -540,7 +562,7 @@ padding: 0px;
 						<div id="menu_wrap" class="chat" draggable="true">
 							<div>
 								<div id="chat_body" class="chat_body">
-									<h2 class="chat_title">1번방</h2>
+									<h2 class="chat_title"></h2>
 									<button class="chat_back">◀</button>
 	
 									<ul class="chat_list">
