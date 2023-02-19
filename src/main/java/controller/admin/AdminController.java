@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import controller.admin.dto.AdminViewTimeDto;
+import controller.admin.dto.StoreInfoUpdateDto;
 import service.ReservationService;
 import service.ReviewService;
 import service.admin.AdminService;
@@ -22,6 +24,8 @@ import service.file.FileService;
 import vo.Reservation;
 import vo.Review;
 import vo.admin.Email;
+import vo.admin.Store;
+import vo.admin.StoreDetails;
 
 
 @Controller
@@ -29,20 +33,92 @@ import vo.admin.Email;
 public class AdminController {
 	
 	@Autowired
+	private FileService fileService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private MailService mailService;
+  
+  @Autowired
 	private ReviewService reviewservice;
 	
 	@Autowired
 	private ReservationService reservationservice;
-	
 
 	@GetMapping("admin") 
-	public String admin() {
+	public String admin(Model model, Principal principal) {
+		
+		String userId = principal.getName();
+		
+		// users
+		//// 프로필 이미지 아래 임시 코드 있음
+		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		
+		// store
+		//// 가게 이름, 주소 , 대표번호
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
+		model.addAttribute("address", store.getAddress());
+		model.addAttribute("phone", store.getPhone());
+		
+		// details
+		//// 짐 보관 개수, 영업 시간, 공시 사항, 사업자등록증
+		StoreDetails storeDetails = adminService.findStoreDetailsByUserId(userId);
+		model.addAttribute("cnt", storeDetails.getStoreCnt());
+		model.addAttribute("week", storeDetails.getManageWeekTime());
+		model.addAttribute("sat", storeDetails.getManageSatTime());
+		model.addAttribute("sun", storeDetails.getManageSunTime());
+		model.addAttribute("notice", storeDetails.getNotice());
+		model.addAttribute("cPath", storeDetails.getCertificatePath());
+		
+		// 프로필 이미지 임시
+		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		
 		return "admin/admin";
 	}
 
 	@GetMapping("admin/manage") 
-	public String manage() {
+	public String manage(Model model, Principal principal) {
+		
+		String userId = principal.getName();
+		
+		// users
+		//// 프로필 이미지 필요함!!, 아래 임시 코드 있음
+		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		
+		// store
+		//// 가게 이름, 주소 , 대표번호
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
+		model.addAttribute("address", store.getAddress());
+		model.addAttribute("phone", store.getPhone());
+		
+		// details
+		//// 짐 보관 개수, 영업 시간, 공시 사항, 사업자등록증
+		StoreDetails storeDetails = adminService.findStoreDetailsByUserId(userId);
+		model.addAttribute("cnt", storeDetails.getStoreCnt());
+		model.addAttribute("timeList", new AdminViewTimeDto(storeDetails).getTimes());
+		model.addAttribute("notice", storeDetails.getNotice());
+		model.addAttribute("cPath", storeDetails.getCertificatePath());
+		
+		// 프로필 이미지 임시
+		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		
 		return "admin/mainInc/manage";
+	}
+	
+	@PostMapping("admin/manage")
+	public String changeAdminBasicInfo(StoreInfoUpdateDto  dto,
+									   HttpServletRequest  request,
+									   Principal           principal) 
+	{
+		
+		return "redirect:/admin";
 	}
 	
 	@GetMapping("admin/reserve")   
@@ -82,9 +158,6 @@ public class AdminController {
 		return "admin/mainInc/chart";
 	}
 	
-	@Autowired
-	private MailService mailService;
-	
 	@GetMapping("admin/mailForm")
 	public String emailForm() {		
 		return "admin/mainInc/mailForm";
@@ -105,15 +178,6 @@ public class AdminController {
 		return "admin/mainInc/mailForm";
 	}
 	
-	@Autowired
-	private FileService fileService;
-	
-	@Autowired
-	private AdminService adminService;
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
 	@PostMapping("/admin/register")
 	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request) {
 		// 경로 얻기 , 주소 기반 좌표 얻기, 비밀번호 암호화
@@ -132,28 +196,4 @@ public class AdminController {
 		//System.out.println("점주로그인");
 		return "redirect:/";
 	}
-	
-//	@GetMapping("/admin/adminUpate")
-//	public String adminUpdate(Model model, Principal principal) {
-//		String userid = principal.getName();
-//		Admin admin = adminService.getAdmin(userid);
-//		model.addAttribute("admin", admin);
-//		return "adminUpdate";
-//	}
-		
-//	@PostMapping("/admin/adminUpdate")
-//	public String adminUpdate(Model model, Admin admin, Principal principal) {
-//		String userid = principal.getName();
-//		
-//		Admin adminupdate = adminService.getAdmin(userid);
-//		
-//		adminupdate.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
-//		adminupdate.setFirstName(admin.getFirstName());
-//		adminupdate.setLastName(admin.getLastName());
-//		adminService.updateAdmin(adminupdate);
-//
-//		return "redirect:/admin";
-//	}
-	
-	
 }

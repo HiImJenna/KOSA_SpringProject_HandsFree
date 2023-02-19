@@ -1,6 +1,8 @@
 package vo.user;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data
@@ -15,10 +17,20 @@ public class Users {
 	private MultipartFile profile_path;
 	private String realFilePath;
 	
+	@Builder
+	public Users(String userid, String userpwd, String first_name, String last_name, MultipartFile profile_path,
+			String realFilePath) {
+		this.userid = userid;
+		this.userpwd = userpwd;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.profile_path = profile_path;
+		this.realFilePath = realFilePath;
+	}
+	
 	// 실제 파일 경로 얻기
 //	public void findFileRealPath(HttpServletRequest request) {
 //		String path = request.getServletContext().getRealPath("/files/upload");
 //		this.realFilePath = path + "\\" + userid + "\\";
 //	}
-
 }

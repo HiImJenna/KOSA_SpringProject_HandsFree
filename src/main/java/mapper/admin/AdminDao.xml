@@ -24,14 +24,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{storeId}, '', 'START', '', '오전11:00~오후09:00', '오전11:00~오후09:00', '오전11:00~오후09:00', 0, #{certificatePath})
 	</insert>
 	
-	<!-- 점주 한명 불러오기 -->
-<!-- 	<select id="getAdmin" resultType="vo.admin.Admin">
-		select userid, userpwd, first_name, last_Name from users where status=0 and userid = #{userid}
+	<select id="findAdminUserByUserId" resultType="vo.user.Users">
+		select userid, userpwd, enabled, to_char(joindate, 'YYYY/MM/DD HH24:MI'), first_name, last_name, mail_accept, status, profile_path
+		from users
+		where userid = #{userid}
 	</select>
 	
-	<update id="updateAdmin">
-		update users set userpwd = #{userpwd}, first_name = #{first_name}, last_name = #{last_name} where userid= #{userid}		
-	</update> -->
+	<select id="findStoreByStoreId" resultType="vo.admin.Store">
+		select storeid as storeId, name, phone, address, latitude, longitude
+		from store
+		where storeid = #{storeid}
+	</select>
 	
+	<select id="findStoreDetailsByStoreId" resultType="vo.admin.StoreDetails">
+		select storeid as storeId, notice, status, way_to_find as wayToFind, manage_week_time as manageWeekTime, manage_sat_time as manageSatTime, manage_sun_time as manageSunTime, store_cnt as storeCnt, certificate_path as certificatePath
+		from store_details
+		where storeid = #{storeid}
+	</select>
 	
+	<update id="updateProfile" parameterType="vo.user.Users">
+	  update notices
+	  set   title=#{title},
+	  		content=#{content},
+	  		filesrc=#{fileSrc, jdbcType = VARCHAR},
+	 		filesrc2=#{fileSrc2,jdbcType=VARCHAR}
+	  where seq=#{seq}
+	</update>
 </mapper>
