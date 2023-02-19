@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ChatingRoom {
 	private String roomNumber;
-	private String roomName;
 	private LinkedList<String> users;
 	
 	@Override

@@ -15,12 +15,14 @@ public class UserSearchService {
 	private SqlSession sqlsession;
 	
 	
-	public List<Map<String, String>> getStore(String latitude, String longitude){
+//	public List<Map<String, String>> getStore(String latitude, String longitude){
+	public List<Map<String, String>> getStore(){
 		List<Map<String, String>> list = null;
 		Map map=null;
 		try {
 			UserSearchDao userSearchDao = sqlsession.getMapper(UserSearchDao.class);
-			list = userSearchDao.selectStore(latitude, longitude);
+//			list = userSearchDao.selectStore(latitude, longitude);
+			list = userSearchDao.selectStore();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

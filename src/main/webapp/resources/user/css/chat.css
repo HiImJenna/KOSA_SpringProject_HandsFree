@@ -6,7 +6,7 @@
  */
  
 /* 채팅방 안 */
- 
+
 .chat {
     width: 40vw;
     height: 40vh;
@@ -125,12 +125,10 @@
     display: inline-block;
     max-width: 250px;
     max-height: 400px;
-    overflow-y: auto;
     word-break: break-all;
 }
  
 .chat .chat_me .chat_content {
-    background: yellow;
 }
  
 .chat .chat_other .chat_content {

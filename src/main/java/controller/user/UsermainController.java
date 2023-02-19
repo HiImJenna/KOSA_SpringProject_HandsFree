@@ -33,20 +33,23 @@ public class UsermainController {
 		
 		return "/user/search";
 	}
-	
-	@GetMapping("selectStore")
-	public ResponseEntity<?> getStore(@RequestParam Map<String, String> position){
-		System.out.println(position);
-		System.out.println(position.get("latitude"));
-		System.out.println(position.get("longitude"));
-		String latitude = position.get("latitude");
+	//	public ResponseEntity<?> getStore(@RequestParam Map<String, String> position){
+	/*
+	 		String latitude = position.get("latitude");
 		String longitude = position.get("longitude");
-		List<Map<String, String>> list =  userSearchService.getStore("127.458855318689", "36.6371176461081");
-		System.out.println(list);
-		System.out.println(list.toString());
+		
+		매퍼
+				where
+		<![CDATA[st.latitude <= #{latitude} and st.longitude <=  #{longitude}]]>
 
 		
+	 */
+	@GetMapping("selectStore")
+	public ResponseEntity<?> getStore(){
+//		List<Map<String, String>> list =  userSearchService.getStore(latitude, longitude);
+		List<Map<String, String>> list =  userSearchService.getStore();
+		System.out.println(list);
+		System.out.println(list.toString());
 		return new ResponseEntity<>(list, HttpStatus.OK);
-		
 	}
 }

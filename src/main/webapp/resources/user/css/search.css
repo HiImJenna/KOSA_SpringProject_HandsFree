@@ -16093,7 +16093,7 @@ fieldset:disabled .btn-group-vertical {
 /* 채팅 */
 
 .balloon {
-    display: inline-block;
+    display: none;
     position: relative;
     left: 65%;
     top: 50%;
