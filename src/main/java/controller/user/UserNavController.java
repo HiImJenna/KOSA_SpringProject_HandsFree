@@ -2,6 +2,7 @@ package controller.user;
 
 import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,8 +76,9 @@ public class UserNavController {
 		//내 정보 수정이 제대로 되었는지 확인
 	      if (result == 1) {
 	         icon = "success";
-	         msg = "회원 탈퇴가 이루어졌습니다. 이용해주셔서 감사합니다.:)";
+	         msg = "회원 탈퇴가 이루어졌습니다. 이용해주셔서 감사합니다.:(";
 	         url = "/";
+	         SecurityContextHolder.clearContext(); //회원 탈퇴 시 자동 로그아웃
 	      } else {
 	         icon = "error";
 	         msg = "회원 탈퇴에 실패했습니다 :(";

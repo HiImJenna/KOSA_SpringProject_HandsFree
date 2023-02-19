@@ -7,18 +7,17 @@
  <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
  <!-- Bootstrap icons-->
  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
- <!-- Google fonts-->
- <link rel="preconnect" href="https://fonts.gstatic.com" />
- <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
- <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
- <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
- <!-- Core theme CSS (includes Bootstrap)-->
- <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
+<!-- Google fonts-->
+<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 
+<!-- Core theme CSS (includes Bootstrap)-->
+ <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
+ 
+<body>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="#page-top">Hands Free</a>
+                <a class="navbar-brand fw-bold" href="/">Hands Free</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
@@ -49,7 +48,7 @@
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/userDetail'" >내 정보</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myreserve'">예약 내역</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/storekeepers'">점주 등록</button></li>
-					    <li><button class="dropdown-item" type="button"><a href="${pageContext.request.contextPath}/logout">로그아웃</a></button></li>
+					    <li><button class="dropdown-item" type="button" onclick="location.href='/logout'">로그아웃</button></li>
 					  </ul>
 					</div>
 					</se:authorize>

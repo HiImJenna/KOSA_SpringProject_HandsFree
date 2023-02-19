@@ -1,13 +1,13 @@
 package controller.chat;
 
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.mail.Message;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +29,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import vo.chat.ChatingRoom;
+import vo.chat.Message;
 
 
 
@@ -54,13 +59,16 @@ public class StompChatController {
 
 	//방만들기
 	@PostMapping("/chatingRoom")
-	public ResponseEntity<?> chatingRoom(HttpServletResponse response, String roomName, String nickname){
+	public ResponseEntity<?> chatingRoom(HttpServletResponse response, Authentication auth){
+		System.out.println("ID정보 : " + auth.getName());
+		String nickname = auth.getName();
+		//SecurityContext context1 = SecurityContextHolder.getContext();
+		System.out.println(nickname);
 		//방을 만들고 채팅방 목록에 추가
 		String roomNumber = UUID.randomUUID().toString();
 		ChatingRoom chatingRoom = ChatingRoom.builder()
 				.roomNumber(roomNumber)
 				.users(new LinkedList<>())
-				.roomName(roomName)
 				.build();
 		
 		//채팅룸 데이터 add 
@@ -86,7 +94,7 @@ public class StompChatController {
 			roomCookie.setMaxAge(maxage);
 			response.addCookie(roomCookie);
 		}
-		
+		System.out.println(chatingRoom);
 		return new ResponseEntity<>(chatingRoom, HttpStatus.OK);
 	}
 	

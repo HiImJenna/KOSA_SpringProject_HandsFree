@@ -10,11 +10,22 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>Hands free Search</title>
-	<!-- bootstrap -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 	<!-- Font Awesome -->
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+	<!-- CSS only -->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+		crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
+		
 	<!-- Google Fonts -->
 	<link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
 	<!-- Custom styles -->
@@ -34,6 +45,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<!-- 커스텀 js -->
 	<script type="text/javascript" src="${path}/resources/user/js/search.js"></script>
+	
 <style>
 body{
 	font-family:"맑은 고딕", "고딕", "굴림";
@@ -70,8 +82,9 @@ padding: 0px;
 			
 			//	connect(header, connectCallback(연결에 성공하면 실행되는 메소드 ))
 			stomp.connect({}, function(){
-				main();
+				//main();
 			});
+			
 			
 			// ***************** 카카오API *****************
 			// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
@@ -95,7 +108,7 @@ padding: 0px;
 					        lon = position.coords.longitude; // 경도
 					        var locPosition = new kakao.maps.LatLng(lat, lon);
 					        var bounds = new kakao.maps.LatLngBounds();
-						    var marker = new kakao.maps.Marker({position: locPosition });
+						    var marker = new kakao.maps.Marker({position: locPosition});
 						    marker.setMap(map);
 						    bounds.extend(locPosition);
 						    map.setBounds(bounds);
@@ -108,31 +121,8 @@ padding: 0px;
 			}else{
 				// 키워드로 장소를 검색합니다
 				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);
-				console.log("1");
 			}
 		
-			
-			//지도 띄우기 전에 리스트 먼저 띄움
-			var data = {
-					latitude : lat,
-					longitude : lon
-				}
-				$.ajax({
-					type : "get",
-					url : '/selectStore',
-					data:data,
-					success : function(data){
-						$('#listGroup').empty();
-						$.each(data, function(index, obj){
-							createList(obj)
-						})
-					},
-					error:function(request, status, error){
-						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					}
-				})
-				
-				
 				function createList(data){
 					const str = data.ADDRESS;
 					var address = '';
@@ -160,34 +150,39 @@ padding: 0px;
 					</div>`;
 					$('#listGroup').append(itemList);
 				}
-
-			
-			
-			
-			
-			
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB (data, status, pagination) {
 			    if (status === kakao.maps.services.Status.OK) {
-			    	console.log(data);
 			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 			        // LatLngBounds 객체에 좌표를 추가합니다
 			        var bounds = new kakao.maps.LatLngBounds();
 
 			        for (var i=0; i<data.length; i++) {
-			            displayMarker(data[i]);    
 			            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
 			        }
 			        
-			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다lat1
 			        map.setBounds(bounds);
 			        map.setLevel(4);
 					//현재 맵의 중심좌표 
 					var lating = map.getCenter();
-					var centerLat = lating.getLat(); //위도
-					var centerLng = lating.getLng(); //경도
-					circle(centerLat, centerLng)
+					var lat = lating.getLat(); //위도
+					var lon = lating.getLng(); //경도
+					var itemList = radiusItemList();
+					$.each(itemList, function(index, obj){
+						var marketCheck = getDistance(obj.LATITUDE, obj.LONGITUDE, lat, lon, obj.NAME);
+						if(marketCheck)
+						{
+							displayMarker(obj);
+							
+							createList(obj);
+						}
+
+
+					})
 					
+							            
+					circle(lat, lon);
 			    } 
 			}
 			
@@ -196,20 +191,43 @@ padding: 0px;
 			    // 마커를 생성하고 지도에 표시합니다
 			    var marker = new kakao.maps.Marker({
 			        map: map,
-			        position: new kakao.maps.LatLng(place.y, place.x) 
+			        position: new kakao.maps.LatLng(place.LATITUDE, place.LONGITUDE) 
 			    });
-			    
-			    /* console.log(marker); */
-			    /* console.log(marker.getRange()); */
 			    // 마커에 클릭이벤트를 등록합니다
 			    kakao.maps.event.addListener(marker, 'click', function() {
 			        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-			        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+			        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.NAME + '</div>');
 			        infowindow.open(map, marker);
 			    });
 			}
 			
+			//지도 원의 반경
+			function getDistance(lat1,lng1,lat2,lng2, place_name) {
+			    function deg2rad(deg) {
+			        return deg * (Math.PI/180)
+			    }
 			
+			    var R = 6371; // Radius of the earth in km
+			    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+			    var dLon = deg2rad(lng2-lng1);
+			    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+			    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			    var d = R * c; // Distance in km
+			    var m = d * 1000;
+/*  			    console.log("좌표 x : " + lat1);
+			    console.log("좌표 y : " + lng1);
+			    console.log("센터 x : " + lat2);
+			    console.log("센터 y : " + lng2);
+			    console.log("장소 : " + place_name);
+			    console.log("거리  : " + d);
+			    console.log("미터거리  : " + m); */
+			    if(m <600){
+			    	return true;
+			    }else{
+			    	return false;	
+			    }
+			    
+			}
 			//반경 600미터 원
 			function circle(lat, lon){
 				//테스트 원값
@@ -223,11 +241,44 @@ padding: 0px;
 				    fillColor: '#CFE7FF', // 채우기 색깔입니다
 				    fillOpacity: 0.7  // 채우기 불투명도 입니다   
 				}); 
-
 				// 지도에 원을 표시합니다 
 				circle.setMap(map); 
 
 			}
+			
+			
+			
+			//지도 띄우기 전에 리스트 먼저 띄움
+			function radiusItemList(){
+				var retval
+				$.ajax({
+					type : "get",
+					url : '/selectStore',
+					async :false,
+					success : function(data){
+						retval = data;
+					},
+					error:function(request, status, error){
+						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+					}
+				});
+				return retval;
+			}
+
+			
+/* 			$.ajax({
+				type : "get",
+				url : '/selectStore',
+				success : function(data){
+					$('#listGroup').empty();
+					$.each(data, function(index, obj){
+						createList(obj)
+					})
+				},
+				error:function(request, status, error){
+					console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+				}
+			})	 */
 			
 			//지도끝
 			
@@ -237,37 +288,61 @@ padding: 0px;
 			/*  채팅   */
 			
 			$(document).on("click", "#chatBtn", function(){
-				createRoom("세션아이디")
+				createRoom();
 			})
+			
+						//채팅 버튼 클릭 및 엔터
+			$(".chat_button_area button").click(function(){
+				console.log("메세지 클릭");
+				console.log(subscribe.length);
+				sendMessage();
+				$(".chat_input_area textarea").focus();
+			})
+			
+			$(".chat_input_area textarea").keypress(function(event){
+				console.log("메세지 엔터");
+				console.log(subscribe.length);
+				if(event.keyCode == 13){
+					if(!event.shiftKey){
+						event.preventDefault();
+						sendMessage();
+					}
+				}
+			})
+			
+			
+			
+			
 			
 			/* 채팅  */
 			
 			//채팅 만들기
-			function createRoom(roomName){
-				var nickname = "사용자아이디";
+			function createRoom(){
+				//var test = $('#dropdownMenu2').attr('value');
+				//var test = $('#dropdownMenu2').text();
 				
-					if(nickname){
-						var data ={
-								roomName : roomName,
-								nickname : nickname
-						}						
-						$.ajax({
-							url : "/chatingRoom",
-							type :  "POST",
-							data : data,
-							success : function(data){
-								//console.log(data);
-								//data값 기준으로 채팅창 페이지 만들다.
-								console.log("방만들어질때");
-								console.log(subscribe.length);
-								initRoom(data, nickname);
-							},
-			               error:function (request, status, error){
-			                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-			               }
+				var nickname = $('#dropdownMenu2').text().trim();
+					
+				$.ajax({
+					url : "/chatingRoom",
+					type :  "POST",
+					success : function(data){
+						//data값 기준으로 채팅창 페이지 만들다.
+						/* console.log(data); */
+						var roomData = data;
+						$.each(data.users, function(index, obj){
 
+							if(obj === nickname)
+							{
+								initRoom(roomData, nickname);
+							}		
 						})
-					}
+						
+					},
+	               error:function (request, status, error){
+	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+	               }
+				})
 			}
 			
 			//메세지 보낼때		
@@ -302,31 +377,24 @@ padding: 0px;
 				//메세지 받을 경로
 				const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
 					const message = JSON.parse(result.body);
-					console.log("메세지 구독")
-					console.log(result);
-					console.log(message);
 					//채팅 그리기
 					chating(message);
 				})
 				// 입장,퇴장 알림을 받을 경로
-			const id2 = stomp.subscribe("/topic/notification/" + roomNumber, function(result){
-				console.log(result);
-				const room = JSON.parse(result.body);
-				const message = room.message;
-				console.log("5 접근");
-				userList(room.users);
-			
-				const chatHtml = `
-			        <li>
-			        	<div class="notification">
-		            		<span>\${message}</span>
-		            	</div>
-			        </li>`;
-				
-				$(".chat ul.chat_list").append(chatHtml);
-				$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
-			})
-				
+				const id2 = stomp.subscribe("/topic/notification/" + roomNumber, function(result){
+					const room = JSON.parse(result.body);
+					const message = room.message;
+					userList(room.users);
+					const chatHtml = `
+				        <li>
+				        	<div class="notification">
+			            		<span>\${message}</span>
+			            	</div>
+				        </li>`;
+					
+					$(".chat ul.chat_list").append(chatHtml);
+					$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
+				})
 			}
 			
 			//에러메세지
@@ -377,12 +445,11 @@ padding: 0px;
 			
 			function initRoom(roomData, nickname){
 				/* $("main").hide(); */
-				
 				info.setNickname(nickname);
 				info.setRoomNumber(roomData.roomNumber);
-				
+
 				$(".chat").show();
-				$(".chat .chat_title").text(roomData.roomName);
+				/* $(".chat .chat_title").text(roomData.roomName); */
 				chatingConnect(roomData.roomNumber);
 				
 				$(".chat_input_area textarea").focus();
@@ -464,28 +531,18 @@ padding: 0px;
 			
 			/* 뷰페이지 그리기 */
 	})
-	//위도 경도
-/* 	window.onload = function(){
-			console.log("window onload 접근");
-			console.log(lat);
-			console.log(lon);
-			
-
-	} */
 	</script>	
 
 <body>
 	<!--Main Navigation-->
-	<header>
+
 		<!-- 좌측 사이드바 -->
 		<!-- Sidebar -->
 		<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
 			<div class="position-sticky">
 				<div id="listGroup" class="list-group list-group-flush mx-2 mt-4">
-
 				</div>
-			</div>
-				<div id="chatBtn" class="balloon"> </div>
+				<div id="chatBtn" class="balloon"></div>
 			</div>
 		</nav>
 		<!-- Sidebar -->
@@ -510,7 +567,7 @@ padding: 0px;
 						<div id="menu_wrap" class="chat" draggable="true">
 							<div>
 								<div id="chat_body" class="chat_body">
-									<h2 class="chat_title">1번방</h2>
+									<h2 class="chat_title"></h2>
 									<button class="chat_back">◀</button>
 	
 									<ul class="chat_list">
@@ -533,9 +590,6 @@ padding: 0px;
 				</section>
 				<section class="mb-4"></section>
 			</div>
-			
-			
-							
 		</main>
 </body>
 

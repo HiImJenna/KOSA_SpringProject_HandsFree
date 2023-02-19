@@ -9,5 +9,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UserSearchDao {
 	//가게 검색
-	List<Map<String, String>> selectStore(@Param("latitude")String latitude, @Param("longitude") String longitude) throws ClassNotFoundException, SQLException;
+//	List<Map<String, String>> selectStore(@Param("latitude")String latitude, @Param("longitude") String longitude) throws ClassNotFoundException, SQLException;
+	List<Map<String, String>> selectStore() throws ClassNotFoundException, SQLException;
 }

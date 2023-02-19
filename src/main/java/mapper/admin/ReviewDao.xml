@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.admin.ReviewDao">
+
+	<!-- <select id="getCount" resultType="int"></select> -->
+
+	<select id="getReviews" resultType="vo.Review">
+		SELECT V.IDX, V.RS_IDX, V.PARENT, V.NAME, V.CONTENT, V.GRADE, V.EDATE FROM REVIEW V INNER JOIN RESERVATION S ON V.RS_IDX = S.IDX  WHERE V.STATUS= 1 and s.storeid= 'admin1@naver.com' 
+	</select>
+
+
+</mapper>
