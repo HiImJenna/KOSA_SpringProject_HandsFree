@@ -16,4 +16,7 @@ public interface AdminDao {
 	public Users findAdminUserByUserId(@Param("userid") String userId);
 	public Store findStoreByStoreId(@Param("storeid") String storeId);
 	public StoreDetails findStoreDetailsByStoreId(@Param("storeid") String storeId);
+	public int updateAdminProfile(Users user);
+	public int updateAdminPhone(Store store);
+	public int updateAdminDetail(StoreDetails storeDetails);
 }

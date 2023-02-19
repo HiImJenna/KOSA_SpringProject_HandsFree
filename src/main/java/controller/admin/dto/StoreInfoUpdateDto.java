@@ -25,7 +25,7 @@ public class StoreInfoUpdateDto {
 	private String profile_path;
 	
 	public void setProfilePath(String userId) {
-		this.profile_path = "\\" + userId + "\\" + file.getOriginalFilename();
+		this.profile_path = "\\files\\upload\\" + userId + "\\" + file.getOriginalFilename();
 	}
 	
 	public Users toUser(String userId) {
@@ -35,11 +35,35 @@ public class StoreInfoUpdateDto {
 				.build();
 	}
 	
-	public StoreDetails toStoreDetail() {
+	public StoreDetails toStoreDetail(String storeId) {
 		return StoreDetails.builder()
-				.manageWeekTime(weekStart)
-				.manageSatTime(satStart)
-				.manageSunTime(sunStart)
+				.storeId(storeId)
+				.notice(notice)
+				.storeCnt(storeCnt)
+				.manageWeekTime(makeTime(weekStart) + "~" + makeTime(weekEnd))
+				.manageSatTime(makeTime(satStart) + "~" + makeTime(satEnd))
+				.manageSunTime(makeTime(sunStart) + "~" + makeTime(sunEnd))
 				.build();
+	}
+	
+	public Store toStore(String storeId) {
+		return Store.builder()
+				.storeId(storeId)
+				.phone(phone)
+				.build();
+	}
+	
+	private String makeTime(String time) {
+		int hour = Integer.parseInt(time.substring(0, 2));
+		String result = "";
+		if (hour > 12) {
+			result += "오후";
+			hour -= 12;
+			result += (hour - 12 < 10 ? "0" + hour : "" + hour);
+			result += time.substring(2);
+		} else {
+			result = "오전" + time;
+		}
+		return result;
 	}
 }

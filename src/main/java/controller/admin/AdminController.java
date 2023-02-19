@@ -27,6 +27,7 @@ import vo.Review;
 import vo.admin.Email;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
+import vo.user.Users;
 
 
 @Controller
@@ -118,7 +119,11 @@ public class AdminController {
 									   HttpServletRequest  request,
 									   Principal           principal) 
 	{
-		
+		String userId = principal.getName();
+		dto.setProfilePath(userId);
+		Store store = dto.toStore(userId);
+		StoreDetails storeDetails = dto.toStoreDetail(userId);
+		adminService.updateStoreInfo(dto.toUser(userId), store, storeDetails);
 		return "redirect:/admin";
 	}
 	
