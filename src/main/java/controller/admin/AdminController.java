@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import service.ReservationService;
 import service.ReviewService;
 import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
+import vo.Reservation;
 import vo.Review;
 import vo.admin.Email;
 
@@ -28,6 +30,9 @@ public class AdminController {
 	
 	@Autowired
 	private ReviewService reviewservice;
+	
+	@Autowired
+	private ReservationService reservationservice;
 	
 
 	@GetMapping("admin") 
@@ -41,7 +46,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/reserve")   
-	public String reserve() {
+	public String reserve(Model model) {
+		List<Reservation> reservationList = reservationservice.reservations();
+		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";
 	}
 	
