@@ -87,7 +87,7 @@
 		style="margin-top: 58px">
 	<div class="container pt-4">
 		<section class="mb-4">
-		<div class="card" >
+		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
@@ -97,32 +97,41 @@
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
-				<div class="card border-success mb-3" style="max-width: 50rem;">
-					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
-					<div class="card-body" style="text-align:left;">
-						★★★★★
-						<br/>
-						<p class="card-text"> 여기 개 좋아요 </p>
+				<h2 style="text-align: center">리뷰관리</h2>
+				<br />
+
+				<!-- 리뷰  -->
+				<c:forEach var="reviewlist" items="${reviewList}" varStatus="status">
+					<div class="card border-success mb-3">
+						<div class="card-header bg-transparent"
+							style="text-align: center;">
+							<b>${reviewlist.name} 님</b>
+						</div>
+						<div class="card-body" style="text-align: left;">
+							<p>${reviewlist.edate}</p>
+							${reviewlist.grade}<br />
+							<p class="card-text">${reviewlist.content}</p>
+						</div>
+
+						<div class="card-footer bg-transparent ">
+							<b>[상호명] 점주님</b><br /> <br />
+							<p>2023-02-18 07:00 pm</p>
+							<textarea style="width: 100%; height: 6.25em; resize: none;"
+								placeholder="리뷰 답변을 해주세요"></textarea>
+							<div style="text-align: right; margin: 10px;">
+								<button class="btn btn-outline-primary">답글달기</button>
+							</div>
+						</div>
 					</div>
-					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
-				</div>
+				</c:forEach>
+
+				<!-- 리뷰  끝 -->
+
 			</div>
-			
-			<div class="card-body">
-				<div class="card border-success mb-3" style="max-width: 50rem;">
-					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
-					<div class="card-body" style="text-align:left;">
-						★★★★★
-						<br/>
-						<p class="card-text"> 여기 개 좋아요 </p>
-					</div>
-					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
-				</div>
-			</div>
-			
-			</div>
-			<canvas class="my-4 w-100" height="30"></canvas>
-		</section>
+
+
+		</div>
+		<canvas class="my-4 w-100" height="30"></canvas> </section>
 	</div>
 	</main>
 </body>

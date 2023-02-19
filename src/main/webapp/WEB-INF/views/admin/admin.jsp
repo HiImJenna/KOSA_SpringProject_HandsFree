@@ -79,8 +79,8 @@
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
 		</div>
 	</div>
-	</nav> <!-- Sidebar --> <jsp:include
-		page="/WEB-INF/views/admin/inc/header.jsp" /> <!--Main layout--> <main
+	</nav> <!-- Sidebar --> 
+	<jsp:include page="/WEB-INF/views/admin/inc/header.jsp" /> <!--Main layout--> <main
 		style="margin-top: 58px">
 	<div class="container pt-4">
 		<section class="mb-4">

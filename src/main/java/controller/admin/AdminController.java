@@ -1,6 +1,6 @@
 package controller.admin;
 
-import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,22 +10,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import service.ReservationService;
+import service.ReviewService;
 import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
-import vo.admin.Admin;
+import vo.Reservation;
+import vo.Review;
 import vo.admin.Email;
 
 
 @Controller
 @RequestMapping("/")
 public class AdminController {
+	
+	@Autowired
+	private ReviewService reviewservice;
+	
+	@Autowired
+	private ReservationService reservationservice;
+	
 
 	@GetMapping("admin") 
 	public String admin() {
@@ -38,7 +46,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/reserve")   
-	public String reserve() {
+	public String reserve(Model model) {
+		List<Reservation> reservationList = reservationservice.reservations();
+		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";
 	}
 	
@@ -48,9 +58,14 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/review")   
-	public String review() {
+	public String review(Model model) {
+		List<Review> reviewList = reviewservice.reviews();
+		model.addAttribute("reviewList", reviewList);
 		return "admin/mainInc/review";
 	}
+	
+	
+	
 	
 	@GetMapping("admin/mail")   
 	public String mail() {
