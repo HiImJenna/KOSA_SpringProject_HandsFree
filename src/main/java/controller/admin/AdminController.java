@@ -67,6 +67,7 @@ public class AdminController {
 		// 프로필 이미지 임시
 		model.addAttribute("profilePath", storeDetails.getCertificatePath());
 		
+		System.out.println("profilePath");
 		System.out.println(storeDetails.getCertificatePath());
 		
 		return "admin/admin";

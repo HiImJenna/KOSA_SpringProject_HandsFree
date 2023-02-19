@@ -98,7 +98,7 @@
 				</div>
 				<h5>가게정보</h5>
 				<br /> <b>대표 이미지</b> <br /> 
-				<img src="C:\KOSA_IT\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\2Team_Project\files\upload\admin1@naver.com\pikachu.png" height="70px" width="70px" /> 
+				<img src="${profilePath}" height="70px" width="70px" /> 
 				<br /> <br /> <b>가게이름</b> <br /> ${storeName} <br />
 				<br /> <b>주소 </b><br /> ${address} <br /> <br /> <b>대표번호</b><br />
 				${phone} <br /> <br />
@@ -126,7 +126,7 @@
 					aria-expanded="false" aria-controls="collapseExample">펼쳐보기</a> <br />
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<img style="height: 70%; width: 30%" src="C:\KOSA_IT\Final_Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\2Team_Project\files\upload\admin1@naver.com\pikachu.png" />
+						<img style="height: 70%; width: 30%" src="${cPath}" />
 					</div>
 				</div>
 

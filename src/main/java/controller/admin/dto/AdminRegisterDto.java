@@ -108,7 +108,7 @@ public class AdminRegisterDto {
 	public StoreDetails toStoreDetails() {
 		return StoreDetails.builder()
 				.storeId(email)
-				.certificatePath(realFilePath + file.getOriginalFilename())
+				.certificatePath("\\files\\upload\\" + email + "\\" + file.getOriginalFilename())
 				.build();
 	}
 }
