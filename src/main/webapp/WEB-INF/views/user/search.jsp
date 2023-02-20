@@ -145,7 +145,7 @@ padding: 0px;
 							<button type="button" class="btn btn-primary" id="detailBtn"
 								style="margin-bottom: 15px">상세보기</button>
 							<br>
-							<button type="button" class="btn btn-primary">예약하기</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook'">예약하기</button>
 						</div>
 					</div>`;
 					$('#listGroup').append(itemList);
