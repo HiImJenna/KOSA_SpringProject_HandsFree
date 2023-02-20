@@ -44,7 +44,13 @@ public class AdminService {
 	}
 	
 	@Transactional
-	public void updateStoreInfo(Users user, Store store, StoreDetails storeDetails) {
-		
+	public int updateStoreInfo(Users user, Store store, StoreDetails storeDetails) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		// Users 프로필 필드 update
+		dao.updateAdminProfile(user);
+		// Store 대표 번호 update
+		dao.updateAdminPhone(store);
+		// storeDetail cnt, week, sat, sun, notice update
+		return dao.updateAdminDetail(storeDetails);
 	}
 }

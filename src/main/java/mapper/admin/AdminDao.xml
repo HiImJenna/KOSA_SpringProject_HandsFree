@@ -41,13 +41,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from store_details
 		where storeid = #{storeid}
 	</select>
+
+	<update id="updateAdminProfile" parameterType="vo.user.Users">
+		update users
+		set profile_path = #{realFilePath}
+		where userid = #{userid}
+	</update>
 	
-	<update id="updateProfile" parameterType="vo.user.Users">
-	  update notices
-	  set   title=#{title},
-	  		content=#{content},
-	  		filesrc=#{fileSrc, jdbcType = VARCHAR},
-	 		filesrc2=#{fileSrc2,jdbcType=VARCHAR}
-	  where seq=#{seq}
+	<update id="updateAdminPhone" parameterType="vo.admin.Store">
+		update store
+		set    phone = #{phone}
+		where  storeid = #{storeId}
+	</update>
+	
+	<update id="updateAdminDetail" parameterType="vo.admin.StoreDetails">
+		update store_details
+		set    notice = #{notice},
+			   manage_week_time = #{manageWeekTime},
+			   manage_sat_time = #{manageSatTime},
+			   manage_sun_time = #{manageSunTime},
+			   store_cnt = #{storeCnt}
+		where  storeid = #{storeId}
 	</update>
 </mapper>
