@@ -4,8 +4,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Users {
 	private String userid;
 	private String userpwd;
