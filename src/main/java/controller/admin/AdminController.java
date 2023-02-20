@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,7 +124,16 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/reserve")   
-	public String reserve(Model model) {
+	public String reserve(Model model, Principal principal) {
+		
+		String userId = principal.getName();
+		
+		////////////////////////
+		//User user = 
+		
+		//model.addAttribute(userId);
+		/////////////////////
+		
 		List<Reservation> reservationList = reservationservice.reservations();
 		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";

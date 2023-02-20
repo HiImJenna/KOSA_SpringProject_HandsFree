@@ -94,7 +94,11 @@
 				<br />
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 예약현황을
 					볼 수 있는 페이지 입니다.</div>
+					aaa
+					<p>${userId}</p>
+					bbbb
 			</div>
+			
 			<div class="card-body">
 				<br />
 				<h2 style="text-align: center">예약현황</h2>

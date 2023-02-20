@@ -194,7 +194,9 @@
           },
           dayMaxEvents: true, // allow "more" link when too many events
           // 이벤트 객체 필드 document : https://fullcalendar.io/docs/event-object
-          events: [
+          events: 
+        	  
+        	  [
             {
               title: "All Day Event",
               start: "2032-01-01",
@@ -250,6 +252,8 @@
               start: "2023-02-28",
             },
           ],
+          
+          
         });
 
         calendar.render();
