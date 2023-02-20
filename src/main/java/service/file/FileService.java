@@ -43,14 +43,21 @@ public class FileService {
 		}
 	}
 	
-	// 대표이미지 변경
-	public void updateAdminProfile(StoreInfoUpdateDto dto, HttpServletRequest request, String userId) {
-		String fileName = dto.getFile().getOriginalFilename();
-		String path = request.getServletContext().getRealPath(PATH);
-		if (!fileName.equals("")) {
+	// 프로필 이미지 변경 변경
+	public void updateAdminProfile(StoreInfoUpdateDto dto, String userId) {
+		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				fs = new FileOutputStream(path + dto.getProfile_path());
+				File dir = new File(dto.getRealFilePath());
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				
+				dir = new File(dto.getRealFilePath() + userId);
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				fs = new FileOutputStream(dto.getRealFilePath() + userId + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();

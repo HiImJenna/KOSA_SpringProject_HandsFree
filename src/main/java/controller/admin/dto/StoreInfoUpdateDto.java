@@ -1,5 +1,7 @@
 package controller.admin.dto;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -24,14 +26,14 @@ public class StoreInfoUpdateDto {
 	private String realFilePath;
 	private String profile_path;
 	
-	public void setProfilePath(String userId) {
-		this.profile_path = "\\files\\upload\\" + userId + "\\" + file.getOriginalFilename();
+	public void setProfilePath(HttpServletRequest request) {
+		this.profile_path = request.getServletContext().getRealPath("/files/upload/profile/");
 	}
 	
 	public Users toUser(String userId) {
 		return Users.builder()
 				.userid(userId)
-				.realFilePath(profile_path)
+				.realFilePath("\\files\\upload\\profile\\" + userId + "\\" + file.getOriginalFilename())
 				.build();
 	}
 	

@@ -121,10 +121,9 @@ public class AdminController {
 									   Principal           principal) 
 	{
 		String userId = principal.getName();
-		dto.setProfilePath(userId);
-		Store store = dto.toStore(userId);
-		StoreDetails storeDetails = dto.toStoreDetail(userId);
-		adminService.updateStoreInfo(dto.toUser(userId), store, storeDetails);
+		dto.setProfilePath(request);
+		adminService.updateStoreInfo(dto.toUser(userId), dto.toStore(userId), dto.toStoreDetail(userId));
+		fileService.updateAdminProfile(dto, userId);
 		return "redirect:/admin";
 	}
 	
