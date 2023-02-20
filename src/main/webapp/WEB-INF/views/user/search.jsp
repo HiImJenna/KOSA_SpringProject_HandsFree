@@ -331,7 +331,6 @@ padding: 0px;
 						/* console.log(data); */
 						var roomData = data;
 						$.each(data.users, function(index, obj){
-
 							if(obj === nickname)
 							{
 								initRoom(roomData, nickname);

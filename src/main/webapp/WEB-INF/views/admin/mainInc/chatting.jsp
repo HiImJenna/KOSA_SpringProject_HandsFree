@@ -41,11 +41,231 @@
 <link href="${path}/resources/admin/css/admin.css" rel="stylesheet" />
 
 <!-- Jquery & Ajax -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<!-- sock js -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+	<!-- STOMP -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var str = $('#navbarDropdownMenuLink').text().trim(); // 계정의 정보
+			var nickname = str.match(/\[(.*)\]/)[1];
+			//소켓 연결
+			//webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
+			const socket = new SockJS('http://localhost:8090/websocket');
+			const stomp = Stomp.over(socket);
+			stomp.debug = null; //stomp 콘솔출력 X
+			//구독 아이디 저장
+			const subscribe = [];
+			
+			//	connect(header, connectCallback(연결에 성공하면 실행되는 메소드 ))
+			stomp.connect({}, function(){
+				const subscribeId = stomp.subscribe("topic/roomList",function(){
+					console.log("방생기고 새롭게 호출될경우");
+					chatingRoomList();
+				});
+				//채팅방 초기화면
+				chatingRoomList();
+			});
+			
+			
+			//채팅 리스트 불러오기
+			function chatingRoomList(){
+				$.ajax({
+					url: "/chatingRoomList",
+					type: "GET"
+				})
+				.then(function(data){
+					listHtml(data)
+				})
+				.fail(function(){
+					alert("에러가 발생했습니다.")
+				})
+			}
+			
+			function initRoom(roomData, nickname){
+				//채팅 리스트 보내기 아직까지 필요없어보임
+				//stomp.send("/socket/roomList");
+				
+				info.setNickname(nickname);
+				info.setRoomNumber(roomData.roomNumber);
+				
+				$(".chat").show();
+				$(".chat .chat_title").text(roomData.roomName);
+				chatingConnect(roomData.roomNumber);
+				
+				$(".chat_input_area textarea").focus();
+				
+			}
+			//채팅 구독.!!
+			function chatingConnect(roomNumber){
+				
+				console.log("채팅");
+				console.log(subscribe.length);
+				//메세지 받을 경로
+				const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
+					const message = JSON.parse(result.body);
+					console.log("메세지 구독")
+					console.log(result);
+					console.log(message);
+					//채팅 그리기
+					chating(message);
+				})
+				// 입장,퇴장 알림을 받을 경로
+			const id2 = stomp.subscribe("/topic/notification/" + roomNumber, function(result){
+				console.log(result);
+				const room = JSON.parse(result.body);
+				const message = room.message;
+				console.log("5 접근");
+			
+				const chatHtml = `
+			        <li>
+			        	<div class="notification">
+		            		<span>\${message}</span>
+		            	</div>
+			        </li>`;
+				
+				$(".chat ul.chat_list").append(chatHtml);
+				$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
+			})
+				
+			}
+			
+			//메세지 보낼때		
+			function sendMessage(){
+				console.log("메세지보낼때");
+				console.log(subscribe.length);
+				
+				const message = $(".chat_input_area textarea");
+				
+				if(message.val() == "")
+					return
+				
+				const roomNumber = info.getRoomNumber();
+				const nickname = info.getNickname();
+				
+				const data = {
+						message : message.val(),
+						nickname : nickname
+				}
+				console.log(roomNumber);
+				console.log(nickname);
+				console.log(data);
+				stomp.send("/socket/sendMessage/" + roomNumber, {}, JSON.stringify(data));
+				message.val("");
+			}
+			
+			const info = (function(){
+				let nickname = "";
+				let roomNumber = "";
+				
+				const getNickname = function() {
+					return nickname;
+				}
+				
+				const setNickname = function(set){
+					nickname = set;
+				}
+				
+				const getRoomNumber = function() {
+					return roomNumber;
+				}
+				
+				const setRoomNumber = function(set) {
+					roomNumber = set;
+				}
+				return {
+					getNickname : getNickname,
+					setNickname : setNickname,
+					getRoomNumber : getRoomNumber,
+					setRoomNumber : setRoomNumber,
+				}
+			})();
+			
+			
+			$(".chat_button_area button").click(function(){
+				console.log("메세지 클릭");
+				console.log(subscribe.length);
+				sendMessage();
+				$(".chat_input_area textarea").focus();
+			})
+			
+			$(".chat_input_area textarea").keypress(function(event){
+				console.log("메세지 엔터");
+				console.log(subscribe.length);
+				if(event.keyCode == 13){
+					if(!event.shiftKey){
+						event.preventDefault();
+						sendMessage();
+					}
+				}
+			})
+
+			
+			$(document).on("click", "#chatBtn", function(){
+				var obj = $(this).closest('tr').data('obj');
+				var roomNumber = obj.roomNumber
+				
+				if(nickname){
+					const data = {
+							roomNumber : roomNumber,
+							nickname : nickname
+					}
+					console.log("data");
+					console.log(data);
+					$.ajax({
+						url : "/chatingRoom-enter",
+						type : "GET",
+						data : data,
+						success : function(room){
+							initRoom(room, nickname);
+							room.message = nickname + "님이 참가하셨습니다";
+							console.log("채팅참가");
+							console.log(room.message);
+							stomp.send(
+									"/socket/notification/" + roomNumber, {}, 
+									JSON.stringify(room));
+						},
+						error:function (request, status, error){
+			                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+			            }
+						
+					})
+				}
+			})
+			
+			
+			/* 뷰페이지 그리기 */
+			
+			function listHtml(roomList){
+				console.log("페이지 그림?");
+				let listHtml = "";
+				
+				$.each(roomList, function(index, obj){
+					if(obj.users !== nickname){
+						listHtml += `
+							<tr data-obj=\${JSON.stringify(obj)}>
+								<th scope="row">\${obj.roomNumber}</th>
+								<td>정우성</td>
+								<td>2023.01.15.(일) <br />오후 09:00:00
+								</td>
+								<td>안녕하세요.</td>
+								<td>
+									<button type="button" id="chatBtn" class="btn btn-info">입장</button>
+								</td>
+							</tr>`;	
+					}
+				})
+				$("#chatList").append(listHtml);
+			}
+			
+
+		})
+	
+	
+	</script>
 <body>
 	<!--Main Navigation-->
 	<header> <!-- 좌측 사이드바 --> <!-- Sidebar --> <nav
@@ -122,47 +342,8 @@
 							<th scope="col">채팅방</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>정우성</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>안녕하세요.</td>
-							<td>
-								<button type="button" class="btn btn-info">입장</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>정우성</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>안녕하세요.</td>
-							<td>
-								<button type="button" class="btn btn-info">입장</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>정우성</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>안녕하세요.</td>
-							<td>
-								<button type="button" class="btn btn-info">입장</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>정우성</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>안녕하세요.</td>
-							<td>
-								<button type="button" class="btn btn-info">입장</button>
-							</td>
-						</tr>
+					<tbody id="chatList">
+					<!-- 채팅 리스트 -->
 					</tbody>
 				</table>
 				<nav aria-label="..." style="text-align: center">
@@ -178,6 +359,35 @@
 				</nav>
 				<canvas class="my-4 w-100" height="30"></canvas>
 			</div>
+			
+			
+									<div id="menu_wrap" class="chat" draggable="true">
+							<div>
+								<div id="chat_body" class="chat_body">
+									<h2 class="chat_title"></h2>
+									<button class="chat_back">◀</button>
+	
+									<ul class="chat_list">
+										<li></li>
+									</ul>
+	
+									<div class="chat_input">
+										<div class="chat_input_area">
+											<textarea class="textareaF"></textarea>
+										</div>
+	
+										<div class="chat_button_area">
+											<button>전송</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+			
+			
+			
+			
+			
 		</div>
 		</section>
 	</div>
