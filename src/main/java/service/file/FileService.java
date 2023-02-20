@@ -19,16 +19,17 @@ public class FileService {
 	// 사업자 등록증 저장
 	public void saveAdminBusinesslicense(AdminRegisterDto dto) {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
-			String fpath = dto.getRealFilePath();
 			FileOutputStream fs = null;
 			try {
-				
 				File dir = new File(dto.getRealFilePath());
 				if (!dir.isDirectory()) {
 					dir.mkdir();
 				}
-				
-				fs = new FileOutputStream(fpath + dto.getFile().getOriginalFilename());
+				dir = new File(dto.getRealFilePath() + dto.getEmail());
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
