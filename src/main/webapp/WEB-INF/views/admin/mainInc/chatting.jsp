@@ -47,6 +47,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<!-- STOMP -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
 </head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -127,8 +128,8 @@
 		            	</div>
 			        </li>`;
 				
-				$(".chat ul.chat_list").append(chatHtml);
-				$(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
+				$(".adminChat ul.chat_list").append(chatHtml);
+				$(".adminChat ul").scrollTop($(".adminChat ul")[0].scrollHeight);
 			})
 				
 			}
@@ -185,14 +186,14 @@
 			})();
 			
 			
-			$(".chat_button_area button").click(function(){
+			$(document).on("click", ".chat_button_area button", function(){
 				console.log("메세지 클릭");
 				console.log(subscribe.length);
 				sendMessage();
-				$(".chat_input_area textarea").focus();
+				$(".chat_input_area textarea").focus();				
 			})
-			
-			$(".chat_input_area textarea").keypress(function(event){
+
+			$(document).on("keypress", ".chat_input_area textarea", function(event){
 				console.log("메세지 엔터");
 				console.log(subscribe.length);
 				if(event.keyCode == 13){
@@ -202,6 +203,7 @@
 					}
 				}
 			})
+				
 
 			
 			$(document).on("click", "#chatBtn", function(){
@@ -220,6 +222,7 @@
 						type : "GET",
 						data : data,
 						success : function(room){
+							chatingView();
 							initRoom(room, nickname);
 							room.message = nickname + "님이 참가하셨습니다";
 							console.log("채팅참가");
@@ -238,6 +241,49 @@
 			
 			
 			/* 뷰페이지 그리기 */
+			
+			
+	 		// 메세지 그리기
+			function chating(messageInfo){ 
+	 			let nickname = messageInfo.nickname;
+	 			let message = messageInfo.message;
+	 			
+	 			message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
+	 			
+	 			
+	 			const date = messageInfo.date;
+	 			console.log(date);
+	 			const d = new Date(date);
+	 			
+	 			const time = String(d.getHours()).padStart(2, "0") 
+				+ ":" 
+				+ String(d.getMinutes()).padStart(2, "0");
+	 			
+	 			let sender ="";
+	 			
+	 			if(info.getNickname() == nickname) {
+	 				sender = "chat_me";
+	 				nickname = "";
+	 			} else {
+	 				sender=  "chat_other";
+	 			}
+	 			
+	 			const chatHtml = `
+	 		        <li>
+	 		            <div class=\${sender}>
+	 		            	<div>
+	 			            	<div class="nickname">\${nickname}</div>
+	 			            	<div class="message">
+	 				                <span class=chat_in_time>\${time }</span>
+	 				                <span class="chat_content">\${message}</span>
+	 			                <span>
+	 		                </div>
+	 		            </div>
+	 		        </li>`;
+	 			$(".adminChat ul.chat_list").append(chatHtml);
+	 			$(".adminChat ul").scrollTop($(".adminChat ul")[0].scrollHeight);
+			
+	 		}
 			
 			function listHtml(roomList){
 				console.log("페이지 그림?");
@@ -261,7 +307,38 @@
 				$("#chatList").append(listHtml);
 			}
 			
+			function chatingView(){
+				var chatView = `
+					<div id="menu_wrap" class="adminChat table" draggable="true">
+					<div>
+						<div id="chat_body" class="chat_body">
+							<h2 class="chat_title"></h2>
+							<button class="chat_back">◀</button>
 
+							<ul class="chat_list">
+								<li></li>
+							</ul>
+
+							<div class="chat_input">
+								<div class="chat_input_area">
+									<textarea class="textareaF"></textarea>
+								</div>
+
+								<div class="chat_button_area">
+									<button>전송</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				`;
+				$(".adminChat").css('display', 'inline-block');
+				$("#togleView").children().hide();
+				$("#togleView").append(chatView);
+				$("#togleView").find("menu_wrap").show();
+			}
+			
+			
 		})
 	
 	
@@ -302,7 +379,7 @@
 	</nav> <!-- Sidebar --> <jsp:include
 		page="/WEB-INF/views/admin/inc/header.jsp" /> <!--Main layout--> <main
 		style="margin-top: 58px">
-	<div class="container pt-4">
+	<div id="viewMain" class="container pt-4">
 		<section class="mb-4">
 		<div class="card">
 			<div class="card-header py-3">
@@ -332,6 +409,7 @@
 					</tbody>
 				</table>
 				<br />
+				<div id="togleView">
 				<table class="table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
@@ -346,6 +424,7 @@
 					<!-- 채팅 리스트 -->
 					</tbody>
 				</table>
+				</div>
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
 					<li class="page-item disabled"><span class="page-link"><<</span>
@@ -359,35 +438,6 @@
 				</nav>
 				<canvas class="my-4 w-100" height="30"></canvas>
 			</div>
-			
-			
-									<div id="menu_wrap" class="chat" draggable="true">
-							<div>
-								<div id="chat_body" class="chat_body">
-									<h2 class="chat_title"></h2>
-									<button class="chat_back">◀</button>
-	
-									<ul class="chat_list">
-										<li></li>
-									</ul>
-	
-									<div class="chat_input">
-										<div class="chat_input_area">
-											<textarea class="textareaF"></textarea>
-										</div>
-	
-										<div class="chat_button_area">
-											<button>전송</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-			
-			
-			
-			
-			
 		</div>
 		</section>
 	</div>
