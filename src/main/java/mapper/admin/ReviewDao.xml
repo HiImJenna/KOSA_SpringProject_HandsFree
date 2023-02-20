@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- <select id="getCount" resultType="int"></select> -->
 
 	<select id="getReviews" resultType="vo.Review">
-		SELECT V.IDX, V.RS_IDX, V.PARENT, V.NAME, V.CONTENT, V.GRADE, V.EDATE FROM REVIEW V INNER JOIN RESERVATION S ON V.RS_IDX = S.IDX  WHERE V.STATUS= 1 and s.storeid= 'admin1@naver.com' 
+		select u.name as userName, u.edate as userEdate, u.grade as star, u.content as userContent, a.edate as storeEdate, a.content as storeContent from review u left join review a on u.rs_idx = a.parent left join reservation r on u.idx = r.idx where u.parent is null and u.status=1 and r.storeid = #{userid} order by useredate desc
 	</select>
 
 

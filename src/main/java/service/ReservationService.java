@@ -19,18 +19,14 @@ public class ReservationService {
 		this.sqlsession = sqlsession;
 	}
 	
-	
-	public List<Reservation> reservations(){
-		List<Reservation> reservationList=null;
+	public List<Reservation> getReservationList(String userid){
+		ReservationDao reservationDao = sqlsession.getMapper(ReservationDao.class);
+		List<Reservation> list = null;
 		try {
-			ReservationDao reservationdao = sqlsession.getMapper(ReservationDao.class);
-			reservationList = reservationdao.getReservations();
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
+			list = reservationDao.getReservations(userid);
+		} catch (Exception e) {
+			e.getStackTrace();
 		}
-		return reservationList;
+		return list;
 	}
-	
-	
-	
 }

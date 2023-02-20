@@ -36,7 +36,7 @@
             class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
             href="#" id="navbarDropdownMenuLink" role="button" 
             data-mdb-toggle="dropdown" aria-expanded="false">
-               [<se:authentication property="name"/>] 점주님</a>
+                ${users.last_name}${users.first_name}점주님</a>
             <ul class="dropdown-menu dropdown-menu-end"
                aria-labelledby="navbarDropdownMenuLink">
                <li><a class="dropdown-item" href="/users/userDetail">마이페이지</a></li>
