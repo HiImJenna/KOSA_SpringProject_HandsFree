@@ -23,7 +23,6 @@ public class StoreInfoUpdateDto {
 	private String sunEnd;
 	private String notice;
 	private MultipartFile file;
-	private String realFilePath;
 	private String profile_path;
 	
 	public void setProfilePath(HttpServletRequest request) {

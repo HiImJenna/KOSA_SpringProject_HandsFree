@@ -60,7 +60,12 @@ public class AdminController {
 		
 		// users
 		//// 프로필 이미지 아래 임시 코드 있음
-		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		Users user = adminService.findAdminUserByUserId(userId);
+		String profilePath = "resources\\defaultProfile\\crown.png";
+		if (!user.getRealFilePath().contains("/")) {
+			profilePath = user.getRealFilePath();
+		}
+		model.addAttribute("profilePath", profilePath);
 		
 		// store
 		//// 가게 이름, 주소 , 대표번호
@@ -80,7 +85,7 @@ public class AdminController {
 		model.addAttribute("cPath", storeDetails.getCertificatePath());
 		
 		// 프로필 이미지 임시
-		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		//model.addAttribute("profilePath", storeDetails.getCertificatePath());
 		
 		return "admin/admin";
 	}

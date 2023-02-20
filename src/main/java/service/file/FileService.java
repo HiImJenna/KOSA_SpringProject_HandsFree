@@ -48,16 +48,16 @@ public class FileService {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				File dir = new File(dto.getRealFilePath());
+				File dir = new File(dto.getProfile_path());
 				if (!dir.isDirectory()) {
 					dir.mkdir();
 				}
 				
-				dir = new File(dto.getRealFilePath() + userId);
+				dir = new File(dto.getProfile_path() + userId);
 				if (!dir.isDirectory()) {
 					dir.mkdir();
 				}
-				fs = new FileOutputStream(dto.getRealFilePath() + userId + "\\" + dto.getFile().getOriginalFilename());
+				fs = new FileOutputStream(dto.getProfile_path() + userId + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();

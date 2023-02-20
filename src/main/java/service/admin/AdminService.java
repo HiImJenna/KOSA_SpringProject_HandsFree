@@ -29,8 +29,8 @@ public class AdminService {
 	}
 	
 	public Users findAdminUserByUserId(String userId) {
-		// 아직 임시
-		return null;
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.findAdminUserByUserId(userId);
 	}
 	
 	public Store findStoreByUserId(String userId) {

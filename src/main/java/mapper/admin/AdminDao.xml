@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="findAdminUserByUserId" resultType="vo.user.Users">
-		select userid, userpwd, enabled, to_char(joindate, 'YYYY/MM/DD HH24:MI'), first_name, last_name, mail_accept, status, profile_path
+		select userid, userpwd, enabled, to_char(joindate, 'YYYY/MM/DD HH24:MI'), first_name, last_name, mail_accept, status, profile_path as realFilePath
 		from users
 		where userid = #{userid}
 	</select>
