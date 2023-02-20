@@ -29,10 +29,4 @@ public class Users {
 		this.profile_path = profile_path;
 		this.realFilePath = realFilePath;
 	}
-	
-	// 실제 파일 경로 얻기
-//	public void findFileRealPath(HttpServletRequest request) {
-//		String path = request.getServletContext().getRealPath("/files/upload");
-//		this.realFilePath = path + "\\" + userid + "\\";
-//	}
 }
