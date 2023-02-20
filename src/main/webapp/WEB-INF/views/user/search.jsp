@@ -130,7 +130,7 @@ padding: 0px;
 						address = str.substr(0,9) + "...";
 					}
 					const itemList = `
-					<div class="shopList" >
+					<div class="shopList">
 						<img class="shop_img" alt="없음"
 							src="${path}/resources/user/assets/img/shop.jpg">
 						<div class="shop_info">
@@ -141,7 +141,7 @@ padding: 0px;
 							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
 							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
 						</div>
-						<div class="list_button">
+						<div class="list_button" data-obj=\${data.STOREID}>
 							<button type="button" class="btn btn-primary" id="detailBtn"
 								style="margin-bottom: 15px">상세보기</button>
 							<br>
@@ -174,7 +174,6 @@ padding: 0px;
 						if(marketCheck)
 						{
 							displayMarker(obj);
-							
 							createList(obj);
 						}
 
@@ -533,6 +532,7 @@ padding: 0px;
 	</script>	
 
 <body>
+
 	<!--Main Navigation-->
 
 		<!-- 좌측 사이드바 -->

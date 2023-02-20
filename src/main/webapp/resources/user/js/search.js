@@ -68,6 +68,12 @@ window.onload = function(){
 	});
 
 	
+	$(document).on("click", "#reservationBtn", function(){
+		var storeId = $(this).closest('div').data('obj');
+		console.log(storeId);
+		
+	});
+	
 	
 	
 	
