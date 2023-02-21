@@ -134,6 +134,7 @@
         right: "dayGridMonth,dayGridWeek,dayGridDay",
       },
 
+      locale: "ko",
       selectable: true,
       selectMirror: true,
 
