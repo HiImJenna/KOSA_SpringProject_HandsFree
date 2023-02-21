@@ -95,6 +95,7 @@
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 예약현황을
 					볼 수 있는 페이지 입니다.</div>
 			</div>
+			
 			<div class="card-body">
 				<br />
 				<h2 style="text-align: center">예약현황</h2>
@@ -114,7 +115,7 @@
 					</tbody>
 				</table>
 				<br />
-				<table class="table" style="text-align: center">
+				<table class="table" style="text-align: center; font-size:12px; ">
 					<thead class="table-primary">
 						<tr>
 							<th scope="col">예약번호</th>
@@ -123,76 +124,26 @@
 							<th scope="col">이용날짜(종료)</th>
 							<th scope="col">짐 갯수</th>
 							<th scope="col">예약자명</th>
+							<th scope="col">예약자메일</th>
 							<th scope="col">결제금액</th>
-							<th scope="col">기타</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
-						<tr>
-							<th scope="row">B1F83BN2</th>
-							<td>2023.01.15.(일) <br />오후 08:43:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 09:00:00
-							</td>
-							<td>2023.01.15.(일) <br />오후 10:00:00
-							</td>
-							<td>3</td>
-							<td>정우성</td>
-							<td>18,000원</td>
-							<td></td>
-						</tr>
+
+						<c:forEach var="reservationlist" items="${reservationList}" varStatus="status">
+							<tr>
+								<th scope="row">${reservationlist.idx}</th>
+								<td>${reservationlist.paymentdate}</td>
+								<td>${reservationlist.sdate}</td>
+								<td>${reservationlist.edate}</td>
+								<td>${reservationlist.cnt}</td>
+								<td>${reservationlist.name}</td>
+								<td>${reservationlist.userid}</td>
+								<td>${reservationlist.price}원</td>
+							</tr>
+						</c:forEach>
+
+						
 					</tbody>
 				</table>
 				<nav aria-label="..." style="text-align: center">

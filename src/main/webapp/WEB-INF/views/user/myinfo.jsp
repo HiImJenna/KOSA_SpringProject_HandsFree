@@ -134,10 +134,10 @@
 									
 									<form name="userDelete" action="${path}/userDelete"
 										method="post">
-										<div class="col-12 form-item">
-											<button type="submit" id="submit" class="nanny-button rework">
-												탈퇴</button>
-										</div>
+									
+											<button type="submit" id="submit" class="nanny-button2 rework">
+												회원 탈퇴</button>
+										
 									</form>
 							</div>
 							</div>

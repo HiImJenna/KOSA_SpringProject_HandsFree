@@ -44,8 +44,7 @@ public class AdminRegisterDto {
 	
 	// 실제 파일 경로 얻기
 	public void findFileRealPath(HttpServletRequest request) {
-		String path = request.getServletContext().getRealPath("/files/upload");
-		this.realFilePath = path + "\\" + email + "\\";
+		this.realFilePath = request.getServletContext().getRealPath("/files/upload/licence/");
 	}
 	
 	// 도로명주소 좌표 얻기
@@ -108,7 +107,7 @@ public class AdminRegisterDto {
 	public StoreDetails toStoreDetails() {
 		return StoreDetails.builder()
 				.storeId(email)
-				.certificatePath(realFilePath + file.getOriginalFilename())
+				.certificatePath("\\files\\upload\\licence\\" + email + "\\" + file.getOriginalFilename())
 				.build();
 	}
 }

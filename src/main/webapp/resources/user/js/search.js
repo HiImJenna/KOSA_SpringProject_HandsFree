@@ -38,12 +38,15 @@ window.onload = function(){
 		console.log(data);
 		var data1 = $(this).parents()
 		console.log(data1); */
+//		$("#chatBtn").css('display', 'inline-block');
+
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-
+		var storeId = $(this).closest('div').data('obj');
 		var data = {
 				title : list_data.find("h4").text(),
-				name : 'asd'
+				name : 'asd',
+				storeId : storeId
 		};
 		//console.log(data);
 		/* console.log(JSON.stringify(data)); */
@@ -52,9 +55,7 @@ window.onload = function(){
 			url : 'item',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createForm(data);
-				
 				/* $('#listGroup').empty();
 				var jsonData = JSON.parse(data);
 				$('#listGroup').append */
@@ -67,13 +68,19 @@ window.onload = function(){
 	});
 
 	
+	$(document).on("click", "#reservationBtn", function(){
+		var storeId = $(this).closest('div').data('obj');
+		console.log(storeId);
+		
+	});
+	
 	
 	
 	
 	$(document).on("click", "#information", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
+
 		var data = {
 				title : title,
 				type : 'information'
@@ -84,7 +91,6 @@ window.onload = function(){
 			url : 'item/information',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createTabView(data, 'information');
 			},
 			error:function (request, status, error){
@@ -96,7 +102,7 @@ window.onload = function(){
 	$(document).on("click", "#review", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
+		
 		var data = {
 				title : title,
 				type : 'review'
@@ -107,10 +113,7 @@ window.onload = function(){
 			url : 'item/review',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createTabView(data, 'review');
-
-				
 			},
 			error:function (request, status, error){
                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
@@ -122,7 +125,6 @@ window.onload = function(){
 	$(document).on("click", "#suggestion", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		console.log(title);
 		var data = {
 				title : title,
 				type : 'suggestion'
@@ -132,7 +134,6 @@ window.onload = function(){
 			url : 'item/suggestion',
 			data:data,
 			success : function(data){
-				console.log(data);
 				createForm(data);
 				
 				/* $('#listGroup').empty();
@@ -233,7 +234,6 @@ window.onload = function(){
 		const itemDetail =`
 						<table class="itemDetails table table-borderless">
 						    <tr>
-						
 						        <th>
 						            <img class="item_img" alt="없음" src="resources/user/assets/img/shop.jpg">
 						        </th>
@@ -275,7 +275,9 @@ window.onload = function(){
 						            <div id="tabView"></div>
 						        </th>
 						    </tr>
-						</table>`;
+						</table>
+						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
+						`;
 		$('#listGroup').append(itemDetail);
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
 		    "<th>EMPNO</th>"+

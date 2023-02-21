@@ -47,7 +47,6 @@
 
 <!-- 별css -->
 <link href="${path}/resources/admin/css/star.css" rel="stylesheet" />
-
 </head>
 <body>
 	<!--Main Navigation-->
@@ -87,7 +86,7 @@
 		style="margin-top: 58px">
 	<div class="container pt-4">
 		<section class="mb-4">
-		<div class="card" >
+		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
@@ -97,32 +96,74 @@
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
-				<div class="card border-success mb-3" style="max-width: 50rem;">
-					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
-					<div class="card-body" style="text-align:left;">
-						★★★★★
-						<br/>
-						<p class="card-text"> 여기 개 좋아요 </p>
-					</div>
-					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
-				</div>
+				<h2 style="text-align: center">리뷰관리</h2>
+				<br />
+				<!-- 리뷰  -->
+				<c:forEach var="reviewlist" items="${reviewList}" varStatus="status">
+					<div class="nanny-opinions">
+						<div class="comments">
+							<div>
+								<div class="d-flex resume-review"></div>
+								<div class=" nanny-opinions">
+									<div class="comments">
+										<div class="comment">
+											<div
+												class="top-part d-flex justify-content-between align-items-center">
+												<div class="d-flex">
+													<div class="user-infos">
+														<div class="picture"
+															style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
+														</div>
+													</div>
+													<div class="name-date">
+														<div class="name">
+															<b>${reviewlist.userName} 님</b>
+															<div class="stars">
+																<!-- <div class="score">5/5</div> -->
+																<div class="all-stars">
+																	${reviewlist.star}
+																	<div class="nanny-icon star yellow"></div>
+																	<div class="nanny-icon star yellow"></div>
+																	<div class="nanny-icon star yellow"></div>
+																	<div class="nanny-icon star yellow"></div>
+																	<div class="nanny-icon star yellow"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="date">${reviewlist.userEdate}</div>
+											</div>
+											<br />
+											<div class="comment-content">
+												${reviewlist.userContent}<br>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<br />
+						<div>
+							<b>${storeName} 점주</b>
+							<div style="float: right;">${reviewlist.storeEdate}</div>
+						</div>
+						<textarea style="width: 100%; height: 6.25em; resize: none;"
+							placeholder="리뷰 답변을 해주세요">${reviewlist.storeContent}</textarea>
+						<div style="text-align: right; margin: 10px;">
+							<button class="btn btn-outline-primary">답글달기</button>
+						</div>
+						<hr />
+				</c:forEach>
+
+				<!-- 리뷰  끝 -->
+
 			</div>
-			
-			<div class="card-body">
-				<div class="card border-success mb-3" style="max-width: 50rem;">
-					<div class="card-header bg-transparent border-primary" style="text-align:center;"> <b>jung123@naver.com</b></div>
-					<div class="card-body" style="text-align:left;">
-						★★★★★
-						<br/>
-						<p class="card-text"> 여기 개 좋아요 </p>
-					</div>
-					<div class="card-footer bg-transparent border-primary" style="text-align:right;"><button class="btn btn-outline-primary">답글달기</button></div>
-				</div>
-			</div>
-			
-			</div>
-			<canvas class="my-4 w-100" height="30"></canvas>
-		</section>
+
+
+		</div>
+		<canvas class="my-4 w-100" height="30"></canvas> </section>
 	</div>
 	</main>
 </body>

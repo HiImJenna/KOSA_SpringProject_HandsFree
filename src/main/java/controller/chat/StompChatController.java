@@ -1,22 +1,28 @@
 package controller.chat;
 
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.mail.Message;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,7 +30,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import service.chat.ChatService;
+import vo.chat.ChatJoin;
+import vo.chat.ChatRoom;
 import vo.chat.ChatingRoom;
+import vo.chat.Message;
 
 
 
@@ -32,7 +42,10 @@ import vo.chat.ChatingRoom;
 
 @Controller
 public class StompChatController {
-
+	
+	@Autowired
+	private ChatService chatservice;
+	
 	//채팅방 목록
 	//삽입삭제만 이루워지므로 링크드리스트씀
 	public static LinkedList<ChatingRoom> chatingRoomList = new LinkedList<>();
@@ -54,15 +67,36 @@ public class StompChatController {
 
 	//방만들기
 	@PostMapping("/chatingRoom")
-	public ResponseEntity<?> chatingRoom(HttpServletResponse response, String roomName, String nickname){
+	public ResponseEntity<?> chatingRoom(HttpServletResponse response, Authentication auth, String storeId){
+//		System.out.println("ID정보 : " + auth.getName());
+		String nickname = auth.getName();
+		//SecurityContext context1 = SecurityContextHolder.getContext();
+//		System.out.println(nickname);
 		//방을 만들고 채팅방 목록에 추가
 		String roomNumber = UUID.randomUUID().toString();
 		ChatingRoom chatingRoom = ChatingRoom.builder()
 				.roomNumber(roomNumber)
 				.users(new LinkedList<>())
-				.roomName(roomName)
+				.build();
+
+		ChatRoom chatroom = ChatRoom.builder()
+				.idx(roomNumber)
+				.status(1)
+				.sDate(new Date())
+				.lastSubJect("")
+				.lastTime(new Date())
 				.build();
 		
+		ChatJoin chatjoin = ChatJoin.builder()
+				.userId(nickname)
+				.roodIdx(roomNumber)
+				.build();
+		
+		ChatJoin chatjoinAdmin = ChatJoin.builder()
+				.userId(storeId)
+				.roodIdx(roomNumber)
+				.build();
+
 		//채팅룸 데이터 add 
 		chatingRoomList.add(chatingRoom);
 		
@@ -85,8 +119,8 @@ public class StompChatController {
 			users.add(nickname);
 			roomCookie.setMaxAge(maxage);
 			response.addCookie(roomCookie);
+			chatservice.insertAllChat(chatroom,chatjoin,chatjoinAdmin);
 		}
-		
 		return new ResponseEntity<>(chatingRoom, HttpStatus.OK);
 	}
 	
@@ -96,9 +130,7 @@ public class StompChatController {
 		
 		//방번호 찾기
 		ChatingRoom chatingRoom = findRoom(roomNumber);
-		
-		System.out.println("roomNumber : " + roomNumber);
-		System.out.println("chatingRoom : " + chatingRoom);
+
 		
 		//쿠키생성
 		Cookie nameCookie = new Cookie("nickname", nickname);
@@ -171,6 +203,16 @@ public class StompChatController {
 	@MessageMapping("/socket/sendMessage/{roomNumber}")
 	@SendTo("/topic/message/{roomNumber}")
 	public Message sendMessage(@DestinationVariable String roomNumber, Message message) {
+/*
+		ChatRoom chatjoin = ChatRoom.builder()
+				.idx(roomNumber)
+				.status(1)
+				.sDate(new Date())
+				.lastSubJect("")
+				.lastTime(new Date())
+				.build();
+		chatservice.insertChatJoin(chatjoin);
+	*/	
 		return message;
 	}
 	

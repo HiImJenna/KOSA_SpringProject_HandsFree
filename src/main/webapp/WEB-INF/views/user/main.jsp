@@ -29,7 +29,7 @@
 			<div class="container px-5">
 				<div class="row gx-5 align-items-center">
 					<div class="col-lg-6">
-						<!-- Mashead text and app badges-->
+						
 						<div class="mb-5 mb-lg-0 text-center text-lg-start">
 							<h1 class="display-1 lh-1 mb-3">
 								Hands free와 함께하는 <br>가벼운 여행의 시작
@@ -40,12 +40,15 @@
 								<i class="bi bi-geo-alt-fill"></i> &nbsp <input
 									class="input-text" type="text" placeholder="어디로 가시나요?"
 									name="destination" id="destination"><br> <br>
-								<i class="bi bi-calendar3"></i> &nbsp <input type="text"
-									class="datebutton" name="dropDate" id="dropDate"
-									placeholder="맡기는 날" /> <input type="text" class="datebutton"
-									name="pickupDate" id="pickupDate" placeholder="찾는 날" /> <br>
-								<br> <i class="bi bi-handbag"></i> &nbsp 짐 1개
-
+									
+								<i class="bi bi-calendar3"></i> &nbsp 
+								<input type="date" class="datebutton" name="sdate" id="sdate" placeholder="맡기는 날" /> 
+								
+								<i class="bi bi-calendar3"></i> &nbsp 
+								<input type="date" class="datebutton" name="edate" id="edate" placeholder="찾는 날" /> <br> <br>
+					
+								 <i class="bi bi-handbag"></i> 
+								 <input type="text" class="datebutton" name="cnt" id="cnt" placeholder="짐 개수" />
 							</p>
 							<div class="d-flex flex-column flex-lg-row align-items-center">
 								<button class="custom-btn btn-1">검색하기</button>
@@ -109,7 +112,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 order-lg-0">
-                        <img class = "main2-img" src="${path}/resources/user/assets/img/main2.png" alt="mian image" width="500" height="500">
+                        <a href="ko.qr-code-generator.com/" border="0" style="cursor:default" rel="nofollow"><img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2F192.168.0.1%2F&chs=180x180&choe=UTF-8&chld=L|2"></a>
                     </div>
                 </div>
             </div>
