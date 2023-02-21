@@ -22,11 +22,8 @@ public class UserPaymentController {
 	private UserMyinfoService usermyinfoservice;
 
 	@GetMapping("/users/userBook")
-	public String userBook(Model model, Principal principal, 
-							@RequestParam("STOREID") String storeId){
-		
-		
-		
+	public String userBook(Model model, 
+						   @RequestParam("STOREID") String storeId){
 		Store store = paymentservice.findStoreByUserId(storeId);
 		model.addAttribute("storeName", store.getName());
 		model.addAttribute("address", store.getAddress());

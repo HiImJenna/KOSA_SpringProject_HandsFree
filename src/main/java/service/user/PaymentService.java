@@ -4,10 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dao.admin.AdminDao;
 import dao.user.PaymentDao;
 import vo.admin.Store;
-import vo.admin.StoreDetails;
 import vo.user.Payment;
 
 @Service
