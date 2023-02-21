@@ -38,14 +38,15 @@ window.onload = function(){
 		console.log(data);
 		var data1 = $(this).parents()
 		console.log(data1); */
-		$("#chatBtn").css('display', 'inline-block');
+//		$("#chatBtn").css('display', 'inline-block');
 
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-
+		var storeId = $(this).closest('div').data('obj');
 		var data = {
 				title : list_data.find("h4").text(),
-				name : 'asd'
+				name : 'asd',
+				storeId : storeId
 		};
 		//console.log(data);
 		/* console.log(JSON.stringify(data)); */
@@ -55,7 +56,6 @@ window.onload = function(){
 			data:data,
 			success : function(data){
 				createForm(data);
-				
 				/* $('#listGroup').empty();
 				var jsonData = JSON.parse(data);
 				$('#listGroup').append */
@@ -234,7 +234,6 @@ window.onload = function(){
 		const itemDetail =`
 						<table class="itemDetails table table-borderless">
 						    <tr>
-						
 						        <th>
 						            <img class="item_img" alt="없음" src="resources/user/assets/img/shop.jpg">
 						        </th>
@@ -276,7 +275,9 @@ window.onload = function(){
 						            <div id="tabView"></div>
 						        </th>
 						    </tr>
-						</table>`;
+						</table>
+						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
+						`;
 		$('#listGroup').append(itemDetail);
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
 		    "<th>EMPNO</th>"+

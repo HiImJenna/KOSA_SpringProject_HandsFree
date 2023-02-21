@@ -145,7 +145,7 @@ padding: 0px;
 							<button type="button" class="btn btn-primary" id="detailBtn"
 								style="margin-bottom: 15px">상세보기</button>
 							<br>
-							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook'">예약하기</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}'">예약하기</button>
 						</div>
 					</div>`;
 					$('#listGroup').append(itemList);
@@ -288,7 +288,8 @@ padding: 0px;
          /*  채팅   */
          
          $(document).on("click", "#chatBtn", function(){
-            createRoom();
+        	const storeId = $('#chatBtn').data('obj');
+            createRoom(storeId);
          })
          
                   //채팅 버튼 클릭 및 엔터
@@ -317,15 +318,19 @@ padding: 0px;
          /* 채팅  */
          
          //채팅 만들기
-         function createRoom(){
+         function createRoom(storeId){
             //var test = $('#dropdownMenu2').attr('value');
             //var test = $('#dropdownMenu2').text();
             
             var nickname = $('#dropdownMenu2').text().trim();
-               
+			console.log(storeId);
+			var data = {
+					storeId : storeId
+			}
             $.ajax({
                url : "/chatingRoom",
                type :  "POST",
+               data : data,
                success : function(data){
                   //data값 기준으로 채팅창 페이지 만들다.
                   /* console.log(data); */
@@ -370,8 +375,6 @@ padding: 0px;
          
          //채팅 구독.!!
          function chatingConnect(roomNumber){
-            
-            console.log("채팅");
             console.log(subscribe.length);
             //메세지 받을 경로
             const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
@@ -495,7 +498,7 @@ padding: 0px;
              
              
              const date = messageInfo.date;
-             console.log(date);
+
              const d = new Date(date);
              
              const time = String(d.getHours()).padStart(2, "0") 
@@ -541,7 +544,7 @@ padding: 0px;
          <div class="position-sticky">
             <div id="listGroup" class="list-group list-group-flush mx-2 mt-4">
             </div>
-            <div id="chatBtn" class="balloon"></div>
+            
          </div>
       </nav>
       <!-- Sidebar -->

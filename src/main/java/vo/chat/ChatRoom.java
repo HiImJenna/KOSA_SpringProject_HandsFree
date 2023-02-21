@@ -2,6 +2,8 @@ package vo.chat;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +13,10 @@ import lombok.NoArgsConstructor;
 public class ChatRoom {
 	private String idx;
 	private int status;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date sDate;
 	private String lastSubJect;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date lastTime;
 	
 	@Builder

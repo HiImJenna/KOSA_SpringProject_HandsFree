@@ -13,7 +13,6 @@ public class ChatJoin {
 	
 	@Builder
 	public ChatJoin(String userId, String roodIdx) {
-		super();
 		this.userId = userId;
 		this.roodIdx = roodIdx;
 	}	
