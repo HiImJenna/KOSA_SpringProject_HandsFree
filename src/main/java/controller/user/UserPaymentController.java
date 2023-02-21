@@ -47,11 +47,9 @@ public class UserPaymentController {
 	//결제 처리
 	@RequestMapping("/users/paymentreserve") 
 	public String userBook (HttpServletRequest request, Principal pri,
-							Model model, Payment payment,
-							@RequestParam("userid") String userid) {
+							Model model, Payment payment) {
 		
-		System.out.println("파라미터로 받아온  " + userid);
-		
+		String userid = pri.getName();
 		int result = 0;
 		result = paymentservice.insertPayment(payment);
 		
