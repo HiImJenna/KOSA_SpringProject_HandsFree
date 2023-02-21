@@ -38,7 +38,7 @@ public class MailService{
 	public void sendEmail(String fromAddress, Email email, MultipartFile file) throws MessagingException, IOException {
 		MimeMessage message = emailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-		helper.setFrom(new InternetAddress(fromAddress,"관리자")); //보낸이
+		helper.setFrom(new InternetAddress(fromAddress,"[Hands Free]")); //보낸이
 		helper.setTo(email.getToMail()); //받는이
 		helper.setCc(email.getCcMail()); //참조
 		helper.setSubject(email.getTitle());
@@ -53,10 +53,11 @@ public class MailService{
 	
 	public void sendEmail(String fromAddress, String toAddress,
 			String subject, String msgBody) throws MessagingException, IOException {
+		
 		MimeMessage message = emailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 		//helper.setFrom(fromAddress); //蹂대궦�씠
-		message.setFrom(new InternetAddress(fromAddress,"관리자")); //보내닝
+		message.setFrom(new InternetAddress(fromAddress,"[Hands Free]")); //보내닝
 		helper.setTo(toAddress); //받는이
 		helper.setSubject(subject);
 		helper.setText(msgBody, true);

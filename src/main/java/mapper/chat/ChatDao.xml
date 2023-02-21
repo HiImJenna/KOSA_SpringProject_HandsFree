@@ -14,9 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{userId}, #{roodIdx})
 	</insert>
 	
-	<!-- 
 	<insert id="insertChatMessage" parameterType="vo.chat.ChatMessage">
 		insert into chat_message(idx, userid, room_idx, content, sdate, read, type)
-		values(#{idx}, #{userid], #{room_idx}, #{content}, #{sdate}, #{read}, #{type})
-	</insert> -->
+		values(chat_message_seq.NEXTVAL, #{userId}, #{roodIdx}, #{content}, #{sDate}, #{read}, #{type})
+	</insert>
 </mapper>

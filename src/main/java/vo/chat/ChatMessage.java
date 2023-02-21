@@ -18,8 +18,7 @@ public class ChatMessage {
 	private String type;
 	
 	@Builder
-	public ChatMessage(int idx, String userId, String roodIdx, String content, Date sDate, int read, String type) {
-		this.idx = idx;
+	public ChatMessage(String userId, String roodIdx, String content, Date sDate, int read, String type) {
 		this.userId = userId;
 		this.roodIdx = roodIdx;
 		this.content = content;

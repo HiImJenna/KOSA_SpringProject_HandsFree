@@ -53,6 +53,7 @@
 		$(document).ready(function(){
 			var str = $('#navbarDropdownMenuLink').text().trim(); // 계정의 정보
 			var nickname = str.match(/\[(.*)\]/)[1];
+			console.log(nickname)
 			//소켓 연결
 			//webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
 			const socket = new SockJS('http://localhost:8090/websocket');
