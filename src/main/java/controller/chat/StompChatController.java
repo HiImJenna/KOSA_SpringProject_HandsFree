@@ -64,7 +64,6 @@ public class StompChatController {
 	@GetMapping("/chatingRoomList")
 	public ResponseEntity<?> chatingRoomList(Authentication auth){
 		String nickname = auth.getName();
-		System.out.println(nickname);
 		return new ResponseEntity<LinkedList<ChatingRoom>>(chatingRoomList, HttpStatus.OK);
 	}
 
@@ -122,7 +121,7 @@ public class StompChatController {
 			users.add(nickname);
 			roomCookie.setMaxAge(maxage);
 			response.addCookie(roomCookie);
-			chatservice.insertAllChat(chatroom,chatjoin,chatjoinAdmin);
+			//chatservice.insertAllChat(chatroom,chatjoin,chatjoinAdmin);
 		}
 		return new ResponseEntity<>(chatingRoom, HttpStatus.OK);
 	}
@@ -196,29 +195,30 @@ public class StompChatController {
 	@MessageMapping("/socket/notification/{roomNumber}")
 	@SendTo("/topic/notification/{roomNumber}")
 	public Map<String, Object> notification(@DestinationVariable String roomNumber, Map<String, Object> chatingRoom){
-		System.out.println(roomNumber);
-		System.out.println(chatingRoom);
 		return chatingRoom;
 	}
 	
 	//채팅메세지 보내기
 	@MessageMapping("/socket/sendMessage/{roomNumber}")
 	@SendTo("/topic/message/{roomNumber}")
-	public ChatMessage sendMessage(@DestinationVariable String roomNumber, Authentication auth, String messageVal) {
+	public ChatMessage sendMessage(@DestinationVariable String roomNumber, Authentication auth, Map<String, Object> messageVal) {
 		String nickname = auth.getName();
 		String roodIdx = "";
+		
+		String messageData = (String) messageVal.get("message");
 		
 		ChatMessage message = ChatMessage.builder()
 				.userId(nickname)
 				.roodIdx(roodIdx)
-				.content(messageVal)
+				.content(messageData)
 				.sDate(new Date())
 				.read(1)
 				.type("입장")
 				.build();
 		
-		chatservice.insertChatMessage(message);
-	
+		//chatservice.insertChatMessage(message);
+		
+		System.out.println(message.toString());
 		
 
 		return message;

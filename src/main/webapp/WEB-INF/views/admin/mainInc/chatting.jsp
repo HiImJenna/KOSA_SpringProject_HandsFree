@@ -243,48 +243,46 @@
 			
 			/* 뷰페이지 그리기 */
 			
-			
-	 		// 메세지 그리기
-			function chating(messageInfo){ 
-	 			let nickname = messageInfo.nickname;
-	 			let message = messageInfo.message;
-	 			
-	 			message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
-	 			
-	 			
-	 			const date = messageInfo.date;
-	 			console.log(date);
-	 			const d = new Date(date);
-	 			
-	 			const time = String(d.getHours()).padStart(2, "0") 
-				+ ":" 
-				+ String(d.getMinutes()).padStart(2, "0");
-	 			
-	 			let sender ="";
-	 			
-	 			if(info.getNickname() == nickname) {
-	 				sender = "chat_me";
-	 				nickname = "";
-	 			} else {
-	 				sender=  "chat_other";
-	 			}
-	 			
-	 			const chatHtml = `
-	 		        <li>
-	 		            <div class=\${sender}>
-	 		            	<div>
-	 			            	<div class="nickname">\${nickname}</div>
-	 			            	<div class="message">
-	 				                <span class=chat_in_time>\${time }</span>
-	 				                <span class="chat_content">\${message}</span>
-	 			                <span>
-	 		                </div>
-	 		            </div>
-	 		        </li>`;
-	 			$(".adminChat ul.chat_list").append(chatHtml);
-	 			$(".adminChat ul").scrollTop($(".adminChat ul")[0].scrollHeight);
-			
-	 		}
+			// 메세지 그리기
+			function chating(messageInfo){
+	        	 console.log(messageInfo);
+	             let nickname = messageInfo.userId;
+	             let message = messageInfo.content;
+	             
+	             message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
+	             
+	             
+	             const date = messageInfo.sdate;
+	             const d = new Date(date);
+	             const time = String(d.getHours()).padStart(2, "0") 
+	            + ":" 
+	            + String(d.getMinutes()).padStart(2, "0");
+	             
+	             let sender ="";
+	             
+	             if(info.getNickname() == nickname) {
+	                sender = "chat_me";
+	                nickname = "";
+	             } else {
+	                sender=  "chat_other";
+	             }
+	             
+	             const chatHtml = `
+	                  <li>
+	                      <div class=\${sender}>
+	                         <div>
+	                            <div class="nickname">\${nickname}</div>
+	                            <div class="message">
+	                                <span class=chat_in_time>\${time }</span>
+	                                <span class="chat_content">\${message}</span>
+	                             <span>
+	                          </div>
+	                      </div>
+	                  </li>`;
+	             $(".adminChat ul.chat_list").append(chatHtml);
+	             $(".adminChat ul").scrollTop($(".adminChat ul")[0].scrollHeight);
+	         
+	          }
 			
 			function listHtml(roomList){
 				console.log("페이지 그림?");
