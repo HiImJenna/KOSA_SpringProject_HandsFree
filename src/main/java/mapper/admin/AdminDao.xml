@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="findAdminUserByUserId" resultType="vo.user.Users">
-		select userid, userpwd, enabled, to_char(joindate, 'YYYY/MM/DD HH24:MI'), first_name, last_name, mail_accept, status, profile_path
+		select userid, userpwd, enabled, to_char(joindate, 'YYYY/MM/DD HH24:MI'), first_name, last_name, mail_accept, status, profile_path as realFilePath
 		from users
 		where userid = #{userid}
 	</select>
@@ -63,4 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   store_cnt = #{storeCnt}
 		where  storeid = #{storeId}
 	</update>
+
+	<select id="getCalendarListByUserId" resultType="vo.admin.CalendarInfo">
+		select concat(name, '님의 예약') as "title", 
+       		   concat(concat(to_char(sdate, 'YYYY-MM-DD'), 'T'), to_char(sdate, 'HH24:mm:ss')) as "start", 
+               concat(concat(to_char(edate, 'YYYY-MM-DD'), 'T'), to_char(edate, 'HH24:mm:ss')) as "end"
+		from reservation
+		where storeid = #{storeid}
+	</select>
 </mapper>

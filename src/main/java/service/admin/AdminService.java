@@ -1,5 +1,7 @@
 package service.admin;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dao.admin.AdminDao;
 import vo.admin.Admin;
+import vo.admin.CalendarInfo;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
@@ -29,8 +32,8 @@ public class AdminService {
 	}
 	
 	public Users findAdminUserByUserId(String userId) {
-		// 아직 임시
-		return null;
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.findAdminUserByUserId(userId);
 	}
 	
 	public Store findStoreByUserId(String userId) {
@@ -52,5 +55,10 @@ public class AdminService {
 		dao.updateAdminPhone(store);
 		// storeDetail cnt, week, sat, sun, notice update
 		return dao.updateAdminDetail(storeDetails);
+	}
+	
+	public List<CalendarInfo> getCalendarList(String userId) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.getCalendarListByUserId(userId);
 	}
 }

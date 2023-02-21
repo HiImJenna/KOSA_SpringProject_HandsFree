@@ -6,16 +6,21 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
 import controller.admin.dto.AdminViewTimeDto;
+import controller.admin.dto.CalendarInfoDto;
 import controller.admin.dto.StoreInfoUpdateDto;
 import service.ReservationService;
 import service.ReviewService;
@@ -25,6 +30,7 @@ import service.file.FileService;
 import service.user.UserMyinfoService;
 import vo.Reservation;
 import vo.Review;
+import vo.admin.CalendarInfo;
 import vo.admin.Email;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
@@ -65,8 +71,13 @@ public class AdminController {
 		Users users = usermyinfoservice.userDetail(userId);
 		model.addAttribute("users", users);
 		// users
-		//// 프로필 이미지 아래 임시 코드 있음
-		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		//// 프로필 이미지
+		Users user = adminService.findAdminUserByUserId(userId);
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
+		if (!user.getRealFilePath().contains("/")) {
+			profilePath = user.getRealFilePath();
+		}
+		model.addAttribute("profilePath", profilePath);
 		
 		// store
 		//// 가게 이름, 주소 , 대표번호
@@ -86,7 +97,7 @@ public class AdminController {
 		model.addAttribute("cPath", storeDetails.getCertificatePath());
 		
 		// 프로필 이미지 임시
-		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		//model.addAttribute("profilePath", storeDetails.getCertificatePath());
 		
 		return "admin/admin";
 	}
@@ -97,8 +108,13 @@ public class AdminController {
 		String userId = principal.getName();
 		
 		// users
-		//// 프로필 이미지 필요함!!, 아래 임시 코드 있음
-		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		//// 프로필 이미지 필요함!!
+		Users user = adminService.findAdminUserByUserId(userId);
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
+		if (!user.getRealFilePath().contains("/")) {
+			profilePath = user.getRealFilePath();
+		}
+		model.addAttribute("profilePath", profilePath);
 		
 		// store
 		//// 가게 이름, 주소 , 대표번호
@@ -115,9 +131,6 @@ public class AdminController {
 		model.addAttribute("notice", storeDetails.getNotice());
 		model.addAttribute("cPath", storeDetails.getCertificatePath());
 		
-		// 프로필 이미지 임시
-		model.addAttribute("profilePath", storeDetails.getCertificatePath());
-		
 		return "admin/mainInc/manage";
 	}
 	
@@ -127,10 +140,9 @@ public class AdminController {
 									   Principal           principal) 
 	{
 		String userId = principal.getName();
-		dto.setProfilePath(userId);
-		Store store = dto.toStore(userId);
-		StoreDetails storeDetails = dto.toStoreDetail(userId);
-		adminService.updateStoreInfo(dto.toUser(userId), store, storeDetails);
+		dto.setProfilePath(request);
+		adminService.updateStoreInfo(dto.toUser(userId), dto.toStore(userId), dto.toStoreDetail(userId));
+		fileService.updateAdminProfile(dto, userId);
 		return "redirect:/admin";
 	}
 	
@@ -218,5 +230,13 @@ public class AdminController {
 	public String storeLogin() {
 		//System.out.println("점주로그인");
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@GetMapping("/api/admin/calendar")
+	public ResponseEntity<CalendarInfoDto> getCalendarList(Principal principal) {
+		String userId = principal.getName();
+		//String userId = "admin1@naver.com";
+		return new ResponseEntity<CalendarInfoDto>(new CalendarInfoDto(adminService.getCalendarList(userId)), HttpStatus.OK);
 	}
 }

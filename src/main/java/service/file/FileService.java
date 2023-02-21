@@ -19,16 +19,17 @@ public class FileService {
 	// 사업자 등록증 저장
 	public void saveAdminBusinesslicense(AdminRegisterDto dto) {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
-			String fpath = dto.getRealFilePath();
 			FileOutputStream fs = null;
 			try {
-				
 				File dir = new File(dto.getRealFilePath());
 				if (!dir.isDirectory()) {
 					dir.mkdir();
 				}
-				
-				fs = new FileOutputStream(fpath + dto.getFile().getOriginalFilename());
+				dir = new File(dto.getRealFilePath() + dto.getEmail());
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -42,14 +43,21 @@ public class FileService {
 		}
 	}
 	
-	// 대표이미지 변경
-	public void updateAdminProfile(StoreInfoUpdateDto dto, HttpServletRequest request, String userId) {
-		String fileName = dto.getFile().getOriginalFilename();
-		String path = request.getServletContext().getRealPath(PATH);
-		if (!fileName.equals("")) {
+	// 프로필 이미지 변경 변경
+	public void updateAdminProfile(StoreInfoUpdateDto dto, String userId) {
+		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				fs = new FileOutputStream(path + dto.getProfile_path());
+				File dir = new File(dto.getProfile_path());
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				
+				dir = new File(dto.getProfile_path() + userId);
+				if (!dir.isDirectory()) {
+					dir.mkdir();
+				}
+				fs = new FileOutputStream(dto.getProfile_path() + userId + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();

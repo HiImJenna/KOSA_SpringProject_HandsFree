@@ -7,7 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport"
@@ -93,8 +93,7 @@
 					<strong>[Hands Free] 교촌치킨 서울역점</strong>
 				</h5>
 				<br />
-				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 일정관리를
-					볼 수 있는 페이지 입니다.</div>
+				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 일정관리를 볼 수 있는 페이지 입니다.</div>
 			</div>
 			<div class="card-body">
 				<div id="calendar"></div>
@@ -107,162 +106,127 @@
 </body>
 
 <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          // Tool Bar 목록 document : https://fullcalendar.io/docs/toolbar
-          headerToolbar: {
-            left: "prevYear,prev,next,nextYear today",
-            center: "title",
-            right: "dayGridMonth,dayGridWeek,dayGridDay",
+  let calendarList = [];
+  let calendar;
+  function getCalendarList() {
+    $.ajax({
+      type: "GET",
+      url: "/api/admin/calendar",
+      success: function (response) {
+        calendarList = response.list;
+      },
+      error: function (a, b, c) {
+        console.log("실패!");
+        console.log(a);
+        console.log(b);
+        console.log(c);
+      },
+    });
+  }
+
+  window.onload = function () {
+    var calendarEl = document.getElementById("calendar");
+    calendar = new FullCalendar.Calendar(calendarEl, {
+      // Tool Bar 목록 document : https://fullcalendar.io/docs/toolbar
+      headerToolbar: {
+        left: "prevYear,prev,next,nextYear today",
+        center: "title",
+        right: "dayGridMonth,dayGridWeek,dayGridDay",
+      },
+
+      locale: "ko",
+      selectable: true,
+      selectMirror: true,
+
+      navLinks: true, // can click day/week names to navigate views
+      editable: false,
+      // Create new event
+      select: function (arg) {
+        Swal.fire({
+          html: "<div class='mb-7'>Create new event?</div><div class='fw-bold mb-5'>Event Name:</div><input type='text' class='form-control' name='event_name' />",
+          icon: "info",
+          showCancelButton: true,
+          buttonsStyling: false,
+          confirmButtonText: "Yes, create it!",
+          cancelButtonText: "No, return",
+          customClass: {
+            confirmButton: "btn btn-primary",
+            cancelButton: "btn btn-active-light",
           },
-
-          selectable: true,
-          selectMirror: true,
-
-          navLinks: true, // can click day/week names to navigate views
-          editable: true,
-          // Create new event
-          select: function (arg) {
+        }).then(function (result) {
+          if (result.value) {
+            var title = document.querySelector(
+              "input[name=;event_name']"
+            ).value;
+            if (title) {
+              calendar.addEvent({
+                title: title,
+                start: arg.start,
+                end: arg.end,
+                allDay: arg.allDay,
+              });
+            }
+            calendar.unselect();
+          } else if (result.dismiss === "cancel") {
             Swal.fire({
-              html: "<div class='mb-7'>Create new event?</div><div class='fw-bold mb-5'>Event Name:</div><input type='text' class='form-control' name='event_name' />",
-              icon: "info",
-              showCancelButton: true,
+              text: "Event creation was declined!.",
+              icon: "error",
               buttonsStyling: false,
-              confirmButtonText: "Yes, create it!",
-              cancelButtonText: "No, return",
+              confirmButtonText: "Ok, got it!",
               customClass: {
-                confirmButton: "btn btn-primary",
-                cancelButton: "btn btn-active-light",
+                confirmButton: "btn btn-danger",
               },
-            }).then(function (result) {
-              if (result.value) {
-                var title = document.querySelector(
-                  "input[name=;event_name']"
-                ).value;
-                if (title) {
-                  calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay,
-                  });
-                }
-                calendar.unselect();
-              } else if (result.dismiss === "cancel") {
-                Swal.fire({
-                  text: "Event creation was declined!.",
-                  icon: "error",
-                  buttonsStyling: false,
-                  confirmButtonText: "Ok, got it!",
-                  customClass: {
-                    confirmButton: "btn btn-primary",
-                  },
-                });
-              }
             });
-          },
-
-          // Delete event
-          eventClick: function (arg) {
-            Swal.fire({
-              text: "Are you sure you want to delete this event?",
-              icon: "warning",
-              showCancelButton: true,
-              buttonsStyling: false,
-              confirmButtonText: "Yes, delete it!",
-              cancelButtonText: "No, return",
-              customClass: {
-                confirmButton: "btn btn-primary",
-                cancelButton: "btn btn-active-light",
-              },
-            }).then(function (result) {
-              if (result.value) {
-                arg.event.remove();
-              } else if (result.dismiss === "cancel") {
-                Swal.fire({
-                  text: "Event was not deleted!.",
-                  icon: "error",
-                  buttonsStyling: false,
-                  confirmButtonText: "Ok, got it!",
-                  customClass: {
-                    confirmButton: "btn btn-primary",
-                  },
-                });
-              }
-            });
-          },
-          dayMaxEvents: true, // allow "more" link when too many events
-          // 이벤트 객체 필드 document : https://fullcalendar.io/docs/event-object
-          events: 
-        	  
-        	  [
-            {
-              title: "All Day Event",
-              start: "2023-03-01",
-            },
-            {
-              title: "Long Event",
-              start: "2023-01-07",
-              end: "2023-01-10",
-            },
-            {
-              groupId: 999,
-              title: "Repeating Event",
-              start: "2023-01-09T16:00:00",
-            },
-            {
-              groupId: 999,
-              title: "Repeating Event",
-              start: "2023-02-16T16:00:00",
-            },
-            {
-              title: "Conference",
-              start: "2023-02-11",
-              end: "2023-02-13",
-            },
-            {
-              title: "Meeting",
-              start: "2023-02-12T10:30:00",
-              end: "2023-02-12T12:30:00",
-            },
-            {
-              title: "Lunch",
-              start: "2023-02-12T12:00:00",
-            },
-            {
-              title: "Meeting",
-              start: "2023-02-12T14:30:00",
-            },
-            {
-              title: "Happy Hour",
-              start: "2023-02-12T17:30:00",
-            },
-            {
-              title: "Dinner",
-              start: "2023-02-12T20:00:00",
-            },
-            {
-              title: "Birthday Party",
-              start: "2023-02-13T07:00:00",
-            },
-            {
-              title: "Click for Google",
-              url: "http://google.com/",
-              start: "2023-02-28",
-            },
-          ],
-          
-          
+          }
         });
+      },
 
-        calendar.render();
-      });
-    </script>
+      // Delete event
+      eventClick: function (arg) {
+        Swal.fire({
+          text: "Are you sure you want to delete this event?",
+          icon: "warning",
+          showCancelButton: true,
+          buttonsStyling: false,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "No, return",
+          customClass: {
+            confirmButton: "btn btn-primary",
+            cancelButton: "btn btn-active-light",
+          },
+        }).then(function (result) {
+          if (result.value) {
+            arg.event.remove();
+          } else if (result.dismiss === "cancel") {
+            Swal.fire({
+              text: "Event was not deleted!.",
+              icon: "error",
+              buttonsStyling: false,
+              confirmButtonText: "Ok, got it!",
+              customClass: {
+                confirmButton: "btn btn-primary",
+              },
+            });
+          }
+        });
+      },
+      dayMaxEvents: true, // allow "more" link when too many events
+      // 이벤트 객체 필드 document : https://fullcalendar.io/docs/event-object
+      events: calendarList,
+    });
+
+    calendar.render();
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    getCalendarList();
+    //calendar.render();
+  });
+</script>
+
 
 <!-- MDB -->
-<script type="text/javascript"
-	src="${path}/resources/admin/js/mdb.min.js"></script>
+<script type="text/javascript" src="${path}/resources/admin/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <%-- <script type="text/javascript" src="${path}/resources/admin/js/admin.js"></script> --%>
 
