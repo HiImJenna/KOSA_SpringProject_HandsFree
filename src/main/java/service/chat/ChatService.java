@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dao.chat.ChatDao;
 import vo.chat.ChatJoin;
+import vo.chat.ChatMessage;
 import vo.chat.ChatRoom;
 
 @Service
@@ -26,6 +27,17 @@ public class ChatService {
 			chatDao.insertChatRoom(chatroom);
 			chatDao.insertChatJoin(chatjoin);
 			chatDao.insertChatJoin(chatjoinAdmin);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertChatMessage(ChatMessage message) {
+		try {
+			ChatDao chatDao = sqlsession.getMapper(ChatDao.class);
+			chatDao.insertChatMessage(message);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

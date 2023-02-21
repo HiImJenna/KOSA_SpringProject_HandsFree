@@ -351,7 +351,6 @@ padding: 0px;
          
          //메세지 보낼때      
          function sendMessage(){
-            console.log("메세지보낼때");
             console.log(subscribe.length);
             
             const message = $(".chat_input_area textarea");
@@ -363,19 +362,15 @@ padding: 0px;
             const nickname = info.getNickname();
             
             const data = {
-                  message : message.val(),
-                  nickname : nickname
+                  message : message.val()
             }
-            console.log(roomNumber);
-            console.log(nickname);
-            console.log(data);
+
             stomp.send("/socket/sendMessage/" + roomNumber, {}, JSON.stringify(data));
             message.val("");
          }
          
          //채팅 구독.!!
          function chatingConnect(roomNumber){
-            console.log(subscribe.length);
             //메세지 받을 경로
             const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
                const message = JSON.parse(result.body);
@@ -490,9 +485,12 @@ padding: 0px;
 
          
           // 메세지 그리기
-         function chating(messageInfo){ 
-             let nickname = messageInfo.nickname;
-             let message = messageInfo.message;
+         function chating(messageInfo){
+        	 console.log(messageInfo);
+             let nickname = messageInfo.userId;
+             let message = messageInfo.content;
+             
+             console.log(message)
              
              message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
              
