@@ -99,8 +99,8 @@
 				<h2 style="text-align: center">메일서비스</h2>
 				<br />
 				<p style="text-align: right">
-					<button class="btn btn-outline-primary" onclick="location.href='/admin/mailForm'">전체
-						메일보내기</button>
+					<button class="btn btn-outline-primary"
+						onclick="location.href='/admin/mailForm'">전체 메일보내기</button>
 				</p>
 				<form>
 					<div class="form-row align-items-center">
@@ -139,8 +139,8 @@
 							</tr>
 						</tr>
 					</thead>
-					
-					
+
+
 					<tbody style="text-align: center;">
 						<c:forEach var="reservationlist" items="${reservationList}"
 							varStatus="status">
@@ -150,12 +150,13 @@
 								<td style="vertical-align: middle;">${reservationlist.name}</td>
 								<td style="vertical-align: middle;">${reservationlist.userid}</td>
 								<td>
-									<button type="button" class="btn btn-info" onclick="location.href='/admin/mailForm?idx=${reservationlist.idx}'">메일전송</button>
+									<button type="button" class="btn btn-info"
+										onclick="location.href='/admin/mailForm?idx=${reservationlist.idx}'">메일전송</button>
 								</td>
 							</tr>
 						</c:forEach>
-						 
-						
+
+
 					</tbody>
 				</table>
 
