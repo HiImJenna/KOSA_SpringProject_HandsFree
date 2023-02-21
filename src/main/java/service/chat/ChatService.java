@@ -1,6 +1,7 @@
 package service.chat;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import vo.chat.ChatRoom;
 @Service
 @Transactional(readOnly = true)
 public class ChatService {
-	
+	/*
 	@Autowired	
 	private SqlSession sqlsession;
 	
@@ -44,6 +45,19 @@ public class ChatService {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public LinkedList<ChatJoin> selectChat(String userId) {
+		LinkedList<ChatJoin> chatJoin = null;
+		try {
+			ChatDao chatDao = sqlsession.getMapper(ChatDao.class);
+			chatJoin = chatDao.selectChat(userId);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return chatJoin;
+	}
+*/
 	
 }

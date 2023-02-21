@@ -351,8 +351,6 @@ padding: 0px;
          
          //메세지 보낼때      
          function sendMessage(){
-            console.log(subscribe.length);
-            
             const message = $(".chat_input_area textarea");
             
             if(message.val() == "")
@@ -490,15 +488,11 @@ padding: 0px;
              let nickname = messageInfo.userId;
              let message = messageInfo.content;
              
-             console.log(message)
-             
              message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
              
              
-             const date = messageInfo.date;
-
+             const date = messageInfo.sdate;
              const d = new Date(date);
-             
              const time = String(d.getHours()).padStart(2, "0") 
             + ":" 
             + String(d.getMinutes()).padStart(2, "0");
