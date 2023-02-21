@@ -162,8 +162,8 @@
 							<table>
 								<tr id="box" class="form-group">
 									<td>받는 사람</td>
-									<td><input type="text" class="form-control" name="toMail"
-										placeholder="이메일 주소를 입력하세요"></td>
+									<td><input type="text" class="form-control" name="toMail" value="${reservation.userid}"
+										placeholder="이메일 주소를 입력하세요" readonly></td>
 									<td><input type="button" id="addMail"
 										class="form-control btn-outline-primary" value="추가"></td>
 								</tr>

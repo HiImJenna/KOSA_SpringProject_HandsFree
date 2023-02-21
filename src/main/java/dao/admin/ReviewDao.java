@@ -3,6 +3,7 @@ package dao.admin;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSessionException;
 
 import vo.Review;
@@ -13,6 +14,6 @@ public interface ReviewDao {
 	int getReviewCount(String field, String query) throws ClassNotFoundException, SQLException;
 	
 	//전체 리뷰
-	List<Review> getReviews() throws ClassNotFoundException, SqlSessionException;
+	List<Review> getReviews(@Param("userid") String userid) throws ClassNotFoundException, SqlSessionException;
 	
 }

@@ -131,86 +131,31 @@
 					<thead class="table-primary">
 						<tr>
 							<tr>
-								<td>번호</td>
+								<td>예매번호</td>
+								<td>결제일</td>
 								<td>고객이름</td>
-								<td>선택</td>
+								<td>이메일</td>
 								<td>메일전송</td>
 							</tr>
 						</tr>
 					</thead>
-
-					<tbody style="text-align: center">
-
-						<tr>
-							<td>00001</td>
-							<td>장동건</td>
-							<td>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="customCheck1" /> <label class="custom-control-label"
-										for="customCheck1"></label>
-								</div>
-							</td>
-							<td>
-								<button type="button" class="btn btn-info">메일전송</button>
-							</td>
-						</tr>
-						<tr>
-							<td>00001</td>
-							<td>장동건</td>
-							<td>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="customCheck2" /> <label class="custom-control-label"
-										for="customCheck2"></label>
-								</div>
-							</td>
-							<td>
-								<button type="button" class="btn btn-info">메일전송</button>
-							</td>
-						</tr>
-						<tr>
-							<td>00001</td>
-							<td>장동건</td>
-							<td>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="customCheck3" /> <label class="custom-control-label"
-										for="customCheck3"></label>
-								</div>
-							</td>
-							<td>
-								<button type="button" class="btn btn-info">메일전송</button>
-							</td>
-						</tr>
-						<tr>
-							<td>00001</td>
-							<td>장동건</td>
-							<td>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="customCheck4" /> <label class="custom-control-label"
-										for="customCheck4"></label>
-								</div>
-							</td>
-							<td>
-								<button type="button" class="btn btn-info">메일전송</button>
-							</td>
-						</tr>
-						<tr>
-							<td>00001</td>
-							<td>장동건</td>
-							<td>
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input"
-										id="customCheck5" /> <label class="custom-control-label"
-										for="customCheck5"></label>
-								</div>
-							</td>
-							<td>
-								<button type="button" class="btn btn-info">메일전송</button>
-							</td>
-						</tr>
+					
+					
+					<tbody style="text-align: center;">
+						<c:forEach var="reservationlist" items="${reservationList}"
+							varStatus="status">
+							<tr>
+								<td style="vertical-align: middle;">${reservationlist.idx}</td>
+								<td style="vertical-align: middle;">${reservationlist.paymentdate}</td>
+								<td style="vertical-align: middle;">${reservationlist.name}</td>
+								<td style="vertical-align: middle;">${reservationlist.userid}</td>
+								<td>
+									<button type="button" class="btn btn-info" onclick="location.href='/admin/mailForm?idx=${reservationlist.idx}'">메일전송</button>
+								</td>
+							</tr>
+						</c:forEach>
+						 
+						
 					</tbody>
 				</table>
 
