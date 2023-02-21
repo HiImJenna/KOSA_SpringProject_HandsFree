@@ -14,10 +14,12 @@
  <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
  
 <body>
+ <link rel="icon" href="${path}/resources/admin/img/crown.png" /> 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="/">Hands Free</a>
+                <a class="navbar-brand fw-bold" href="/"><img
+         src="${path}/resources/admin/img/logo6.png" height="30px" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
