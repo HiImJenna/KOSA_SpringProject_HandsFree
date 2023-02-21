@@ -1,6 +1,11 @@
 package controller.user;
 
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import service.user.UserMyinfoService;
+import vo.UserReservationJoinVo;
 import vo.user.Users;
 
 @Controller
@@ -93,7 +101,25 @@ public class UserNavController {
 	}
 	
 	@GetMapping("/users/myreserve")
-	public String myreserve() {
+	public String myreserve(Model model, Principal principal) {
+		String userId = principal.getName();
+		model.addAttribute("list", usermyinfoservice.getReservationList(userId));		
+		return "user/myreserve";
+	}
+	
+	@PostMapping("users/reviews")
+	public String saveReview(HttpServletRequest request) {
+		
+		try {
+			// web.xml에 필터로 utf-8이 걸려 있는데 한글이 깨져 들어와
+			// 임시 방편으로 처리함
+			request.setCharacterEncoding("utf-8");
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		String content = request.getParameter("content");
 		return "user/myreserve";
 	}
 	

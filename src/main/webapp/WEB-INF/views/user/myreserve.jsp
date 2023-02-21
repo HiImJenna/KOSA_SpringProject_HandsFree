@@ -17,6 +17,10 @@
 		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 		crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
+	
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -25,6 +29,27 @@
 <head>
         <title>예약내역</title>
        	<meta data-n-head="ssr" charset="utf-8">
+        
+        <script type="text/javascript">
+        	function activateReviewForm(idx) {
+        		let reviewform = "#reviewFormTr" + idx;
+        		let cancelTr = "#cancelTr" + idx;
+        		let reviewTr = "#reviewTr" + idx;
+        		$(reviewform).show();
+        		$(cancelTr).show();
+        		$(reviewTr).hide();
+        	}
+        	function deActivateReviewForm(idx) {
+        		let reviewform = "#reviewFormTr" + idx;
+        		let cancelTr = "#cancelTr" + idx;
+        		let reviewTr = "#reviewTr" + idx;
+        		let textarea = "#textarea" + idx;
+        		$(reviewform).hide();
+        		$(cancelTr).hide();
+        		$(reviewTr).show();
+        		$(textarea).val('');
+        	}
+        </script>
         
     </head>
     <body class="bodymargin">
@@ -94,6 +119,49 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            <table class="table">
+											  <thead>
+											    <tr>
+											      <th scope="col">#</th>
+											      <th scope="col">가게 이름</th>
+											      <th scope="col">물품수</th>
+											      <th scope="col">결제 금액</th>
+											      <th scope="col">결제일</th>
+											      <th scope="col">시작일</th>
+											      <th scope="col">종료일</th>
+											      <th scope="col">리뷰</th>
+											    </tr>
+											  </thead>
+											  <tbody>
+											  	<c:forEach var="item" items="${list}" varStatus="s">
+											  	<!-- 한 세트 -->
+											    <tr>
+											      <th scope="row">${s.count}</th>
+											      <td>${item.storeName}</td>
+											      <td>${item.cnt}</td>
+											      <td>${item.price}</td>
+											      <td>${item.pdate}</td>
+											      <td>${item.sdate}</td>
+											      <td>${item.edate}</td>
+											      <td id="reviewTr${item.idx}" style="display: block"><button class="btn btn-primary" onclick="activateReviewForm(${item.idx})">리뷰 작성</button></td>
+											      <td id="cancelTr${item.idx}" style="display: none"><button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button></td>
+											    </tr>
+											    <tr id="reviewFormTr${item.idx}" style="display: none">
+											    	<form action="/users/reviews?idx=${item.idx}" method="post">
+											    		<td colspan="7">
+										    				<label for="textarea${item.idx}" class="form-label">[Hands Free] ${item.storeName}에 댓글을 남겨주세요</label>
+ 															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3"></textarea>
+										    			</td>
+											    		<td colspan="1">
+															<button type="submit" style="margin-top: 80px;" class="btn btn-primary">제출하기</button>
+											    		</td>
+											    	</form>
+											    </tr>
+											    <!-- 한 세트 -->
+											  	</c:forEach>
+											  </tbody>
+											</table>
                               
                                             <div class="data-presentation">
                                                 <!---->

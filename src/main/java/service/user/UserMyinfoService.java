@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.user.UserMyinfoDao;
+import vo.UserReservationJoinVo;
 import vo.user.Users;
 
 @Service
@@ -113,5 +115,10 @@ public class UserMyinfoService {
 		sout.close();
 	}
 
+	// 사용자 예약 내역 가져오기
+	public List<UserReservationJoinVo> getReservationList(String userId) {
+		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
+		return dao.getMyReservationList(userId);
+	}
 
 }

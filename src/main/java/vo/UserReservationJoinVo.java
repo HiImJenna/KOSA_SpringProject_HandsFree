@@ -1,0 +1,20 @@
+package vo;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@AllArgsConstructor
+@ToString
+public class UserReservationJoinVo {
+	private int idx;
+	private String storeName;
+	private String userName;
+	private int cnt;
+	private int price;
+	private String pdate;
+	private String sdate;
+	private String edate;
+	private int reviewstatus;
+}
