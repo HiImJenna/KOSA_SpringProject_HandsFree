@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import service.user.PaymentService;
 import service.user.UserMyinfoService;
 import vo.admin.Store;
@@ -43,7 +44,7 @@ public class UserPaymentController {
 	}
 	
 	//결제 처리
-	@PostMapping("/users/userBook") 
+	@RequestMapping("/users/myreserve") 
 	public String userBook (HttpServletRequest request, Principal pri,
 							Model model, Payment payment) {
 		
@@ -97,7 +98,7 @@ public class UserPaymentController {
 //	      model.addAttribute("idx", 0);
 //	      model.addAttribute("userid", "dddd");
 //	      model.addAttribute("storeId", "shop@naver.com");
-//	      model.addAttribute("name", "dd");	    
+	      model.addAttribute("name", fullname);	    
 //	      model.addAttribute("cnt", 2);	
 //	      model.addAttribute("price", 2000);	
 //	      model.addAttribute("sdate", "2023-02-21");	

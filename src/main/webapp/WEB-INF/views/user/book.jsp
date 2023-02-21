@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,13 +25,16 @@
 <script src="https://js.tosspayments.com/v1/payment"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<sec:authentication property="principal" var="principal"/>
+
 </head>
 <script type="text/javascript">
       $(document).ready(function(){
     		$('#payment-button').click(function(e){
     			console.log("결제버튼 눌림");
-    			var username = "${username}";
-    			console.log("username : " + username);
+    			var username = "${principal.name}";
+    			var price = "2000";
+    			payment(name);
     		})
     		
     		function payment(username){
@@ -38,7 +42,7 @@
     			 var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
     			      tossPayments.requestPayment('카드', { // 결제 수단
     			        // 결제 정보
-    			        amount: price,
+    			        amount: '2000',
     			        orderId: 'QTIk82kxDPefXZC8MLFj0',
     			        orderName: "결제 진행",
     			        customerName: username,
@@ -64,7 +68,6 @@
 			<h2>예약하기</h2>
 		</header>
 		
-			<form name="paymentform" action="/users/userBook" method=post>
 				<p>
 					<label>예약자명 : </label> <input type="text"
 						id="name" name="name" value="kosa">
@@ -73,9 +76,8 @@
 						id="name" name="name" value="kosa" readonly>
 				</p>
 			
-					<button id="payment-button" type="submit" >결제하기</button>
-			</form>
-		
+					<button id="payment-button" >결제하기</button>
+
 	</div>
 
 	<div class="carddd">
