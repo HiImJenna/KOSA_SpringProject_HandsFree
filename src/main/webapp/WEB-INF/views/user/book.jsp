@@ -85,8 +85,8 @@
 					<div class="place-infos clearfix">
 						<div class="place-text">
 							<div class="type">
-								<div class="address" name="storeid">쿵푸양꼬치</div>
-								<div class="nanny-type">음식점</div>
+								<div class="address" name="storeid">가게이름 : ${storeName}</div>
+								<div class="nanny-type">전화번호 : ${phone}</div>
 								<div class="d-flex nanny-stars">
 									<div class="type-point" style="display: none;">•</div>
 								</div>

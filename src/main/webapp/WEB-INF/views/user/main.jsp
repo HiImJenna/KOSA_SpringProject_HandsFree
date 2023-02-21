@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 order-lg-0">
-                        <img class = "main2-img" src="${path}/resources/user/assets/img/main2.png" alt="mian image" width="500" height="500">
+                        <a href="ko.qr-code-generator.com/" border="0" style="cursor:default" rel="nofollow"><img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2F192.168.0.1%2F&chs=180x180&choe=UTF-8&chld=L|2"></a>
                     </div>
                 </div>
             </div>

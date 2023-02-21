@@ -145,7 +145,7 @@ padding: 0px;
 							<button type="button" class="btn btn-primary" id="detailBtn"
 								style="margin-bottom: 15px">상세보기</button>
 							<br>
-							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook'">예약하기</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + 'data.STOREID'">예약하기</button>
 						</div>
 					</div>`;
 					$('#listGroup').append(itemList);
@@ -177,10 +177,7 @@ padding: 0px;
 							
 							createList(obj);
 						}
-
-
 					})
-					
 							            
 					circle(lat, lon);
 			    } 
@@ -214,7 +211,7 @@ padding: 0px;
 			    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			    var d = R * c; // Distance in km
 			    var m = d * 1000;
-/*  			    console.log("좌표 x : " + lat1);
+/*  			console.log("좌표 x : " + lat1);
 			    console.log("좌표 y : " + lng1);
 			    console.log("센터 x : " + lat2);
 			    console.log("센터 y : " + lng2);

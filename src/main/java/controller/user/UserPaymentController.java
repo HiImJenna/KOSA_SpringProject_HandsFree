@@ -1,16 +1,15 @@
 package controller.user;
 
 import java.security.Principal;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.user.PaymentService;
 import service.user.UserMyinfoService;
+import vo.admin.Store;
 import vo.user.Payment;
 import vo.user.Users;
 
@@ -23,7 +22,16 @@ public class UserPaymentController {
 	private UserMyinfoService usermyinfoservice;
 
 	@GetMapping("/users/userBook")
-	public String userBook(){
+	public String userBook(Model model, Principal principal, 
+							@RequestParam("STOREID") String storeId){
+		
+		
+		
+		Store store = paymentservice.findStoreByUserId(storeId);
+		model.addAttribute("storeName", store.getName());
+		model.addAttribute("address", store.getAddress());
+		model.addAttribute("phone", store.getPhone());
+
 		return "user/book";
 	}
 	
