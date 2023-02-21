@@ -66,7 +66,7 @@ public class AdminController {
 		// users
 		//// 프로필 이미지
 		Users user = adminService.findAdminUserByUserId(userId);
-		String profilePath = "resources\\defaultProfile\\crown.png";
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
 		if (!user.getRealFilePath().contains("/")) {
 			profilePath = user.getRealFilePath();
 		}
@@ -103,7 +103,7 @@ public class AdminController {
 		// users
 		//// 프로필 이미지 필요함!!
 		Users user = adminService.findAdminUserByUserId(userId);
-		String profilePath = "resources\\defaultProfile\\crown.png";
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
 		if (!user.getRealFilePath().contains("/")) {
 			profilePath = user.getRealFilePath();
 		}
