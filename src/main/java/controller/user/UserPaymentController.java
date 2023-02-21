@@ -23,6 +23,7 @@ public class UserPaymentController {
 	
 	@Autowired
 	private PaymentService paymentservice;
+	
 	@Autowired
 	private UserMyinfoService usermyinfoservice;
 	
@@ -44,13 +45,15 @@ public class UserPaymentController {
 	}
 	
 	//결제 처리
-	@RequestMapping("/users/myreserve") 
+	@RequestMapping("/users/paymentreserve") 
 	public String userBook (HttpServletRequest request, Principal pri,
-							Model model, Payment payment) {
+							Model model, Payment payment,
+							@RequestParam("userid") String userid) {
 		
-		System.out.println("@PostMapping(\"/users/userBook\") ");
+		System.out.println("파라미터로 받아온  " + userid);
+		
 		int result = 0;
-		String userid = pri.getName();
+		result = paymentservice.insertPayment(payment);
 		
 		String icon = "";
 		String msg = "";
@@ -70,19 +73,19 @@ public class UserPaymentController {
 		String firstname = users.getFirst_name(); //성
 		String fullname = firstname + lastname; //풀네임
 		
-		payment.setIdx(1);
-		payment.setUserid("user@naver.com");
-		payment.setStoreid("shop@naver.com");
-		payment.setName(fullname);
-		payment.setCnt(1);
-		payment.setPrice(2000);
-		payment.setPayment_method("toss");
-		payment.setPayment_date(new Date());
-		payment.setSdate(new Date());
-		payment.setEdate(new Date());
-		payment.setStatus(1);
+//		payment.setIdx(1);
+//		payment.setUserid(userid);
+//		payment.setStoreid("shop@naver.com");
+//		payment.setName(fullname);
+//		payment.setCnt(1);
+//		payment.setPrice(2000);
+//		payment.setPayment_method("toss");
+//		payment.setPayment_date(new Date());
+//		payment.setSdate(new Date());
+//		payment.setEdate(new Date());
+//		payment.setStatus(1);
 		
-		result = paymentservice.insertPayment(payment);
+		
 		
 		//결제 됐는지 확인
 	      if (result < 1) {
