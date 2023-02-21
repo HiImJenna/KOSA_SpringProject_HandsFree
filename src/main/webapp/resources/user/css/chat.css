@@ -113,7 +113,7 @@
  
 .chat ul.chat_list {
     overflow-y: auto;
-    height: calc(100%);
+    height: calc(100% - 150px);
     box-sizing: border-box;
     padding: 5px 0;
 }

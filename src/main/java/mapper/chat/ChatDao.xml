@@ -6,14 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace= "dao.chat.ChatDao">
 	<insert id="insertChatRoom" parameterType="vo.chat.ChatRoom">
 		insert into chat_room(idx, status, sdate, last_subject, last_time)
-		values(#{idx}, #{status}, sysdate, #{last_subject}, sysdate)
+		values(#{idx}, #{status}, sysdate, #{lastSubJect}, sysdate)
 	</insert>
 	
-<!-- 	<insert id="insertChatJoin" parameterType="vo.chat.ChatJoin">
+ 	<insert id="insertChatJoin" parameterType="vo.chat.ChatJoin">
 		insert into chat_join(userid, room_idx)
-		values(#{userid}, #{room_idx})
+		values(#{userId}, #{roodIdx})
 	</insert>
 	
+	<!-- 
 	<insert id="insertChatMessage" parameterType="vo.chat.ChatMessage">
 		insert into chat_message(idx, userid, room_idx, content, sdate, read, type)
 		values(#{idx}, #{userid], #{room_idx}, #{content}, #{sdate}, #{read}, #{type})
