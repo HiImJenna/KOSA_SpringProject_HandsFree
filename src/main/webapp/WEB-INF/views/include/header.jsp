@@ -14,7 +14,6 @@
  <link href="${path}/resources/user/css/header.css" rel="stylesheet" />
  
 <body>
- <link rel="icon" href="${path}/resources/admin/img/crown.png" /> 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
@@ -26,9 +25,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#about us">About us</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#price">가격</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#guide">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="#about us" style="color:#787878;">About us</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="#price" style="color:#787878;">가격</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="#guide" style="color:#787878;">FAQ</a></li>
                     </ul>
                     
                     
@@ -43,7 +42,7 @@
 						
 					<se:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" ><!-- if문 -->
 					<div class="dropdown" >
-					  <button class="btn btn-secondary dropdown-toggle" style="background-color: #0003ff" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+					  <button class="btn dropdown-toggle" style="background-color: #0064CD; color:white;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 					    <se:authentication property="name"/>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">

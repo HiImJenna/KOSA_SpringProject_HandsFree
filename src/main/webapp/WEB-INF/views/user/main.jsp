@@ -10,12 +10,15 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>HandsFree main</title>
-        <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
+        
+        <!-- 수정 부분 -->
+        <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
+        
     </head>
     <body id="page-top">
 		<!-- header -->
@@ -31,14 +34,45 @@
 					<div class="col-lg-6">
 						
 						<div class="mb-5 mb-lg-0 text-center text-lg-start">
-							<h1 class="display-1 lh-1 mb-3">
-								Hands free와 함께하는 <br>가벼운 여행의 시작
+							<h1 class="display-1 lh-1 mb-3" style="color: #646464;">
+								<b>가벼운 여행의 시작</b>
 							</h1>
-							<br>
+							<h1 class="display-1 lh-1 mb-3" style="color: #5a5a5a;">
+								<b>Hands Free</b>
+							</h1>
+							<div class="mb-3" style="color: #787878; font-weight:bold;">Anywhere, anytime</div>
 
-							<p class="lead fw-normal text-muted mb-5">
+							<table class="table table-borderless">
+
+									<tr>
+										<td style="vertical-align:middle"><i class="bi bi-geo-alt-fill"></i></td>
+										<td colspan="3"><input style = "text-align:center;"
+									class="form-control" type="text" placeholder="서울시 강남구"
+									name="destination" id="destination"></td>
+									</tr>
+								<tr>
+									<td style="vertical-align: middle"><i
+										class="bi bi-calendar3"></i></td>
+									<td><input type="date" class="datebutton form-control" 
+										style="text-align: center; color:#646464;" name="sdate" id="sdate" required
+										aria-required="true" data-placeholder="맡기는 날" /></td>
+									<td style="vertical-align: middle"><i
+										class="bi bi-calendar3"></i></td>
+									<td><input type="date" class="datebutton form-control"
+										style="text-align: center; color:#646464;" name="edate" id="edate" required
+										aria-required="true" data-placeholder="찾는 날" /></td>
+								</tr>
+								<tr>
+										<td style="vertical-align:middle"><i class="bi bi-handbag"></i></td>
+										<td><input type="number" class="datebutton form-control" style = "text-align:center; color:#646464;" name="cnt" id="cnt" min="1" max="100" value="1" /></td>
+										<td style="vertical-align:middle">개</td>
+										<td style="vertical-align:bottom; text-align:right; color:#646464; font-size:15px"> * 최대 20개까지</td>
+									</tr>
+							</table>
+
+							<!-- <p class="lead fw-normal text-muted mb-5">
 								<i class="bi bi-geo-alt-fill"></i> &nbsp <input
-									class="input-text" type="text" placeholder="어디로 가시나요?"
+									class="input-text" type="text" placeholder="서울특별시"
 									name="destination" id="destination"><br> <br>
 									
 								<i class="bi bi-calendar3"></i> &nbsp 
@@ -48,8 +82,9 @@
 								<input type="date" class="datebutton" name="edate" id="edate" placeholder="찾는 날" /> <br> <br>
 					
 								 <i class="bi bi-handbag"></i> 
-								 <input type="text" class="datebutton" name="cnt" id="cnt" placeholder="짐 개수" />
-							</p>
+								 <input type="number" class="datebutton" name="cnt" id="cnt" min="1" max="100" value="1" />개
+							</p> -->
+							
 							<div class="d-flex flex-column flex-lg-row align-items-center">
 								<button class="custom-btn btn-1">검색하기</button>
 							</div>
