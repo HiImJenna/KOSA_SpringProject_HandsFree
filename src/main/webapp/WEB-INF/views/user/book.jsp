@@ -67,13 +67,13 @@
 			<form name="paymentform" action="/users/userBook" method=post>
 				<p>
 					<label>예약자명 : </label> <input type="text"
-						id="name" name="name" value=${fullname} readonly>
+						id="name" name="name" value="kosa">
 						
 					<label>이메일 : </label> <input type="text"
-						id="name" name="name" value=${userid} readonly>
+						id="name" name="name" value="kosa" readonly>
 				</p>
 			
-					<button id="payment-button" type="submit">결제하기</button>
+					<button id="payment-button" type="submit" >결제하기</button>
 			</form>
 		
 	</div>
@@ -85,8 +85,9 @@
 					<div class="place-infos clearfix">
 						<div class="place-text">
 							<div class="type">
-								<div class="address" name="storeid">가게이름 : ${storeName}</div>
+								<div class="address" name="storeid">${storeName}</div>
 								<div class="nanny-type">전화번호 : ${phone}</div>
+								<div class="nanny-type">이메일 : ${storeId}</div>
 								<div class="d-flex nanny-stars">
 									<div class="type-point" style="display: none;">•</div>
 								</div>
@@ -102,17 +103,17 @@
 						<div class="separator"></div>
 						<div class="price-info clearfix">
 							<div class="item">맡기는 날</div>
-							<div class="value">Feb 10, 2023 at 10:00 AM - 10:30 AM</div>
+							<div class="value">임시날짜${sdate}</div>
 						</div>
 						<div class="price-info clearfix">
 							<div class="item">찾는 날</div>
-							<div class="value">Feb 11, 2023 at 11:00 AM - 11:30 AM</div>
+							<div class="value">임시날짜${edate}</div>
 						</div>
 					</div>
 					<div class="infos-part address-warning">
 						<div class="separator"></div>
 						<div class="title">주소</div>
-						<div>무슨로 무슨로 어쩌구</div>
+						<div>${address}</div>
 						<div class="separator"></div>
 					</div>
 					<div class="infos-part">
@@ -127,7 +128,7 @@
 													<p>맡기는 날</p>
 													<a class="nanny-icon calendar leftcal"></a> 
 													<a id="bookingDepositDateTimeUniversal" role="button"
-														class="to users-map-label"> ${sdate} 
+														class="to users-map-label"> 임시날짜${sdate} 
 														<span>10:00 - 11:00</span>
 													</a>
 													
@@ -136,7 +137,7 @@
 												<div class="vdatetime">
 													<p>찾는 날</p>
 													<a id="bookingWithdrawalDateTimeUniversal" role="button"
-														class="to users-map-label"> ${edate}
+														class="to users-map-label"> 임시날짜${edate}
 														<span>11:00 - 11:30</span>
 													</a>
 												</div>

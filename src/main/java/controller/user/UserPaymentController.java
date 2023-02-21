@@ -1,6 +1,10 @@
 package controller.user;
 
 import java.security.Principal;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +24,30 @@ public class UserPaymentController {
 	private PaymentService paymentservice;
 	@Autowired
 	private UserMyinfoService usermyinfoservice;
-
+	
 	@GetMapping("/users/userBook")
 	public String userBook(Model model, 
-						   @RequestParam("STOREID") String storeId){
+						   @RequestParam("STOREID") String storeId) {
+		
 		Store store = paymentservice.findStoreByUserId(storeId);
+//		System.out.println(sdate);
+//		System.out.println(edate);
+//		System.out.println(cnt);
+		
 		model.addAttribute("storeName", store.getName());
 		model.addAttribute("address", store.getAddress());
 		model.addAttribute("phone", store.getPhone());
+		model.addAttribute("storeId", storeId);
 
 		return "user/book";
 	}
 	
+	//결제 처리
 	@PostMapping("/users/userBook") 
-	public String userBook (Principal pri, Model model, Payment payment) {
+	public String userBook (HttpServletRequest request, Principal pri,
+							Model model, Payment payment) {
+		
+		System.out.println("@PostMapping(\"/users/userBook\") ");
 		int result = 0;
 		String userid = pri.getName();
 		
@@ -41,19 +55,32 @@ public class UserPaymentController {
 		String msg = "";
 		String url = "";
 		
+//		String cnt = request.getParameter("cnt");		
+//		String dropDate = request.getParameter("dropDate");
+//		String pickupDate = request.getParameter("pickupDate");
+//
+//		System.out.println("cnt"+cnt);
+//		System.out.println("dropDate"+dropDate);
+//		System.out.println("pickupDate"+pickupDate);
+		
 		Users users =  usermyinfoservice.userDetail(userid);
-		
+	
 		String lastname = users.getLast_name(); //이름
-		System.out.println("UserPaymentController lastname : " + lastname);
 		String firstname = users.getFirst_name(); //성
-		System.out.println("UserPaymentController firstname : " + firstname);
-
-		String fullname = firstname + lastname;
-		System.out.println("UserPaymentController username(fullname) : " + fullname);
+		String fullname = firstname + lastname; //풀네임
 		
+		payment.setIdx(1);
+		payment.setUserid("user@naver.com");
+		payment.setStoreid("shop@naver.com");
 		payment.setName(fullname);
-		model.addAttribute("username", fullname);
-
+		payment.setCnt(1);
+		payment.setPrice(2000);
+		payment.setPayment_method("toss");
+		payment.setPayment_date(new Date());
+		payment.setSdate(new Date());
+		payment.setEdate(new Date());
+		payment.setStatus(1);
+		
 		result = paymentservice.insertPayment(payment);
 		
 		//결제 됐는지 확인
@@ -63,16 +90,27 @@ public class UserPaymentController {
 	         url = "/";
 	      } else {
 	         icon = "success";
-	         msg = "결제 실패 ㅠㅠ결제 성공!";
+	         msg = "결제 성공!";
 	         url = "/users/myreserve";
 	      }
 	      
-	      model.addAttribute("fullname", fullname);
-	      model.addAttribute("userid", userid);
-
+//	      model.addAttribute("idx", 0);
+//	      model.addAttribute("userid", "dddd");
+//	      model.addAttribute("storeId", "shop@naver.com");
+//	      model.addAttribute("name", "dd");	    
+//	      model.addAttribute("cnt", 2);	
+//	      model.addAttribute("price", 2000);	
+//	      model.addAttribute("sdate", "2023-02-21");	
+//	      model.addAttribute("edate", "2023-02-25");
+//	      
 	      model.addAttribute("msg", msg);
 	      model.addAttribute("url", url);
 	      model.addAttribute("icon", icon);
+	      
+//		  model.addAttribute("cnt", cnt);
+//		  model.addAttribute("dropDate", dropDate);
+//		  model.addAttribute("pickupDate", pickupDate);
+
 
 		return "common/redirect"; 
 	}

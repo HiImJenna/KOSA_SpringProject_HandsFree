@@ -144,7 +144,7 @@ padding: 0px;
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
                         style="margin-bottom: 15px">상세보기</button>
-                     <br>
+                     <br>														
                      <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}'">예약하기</button>
                   </div>
                </div>`;
@@ -547,9 +547,7 @@ padding: 0px;
             
          </div>
       </nav>
-      <!-- Sidebar -->
 
-      <!-- header -->
       <%
          pageContext.include("/WEB-INF/views/include/header.jsp");
       %>
@@ -593,6 +591,8 @@ padding: 0px;
             <section class="mb-4"></section>
          </div>
       </main>
+      
+      
 </body>
 
 <%pageContext.include("/WEB-INF/views/include/footer.jsp");%>

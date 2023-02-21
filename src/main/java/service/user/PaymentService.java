@@ -21,6 +21,7 @@ private SqlSession sqlsession;
 	//결제
 	public int insertPayment(Payment payment){
 		int result = 0;
+		System.out.println(" **** " + payment);
 		PaymentDao dao = sqlsession.getMapper(PaymentDao.class);
 		
 		try {

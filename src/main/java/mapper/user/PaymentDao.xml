@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(idx, userid, storeid, name, cnt, price,
 		payment_method, payment_date, sdate, edate, status)
 		
-		values('0', #{userid}, #{storeid}, #{name},
+		values(#{idx}, #{userid}, #{storeid}, #{name},
 		#{cnt}, #{price},'toss', sysdate,
 		#{sdate}, #{edate}, '1')
 	</insert>	
