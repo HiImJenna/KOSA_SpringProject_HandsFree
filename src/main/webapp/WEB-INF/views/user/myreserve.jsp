@@ -109,6 +109,7 @@
 												      <th scope="col">찾는 날</th>
 												      <th scope="col">주소</th>
 												      <th scope="col">전화번호</th>
+												      <th scope="col">리뷰작성</th>
 												      
 												    </tr>
 												  </thead>
@@ -124,6 +125,7 @@
 													      <td>${item.EDATE}</td>
 													      <td>${item.ADDRESS}</td>
 													      <td>${item.PHONE}</td>
+													      <td>작성하기</td>
 													      
 													    </tr>
 													    </c:forEach>
