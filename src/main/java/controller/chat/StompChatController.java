@@ -32,6 +32,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import service.chat.ChatService;
 import vo.chat.ChatJoin;
+import vo.chat.ChatMessage;
 import vo.chat.ChatRoom;
 import vo.chat.ChatingRoom;
 import vo.chat.Message;
@@ -61,7 +62,9 @@ public class StompChatController {
 	 */
 	//채팅방 초기화
 	@GetMapping("/chatingRoomList")
-	public ResponseEntity<?> chatingRoomList(){
+	public ResponseEntity<?> chatingRoomList(Authentication auth){
+		String nickname = auth.getName();
+		System.out.println(nickname);
 		return new ResponseEntity<LinkedList<ChatingRoom>>(chatingRoomList, HttpStatus.OK);
 	}
 
@@ -102,7 +105,7 @@ public class StompChatController {
 		
 		//쿠키생성
 		Cookie nameCookie = new Cookie("nickname", nickname);
-		Cookie roomCookie = new Cookie("roomNumber", roomNumber); 
+		Cookie roomCookie = new Cookie("roomNumber", roomNumber);
 		//단위 초 (7일 설정)
 		int maxage = 60 * 60 * 24 * 7;
 		nameCookie.setMaxAge(maxage);
@@ -127,7 +130,6 @@ public class StompChatController {
 	//방들어가기
 	@GetMapping("/chatingRoom-enter")
 	public ResponseEntity<?> EnterChatingRoom(HttpServletResponse response, String roomNumber, String nickname){
-		
 		//방번호 찾기
 		ChatingRoom chatingRoom = findRoom(roomNumber);
 
@@ -202,17 +204,23 @@ public class StompChatController {
 	//채팅메세지 보내기
 	@MessageMapping("/socket/sendMessage/{roomNumber}")
 	@SendTo("/topic/message/{roomNumber}")
-	public Message sendMessage(@DestinationVariable String roomNumber, Message message) {
-/*
-		ChatRoom chatjoin = ChatRoom.builder()
-				.idx(roomNumber)
-				.status(1)
+	public ChatMessage sendMessage(@DestinationVariable String roomNumber, Authentication auth, String messageVal) {
+		String nickname = auth.getName();
+		String roodIdx = "";
+		
+		ChatMessage message = ChatMessage.builder()
+				.userId(nickname)
+				.roodIdx(roodIdx)
+				.content(messageVal)
 				.sDate(new Date())
-				.lastSubJect("")
-				.lastTime(new Date())
+				.read(1)
+				.type("입장")
 				.build();
-		chatservice.insertChatJoin(chatjoin);
-	*/	
+		
+		chatservice.insertChatMessage(message);
+	
+		
+
 		return message;
 	}
 	
