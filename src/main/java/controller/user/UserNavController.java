@@ -1,14 +1,22 @@
 package controller.user;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import service.user.UserMyinfoService;
+import vo.user.Payment;
 import vo.user.Users;
 
 @Controller
@@ -94,9 +102,14 @@ public class UserNavController {
 	}
 	
 	@GetMapping("/users/myreserve")
-	public String myreserve() {
-		return "user/myreserve";
+	public ModelAndView reserveInfo(Principal pri) {
+		String userid = pri.getName();
+		List<Map<String, String>> list =  usermyinfoservice.reserveInfo(userid);	
+		ModelAndView model = new ModelAndView("/user/myreserve");
+		model.addObject("list",list);
+		return model;
 	}
+	
 	
 	@GetMapping("/users/shopregister")
 	public String shopregister() {
