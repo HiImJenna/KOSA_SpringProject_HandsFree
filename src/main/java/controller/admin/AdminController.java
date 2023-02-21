@@ -160,7 +160,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/mail")   
-	public String mail() {
+	public String mail(Model model, Principal principal) {
+		String userId = principal.getName();
+		
+		List<Reservation> reservationList = reservationservice.getReservationList(userId);
+		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/mail";
 	}
 	
@@ -175,7 +179,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/mailForm")
-	public String emailForm() {		
+	public String emailForm(int idx, Model model) {		
+		Reservation reservation = reservationservice.userDetail(idx);
+		model.addAttribute("reservation", reservation);
+		
 		return "admin/mainInc/mailForm";
 	}
 	

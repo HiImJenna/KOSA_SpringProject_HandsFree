@@ -29,4 +29,16 @@ public class ReservationService {
 		}
 		return list;
 	}
+	
+	public Reservation userDetail(int idx) {
+		Reservation reservation = null;
+		ReservationDao reservationDao = sqlsession.getMapper(ReservationDao.class);
+		try {
+			reservation = reservationDao.getReservation(idx);
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		return reservation;
+	}
+	
 }

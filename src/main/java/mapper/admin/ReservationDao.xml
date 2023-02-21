@@ -14,5 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER BY IDX DESC
 	</select>
 
+	<!-- 단건 조회 예약 불러오기 -->
+	<select id="getReservation" resultType="vo.Reservation">
+		select userid from reservation where idx = #{idx}
+	</select>
+	
+
 
 </mapper>

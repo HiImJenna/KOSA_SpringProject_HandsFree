@@ -16,5 +16,7 @@ public interface ReservationDao {
 	//전체 예약 개수
 	List<Reservation> getReservations(@Param("userid") String userid) throws ClassNotFoundException, SqlSessionException;
 	
+	//유저 상세
+	Reservation getReservation(int idx) throws ClassNotFoundException, SQLException;
 	
 }
