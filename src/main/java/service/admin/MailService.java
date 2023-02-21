@@ -8,6 +8,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -21,8 +22,17 @@ import vo.admin.Email;
 @Service
 public class MailService{
 	
+	private SqlSession sqlsession;
+
 	@Autowired
 	private JavaMailSender emailSender;
+	
+	
+	@Autowired
+	public MailService(SqlSession sqlsession) {
+		this.sqlsession = sqlsession;
+	}
+	
 	
 //	파일 첨부기능 있는 메일
 	public void sendEmail(String fromAddress, Email email, MultipartFile file) throws MessagingException, IOException {
@@ -55,6 +65,7 @@ public class MailService{
 		
 		}
 		
-		
+
+	
 }
 

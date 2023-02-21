@@ -6,8 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dao.admin.AdminDao;
 import dao.admin.ReviewDao;
 import vo.Review;
+import vo.admin.Store;
 
 @Service
 public class ReviewService {
@@ -19,18 +21,16 @@ public class ReviewService {
 		this.sqlsession = sqlsession;
 	}
 	
-	
-	public List<Review> reviews(){
+	public List<Review> getReviewList(String userId){
+		ReviewDao reviewDao = sqlsession.getMapper(ReviewDao.class);
 		List<Review> reviewList=null;
 		try {
-			ReviewDao reviewdao = sqlsession.getMapper(ReviewDao.class);
-			reviewList = reviewdao.getReviews();
+			reviewList = reviewDao.getReviews(userId);
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return reviewList;
 	}
-	
 	
 	
 }

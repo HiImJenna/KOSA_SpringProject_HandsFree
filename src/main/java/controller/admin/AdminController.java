@@ -27,6 +27,7 @@ import service.ReviewService;
 import service.admin.AdminService;
 import service.admin.MailService;
 import service.file.FileService;
+import service.user.UserMyinfoService;
 import vo.Reservation;
 import vo.Review;
 import vo.admin.CalendarInfo;
@@ -57,12 +58,18 @@ public class AdminController {
 	
 	@Autowired
 	private ReservationService reservationservice;
+	
+	@Autowired
+	private UserMyinfoService usermyinfoservice;
 
 	@GetMapping("admin") 
 	public String admin(Model model, Principal principal) {
 		
 		String userId = principal.getName();
 		
+		//각 컨트롤러마다 다 설정해야함
+		Users users = usermyinfoservice.userDetail(userId);
+		model.addAttribute("users", users);
 		// users
 		//// 프로필 이미지
 		Users user = adminService.findAdminUserByUserId(userId);
@@ -144,13 +151,7 @@ public class AdminController {
 		
 		String userId = principal.getName();
 		
-		////////////////////////
-		//User user = 
-		
-		//model.addAttribute(userId);
-		/////////////////////
-		
-		List<Reservation> reservationList = reservationservice.reservations();
+		List<Reservation> reservationList = reservationservice.getReservationList(userId);
 		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";
 	}
@@ -161,17 +162,21 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/review")   
-	public String review(Model model) {
-		List<Review> reviewList = reviewservice.reviews();
+	public String review(Model model,Principal principal) {
+		String userId = principal.getName();
+		Store store = adminService.findStoreByUserId(userId);
+		List<Review> reviewList = reviewservice.getReviewList(userId);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("storeName", store.getName());
 		return "admin/mainInc/review";
 	}
 	
-	
-	
-	
 	@GetMapping("admin/mail")   
-	public String mail() {
+	public String mail(Model model, Principal principal) {
+		String userId = principal.getName();
+		
+		List<Reservation> reservationList = reservationservice.getReservationList(userId);
+		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/mail";
 	}
 	
@@ -186,7 +191,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/mailForm")
-	public String emailForm() {		
+	public String emailForm(int idx, Model model) {		
+		Reservation reservation = reservationservice.userDetail(idx);
+		model.addAttribute("reservation", reservation);
+		
 		return "admin/mainInc/mailForm";
 	}
 	
