@@ -23,6 +23,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from users where userid=#{userid}
 	</delete>
 	
-	
+	<select id="reserveInfo" resultType="HashMap">
+		select st.storeid, st.name as storename, st.phone, st.address, 
+		       rs.name as username, rs.cnt, rs.price, rs.sdate, rs.edate
+		       
+		from store st 
+		inner join reservation rs on st.storeid = rs.storeid
+		inner join users us 	  on us.userid = rs.userid
+		
+		where us.userid = #{userid}
+	</select>
 	
 </mapper>
