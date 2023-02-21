@@ -2,9 +2,7 @@ package controller.admin;
 
 import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-
 import controller.admin.dto.AdminRegisterDto;
 import controller.admin.dto.AdminViewTimeDto;
 import controller.admin.dto.StoreInfoUpdateDto;
@@ -50,15 +47,26 @@ public class AdminController {
 	
 	@Autowired
 	private ReservationService reservationservice;
+	
+	@Autowired
+	private UserMyinfoService usermyinfoservice;
 
 	@GetMapping("admin") 
 	public String admin(Model model, Principal principal) {
 		
 		String userId = principal.getName();
 		
+		//각 컨트롤러마다 다 설정해야함
+		Users users = usermyinfoservice.userDetail(userId);
+		model.addAttribute("users", users);
 		// users
-		//// 프로필 이미지 아래 임시 코드 있음
-		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		//// 프로필 이미지
+		Users user = adminService.findAdminUserByUserId(userId);
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
+		if (!user.getRealFilePath().contains("/")) {
+			profilePath = user.getRealFilePath();
+		}
+		model.addAttribute("profilePath", profilePath);
 		
 		// store
 		//// 가게 이름, 주소 , 대표번호
@@ -78,7 +86,7 @@ public class AdminController {
 		model.addAttribute("cPath", storeDetails.getCertificatePath());
 		
 		// 프로필 이미지 임시
-		model.addAttribute("profilePath", storeDetails.getCertificatePath());
+		//model.addAttribute("profilePath", storeDetails.getCertificatePath());
 		
 		return "admin/admin";
 	}
@@ -89,8 +97,13 @@ public class AdminController {
 		String userId = principal.getName();
 		
 		// users
-		//// 프로필 이미지 필요함!!, 아래 임시 코드 있음
-		//model.addAttribute("profilePath", adminService.findAdminUser(userid).getProfile_path());
+		//// 프로필 이미지 필요함!!
+		Users user = adminService.findAdminUserByUserId(userId);
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
+		if (!user.getRealFilePath().contains("/")) {
+			profilePath = user.getRealFilePath();
+		}
+		model.addAttribute("profilePath", profilePath);
 		
 		// store
 		//// 가게 이름, 주소 , 대표번호
@@ -107,9 +120,6 @@ public class AdminController {
 		model.addAttribute("notice", storeDetails.getNotice());
 		model.addAttribute("cPath", storeDetails.getCertificatePath());
 		
-		// 프로필 이미지 임시
-		model.addAttribute("profilePath", storeDetails.getCertificatePath());
-		
 		return "admin/mainInc/manage";
 	}
 	
@@ -119,10 +129,9 @@ public class AdminController {
 									   Principal           principal) 
 	{
 		String userId = principal.getName();
-		dto.setProfilePath(userId);
-		Store store = dto.toStore(userId);
-		StoreDetails storeDetails = dto.toStoreDetail(userId);
-		adminService.updateStoreInfo(dto.toUser(userId), store, storeDetails);
+		dto.setProfilePath(request);
+		adminService.updateStoreInfo(dto.toUser(userId), dto.toStore(userId), dto.toStoreDetail(userId));
+		fileService.updateAdminProfile(dto, userId);
 		return "redirect:/admin";
 	}
 	
@@ -131,13 +140,7 @@ public class AdminController {
 		
 		String userId = principal.getName();
 		
-		////////////////////////
-		//User user = 
-		
-		//model.addAttribute(userId);
-		/////////////////////
-		
-		List<Reservation> reservationList = reservationservice.reservations();
+		List<Reservation> reservationList = reservationservice.getReservationList(userId);
 		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";
 	}
@@ -148,17 +151,21 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/review")   
-	public String review(Model model) {
-		List<Review> reviewList = reviewservice.reviews();
+	public String review(Model model,Principal principal) {
+		String userId = principal.getName();
+		Store store = adminService.findStoreByUserId(userId);
+		List<Review> reviewList = reviewservice.getReviewList(userId);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("storeName", store.getName());
 		return "admin/mainInc/review";
 	}
 	
-	
-	
-	
 	@GetMapping("admin/mail")   
-	public String mail() {
+	public String mail(Model model, Principal principal) {
+		String userId = principal.getName();
+		
+		List<Reservation> reservationList = reservationservice.getReservationList(userId);
+		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/mail";
 	}
 	
@@ -173,7 +180,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/mailForm")
-	public String emailForm() {		
+	public String emailForm(int idx, Model model) {		
+		Reservation reservation = reservationservice.userDetail(idx);
+		model.addAttribute("reservation", reservation);
+		
 		return "admin/mainInc/mailForm";
 	}
 	
@@ -209,5 +219,13 @@ public class AdminController {
 	public String storeLogin() {
 		//System.out.println("점주로그인");
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@GetMapping("/api/admin/calendar")
+	public ResponseEntity<CalendarInfoDto> getCalendarList(Principal principal) {
+		String userId = principal.getName();
+		//String userId = "admin1@naver.com";
+		return new ResponseEntity<CalendarInfoDto>(new CalendarInfoDto(adminService.getCalendarList(userId)), HttpStatus.OK);
 	}
 }

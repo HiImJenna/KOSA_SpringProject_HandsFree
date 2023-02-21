@@ -1,8 +1,11 @@
 package dao.admin;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import vo.admin.Admin;
+import vo.admin.CalendarInfo;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
@@ -19,4 +22,5 @@ public interface AdminDao {
 	public int updateAdminProfile(Users user);
 	public int updateAdminPhone(Store store);
 	public int updateAdminDetail(StoreDetails storeDetails);
+	public List<CalendarInfo> getCalendarListByUserId(String userId);
 }

@@ -3,6 +3,7 @@ package dao.admin;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSessionException;
 
 import vo.Reservation;
@@ -13,6 +14,9 @@ public interface ReservationDao {
 	//int getReservationCount(String field, String query) throws ClassNotFoundException, SQLException;
 	
 	//전체 예약 개수
-	List<Reservation> getReservations() throws ClassNotFoundException, SqlSessionException;
+	List<Reservation> getReservations(@Param("userid") String userid) throws ClassNotFoundException, SqlSessionException;
+	
+	//유저 상세
+	Reservation getReservation(int idx) throws ClassNotFoundException, SQLException;
 	
 }
