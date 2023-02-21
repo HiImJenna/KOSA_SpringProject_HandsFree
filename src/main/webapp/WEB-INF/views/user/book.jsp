@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +32,14 @@
       $(document).ready(function(){
     		$('#payment-button').click(function(e){
     			console.log("결제버튼 눌림");
-    			var username = "${principal.name}";
-    			var price = "2000";
-    			payment(name);
+    			var username = "${principal.username}";
+    			console.log(username)
+    			var price = "2000"; //가격 값 받아와야함
+    			payment(username);
     		})
     		
     		function payment(username){
+    			 let successUrl = "http://localhost:8090/users/paymentreserve?userid="+username;
     			 var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
     			 var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
     			      tossPayments.requestPayment('카드', { // 결제 수단
@@ -46,7 +48,7 @@
     			        orderId: 'QTIk82kxDPefXZC8MLFj0',
     			        orderName: "결제 진행",
     			        customerName: username,
-    			        successUrl: "http://localhost:8090/users/myreserve",
+    			        successUrl: successUrl,
     			        failUrl: "https://github.com/HiImJenna",   
     			        flowMode: 'D',
     			        easyPay: '토스페이'
