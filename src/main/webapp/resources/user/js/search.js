@@ -39,7 +39,7 @@ window.onload = function(){
 		var data1 = $(this).parents()
 		console.log(data1); */
 //		$("#chatBtn").css('display', 'inline-block');
-
+		var length = '';
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
 		var storeId = $(this).closest('div').data('obj');
@@ -117,7 +117,8 @@ window.onload = function(){
 	         url : 'item/review',
 	         data:data,
 	         success : function(data){
-	        	 console.log(data);
+	        	 length = data.length;
+	        	 console.log(length); //1으로 잘 뜸
 	         $.each(data, function(index, obj){
 	        	 console.log(obj);
 	            createTabView(obj, 'review');
@@ -131,31 +132,6 @@ window.onload = function(){
 
 	});
 	
-	
-	$(document).on("click", "#suggestion", function(){
-		var list_data = $(this).parents().eq(1);
-		var title = list_data.find("h4").text();
-		var data = {
-				title : title,
-				type : 'suggestion'
-		};
-		$.ajax({
-			type : "get",
-			url : 'item/suggestion',
-			data:data,
-			success : function(data){
-				createForm(data);
-				
-				/* $('#listGroup').empty();
-				var jsonData = JSON.parse(data);
-				$('#listGroup').append */
-				
-			},
-			error:function (request, status, error){
-                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-            }
-		}) 
-	});
 	
 	function createTabView(data, type){
 		console.log(data);
@@ -189,7 +165,7 @@ window.onload = function(){
 			                <span class="type-point">
 			                    •
 			                </span>
-			                366 reviews
+			                (${length}) reviews
 			            </div>
 			            <hr class="nanny-s<div class=" nanny-opinions">
 			            <div class="comments">
