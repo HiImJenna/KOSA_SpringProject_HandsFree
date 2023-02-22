@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.ReviewService;
+import service.user.UserSearchService;
 
 
 @RestController
@@ -19,6 +20,8 @@ public class UserSearchController {
 	
 	@Autowired
 	private ReviewService reviewservice;
+	@Autowired
+	private UserSearchService usersearchservice;
 
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
@@ -28,8 +31,10 @@ public class UserSearchController {
 	
 	@GetMapping("information")
 	public ResponseEntity<?> itemInformation(@RequestParam Map<String, Object> map){
+		String storeid = (String)map.get("storeId");
+		List<Map<String, String>> list = usersearchservice.getStore(storeid);
 		
-		return new ResponseEntity<>(map, HttpStatus.OK); 
+		return new ResponseEntity<>(list, HttpStatus.OK); 
 	}
 	
 	@GetMapping("review")
