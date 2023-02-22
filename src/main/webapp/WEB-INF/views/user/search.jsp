@@ -146,7 +146,7 @@ padding: 0px;
                   </div>
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
-                        style="margin-bottom: 15px" onclick="location.href='/item/information">상세보기</button>
+                        style="margin-bottom: 15px">상세보기</button>
                      <br>														
                      <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
                   </div>

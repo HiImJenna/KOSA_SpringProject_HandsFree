@@ -91,6 +91,9 @@ window.onload = function(){
 			url : 'item/information',
 			data:data,
 			success : function(data){
+				
+				console.log("정보데이터");
+				console.log(data);
 				createTabView(data, 'information');
 			},
 			error:function (request, status, error){
@@ -114,6 +117,7 @@ window.onload = function(){
 	         url : 'item/review',
 	         data:data,
 	         success : function(data){
+	        	 console.log(data);
 	         $.each(data, function(index, obj){
 	        	 console.log(obj);
 	            createTabView(obj, 'review');
@@ -198,16 +202,16 @@ window.onload = function(){
 			                                </div>
 			                            </div>
 			                            <div class="name-date">
-			                                <div class="name"><b>Sylva</b>
+			                                <div class="name"><b>${data.USERNAME}</b>
 			                                </div>
 			                                <div class="date">
-			                                    09/10/2022
+			                                    ${data.USEREDATE}
 			                                </div>
 			                            </div>
 			                        </div>
 			                        <div class="stars">
 			                            <div class="score">
-			                                5/5
+			                                ${data.STAR}
 			                            </div>
 			                            <div class="all-stars">
 			                                <div class="nanny-icon star yellow"></div>
@@ -218,10 +222,7 @@ window.onload = function(){
 			                            </div>
 			                        </div>
 			                    </div>
-			                    <div class="comment-content"><b> It was very useful. Would use this service again.</b><br>
-			                        Nannybag is a brilliant idea and a genuinely needed service. I only wish the distance mentioned
-			                        was more accurate before choosing the location. It mentioned .2km while it was actually .5km
-			                        once the accurate address was given.
+			                    <div class="comment-content">${data.USERCONTENT}
 			                    </div>
 			                </div>
 			            </div>
@@ -266,12 +267,12 @@ window.onload = function(){
 						
 						    <tr class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
 						        <th class="nav-item" role="presentation">
-						            <a id="firstTab" class="nav-link firstTab active" aria-current="page" onclick="activateTab('first')">
+						            <a id="firstTab" class="nav-link firstTab active" aria-current="page">
 						                <div id="information">정보</div>
 						        </th>
 						       
 						        <th class="nav-item" role="presentation">
-						            <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
+						            <a id="secondTab" class="nav-link" aria-current="page">
 						                <div id="review" data-obj=${data.storeId}>리뷰</div>
 						            </a>
 						        </th>
@@ -288,6 +289,10 @@ window.onload = function(){
 						</div>
 						`;
 		$('#listGroup').append(itemDetail);
+		//쓸수있음
+		// onclick="activateTab('first')"
+		//onclick="activateTab('second')"
+			
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
 		    "<th>EMPNO</th>"+
         	"<th>ENAME</th>"+
@@ -306,7 +311,7 @@ window.onload = function(){
 
 	}
 	
-   function activateTab(active){
+/*   function activateTab(active){
       let first = document.getElementById('firstTab');
       let second = document.getElementById('secondTab');
       let third = document.getElementById('thirdTab');
@@ -323,7 +328,7 @@ window.onload = function(){
          second.classList.remove('active');
          third.classList.add('active');
       }
-   }
+   }*/
 	
 	
 }
