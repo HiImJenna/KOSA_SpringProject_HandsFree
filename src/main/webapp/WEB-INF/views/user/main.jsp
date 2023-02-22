@@ -47,7 +47,7 @@
 									<tr>
 										<td style="vertical-align:middle"><i class="bi bi-geo-alt-fill"></i></td>
 										<td colspan="3"><input style = "text-align:center;"
-									class="form-control" type="text" placeholder="서울시 강남구"
+									class="form-control" type="text" placeholder="내 위치"
 									name="destination" id="destination"></td>
 									</tr>
 								<tr>
@@ -159,11 +159,9 @@
                 <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-12 col-lg-5">
                         <h2 class="display-4 lh-1 mb-4"><b>가격</b></h2>
-                        <p class="lead fw-normal text-muted mb-5 mb-lg-0">
-                            <b>시간 당 10,000원</b><br>
-                            NO 보증금<br>
-                            NO 수수료
-                        </p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">시간 당 10,000원</p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">NO 보증금</p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">NO 수수료</p>
                     </div>
                     <div class="col-sm-8 col-md-6">
                         <div class="px-5 px-sm-0"><img style="width: 500px; height: 500px;" src="${path}/resources/user/assets/img/coin.png" alt="coin" /></div>
@@ -205,10 +203,10 @@
         <section class="cta">
             <div class="cta-content">
                 <div class="container px-5">
-                    <h1 class="text-white display-1 lh-1 mb-4">이용가이드</h1>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
+                    <h1 class="text-white display-1 lh-1 mb-4"><b>이용가이드</b></h1>
+                    <h3 style="color: white;">1. 수화물 보관소 예약</h3> <h5 style="color: white;">&nbsp;A. 여행지에서 가까운 위치와 원하는 시간대를 선택하세요.</h5>
+                    <h3 style="color: white;">2. 짐을 맡겨주세요</h3> <h5 style="color: white;">&nbsp;A. 예약에 표시된 주소로 이동하세요. 수화물을 점주님께 직접 맡기세요.</h5>
+                    <h3 style="color: white;">3. 여행을 즐기십시오</h3> <h5 style="color: white;">&nbsp;A. 이제 짐이 안전하고 손이 자유로워 졌습니니다. 행복한 여행을 즐기세요!</h5>
 
                     <!-- <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://startbootstrap.com/theme/new-age" target="_blank">Download for free</a> -->
                 </div>

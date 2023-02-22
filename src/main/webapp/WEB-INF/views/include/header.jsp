@@ -32,7 +32,7 @@
                     
                     
                    <se:authorize access="!hasRole('ROLE_USER')"> 
-                   <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
+                   <button class="btn rounded-pill  px-3 mb-2 mb-lg-0" style="background-color: #0064CD; color:white;" onclick="location.href='/users/login'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">로그인</span>
 						</span>
@@ -55,7 +55,7 @@
 					</se:authorize>
 					
 					<se:authorize access="!hasRole('ROLE_USER')">		
-					<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/register'">
+					<button class="btn rounded-pill px-3 mb-2 mb-lg-0" style="background-color: #0064CD; color:white;" onclick="location.href='/users/register'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">회원가입</span>
 						</span>
