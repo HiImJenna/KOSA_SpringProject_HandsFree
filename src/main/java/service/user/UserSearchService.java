@@ -16,9 +16,8 @@ public class UserSearchService {
 	
 	
 //	public List<Map<String, String>> getStore(String latitude, String longitude){
-	public List<Map<String, String>> getStore(){
+	public List<Map<String, String>> getStore(String storeId){
 		List<Map<String, String>> list = null;
-		Map map=null;
 		try {
 			UserSearchDao userSearchDao = sqlsession.getMapper(UserSearchDao.class);
 //			list = userSearchDao.selectStore(latitude, longitude);

@@ -52,7 +52,7 @@
     			        failUrl: "https://github.com/HiImJenna",   
     			        flowMode: 'D',
     			        easyPay: '토스페이'
-    			      })
+    		})
     		}
       })
 

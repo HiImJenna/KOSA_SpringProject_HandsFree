@@ -1,7 +1,6 @@
 package controller.user;
 
 import java.security.Principal;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
