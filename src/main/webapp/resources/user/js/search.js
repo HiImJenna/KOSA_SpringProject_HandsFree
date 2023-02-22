@@ -162,6 +162,10 @@ window.onload = function(){
 						<div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
 						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;		    토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
 						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
+							<img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
+							     src="/resources/user/assets/img/chatBtn.png"
+							     alt="이미지 없어유">
+						 <br>
 					</div>
 						`;
 					
@@ -275,11 +279,7 @@ window.onload = function(){
 						        </th>
 
 						    </tr>
-						</table>
-						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
-					
-						
-						
+						</table>			
 						</div>
 						`;
 		$('#listGroup').append(itemDetail);
