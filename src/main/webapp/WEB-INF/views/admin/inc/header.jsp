@@ -21,7 +21,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="/admin"> <img
-         src="${path}/resources/admin/img/logo.png" height="30" /> 
+         src="${path}/resources/admin/img/logo6.png" height="30" /> 
       </a>
 
       <!-- Right links -->

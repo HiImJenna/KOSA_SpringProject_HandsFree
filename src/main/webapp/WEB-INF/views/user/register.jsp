@@ -9,7 +9,8 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>HandsFree main</title>
-	<link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
+	<!-- 수정 부분 -->
+    <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
 	<!-- Bootstrap icons-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- Google fonts-->
@@ -67,36 +68,7 @@
 </head>
 <body id="page-top" class="masthead">
 
-	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm"
-		id="mainNav">
-		<div class="container px-5">
-			<a class="navbar-brand fw-bold" href="/">Hands Free</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="bi-list"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-					<li class="nav-item"><a class="nav-link me-lg-3"
-						href="#about us">About us</a></li>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="#price">가격</a></li>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="#guide">FAQ</a></li>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="#">Korean</a></li>
-				</ul>
-				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/login'">
-					<span class="d-flex align-items-center"> <span class="small">로그인</span>
-					</span>
-				</button>
-				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" onclick="location.href='/users/register'">
-					<span class="d-flex align-items-center"> <span class="small">회원가입</span>
-					</span>
-				</button>
-			</div>
-		</div>
-	</nav>
+	<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 
 	<!-- 메인 -->
 	<header>
@@ -138,7 +110,7 @@
 						<div class="col">
 							<input style="height: 51px;" class="form-control" name="userpwd" id="password" type="password"
 							placeholder="비밀번호" data-sb-validations="required" /> 
-							<label for="password">password</label>
+							<label for="password"></label>
 							<div class="invalid-feedback"
 								data-sb-feedback="password:required">Password is required.</div>
 						</div>
@@ -149,7 +121,7 @@
 						<div class="col">
 							<input style="height: 51px;" class="form-control" id="confirmPassword" type="password"
 							placeholder="비밀번호 확인" data-sb-validations="required" /> 
-							<label for="password">password</label>
+							<label for="password"></label>
 							<div class="invalid-feedback"
 								data-sb-feedback="password:required">Password is required.</div>
 						</div>
@@ -199,7 +171,7 @@
 						<div class="col">
 							<input style="height: 51px;" class="form-control" name="password" id="password" type="password"
 							placeholder="비밀번호" data-sb-validations="required" /> 
-							<label for="password">password</label>
+							<label for="password"></label>
 							<div class="invalid-feedback"
 								data-sb-feedback="password:required">Password is required.</div>
 						</div>
@@ -210,7 +182,7 @@
 						<div class="col">
 							<input style="height: 51px;" class="form-control" id="password" type="password"
 							placeholder="비밀번호 확인" data-sb-validations="required" /> 
-							<label for="password">password</label>
+							<label for="password"></label>
 							<div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
 						</div>
 					</div>
