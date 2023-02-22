@@ -8,6 +8,7 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserReservationJoinVo {
 	private int idx;
 	private String storeName;

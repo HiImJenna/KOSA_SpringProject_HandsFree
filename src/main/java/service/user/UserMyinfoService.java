@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import controller.user.dto.UserReviewDto;
 import dao.user.UserMyinfoDao;
-import vo.user.Payment;
 import vo.UserReservationJoinVo;
 import vo.user.Users;
 

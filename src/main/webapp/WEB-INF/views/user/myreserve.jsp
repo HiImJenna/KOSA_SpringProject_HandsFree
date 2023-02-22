@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html
     lang="en-US"
@@ -26,7 +27,7 @@
 		crossorigin="anonymous"></script>
 
 <head>
-        <title>예약내역 👜</title>
+        <title>예약내역</title>
        	<meta data-n-head="ssr" charset="utf-8">
        	
        	<style type="text/css">
@@ -86,7 +87,7 @@
                             <div class="row">
                                 <div class="col-12 col-md-6 content-col">
                                     <h1 class="color-nanny-dark">
-                                        	예약 내역 👜
+                                        	예약 내역
                                     </h1>
                                 </div>
                                 <div class="col-md-6 text-right desktop help-text">
@@ -153,8 +154,12 @@
 											      <td>${item.pdate}</td>
 											      <td>${item.sdate}</td>
 											      <td>${item.edate}</td>
-											      <td id="reviewTr${item.idx}" style="display: block"><button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰 작성</button></td>
-											      <td id="cancelTr${item.idx}" style="display: none"><button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button></td>
+											      <td id="reviewTr${item.idx}" style="display: block">
+											      	<button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰작성</button>
+											      </td>
+											      <td id="cancelTr${item.idx}" style="display: none">
+											      	<button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button>
+											      </td>
 											    </tr>
 											    <tr id="reviewFormTr${item.idx}" style="display: none">
 											    	<form action="/users/reviews?idx=${item.idx}" method="post">
@@ -189,41 +194,14 @@
 											</table>
                               
                                             <div class="data-presentation">
-                                                
+                                                <!---->
                                                 <div>
-												<table class="table">
-												  <thead>
-												    <tr>
-												      <th scope="col">✔️</th>
-												      <th scope="col">보관소명</th>
-												      <th scope="col">예약자명</th>
-												      <th scope="col">짐 개수</th>
-												      <th scope="col">결제 금액</th>
-												      <th scope="col">맡기는 날</th>
-												      <th scope="col">찾는 날</th>
-												      <th scope="col">주소</th>
-												      <th scope="col">전화번호</th>
-												      
-												    </tr>
-												  </thead>
-												  <tbody>
-													  <c:forEach items="${list}" var="item"> 
-													    <tr>
-													      <th scope="row">${item.index + 1}</th>
-													      <td>${item.STORENAME}</td>
-													      <td>${item.USERNAME}</td>
-													      <td>${item.CNT}개</td>
-													      <td>${item.PRICE}</td>
-													      <td>${item.SDATE}</td>
-													      <td>${item.EDATE}</td>
-													      <td>${item.ADDRESS}</td>
-													      <td>${item.PHONE}</td>
-													      
-													    </tr>
-													    </c:forEach>
-												  </tbody>
-												  
-												</table>
+                                                    <p class="no-data-title">
+                                                        You don't have a reservation at the moment
+                                                    </p>
+                                                    <p class="no-data-subtile">
+                                                        Don't be discouraged.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

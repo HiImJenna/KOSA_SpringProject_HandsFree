@@ -105,7 +105,9 @@ public class UserNavController {
 	@GetMapping("/users/myreserve")
 	public String myreserve(Model model, Principal principal) {
 		String userId = principal.getName();
-		model.addAttribute("list", usermyinfoservice.getReservationList(userId));		
+		List<UserReservationJoinVo> list = usermyinfoservice.getReservationList(userId);
+		System.out.println(list);
+		model.addAttribute("list", list);		
 		return "user/myreserve";
 	}
 	
