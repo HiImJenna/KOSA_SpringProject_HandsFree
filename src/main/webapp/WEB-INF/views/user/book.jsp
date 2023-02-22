@@ -130,20 +130,19 @@
 											<div class="dates d-flex flex-row">
 												<div class="vdatetime">
 													<p>맡기는 날</p>
-													<a class="nanny-icon calendar leftcal"></a> 
-													<a id="bookingDepositDateTimeUniversal" role="button"
-														class="to users-map-label"> 임시날짜${sdate} 
-														<span>10:00 - 11:00</span>
-													</a>
-													
+													<input type="date" class="datebutton" name="sdate" id="sdate" placeholder="맡기는 날" />
+													<select name='sTime'>
+														<option value='' selected>-- 선택 --</option>
+														
+													</select>
 												</div>
-												<a class="rightcal nanny-icon calendar"></a>
 												<div class="vdatetime">
 													<p>찾는 날</p>
-													<a id="bookingWithdrawalDateTimeUniversal" role="button"
-														class="to users-map-label"> 임시날짜${edate}
-														<span>11:00 - 11:30</span>
-													</a>
+													<input type="date" class="datebutton" name="edate" id="edate" placeholder="찾는 날" />
+													<select name='eTime'>
+														<option value='' selected>-- 선택 --</option>	
+														
+													</select>
 												</div>
 											</div>
 										</div>
