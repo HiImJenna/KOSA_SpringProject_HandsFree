@@ -32,7 +32,7 @@
                     
                     
                    <se:authorize access="!hasRole('ROLE_USER')"> 
-                   <button class="btn rounded-pill  px-3 mb-2 mb-lg-0" style="background-color: #0064CD; color:white;" onclick="location.href='/users/login'">
+                   <button class="btn rounded-pill  px-3 mb-2 mb-lg-0" style="background-color: #2937F0; color:white;" onclick="location.href='/users/login'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">로그인</span>
 						</span>
@@ -42,7 +42,7 @@
 						
 					<se:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" ><!-- if문 -->
 					<div class="dropdown" >
-					  <button class="btn dropdown-toggle" style="background-color: #0064CD; color:white;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+					  <button class="btn dropdown-toggle" style="background-color: #2937F0; color:white;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 					    <se:authentication property="name"/>
 					  </button>
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -55,7 +55,7 @@
 					</se:authorize>
 					
 					<se:authorize access="!hasRole('ROLE_USER')">		
-					<button class="btn rounded-pill px-3 mb-2 mb-lg-0" style="background-color: #0064CD; color:white;" onclick="location.href='/users/register'">
+					<button class="btn rounded-pill px-3 mb-2 mb-lg-0" style="background-color: #2937F0; color:white;" onclick="location.href='/users/register'">
 						<span class="d-flex align-items-center"> 
 							<span class="small">회원가입</span>
 						</span>

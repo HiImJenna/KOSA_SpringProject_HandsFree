@@ -148,17 +148,23 @@ window.onload = function(){
 	});
 	
 	function createTabView(data, type){
-		$('#tabView').empty();
+		
+		console.log(data);
+		$('#tabView').children().hide();
 		let itemTab = '';
 		if(type === 'information')
 		{
 			itemTab = `
-				<div class="">
-					<div id="">공지 : </div>
-					<div id="">주소 : </div>
-					<div id="">운영시간 : </div>
-					<div id="">번호 : </div>
-				</div>`;
+					<div class="detail">
+						<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>
+						<div id=""><i class="bi bi-geo-alt-fill"></i>&nbsp;${data[0].ADDRESS}</div><br>
+						<div id=""><i class="bi bi-telephone-fill"></i>&nbsp;${data[0].PHONE}</div><br>
+						<div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
+						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;		    토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
+						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
+					</div>
+						`;
+					
 		}else if(type == 'review'){
 			itemTab = `
 				<div class="nanny-opinions">
@@ -242,11 +248,9 @@ window.onload = function(){
 						    <tr>
 						        <th>
 						            <div class="detailsHeader">
-						                짐 보관소<br>
+										짐 보관소<br>
 						                <h4>${data.title}</h4>
-						
-						
-						                옷가게<br> <i class="fa-solid fa-star"></i>
+						                 <i class="fa-solid fa-star"></i>
 						            </div>
 						        </th>
 						    </tr>
@@ -255,16 +259,11 @@ window.onload = function(){
 						        <th class="nav-item" role="presentation">
 						            <a id="firstTab" class="nav-link firstTab active" aria-current="page" onclick="activateTab('first')">
 						                <div id="information">정보</div>
-						            </a>
 						        </th>
+						       
 						        <th class="nav-item" role="presentation">
 						            <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
 						                <div id="review">리뷰</div>
-						            </a>
-						        </th>
-						        <th class="nav-item" role="presentation">
-						            <a id="thirdTab" class="nav-link" aria-current="page" onclick="activateTab('third')">
-						                <div id="suggestion">추천</div>
 						            </a>
 						        </th>
 						    </tr>
@@ -274,9 +273,14 @@ window.onload = function(){
 						        <th>
 						            <div id="tabView"></div>
 						        </th>
+
 						    </tr>
 						</table>
 						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
+					
+						
+						
+						</div>
 						`;
 		$('#listGroup').append(itemDetail);
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
