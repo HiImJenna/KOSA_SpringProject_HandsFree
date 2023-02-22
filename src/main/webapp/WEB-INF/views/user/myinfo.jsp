@@ -53,7 +53,7 @@
 						<div class="wrap">
 							<div class="row">
 								<div class="col-md-8 col-lg-9 col-12 mx-auto account desktop">
-									<h3 class="page-title color-nanny-dark">내 정보</h3>
+									<h3 class="page-title color-nanny-dark">내 정보 👤</h3>
 
 									<form name="myinfo" action="${path}/userUpdate" method="post"
 										enctype="multipart/form-data" autocomplete="off">

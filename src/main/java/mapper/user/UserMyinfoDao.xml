@@ -32,6 +32,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where a.userid = #{userid}
 		order by a.sdate
 	</select>
+	<select id="reserveInfo" resultType="HashMap">
+		select st.storeid, st.name as storename, st.phone, st.address, 
+		       rs.name as username, rs.cnt, rs.price, rs.sdate, rs.edate
+		       
+		from store st 
+		inner join reservation rs on st.storeid = rs.storeid
+		inner join users us 	  on us.userid = rs.userid
+		
+		where us.userid = #{userid}
+	</select>
 	
 	<select id="getUserFullName" resultType="String">
 		select concat(concat(last_name, ' '), first_name) as fullname 

@@ -9,10 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into reservation
 		(idx, userid, storeid, name, cnt, price,
 		payment_method, payment_date, sdate, edate, status)
-		
-		values('0', #{userid}, #{storeid}, #{name},
+		<!-- 
+		values(#{idx}, #{userid}, #{storeid}, #{name},
 		#{cnt}, #{price},'toss', sysdate,
 		#{sdate}, #{edate}, '1')
+		 -->
+		 values('1', #{userid}, 'shop@naver.com', 'nhj',
+		'2', '5000','toss', sysdate,
+		'2023-02-16', '2023-02-18', '1')
 	</insert>	
 	
+	<select id="findStoreByStoreId" resultType="vo.admin.Store">
+		select storeid as storeId, name, phone, address
+		from store
+		where storeid = #{STOREID}
+	</select>
+		
 </mapper>

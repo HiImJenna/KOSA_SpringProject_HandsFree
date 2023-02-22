@@ -21,7 +21,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="/admin"> <img
-         src="${path}/resources/admin/img/logo.png" height="30" /> 
+         src="${path}/resources/admin/img/logo6.png" height="30" /> 
       </a>
 
       <!-- Right links -->
@@ -36,7 +36,7 @@
             class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
             href="#" id="navbarDropdownMenuLink" role="button" 
             data-mdb-toggle="dropdown" aria-expanded="false">
-                ${users.last_name}${users.first_name}점주님</a>
+                [<se:authentication property="name"/>]</a>
             <ul class="dropdown-menu dropdown-menu-end"
                aria-labelledby="navbarDropdownMenuLink">
                <li><a class="dropdown-item" href="/users/userDetail">마이페이지</a></li>

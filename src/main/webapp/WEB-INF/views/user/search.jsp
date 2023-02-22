@@ -39,6 +39,9 @@
       crossorigin="anonymous"></script>
    <!-- 아이콘 -->
    <script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
+   <!-- Bootstrap icons-->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+   <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
    <!-- sock js -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
    <!-- STOMP -->
@@ -98,64 +101,64 @@ padding: 0px;
          // 지도를 생성합니다    
          var map = new kakao.maps.Map(mapContainer, mapOption); 
 
-			// 장소 검색 객체를 생성합니다
-			var ps = new kakao.maps.services.Places(); 
-			
-			if("${destination}" == ""){
-				if (navigator.geolocation) {
-					  navigator.geolocation.getCurrentPosition(function(position) {
-					        lat = position.coords.latitude; // 위도
-					        lon = position.coords.longitude; // 경도
-					        var locPosition = new kakao.maps.LatLng(lat, lon);
-					        var bounds = new kakao.maps.LatLngBounds();
-						    var marker = new kakao.maps.Marker({position: locPosition});
-						    marker.setMap(map);
-						    bounds.extend(locPosition);
-						    map.setBounds(bounds);
-						    map.setLevel(4);
-						    
-						    circle(lat, lon);
-						    
-					  });
-				}
-			}else{
-				// 키워드로 장소를 검색합니다
-				ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);
-			}
-		
-				function createList(data){
-					const str = data.ADDRESS;
-					var address = '';
-					if(str.length >= 5){
-						address = str.substr(0,9) + "...";
-					}
-					const itemList = `
-					<div class="shopList">
-						<img class="shop_img" alt="없음"
-							src="${path}/resources/user/assets/img/shop.jpg">
-						<div class="shop_info">
-								짐 보관소<br>
-							<h4>\${data.NAME}</h4>
-								\${address}<br>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-						</div>
-						<div class="list_button" data-obj=\${data.STOREID}>
-							<button type="button" class="btn btn-primary" id="detailBtn"
-								style="margin-bottom: 15px">상세보기</button>
-							<br>
-							<button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}'">예약하기</button>
-						</div>
-					</div>`;
-					$('#listGroup').append(itemList);
-				}
-			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-			function placesSearchCB (data, status, pagination) {
-			    if (status === kakao.maps.services.Status.OK) {
-			        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-			        // LatLngBounds 객체에 좌표를 추가합니다
-			        var bounds = new kakao.maps.LatLngBounds();
+         // 장소 검색 객체를 생성합니다
+         var ps = new kakao.maps.services.Places(); 
+         
+         if("${destination}" == ""){
+            if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(function(position) {
+                       lat = position.coords.latitude; // 위도
+                       lon = position.coords.longitude; // 경도
+                       var locPosition = new kakao.maps.LatLng(lat, lon);
+                       var bounds = new kakao.maps.LatLngBounds();
+                      var marker = new kakao.maps.Marker({position: locPosition});
+                      marker.setMap(map);
+                      bounds.extend(locPosition);
+                      map.setBounds(bounds);
+                      map.setLevel(4);
+                      
+                      circle(lat, lon);
+                      
+                 });
+            }
+         }else{
+            // 키워드로 장소를 검색합니다
+            ps.keywordSearch('<c:out value="${destination}" />', placesSearchCB);
+         }
+      
+            function createList(data){
+               const str = data.ADDRESS;
+               var address = '';
+               if(str.length >= 5){
+                  address = str.substr(0,9) + "...";
+               }
+               const itemList = `
+               <div class="shopList">
+                  <img class="shop_img" alt="없음"
+                     src="${path}/resources/user/assets/img/shop.jpg">
+                  <div class="shop_info">
+                        짐 보관소<br>
+                     <h4>\${data.NAME}</h4>
+                        \${address}<br>
+                     <i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                  </div>
+                  <div class="list_button" data-obj=\${data.STOREID}>
+                     <button type="button" class="btn btn-primary" id="detailBtn"
+                        style="margin-bottom: 15px" onclick="location.href='/item/information">상세보기</button>
+                     <br>														
+                     <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
+                  </div>
+               </div>`;
+               $('#listGroup').append(itemList);
+            }
+         // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+         function placesSearchCB (data, status, pagination) {
+             if (status === kakao.maps.services.Status.OK) {
+                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+                 // LatLngBounds 객체에 좌표를 추가합니다
+                 var bounds = new kakao.maps.LatLngBounds();
 
                  for (var i=0; i<data.length; i++) {
                      bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
@@ -288,7 +291,7 @@ padding: 0px;
          /*  채팅   */
          
          $(document).on("click", "#chatBtn", function(){
-        	const storeId = $('#chatBtn').data('obj');
+           const storeId = $('#chatBtn').data('obj');
             createRoom(storeId);
          })
          
@@ -323,10 +326,10 @@ padding: 0px;
             //var test = $('#dropdownMenu2').text();
             
             var nickname = $('#dropdownMenu2').text().trim();
-			console.log(storeId);
-			var data = {
-					storeId : storeId
-			}
+         console.log(storeId);
+         var data = {
+               storeId : storeId
+         }
             $.ajax({
                url : "/chatingRoom",
                type :  "POST",
@@ -351,9 +354,6 @@ padding: 0px;
          
          //메세지 보낼때      
          function sendMessage(){
-            console.log("메세지보낼때");
-            console.log(subscribe.length);
-            
             const message = $(".chat_input_area textarea");
             
             if(message.val() == "")
@@ -363,19 +363,15 @@ padding: 0px;
             const nickname = info.getNickname();
             
             const data = {
-                  message : message.val(),
-                  nickname : nickname
+                  message : message.val()
             }
-            console.log(roomNumber);
-            console.log(nickname);
-            console.log(data);
+
             stomp.send("/socket/sendMessage/" + roomNumber, {}, JSON.stringify(data));
             message.val("");
          }
          
          //채팅 구독.!!
          function chatingConnect(roomNumber){
-            console.log(subscribe.length);
             //메세지 받을 경로
             const id1 = stomp.subscribe("/topic/message/" + roomNumber, function(result){
                const message = JSON.parse(result.body);
@@ -490,17 +486,16 @@ padding: 0px;
 
          
           // 메세지 그리기
-         function chating(messageInfo){ 
-             let nickname = messageInfo.nickname;
-             let message = messageInfo.message;
+         function chating(messageInfo){
+        	 console.log(messageInfo);
+             let nickname = messageInfo.userId;
+             let message = messageInfo.content;
              
              message = message.replaceAll("\n", "<br>").replaceAll(" ", "&nbsp");
              
              
-             const date = messageInfo.date;
-
+             const date = messageInfo.sdate;
              const d = new Date(date);
-             
              const time = String(d.getHours()).padStart(2, "0") 
             + ":" 
             + String(d.getMinutes()).padStart(2, "0");
@@ -547,9 +542,7 @@ padding: 0px;
             
          </div>
       </nav>
-      <!-- Sidebar -->
 
-      <!-- header -->
       <%
          pageContext.include("/WEB-INF/views/include/header.jsp");
       %>
@@ -558,11 +551,7 @@ padding: 0px;
          <div class="container pt-4">
             <section class="mb-4">
                <div class="card">
-                  <div class="card-header py-3">
-                     <h5 id="searchKey">${destination}</h5>
-                     <h5>${dropDate}</h5>
-                     <h5>${pickupDate}</h5>
-                  </div>
+                  
                   <div id="map" class="card-body">
                      <canvas class="my-4 w-100" height="500"></canvas>                     
                   </div>
@@ -590,10 +579,9 @@ padding: 0px;
                   </div>
                </div>
             </section>
-            <section class="mb-4"></section>
          </div>
       </main>
+      
+      
 </body>
-
-<%pageContext.include("/WEB-INF/views/include/footer.jsp");%>
 </html>

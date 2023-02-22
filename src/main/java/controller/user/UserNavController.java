@@ -89,6 +89,7 @@ public class UserNavController {
 	         url = "/";
 	         SecurityContextHolder.clearContext(); //회원 탈퇴 시 자동 로그아웃
 	      } else {
+	    	  
 	         icon = "error";
 	         msg = "회원 탈퇴에 실패했습니다 :(";
 	         url = "/users/userDetail";

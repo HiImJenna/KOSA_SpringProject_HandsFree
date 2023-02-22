@@ -2,7 +2,7 @@ package vo.user;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +18,11 @@ public class Payment {
 	private int cnt;
 	private int price;
 	private String payment_method;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date payment_date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date sdate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date edate;
 	private int status;
 	
