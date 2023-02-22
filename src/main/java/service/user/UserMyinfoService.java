@@ -61,8 +61,7 @@ public class UserMyinfoService {
 	//예약 내역 상세보기
 	public List<Map<String, String>> reserveInfo(String userid) {
 		List<Map<String, String>> list = null;
-		Map map = null;
-		
+
 		try {
 		 	UserMyinfoDao userdao = sqlsession.getMapper(UserMyinfoDao.class);
 		 	list = userdao.reserveInfo(userid);

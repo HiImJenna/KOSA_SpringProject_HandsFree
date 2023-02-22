@@ -39,6 +39,9 @@
       crossorigin="anonymous"></script>
    <!-- 아이콘 -->
    <script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
+   <!-- Bootstrap icons-->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+   <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
    <!-- sock js -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
    <!-- STOMP -->
@@ -143,7 +146,7 @@ padding: 0px;
                   </div>
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
-                        style="margin-bottom: 15px">상세보기</button>
+                        style="margin-bottom: 15px" onclick="location.href='/item/information">상세보기</button>
                      <br>														
                      <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
                   </div>
@@ -548,11 +551,7 @@ padding: 0px;
          <div class="container pt-4">
             <section class="mb-4">
                <div class="card">
-                  <div class="card-header py-3">
-                     <h5 id="searchKey">${destination}</h5>
-                     <h5>${dropDate}</h5>
-                     <h5>${pickupDate}</h5>
-                  </div>
+                  
                   <div id="map" class="card-body">
                      <canvas class="my-4 w-100" height="500"></canvas>                     
                   </div>
@@ -580,12 +579,9 @@ padding: 0px;
                   </div>
                </div>
             </section>
-            <section class="mb-4"></section>
          </div>
       </main>
       
       
 </body>
-
-<%pageContext.include("/WEB-INF/views/include/footer.jsp");%>
 </html>
