@@ -559,7 +559,7 @@ padding: 0px;
                      <div>
                         <div id="chat_body" class="chat_body">
                            <h2 class="chat_title"></h2>
-                           <button class="chat_back">◀</button>
+                           <button class="chat_back"><i class="bi bi-caret-left"></i></button>
    
                            <ul class="chat_list">
                               <li></li>
@@ -571,7 +571,7 @@ padding: 0px;
                               </div>
    
                               <div class="chat_button_area">
-                                 <button>전송</button>
+                                 <button>✉️</button>
                               </div>
                            </div>
                         </div>

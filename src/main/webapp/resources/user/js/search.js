@@ -80,7 +80,7 @@ window.onload = function(){
 	$(document).on("click", "#information", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-
+		
 		var data = {
 				title : title,
 				type : 'information'
@@ -102,23 +102,29 @@ window.onload = function(){
 	$(document).on("click", "#review", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		
+		var storeId = $(this).closest('div').data('obj');
 		var data = {
 				title : title,
-				type : 'review'
+				type : 'review',
+				storeId : storeId
 		};
 
 		$.ajax({
-			type : "get",
-			url : 'item/review',
-			data:data,
-			success : function(data){
-				createTabView(data, 'review');
-			},
-			error:function (request, status, error){
-                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-            }
-		}) 
+	         type : "get",
+	         url : 'item/review',
+	         data:data,
+	         success : function(data){
+	         $.each(data, function(index, obj){
+	        	 console.log(obj);
+	            createTabView(obj, 'review');
+	         })
+	            
+	         },
+	         error:function (request, status, error){
+	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+	            }
+	      }) 
+
 	});
 	
 	
@@ -148,21 +154,24 @@ window.onload = function(){
 	});
 	
 	function createTabView(data, type){
-		
 		console.log(data);
 		$('#tabView').children().hide();
 		let itemTab = '';
 		if(type === 'information')
 		{
 			itemTab = `
-					<div class="detail">
-						<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>
-						<div id=""><i class="bi bi-geo-alt-fill"></i>&nbsp;${data[0].ADDRESS}</div><br>
-						<div id=""><i class="bi bi-telephone-fill"></i>&nbsp;${data[0].PHONE}</div><br>
-						<div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
-						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;		    토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
-						<div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
-					</div>
+						<div class="detail">
+							<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>
+							<div id=""><i class="bi bi-geo-alt-fill"></i>&nbsp;${data[0].ADDRESS}</div><br>
+							<div id=""><i class="bi bi-telephone-fill"></i>&nbsp;${data[0].PHONE}</div><br>
+							<div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
+							<div id="">&nbsp;&nbsp;&nbsp;&nbsp;		    토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
+							<div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
+								<img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
+								     src="/resources/user/assets/img/chatBtn.png"
+								     alt="이미지 없어유">
+							 <br>
+						</div>
 						`;
 					
 		}else if(type == 'review'){
@@ -263,7 +272,7 @@ window.onload = function(){
 						       
 						        <th class="nav-item" role="presentation">
 						            <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
-						                <div id="review">리뷰</div>
+						                <div id="review" data-obj=${data.storeId}>리뷰</div>
 						            </a>
 						        </th>
 						    </tr>
@@ -275,11 +284,7 @@ window.onload = function(){
 						        </th>
 
 						    </tr>
-						</table>
-						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
-					
-						
-						
+						</table>			
 						</div>
 						`;
 		$('#listGroup').append(itemDetail);

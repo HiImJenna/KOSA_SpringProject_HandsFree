@@ -7,7 +7,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- <select id="getCount" resultType="int"></select> -->
 
 	<select id="getReviews" resultType="vo.Review">
-		select u.name as userName, u.edate as userEdate, u.grade as star, u.content as userContent, a.edate as storeEdate, a.content as storeContent from review u left join review a on u.rs_idx = a.parent left join reservation r on u.idx = r.idx where u.parent is null and u.status=1 and r.storeid = #{userid} order by useredate desc
+		select u.name as userName, u.edate as userEdate, 
+			   u.grade as star, u.content as userContent 
+		from review u left join reservation r on u.rs_idx = r.idx 
+		where parent is null and r.status =1 and r.storeid=#{userid} order by useredate desc
+	</select>
+	
+	<select id="getReviewListUser" resultType="HashMap">
+		select v.name as userName, v.edate as userEdate, 
+			   v.grade as star, v.content as userContent 
+		from review v left join reservation r on v.rs_idx = r.idx 
+		where parent is null and r.status =1 and r.storeid=#{storeid} order by useredate desc
 	</select>
 
 
