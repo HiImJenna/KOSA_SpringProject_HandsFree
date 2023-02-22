@@ -2,9 +2,10 @@ package dao.user;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import vo.UserReservationJoinVo;
 import vo.user.UserReview;
+import java.util.Map;
+
 import vo.user.Users;
 
 public interface UserMyinfoDao {
@@ -25,5 +26,7 @@ public interface UserMyinfoDao {
 	
 	// 사용자 review 저장 하기
 	public int saveUserReview(UserReview review);
-
+  
+	//예약 내역 상세
+	List<Map<String, String>> reserveInfo(String userid) throws ClassNotFoundException, SQLException;
 }

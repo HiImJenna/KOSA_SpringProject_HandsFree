@@ -4470,6 +4470,7 @@ fieldset:disabled .btn {
 }
 .card {
   position: relative;
+  margin-left: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4510,8 +4511,9 @@ fieldset:disabled .btn {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  padding: 1rem;
-  height: 580px;
+  /*padding: 1rem;*/
+  height: 850px;
+  width: 100%;
 }
 .card-title {
   margin-bottom: 0.5rem;
@@ -16059,6 +16061,7 @@ fieldset:disabled .btn-group-vertical {
 }
 
 .detailsHeader{
+	text-align: center;
 }
 
 .shop_info {
@@ -16123,4 +16126,11 @@ fieldset:disabled .btn-group-vertical {
     background: #3B47F5;
     bottom: -15px;
     left: 35px;
+}
+
+.detail{
+	text-align: left;
+	font-size: 1.0rem;
+	padding: 20px;
+	
 }

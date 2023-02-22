@@ -9,4 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		std.manage_week_time, std.manage_sat_time, std.manage_sun_time from store st inner join store_details std
 		on st.storeid = std.storeid
 	</select>
+	
+	<!-- 
+	<select id="shopDetail" resultType="HashMap">
+		select st.storeid, st.name, st.phone, st.address, std.notice, 
+		std.manage_week_time, std.manage_sat_time, std.manage_sun_time 
+		from store st inner join store_details std
+		on st.storeid = std.storeid
+	</select>
+	 -->
 </mapper>

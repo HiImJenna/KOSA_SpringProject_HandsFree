@@ -3,8 +3,8 @@ package controller.user;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import controller.user.dto.UserReviewDto;
+import org.springframework.web.servlet.ModelAndView;
 import service.user.UserMyinfoService;
 import vo.UserReservationJoinVo;
 import vo.user.Users;
@@ -89,6 +89,7 @@ public class UserNavController {
 	         url = "/";
 	         SecurityContextHolder.clearContext(); //회원 탈퇴 시 자동 로그아웃
 	      } else {
+	    	  
 	         icon = "error";
 	         msg = "회원 탈퇴에 실패했습니다 :(";
 	         url = "/users/userDetail";
@@ -113,6 +114,14 @@ public class UserNavController {
 		UserReviewDto dto = new UserReviewDto(request);
 		usermyinfoservice.saveUserReview(dto, principal.getName());
 		return "redirect:/users/myreserve";
+	}
+	
+  public ModelAndView reserveInfo(Principal pri) {
+		String userid = pri.getName();
+		List<Map<String, String>> list =  usermyinfoservice.reserveInfo(userid);	
+		ModelAndView model = new ModelAndView("/user/myreserve");
+		model.addObject("list",list);
+		return model;
 	}
 	
 	@GetMapping("/users/shopregister")

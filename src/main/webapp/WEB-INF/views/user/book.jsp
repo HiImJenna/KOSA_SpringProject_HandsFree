@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,25 +25,30 @@
 <script src="https://js.tosspayments.com/v1/payment"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<sec:authentication property="principal" var="principal"/>
+
 </head>
 <script type="text/javascript">
       $(document).ready(function(){
     		$('#payment-button').click(function(e){
     			console.log("결제버튼 눌림");
-    			var username = "${username}";
-    			console.log("username : " + username);
+    			var username = "${principal.username}";
+    			console.log(username)
+    			var price = "2000"; //가격 값 받아와야함
+    			payment(username);
     		})
     		
     		function payment(username){
+    			 let successUrl = "http://localhost:8090/users/paymentreserve";
     			 var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
     			 var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
     			      tossPayments.requestPayment('카드', { // 결제 수단
     			        // 결제 정보
-    			        amount: price,
+    			        amount: '2000',
     			        orderId: 'QTIk82kxDPefXZC8MLFj0',
     			        orderName: "결제 진행",
     			        customerName: username,
-    			        successUrl: "http://localhost:8090/users/myreserve",
+    			        successUrl: successUrl,
     			        failUrl: "https://github.com/HiImJenna",   
     			        flowMode: 'D',
     			        easyPay: '토스페이'
@@ -64,18 +70,16 @@
 			<h2>예약하기</h2>
 		</header>
 		
-			<form name="paymentform" action="/users/userBook" method=post>
 				<p>
 					<label>예약자명 : </label> <input type="text"
-						id="name" name="name" value=${fullname} readonly>
+						id="name" name="name" value="kosa">
 						
 					<label>이메일 : </label> <input type="text"
-						id="name" name="name" value=${userid} readonly>
+						id="name" name="name" value="kosa" readonly>
 				</p>
 			
-					<button id="payment-button" type="submit">결제하기</button>
-			</form>
-		
+					<button id="payment-button" >결제하기</button>
+
 	</div>
 
 	<div class="carddd">
@@ -85,8 +89,9 @@
 					<div class="place-infos clearfix">
 						<div class="place-text">
 							<div class="type">
-								<div class="address" name="storeid">쿵푸양꼬치</div>
-								<div class="nanny-type">음식점</div>
+								<div class="address" name="storeid">${storeName}</div>
+								<div class="nanny-type">전화번호 : ${phone}</div>
+								<div class="nanny-type">이메일 : ${storeId}</div>
 								<div class="d-flex nanny-stars">
 									<div class="type-point" style="display: none;">•</div>
 								</div>
@@ -102,17 +107,17 @@
 						<div class="separator"></div>
 						<div class="price-info clearfix">
 							<div class="item">맡기는 날</div>
-							<div class="value">Feb 10, 2023 at 10:00 AM - 10:30 AM</div>
+							<div class="value">임시날짜${sdate}</div>
 						</div>
 						<div class="price-info clearfix">
 							<div class="item">찾는 날</div>
-							<div class="value">Feb 11, 2023 at 11:00 AM - 11:30 AM</div>
+							<div class="value">임시날짜${edate}</div>
 						</div>
 					</div>
 					<div class="infos-part address-warning">
 						<div class="separator"></div>
 						<div class="title">주소</div>
-						<div>무슨로 무슨로 어쩌구</div>
+						<div>${address}</div>
 						<div class="separator"></div>
 					</div>
 					<div class="infos-part">
@@ -125,20 +130,19 @@
 											<div class="dates d-flex flex-row">
 												<div class="vdatetime">
 													<p>맡기는 날</p>
-													<a class="nanny-icon calendar leftcal"></a> 
-													<a id="bookingDepositDateTimeUniversal" role="button"
-														class="to users-map-label"> ${sdate} 
-														<span>10:00 - 11:00</span>
-													</a>
-													
+													<input type="date" class="datebutton" name="sdate" id="sdate" placeholder="맡기는 날" />
+													<select name='sTime'>
+														<option value='' selected>-- 선택 --</option>
+														
+													</select>
 												</div>
-												<a class="rightcal nanny-icon calendar"></a>
 												<div class="vdatetime">
 													<p>찾는 날</p>
-													<a id="bookingWithdrawalDateTimeUniversal" role="button"
-														class="to users-map-label"> ${edate}
-														<span>11:00 - 11:30</span>
-													</a>
+													<input type="date" class="datebutton" name="edate" id="edate" placeholder="찾는 날" />
+													<select name='eTime'>
+														<option value='' selected>-- 선택 --</option>	
+														
+													</select>
 												</div>
 											</div>
 										</div>
