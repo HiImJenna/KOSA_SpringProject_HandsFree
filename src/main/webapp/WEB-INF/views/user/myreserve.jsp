@@ -29,9 +29,19 @@
 <head>
         <title>예약내역</title>
        	<meta data-n-head="ssr" charset="utf-8">
+       	
+       	<style type="text/css">
+       	</style>
         
         <script type="text/javascript">
-        	function activateReviewForm(idx) {
+        
+        	function activateReviewForm(idx, status) {
+        		
+        		if (status > 0) {
+        			// 이미 댓글을 달았음
+        			return;
+        		}
+        		
         		let reviewform = "#reviewFormTr" + idx;
         		let cancelTr = "#cancelTr" + idx;
         		let reviewTr = "#reviewTr" + idx;
@@ -144,17 +154,33 @@
 											      <td>${item.pdate}</td>
 											      <td>${item.sdate}</td>
 											      <td>${item.edate}</td>
-											      <td id="reviewTr${item.idx}" style="display: block"><button class="btn btn-primary" onclick="activateReviewForm(${item.idx})">리뷰 작성</button></td>
+											      <td id="reviewTr${item.idx}" style="display: block"><button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰 작성</button></td>
 											      <td id="cancelTr${item.idx}" style="display: none"><button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button></td>
 											    </tr>
 											    <tr id="reviewFormTr${item.idx}" style="display: none">
 											    	<form action="/users/reviews?idx=${item.idx}" method="post">
 											    		<td colspan="7">
-										    				<label for="textarea${item.idx}" class="form-label">[Hands Free] ${item.storeName}에 댓글을 남겨주세요</label>
+										    				<div style="height: 50px;">
+										    					<label for="textarea${item.idx}" style="float: left; margin: 5px 0px 0px 0px; padding-right: 20px;" class="form-label">
+										    						[Hands Free] ${item.storeName}에 댓글을 남겨주세요
+										    					</label>
+											    				<select name="grade" class="form-select" style="width:130px;" aria-label="Default select example">
+															        <option selected>별점 선택</option>
+															        <option value="1">★</option>
+															        <option value="2">★★</option>
+															  		<option value="3">★★★</option>
+															  		<option value="4">★★★★</option>
+															  		<option value="5">★★★★★</option>
+																</select>
+																<br>
+										    				</div>
+										    				<div class="container">
+															  <span id="rateMe2"  class="empty-stars"></span>
+															</div>
  															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3"></textarea>
 										    			</td>
 											    		<td colspan="1">
-															<button type="submit" style="margin-top: 80px;" class="btn btn-primary">제출하기</button>
+															<button type="submit" style="margin-top: 95px;" class="btn btn-primary">제출하기</button>
 											    		</td>
 											    	</form>
 											    </tr>

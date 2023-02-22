@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import controller.user.dto.UserReviewDto;
 import service.user.UserMyinfoService;
 import vo.UserReservationJoinVo;
 import vo.user.Users;
@@ -108,19 +109,10 @@ public class UserNavController {
 	}
 	
 	@PostMapping("users/reviews")
-	public String saveReview(HttpServletRequest request) {
-		
-		try {
-			// web.xml에 필터로 utf-8이 걸려 있는데 한글이 깨져 들어와
-			// 임시 방편으로 처리함
-			request.setCharacterEncoding("utf-8");
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
-		
-		int idx = Integer.parseInt(request.getParameter("idx"));
-		String content = request.getParameter("content");
-		return "user/myreserve";
+	public String saveReview(HttpServletRequest request, Principal principal) {
+		UserReviewDto dto = new UserReviewDto(request);
+		usermyinfoservice.saveUserReview(dto, principal.getName());
+		return "redirect:/users/myreserve";
 	}
 	
 	@GetMapping("/users/shopregister")

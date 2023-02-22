@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import controller.user.dto.UserReviewDto;
 import dao.user.UserMyinfoDao;
 import vo.UserReservationJoinVo;
 import vo.user.Users;
@@ -120,5 +122,13 @@ public class UserMyinfoService {
 		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
 		return dao.getMyReservationList(userId);
 	}
-
+	
+	// 사용자 리뷰 저장하기
+	@Transactional
+	public int saveUserReview(UserReviewDto dto, String userId) {
+		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
+		String userFullName = dao.getUserFullName(userId);
+		System.out.println(userFullName);
+		return dao.saveUserReview(dto.toUserReview(userFullName));
+	}
 }
