@@ -28,18 +28,16 @@ public class UserSearchController {
 	
 	@GetMapping("information")
 	public ResponseEntity<?> itemInformation(@RequestParam Map<String, Object> map){
-//		List<Map<String, String>> list = usersearchservice.getStore(storeId);
-//		System.out.println("######"+list);
+		
 		return new ResponseEntity<>(map, HttpStatus.OK); 
 	}
 	
 	@GetMapping("review")
 	public ResponseEntity<?> itemReview(@RequestParam Map<String, Object> map){
-		System.out.println();
 		String storeid = (String)map.get("storeId");
 		List<Map<String, String>> list = reviewservice.getReviewListUser(storeid);
-		System.out.println("@GetMapping(\"review\") : " + list.toString());
-		return new ResponseEntity<>(map, HttpStatus.OK);
+		
+		return new ResponseEntity<>(list, HttpStatus.OK);
 		
 	}	
 }
