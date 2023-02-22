@@ -22,9 +22,7 @@
     </head>
     <body id="page-top">
 		<!-- header -->
-		<%
-		pageContext.include("/WEB-INF/views/include/header.jsp");
-		%>
+		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 		
     <!-- 메인 -->
 	<form name="bookingform" action="${path}/search" method=get>
