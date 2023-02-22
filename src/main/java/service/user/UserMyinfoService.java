@@ -7,8 +7,11 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import controller.user.dto.UserReviewDto;
 import dao.user.UserMyinfoDao;
-import vo.user.Payment;
+import vo.UserReservationJoinVo;
 import vo.user.Users;
 
 @Service
@@ -76,4 +79,18 @@ public class UserMyinfoService {
 		
 	}
 
+	// 사용자 예약 내역 가져오기
+	public List<UserReservationJoinVo> getReservationList(String userId) {
+		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
+		return dao.getMyReservationList(userId);
+	}
+	
+	// 사용자 리뷰 저장하기
+	@Transactional
+	public int saveUserReview(UserReviewDto dto, String userId) {
+		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
+		String userFullName = dao.getUserFullName(userId);
+		System.out.println(userFullName);
+		return dao.saveUserReview(dto.toUserReview(userFullName));
+	}
 }
