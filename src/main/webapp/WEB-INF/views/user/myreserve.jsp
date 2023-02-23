@@ -59,6 +59,17 @@
         		$(reviewTr).show();
         		$(textarea).val('');
         	}
+        	
+			function activateReview(idx) {
+        		$("#cancelButton" + idx).show();
+        		$("#reviewContent" + idx).show();
+        		$("#reviewButton" + idx).hide();
+        	}
+        	function deActivateReview(idx) {
+        		$("#cancelButton" + idx).hide();
+        		$("#reviewContent" + idx).hide();
+        		$("#reviewButton" + idx).show();
+        	}
         </script>
         
     </head>
@@ -137,40 +148,64 @@
 											      <td>${item.pdate}</td>
 											      <td>${item.sdate}</td>
 											      <td>${item.edate}</td>
-											      <td id="reviewTr${item.idx}" style="display: block">
-											      	<button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰작성</button>
-											      </td>
-											      <td id="cancelTr${item.idx}" style="display: none">
-											      	<button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button>
-											      </td>
+											      <c:choose>
+											      	<c:when test="${item.content eq null}">
+											      		<td id="reviewTr${item.idx}" style="display: block">
+											      			<button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰작성</button>
+											      		</td>
+											      		<td id="cancelTr${item.idx}" style="display: none">
+											      			<button class="btn btn-danger" onclick="deActivateReviewForm(${item.idx})">취소</button>
+											      		</td>
 											    </tr>
-											    <tr id="reviewFormTr${item.idx}" style="display: none">
-											    	<form action="/users/reviews?idx=${item.idx}" method="post">
-											    		<td colspan="7">
-										    				<div style="height: 50px;">
-										    					<label for="textarea${item.idx}" style="float: left; margin: 5px 0px 0px 0px; padding-right: 20px;" class="form-label">
-										    						[Hands Free] ${item.storeName}에 댓글을 남겨주세요
-										    					</label>
-											    				<select name="grade" class="form-select" style="width:130px;" aria-label="Default select example">
-															        <option selected>별점 선택</option>
-															        <option value="1">★</option>
-															        <option value="2">★★</option>
-															  		<option value="3">★★★</option>
-															  		<option value="4">★★★★</option>
-															  		<option value="5">★★★★★</option>
-																</select>
-																<br>
-										    				</div>
-										    				<div class="container">
-															  <span id="rateMe2"  class="empty-stars"></span>
-															</div>
- 															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3"></textarea>
-										    			</td>
-											    		<td colspan="1">
-															<button type="submit" style="margin-top: 95px;" class="btn btn-primary">제출하기</button>
+												<tr id="reviewFormTr${item.idx}" style="display: none">
+													    		<form action="/users/reviews?idx=${item.idx}" method="post">
+													    		<td colspan="7">
+												    				<div style="height: 50px;">
+												    					<label for="textarea${item.idx}" style="float: left; margin: 5px 0px 0px 0px; padding-right: 20px;" class="form-label">
+												    						[Hands Free] ${item.storeName}에 댓글을 남겨주세요
+												    					</label>
+													    				<select name="grade" class="form-select" style="width:130px;" aria-label="Default select example">
+																	        <option selected>별점 선택</option>
+																	        <option value="1">★</option>
+																	        <option value="2">★★</option>
+																	  		<option value="3">★★★</option>
+																	  		<option value="4">★★★★</option>
+																	  		<option value="5">★★★★★</option>
+																		</select>
+																		<br>
+												    				</div>
+		 															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3"></textarea>
+												    			</td>
+													    		<td colspan="1">
+																	<button type="submit" style="margin-top: 95px;" class="btn btn-primary">제출하기</button>
+													    		</td>
+													    		</form>
+												</tr>
+											      	</c:when>
+											      	
+											      	<c:otherwise>
+											      		<td id="reviewButton${item.idx}" style="display: block">
+											      			<button class="btn btn-warning" onclick="activateReview(${item.idx})">리뷰보기</button>
+											      		</td>
+											      		<td id="cancelButton${item.idx}" style="display: none">
+											      			<button class="btn btn-danger" onclick="deActivateReview(${item.idx})">접기</button>
+											      		</td>
+											    </tr>
+											    <!-- 후기 보이는 부분 -->
+												<tr id="reviewContent${item.idx}" style="display: none">
+														<td colspan="1">
+														</td>
+														<td colspan="1">
+															ㄴ
+														</td>
+											    		<td colspan="6">
+											    			${item.content}
 											    		</td>
-											    	</form>
-											    </tr>
+												</tr>
+											      	</c:otherwise>
+											      	
+											      	
+											      </c:choose>
 											    <!-- 한 세트 -->
 											  	</c:forEach>
 											  </tbody>

@@ -1,6 +1,5 @@
 package controller.user;
 
-import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import controller.user.dto.UserReviewDto;
 import service.user.UserMyinfoService;
@@ -106,7 +104,6 @@ public class UserNavController {
 	public String myreserve(Model model, Principal principal) {
 		String userId = principal.getName();
 		List<UserReservationJoinVo> list = usermyinfoservice.getReservationList(userId);
-		System.out.println(list);
 		model.addAttribute("list", list);		
 		return "user/myreserve";
 	}
