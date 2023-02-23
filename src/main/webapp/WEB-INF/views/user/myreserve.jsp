@@ -92,11 +92,6 @@
                                         	예약 내역
                                     </h1>
                                 </div>
-                                <div class="col-md-6 text-right desktop help-text">
-                                    <div>예약 관련 문의사항이 있으시나요?
-                                        <a href="#" class="contact-us">문의하기</a>
-                                    </div>
-                                </div>
                                 <div class="col-12 content-col">
                                     <div>
                                         <div class="table">
