@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,15 +135,14 @@ padding: 0px;
                }
                const itemList = `
                <div class="shopList">
+               <div class="shopCard">
                   <img class="shop_img" alt="없음"
                 	  src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
                         보관소<br>
                      <h4>\${data.NAME}</h4>
                         \${address}<br>
-                     <i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                     <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                     
                   </div>
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
@@ -150,6 +150,7 @@ padding: 0px;
                      <br>														
                      <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
                   </div>
+               </div>
                </div>`;
                $('#listGroup').append(itemList);
             }

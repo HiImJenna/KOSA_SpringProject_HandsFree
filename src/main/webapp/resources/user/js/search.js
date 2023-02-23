@@ -1,3 +1,4 @@
+
 window.onload = function(){
    
    
@@ -119,6 +120,8 @@ window.onload = function(){
             url : 'item/review',
             data:data,
             success : function(data){
+            	console.log(review)
+            	console.log(data)
                length = data.length;
                console.log(length); //1으로 잘 뜸
             $.each(data, function(index, obj){
@@ -149,9 +152,11 @@ window.onload = function(){
                      <div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
                      <div id="">&nbsp;&nbsp;&nbsp;&nbsp;          토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
                      <div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
-                        <img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
-                             src="/resources/user/assets/img/chatBtn.png"
-                             alt="이미지 없어유">
+                        <se:authorize access="hasRole('ROLE_USER')"> 
+	                        <img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
+	                             src="/resources/user/assets/img/chatBtn.png"
+	                             alt="이미지 없어유">
+                        </se:authorize access>
                       <br>
                   </div>
                   `;
@@ -162,9 +167,7 @@ window.onload = function(){
              <div class="comments">
                  <div>
                      <div class="d-flex resume-review">
-                         <div class="nanny-icon yellow star"></div>
-                         5/5
-                         <span class="type-point">
+                      <span class="type-point">
                              •
                          </span>
                          (${length}) reviews

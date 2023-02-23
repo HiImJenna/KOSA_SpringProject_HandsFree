@@ -40,6 +40,4 @@ public class UserSearchService {
 		System.out.println("shopDetail list : " + list);
 		return list;
 	}
-
-
 }
