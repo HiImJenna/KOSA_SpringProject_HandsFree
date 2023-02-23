@@ -2,11 +2,13 @@ package dao.admin;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSessionException;
 
 import vo.Reservation;
+import vo.admin.StoreDetails;
 
 public interface ReservationDao {
 	
@@ -18,5 +20,8 @@ public interface ReservationDao {
 	
 	//유저 상세
 	Reservation getReservation(int idx) throws ClassNotFoundException, SQLException;
+	
+	//점주시간
+	Map<String, String> getManageTime(@Param("STOREID") String storeId) throws ClassNotFoundException, SQLException;
 	
 }
