@@ -19,6 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select userid from reservation where idx = #{idx}
 	</select>
 	
+	<!-- 점주 시간 -->
+	<select id="getManageTime" resultType="HashMap">
+		select manage_week_time, manage_sat_time, manage_sun_time from store_details 
+		where storeid = #{STOREID}
+	</select>
 
-
+	
 </mapper>

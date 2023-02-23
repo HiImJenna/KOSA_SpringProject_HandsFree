@@ -27,14 +27,14 @@ public class Payment {
 	private int status;
 	
 	@Builder
-	public Payment(int idx, String userid,String storeid, String name, int cnt,
+	public Payment(String userid,String storeid, String name, int cnt,
 					int price, String payment_method, Date payment_date, Date sdate
 					, Date edate, int status) {
-		this.idx = idx;
 		this.userid = userid;
 		this.storeid = storeid;
 		this.name = name;
 		this.cnt = cnt;
+		this.price = price;
 		this.payment_method = payment_method;
 		this.payment_date = payment_date;
 		this.sdate = sdate;
