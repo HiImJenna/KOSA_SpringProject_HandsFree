@@ -17,6 +17,8 @@
 		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 		crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
+	    <!--파비콘-->
+        <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
 	
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -113,7 +115,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <table class="table">
+                                            <table class="table table-hover" style="text-align:center; ">
 											  <thead>
 											    <tr>
 											      <th scope="col">✔️</th>
@@ -130,13 +132,13 @@
 											  	<c:forEach var="item" items="${list}" varStatus="s">
 											  	<!-- 한 세트 -->
 											    <tr>
-											      <th scope="row">${s.count}</th>
-											      <td>${item.storeName}</td>
-											      <td>${item.cnt}</td>
-											      <td>${item.price}</td>
-											      <td>${item.pdate}</td>
-											      <td>${item.sdate}</td>
-											      <td>${item.edate}</td>
+											      <th scope="row" style="vertical-align: middle">${s.count}</th>
+											      <td style="vertical-align: middle">${item.storeName}</td>
+											      <td style="vertical-align: middle">${item.cnt}</td>
+											      <td style="vertical-align: middle">${item.price}</td>
+											      <td style="vertical-align: middle">${item.pdate}</td>
+											      <td style="vertical-align: middle">${item.sdate}</td>
+											      <td style="vertical-align: middle">${item.edate}</td>
 											      <td id="reviewTr${item.idx}" style="display: block">
 											      	<button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰작성</button>
 											      </td>
@@ -151,7 +153,7 @@
 										    					<label for="textarea${item.idx}" style="float: left; margin: 5px 0px 0px 0px; padding-right: 20px;" class="form-label">
 										    						[Hands Free] ${item.storeName}에 댓글을 남겨주세요
 										    					</label>
-											    				<select name="grade" class="form-select" style="width:130px;" aria-label="Default select example">
+											    				<select name="grade" class="form-select" style="width:153px; color:#ff7613;" aria-label="Default select example">
 															        <option selected>별점 선택</option>
 															        <option value="1">★</option>
 															        <option value="2">★★</option>
@@ -164,9 +166,9 @@
 										    				<div class="container">
 															  <span id="rateMe2"  class="empty-stars"></span>
 															</div>
- 															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3"></textarea>
+ 															<textarea name="content" class="form-control" id="textarea${item.idx}" rows="3" placeholder="댓글과 별점을 입력해주세요"></textarea>
 										    			</td>
-											    		<td colspan="1">
+											    		<td colspan="1" >
 															<button type="submit" style="margin-top: 95px;" class="btn btn-primary">제출하기</button>
 											    		</td>
 											    	</form>
