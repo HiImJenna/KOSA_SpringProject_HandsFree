@@ -31,9 +31,9 @@ public class UserSearchController {
 	
 	@GetMapping("information")
 	public ResponseEntity<?> itemInformation(@RequestParam Map<String, Object> map){
-		String storeid = (String)map.get("storeId");
-		List<Map<String, String>> list = usersearchservice.getStore(storeid);
-		
+		String storeId = (String)map.get("storeId");
+		List<Map<String, String>> list = usersearchservice.shopDetail(storeId);
+		System.out.println("userSearchController list : " + list);
 		return new ResponseEntity<>(list, HttpStatus.OK); 
 	}
 	

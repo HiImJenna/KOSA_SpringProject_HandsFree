@@ -135,9 +135,9 @@ padding: 0px;
                const itemList = `
                <div class="shopList">
                   <img class="shop_img" alt="없음"
-                     src="${path}/resources/user/assets/img/shop.jpg">
+                	  src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
-                        짐 보관소<br>
+                        보관소<br>
                      <h4>\${data.NAME}</h4>
                         \${address}<br>
                      <i class="fa-solid fa-star"></i>
