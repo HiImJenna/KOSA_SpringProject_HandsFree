@@ -27,7 +27,7 @@
 		crossorigin="anonymous"></script>
 
 <head>
-        <title>예약내역</title>
+        <title>예약내역 👜</title>
        	<meta data-n-head="ssr" charset="utf-8">
        	
        	<style type="text/css">
@@ -105,27 +105,10 @@
                                                             <span class="nanny-icon left-icon"></span></div>
                                                         <div class="r-button" style="display:none;">
                                                             <span class="nanny-icon right-icon"></span></div>
-                                                        <!---->
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-12 col-lg-6">
                                                     <div class="row">
-                                                        <div class="col-7 col-md-7"><input
-                                                            placeholder="Search by reference"
-                                                            name="search"
-                                                            type="text"
-                                                            aria-describedby="search"
-                                                            value=""
-                                                            class="form-style">
-                                                            <span class="nanny-icon search search-icon"></span></div>
-                                                        <div class="col-5 col-md-5 period-container">
-                                                            <select class="form-style period-select">
-                                                                <option selected="selected" value="">
-                                                                    Period
-                                                                </option>
-                                                            </select>
-                                                            <div class="nanny-icon chevron-down select-icon"></div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,7 +116,7 @@
                                             <table class="table">
 											  <thead>
 											    <tr>
-											      <th scope="col">#</th>
+											      <th scope="col">✔️</th>
 											      <th scope="col">가게 이름</th>
 											      <th scope="col">물품수</th>
 											      <th scope="col">결제 금액</th>
@@ -191,19 +174,7 @@
 											    <!-- 한 세트 -->
 											  	</c:forEach>
 											  </tbody>
-											</table>
-                              
-                                            <div class="data-presentation">
-                                                <!---->
-                                                <div>
-                                                    <p class="no-data-title">
-                                                        You don't have a reservation at the moment
-                                                    </p>
-                                                    <p class="no-data-subtile">
-                                                        Don't be discouraged.
-                                                    </p>
-                                                </div>
-                                            </div>
+											</table>                             
                                         </div>
                                     </div>
                                 </div>
