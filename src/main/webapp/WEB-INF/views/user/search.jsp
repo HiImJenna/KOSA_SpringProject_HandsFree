@@ -135,23 +135,23 @@ padding: 0px;
                }
                const itemList = `
                <div class="shopList">
-               <div class="shopCard">
+              
                   <img class="shop_img" alt="없음"
                 	  src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
-                        보관소<br>
+                        보관소 👜<br>
                      <h4>\${data.NAME}</h4>
                         \${address}<br>
                      
                   </div>
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
-                        style="margin-bottom: 15px">상세보기</button>
+                        style="margin-bottom: 15px; width: 80px; font-size: 12px;">상세보기</button>
                      <br>														
-                     <button type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
+                     <button type="button" style="margin-bottom: 15px; width: 80px; font-size: 12px;" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
                   </div>
                </div>
-               </div>`;
+`;
                $('#listGroup').append(itemList);
             }
          // 키워드 검색 완료 시 호출되는 콜백함수 입니다
@@ -536,7 +536,7 @@ padding: 0px;
 
       <!-- 좌측 사이드바 -->
       <!-- Sidebar -->
-      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <nav style="background-color: #f8f8fb" id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
          <div class="position-sticky">
             <div id="listGroup" class="list-group list-group-flush mx-2 mt-4">
             </div>

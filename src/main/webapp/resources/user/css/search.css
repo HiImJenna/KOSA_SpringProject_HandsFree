@@ -16024,32 +16024,19 @@ fieldset:disabled .btn-group-vertical {
 }
 
 .shopList{
-	background-color: white;
+	background-color: #efeff0;
+	padding-top:5px;
 	width: 380px;
 	height: 110px;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	background-repeat: no-repeat;
-	background-position: center;
-  
-    background-size: cover;
+	border: 1px #727273;
+	border-radius: 3px;
 	display: inline-block;
+	
 }
-
-
-.shopCard{
-
-	width: 380px;
-	height: 110px;
-	margin-bottom: 5px;
-	margin-top: 5px;
-    background-image: url(/resource/user/assets/img/shopcard.png);
-	background-repeat: no-repeat;
-	background-position: center;
-  
-    background-size: cover;
-	display: inline-block;
-	background-color: red;
+.shopList:hover{
+	background-color: #91bee8;
 }
 
 .shop_img {
