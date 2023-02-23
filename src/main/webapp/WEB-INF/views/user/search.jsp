@@ -39,6 +39,9 @@
       crossorigin="anonymous"></script>
    <!-- 아이콘 -->
    <script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
+   <!-- Bootstrap icons-->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+   <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
    <!-- sock js -->
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
    <!-- STOMP -->
@@ -548,11 +551,7 @@ padding: 0px;
          <div class="container pt-4">
             <section class="mb-4">
                <div class="card">
-                  <div class="card-header py-3">
-                     <h5 id="searchKey">${destination}</h5>
-                     <h5>${dropDate}</h5>
-                     <h5>${pickupDate}</h5>
-                  </div>
+                  
                   <div id="map" class="card-body">
                      <canvas class="my-4 w-100" height="500"></canvas>                     
                   </div>
@@ -560,7 +559,7 @@ padding: 0px;
                      <div>
                         <div id="chat_body" class="chat_body">
                            <h2 class="chat_title"></h2>
-                           <button class="chat_back">◀</button>
+                           <button class="chat_back"><i class="bi bi-caret-left"></i></button>
    
                            <ul class="chat_list">
                               <li></li>
@@ -572,7 +571,7 @@ padding: 0px;
                               </div>
    
                               <div class="chat_button_area">
-                                 <button>전송</button>
+                                 <button>✉️</button>
                               </div>
                            </div>
                         </div>
@@ -580,12 +579,9 @@ padding: 0px;
                   </div>
                </div>
             </section>
-            <section class="mb-4"></section>
          </div>
       </main>
       
       
 </body>
-
-<%pageContext.include("/WEB-INF/views/include/footer.jsp");%>
 </html>

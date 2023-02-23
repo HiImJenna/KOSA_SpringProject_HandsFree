@@ -39,7 +39,7 @@ window.onload = function(){
 		var data1 = $(this).parents()
 		console.log(data1); */
 //		$("#chatBtn").css('display', 'inline-block');
-
+		var length = '';
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
 		var storeId = $(this).closest('div').data('obj');
@@ -80,7 +80,7 @@ window.onload = function(){
 	$(document).on("click", "#information", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-
+		
 		var data = {
 				title : title,
 				type : 'information'
@@ -91,6 +91,9 @@ window.onload = function(){
 			url : 'item/information',
 			data:data,
 			success : function(data){
+				
+				console.log("정보데이터");
+				console.log(data);
 				createTabView(data, 'information');
 			},
 			error:function (request, status, error){
@@ -102,63 +105,55 @@ window.onload = function(){
 	$(document).on("click", "#review", function(){
 		var list_data = $(this).parents().eq(1);
 		var title = list_data.find("h4").text();
-		
+		var storeId = $(this).closest('div').data('obj');
 		var data = {
 				title : title,
-				type : 'review'
+				type : 'review',
+				storeId : storeId
 		};
 
 		$.ajax({
-			type : "get",
-			url : 'item/review',
-			data:data,
-			success : function(data){
-				createTabView(data, 'review');
-			},
-			error:function (request, status, error){
-                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-            }
-		}) 
+	         type : "get",
+	         url : 'item/review',
+	         data:data,
+	         success : function(data){
+	        	 length = data.length;
+	        	 console.log(length); //1으로 잘 뜸
+	         $.each(data, function(index, obj){
+	        	 console.log(obj);
+	            createTabView(obj, 'review');
+	         })
+	            
+	         },
+	         error:function (request, status, error){
+	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+	            }
+	      }) 
+
 	});
 	
-	
-	$(document).on("click", "#suggestion", function(){
-		var list_data = $(this).parents().eq(1);
-		var title = list_data.find("h4").text();
-		var data = {
-				title : title,
-				type : 'suggestion'
-		};
-		$.ajax({
-			type : "get",
-			url : 'item/suggestion',
-			data:data,
-			success : function(data){
-				createForm(data);
-				
-				/* $('#listGroup').empty();
-				var jsonData = JSON.parse(data);
-				$('#listGroup').append */
-				
-			},
-			error:function (request, status, error){
-                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-            }
-		}) 
-	});
 	
 	function createTabView(data, type){
-		$('#tabView').empty();
+		console.log(data);
+		$('#tabView').children().hide();
 		let itemTab = '';
 		if(type === 'information')
 		{
 			itemTab = `
-				<div class="">
-					<div id="">공지 : </div>
-					<div id="">주소 : </div>
-					<div id="">운영시간 : </div>
-					<div id="">번호 : </div>
-				</div>`;
+						<div class="detail">
+							<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>
+							<div id=""><i class="bi bi-geo-alt-fill"></i>&nbsp;${data[0].ADDRESS}</div><br>
+							<div id=""><i class="bi bi-telephone-fill"></i>&nbsp;${data[0].PHONE}</div><br>
+							<div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
+							<div id="">&nbsp;&nbsp;&nbsp;&nbsp;		    토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
+							<div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
+								<img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
+								     src="/resources/user/assets/img/chatBtn.png"
+								     alt="이미지 없어유">
+							 <br>
+						</div>
+						`;
+					
 		}else if(type == 'review'){
 			itemTab = `
 				<div class="nanny-opinions">
@@ -170,7 +165,7 @@ window.onload = function(){
 			                <span class="type-point">
 			                    •
 			                </span>
-			                366 reviews
+			                (${length}) reviews
 			            </div>
 			            <hr class="nanny-s<div class=" nanny-opinions">
 			            <div class="comments">
@@ -183,16 +178,16 @@ window.onload = function(){
 			                                </div>
 			                            </div>
 			                            <div class="name-date">
-			                                <div class="name"><b>Sylva</b>
+			                                <div class="name"><b>${data.USERNAME}</b>
 			                                </div>
 			                                <div class="date">
-			                                    09/10/2022
+			                                    ${data.USEREDATE}
 			                                </div>
 			                            </div>
 			                        </div>
 			                        <div class="stars">
 			                            <div class="score">
-			                                5/5
+			                                ${data.STAR}
 			                            </div>
 			                            <div class="all-stars">
 			                                <div class="nanny-icon star yellow"></div>
@@ -203,10 +198,7 @@ window.onload = function(){
 			                            </div>
 			                        </div>
 			                    </div>
-			                    <div class="comment-content"><b> It was very useful. Would use this service again.</b><br>
-			                        Nannybag is a brilliant idea and a genuinely needed service. I only wish the distance mentioned
-			                        was more accurate before choosing the location. It mentioned .2km while it was actually .5km
-			                        once the accurate address was given.
+			                    <div class="comment-content">${data.USERCONTENT}
 			                    </div>
 			                </div>
 			            </div>
@@ -242,29 +234,22 @@ window.onload = function(){
 						    <tr>
 						        <th>
 						            <div class="detailsHeader">
-						                짐 보관소<br>
+										짐 보관소<br>
 						                <h4>${data.title}</h4>
-						
-						
-						                옷가게<br> <i class="fa-solid fa-star"></i>
+						                 <i class="fa-solid fa-star"></i>
 						            </div>
 						        </th>
 						    </tr>
 						
 						    <tr class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
 						        <th class="nav-item" role="presentation">
-						            <a id="firstTab" class="nav-link firstTab active" aria-current="page" onclick="activateTab('first')">
+						            <a id="firstTab" class="nav-link firstTab active" aria-current="page">
 						                <div id="information">정보</div>
-						            </a>
 						        </th>
+						       
 						        <th class="nav-item" role="presentation">
-						            <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
-						                <div id="review">리뷰</div>
-						            </a>
-						        </th>
-						        <th class="nav-item" role="presentation">
-						            <a id="thirdTab" class="nav-link" aria-current="page" onclick="activateTab('third')">
-						                <div id="suggestion">추천</div>
+						            <a id="secondTab" class="nav-link" aria-current="page">
+						                <div id="review" data-obj=${data.storeId}>리뷰</div>
 						            </a>
 						        </th>
 						    </tr>
@@ -274,11 +259,16 @@ window.onload = function(){
 						        <th>
 						            <div id="tabView"></div>
 						        </th>
+
 						    </tr>
-						</table>
-						<div id="chatBtn" class="balloon" data-obj=${data.storeId}></div>
+						</table>			
+						</div>
 						`;
 		$('#listGroup').append(itemDetail);
+		//쓸수있음
+		// onclick="activateTab('first')"
+		//onclick="activateTab('second')"
+			
 		/* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
 		    "<th>EMPNO</th>"+
         	"<th>ENAME</th>"+
@@ -297,7 +287,7 @@ window.onload = function(){
 
 	}
 	
-   function activateTab(active){
+/*   function activateTab(active){
       let first = document.getElementById('firstTab');
       let second = document.getElementById('secondTab');
       let third = document.getElementById('thirdTab');
@@ -314,7 +304,7 @@ window.onload = function(){
          second.classList.remove('active');
          third.classList.add('active');
       }
-   }
+   }*/
 	
 	
 }

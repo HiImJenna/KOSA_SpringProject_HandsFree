@@ -36,13 +36,11 @@
 
 .chat .chat_body {
   	background: #fff;
-	height: 100%;
-	width: 70%;
+	height: 500px;
+	width: 300px;
     order: 1;
-    border: 1px;
-    /* border: 1px solid #000; */
     position: relative;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .adminChat .chat_body {
@@ -77,6 +75,9 @@
 	background:  #3B47F5;
 	color: #fff;
 	font-size: 1rem;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	height: 40px
 }
 
 .adminChat .chat_title{
@@ -86,8 +87,8 @@
 }
 
 .chat .chat_back {
-    font-size: 1rem;
-    width: 50px;
+    font-size: 1.5rem;
+    width: 80px;
     height: 30px;
     position: absolute;
     top: 0;
@@ -96,6 +97,9 @@
     cursor: pointer;
     background:  #3B47F5;
     color: #fff;
+    border-top-left-radius: 15px;
+    margin: 5px;
+    text-align: left;
 }
 
 .adminChat .chat_back {
@@ -177,6 +181,7 @@
  
 .chat li > div .message {
 	display: flex; 
+	font-size: medium;
 }
 
 .adminChat li > div .message {
@@ -227,7 +232,7 @@
     border-radius: 3px;
     box-shadow: 0px 2px 3px 0px rgb(0 0 0 / 25%);
     display: inline-block;
-    max-width: 250px;
+    max-width: 80%;
     max-height: 400px;
     word-break: break-all;
 }
@@ -260,6 +265,8 @@
     background: #fff;
 	border-top: 0.1rem solid rgb(233, 235, 237);
     box-shadow: rgb(0 0 0 / 8%) 0px -0.0714286rem 0.857143rem;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .adminChat .chat_input {
@@ -285,6 +292,8 @@
     resize: none;
     padding: 8px;
     box-sizing: border-box;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .chat_input .chat_input_area textarea:focus {
