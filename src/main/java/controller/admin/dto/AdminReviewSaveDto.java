@@ -4,11 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import lombok.Getter;
 import lombok.ToString;
+import vo.admin.RealReview;
 
 @Getter
 @ToString
 public class AdminReviewSaveDto {
-	private int reviewIdx;
+	private int parent;
 	private int reservationIdx;
 	private String content;
 	
@@ -19,8 +20,16 @@ public class AdminReviewSaveDto {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		this.reviewIdx = Integer.parseInt(request.getParameter("review"));
+		this.parent = Integer.parseInt(request.getParameter("review"));
 		this.reservationIdx = Integer.parseInt(request.getParameter("reservation"));
 		this.content = request.getParameter("content");
+	}
+	
+	public RealReview toReview() {
+		return RealReview.builder()
+				.parent(parent)
+				.reservationIdx(reservationIdx)
+				.content(content)
+				.build();
 	}
 }

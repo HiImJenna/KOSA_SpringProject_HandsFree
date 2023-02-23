@@ -141,10 +141,10 @@
                   <c:choose>
            		  <c:when test="${item.store_idx ne null}">
            		  	<div>
-	                  <b>교촌치킨 점주</b>
+	                  <b>${storeName}</b>
 	                  <div style="float: right;">${store_date}</div>
 	                </div>
-	                <textarea style="width: 100%; height: 6.25em; resize: none;" readonly>${store_content}</textarea>
+	                <textarea style="width: 100%; height: 6.25em; resize: none;" readonly>${item.store_content}</textarea>
            		  </c:when>
            		  <c:otherwise>
                   	<form action="${path}/admin/review?review=${item.user_idx}&reservation=${item.reservation_idx}" method="post">

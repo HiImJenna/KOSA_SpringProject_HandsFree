@@ -174,8 +174,7 @@ public class AdminController {
 	@PostMapping("/admin/review")
 	public String saveAdminReview(HttpServletRequest request) {
 		AdminReviewSaveDto dto = new AdminReviewSaveDto(request);
-		System.out.println("saveAdminReview");
-		System.out.println(dto);
+		adminService.saveAdminReview(dto.toReview());
 		return "redirect:/admin/review";
 	}
 	

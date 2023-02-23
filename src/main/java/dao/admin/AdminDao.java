@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import vo.admin.Admin;
 import vo.admin.AdminReview;
 import vo.admin.CalendarInfo;
+import vo.admin.RealReview;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
@@ -25,4 +26,5 @@ public interface AdminDao {
 	public int updateAdminDetail(StoreDetails storeDetails);
 	public List<CalendarInfo> getCalendarListByUserId(String userId);
 	public List<AdminReview> getAdminReviewListByStoreId(String storeId);
+	public int saveAdminReview(RealReview review);
 }

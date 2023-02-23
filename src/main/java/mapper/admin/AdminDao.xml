@@ -85,4 +85,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join review B on A.idx = B.parent
 	</select>
 	
+	<insert id="saveAdminReview" parameterType="vo.admin.RealReview">
+		insert into review(idx, rs_idx, parent, content, grade, edate, status)
+		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, 1)
+	</insert>
+	
 </mapper>
