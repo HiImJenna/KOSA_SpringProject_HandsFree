@@ -25,9 +25,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#about us" style="color:#787878;">About us</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#price" style="color:#787878;">가격</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#guide" style="color:#787878;">FAQ</a></li>
                     </ul>
                     
                     
@@ -48,7 +45,6 @@
 					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/userDetail'" >내 정보</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/users/myreserve'">예약 내역</button></li>
-					    <li><button class="dropdown-item" type="button" onclick="location.href='/storekeepers'">점주 등록</button></li>
 					    <li><button class="dropdown-item" type="button" onclick="location.href='/logout'">로그아웃</button></li>
 					  </ul>
 					</div>
