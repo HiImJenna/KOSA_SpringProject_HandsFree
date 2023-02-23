@@ -112,6 +112,7 @@
     $.ajax({
       type: "GET",
       url: "/api/admin/calendar",
+      async: false,
       success: function (response) {
         calendarList = response.list;
       },

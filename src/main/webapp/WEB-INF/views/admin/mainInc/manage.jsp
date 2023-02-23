@@ -140,7 +140,7 @@
 						<br/>
 						<b>짐 보관 갯수</b>
 						<br/> 
-						<div style="color:gray">* 최대 100개까지</div>
+						<div style="color:gray">* 최대 100개까지</div>ss
 						<input type="number" id="tentacles" min="1" max="100" value="${cnt}" name="storeCnt"> 개<br/> 
 						<br/><hr/><br>
 						<h5>영업시간</h5> 

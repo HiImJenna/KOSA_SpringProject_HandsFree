@@ -1,7 +1,6 @@
 package controller.user;
 
 import java.security.Principal;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,7 +28,7 @@ public class UserPaymentController {
 	
 	@GetMapping("/users/userBook")
 	public String userBook(Model model, 
-						   @RequestParam("STOREID") String storeId) {
+						   @RequestParam("STOREID") String storeId, @RequestParam("sDate") String sDate, @RequestParam("eDate") String eDate){
 		
 		Store store = paymentservice.findStoreByUserId(storeId);
 //		System.out.println(sdate);
@@ -40,6 +39,8 @@ public class UserPaymentController {
 		model.addAttribute("address", store.getAddress());
 		model.addAttribute("phone", store.getPhone());
 		model.addAttribute("storeId", storeId);
+		model.addAttribute("sDate", sDate);
+		model.addAttribute("eDate", eDate);
 
 		return "user/book";
 	}

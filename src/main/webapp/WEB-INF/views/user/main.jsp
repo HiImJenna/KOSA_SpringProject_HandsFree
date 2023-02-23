@@ -10,18 +10,19 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>HandsFree main</title>
-        <link rel="icon" type="image/x-icon" href="${path}/resources/user/assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://webfontworld.github.io/nyj/NYJGothic.css" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
+        
+        <!-- 수정 부분 -->
+        <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
+        
     </head>
     <body id="page-top">
 		<!-- header -->
-		<%
-		pageContext.include("/WEB-INF/views/include/header.jsp");
-		%>
+		<% pageContext.include("/WEB-INF/views/include/header.jsp"); %>
 		
     <!-- 메인 -->
 	<form name="bookingform" action="${path}/search" method=get>
@@ -31,25 +32,42 @@
 					<div class="col-lg-6">
 						
 						<div class="mb-5 mb-lg-0 text-center text-lg-start">
-							<h1 class="display-1 lh-1 mb-3">
-								Hands free와 함께하는 <br>가벼운 여행의 시작
+							<h1 class="display-1 lh-1 mb-3" style="color: #646464;">
+								<b>가벼운 여행의 시작</b>
 							</h1>
-							<br>
+							<h1 class="display-1 lh-1 mb-3" style="color: #5a5a5a;">
+								<b>Hands Free</b>
+							</h1>
+							<div class="mb-3" style="color: #787878; font-weight:bold;">Anywhere, anytime</div>
 
-							<p class="lead fw-normal text-muted mb-5">
-								<i class="bi bi-geo-alt-fill"></i> &nbsp <input
-									class="input-text" type="text" placeholder="어디로 가시나요?"
-									name="destination" id="destination"><br> <br>
-									
-								<i class="bi bi-calendar3"></i> &nbsp 
-								<input type="date" class="datebutton" name="sdate" id="sdate" placeholder="맡기는 날" /> 
-								
-								<i class="bi bi-calendar3"></i> &nbsp 
-								<input type="date" class="datebutton" name="edate" id="edate" placeholder="찾는 날" /> <br> <br>
-					
-								 <i class="bi bi-handbag"></i> 
-								 <input type="text" class="datebutton" name="cnt" id="cnt" placeholder="짐 개수" />
-							</p>
+							<table class="table table-borderless">
+
+									<tr>
+										<td style="vertical-align:middle"><i class="bi bi-geo-alt-fill"></i></td>
+										<td colspan="3"><input style = "text-align:center;"
+									class="form-control" type="text" placeholder="내 위치"
+									name="destination" id="destination"></td>
+									</tr>
+								<tr>
+									<td style="vertical-align: middle"><i
+										class="bi bi-calendar3"></i></td>
+									<td><input type="date" class="datebutton form-control" 
+										style="text-align: center; color:#646464;" name="sdate" id="sdate" required
+										aria-required="true" data-placeholder="맡기는 날" /></td>
+									<td style="vertical-align: middle"><i
+										class="bi bi-calendar3"></i></td>
+									<td><input type="date" class="datebutton form-control"
+										style="text-align: center; color:#646464;" name="edate" id="edate" required
+										aria-required="true" data-placeholder="찾는 날" /></td>
+								</tr>
+								<tr>
+										<td style="vertical-align:middle"><i class="bi bi-handbag"></i></td>
+										<td><input type="number" class="datebutton form-control" style = "text-align:center; color:#646464;" name="cnt" id="cnt" min="1" max="100" value="1" /></td>
+										<td style="vertical-align:middle">개</td>
+										<td style="vertical-align:bottom; text-align:right; color:#646464; font-size:15px"> * 최대 20개까지</td>
+									</tr>
+							</table>
+							
 							<div class="d-flex flex-column flex-lg-row align-items-center">
 								<button class="custom-btn btn-1">검색하기</button>
 							</div>
@@ -74,6 +92,7 @@
                         <div class="container-fluid px-5">
                             <div class="row gx-5">
                                 <div class="col-md-6 mb-5">
+                                 
                                     <!-- Feature item-->
                                     <div class="text-center">
                                         <i class="bi-clock icon-feature text-gradient d-block mb-3"></i>
@@ -112,7 +131,9 @@
                         </div>
                     </div>
                     <div class="col-lg-4 order-lg-0">
-                        <a href="ko.qr-code-generator.com/" border="0" style="cursor:default" rel="nofollow"><img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2F192.168.0.1%2F&chs=180x180&choe=UTF-8&chld=L|2"></a>
+                        <img class="main-img2"
+								src="${path}/resources/user/assets/img/main2.png" alt="main image"
+								width="500" height="500">
                     </div>
                 </div>
             </div>
@@ -124,58 +145,36 @@
                 <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-12 col-lg-5">
                         <h2 class="display-4 lh-1 mb-4"><b>가격</b></h2>
-                        <p class="lead fw-normal text-muted mb-5 mb-lg-0">
-                            <b>시간 당 10,000원</b><br>
-                            NO 보증금<br>
-                            NO 수수료
-                        </p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">시간 당 5,000원</p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">NO 보증금</p>
+                        <p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">NO 수수료</p>
                     </div>
                     <div class="col-sm-8 col-md-6">
-                        <div class="px-5 px-sm-0"><img style="width: 500px; height: 500px;" src="${path}/resources/user/assets/img/coin.png" alt="coin" /></div>
+                        <div class="px-5 px-sm-0"><img style="width: 500px; height: 500px; margin-left: 100px;" src="${path}/resources/user/assets/img/coin.png" alt="coin" /></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 이용가이드, FAQ
-        <section class="bg-light" id = "guide">
+
+        <section id="about us">
             <div class="container px-5">
-                <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-                    
-                        <h2 class="display-4 lh-1 mb-4">이용가이드, FAQ</h2>
-                        <p class="lead fw-normal text-muted mb-5 mb-lg-0"></p> 
-                        <h3 style="color: rgb(59, 59, 59);">Q. 영남님은 어떻게 그렇게 코딩을 잘 하시나요?</h3>
-                        <h4 style="color: rgb(106, 106, 106);">A. No one knows</h4>
-
-                        <h3 style="color: rgb(59, 59, 59);">Q. 현중님은 어떻게 그렇게 코딩을 잘 하시나요?</h3><br>
-                        <h4 style="color: rgb(106, 106, 106);">A. No one knows</h4><br>
-
-                        <h3 class="font-alt">Q. 승복님은 어떻게 그렇게 코딩을 잘 하시나요?</h3><br>
-                        <h4 style="color: rgb(106, 106, 106);">A. No one knows</h4><br>
-
-                        <h3 class="font-alt">Q. 교수님은 어떻게 그렇게 코딩을 잘 하시나요?</h3><br>
-                        <h4 style="color: rgb(106, 106, 106);">A. No one knows</h4><br>
-
-                        
-                    
-                    <div class="col-sm-8 col-md-6">
-                        <div class="px-5 px-sm-0"><img class="img-fluid rounded-circle" src="https://source.unsplash.com/u8Jn2rzYIps/900x900" alt="..." /></div>
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
+                        <div class="container-fluid px-5">
+                            <div class="row gx-5">
+                            </div>
+                        </div>
                     </div>
                     
-                </div>
-            </div>
-        </section> -->
-
-        <!-- 이용가이드 FAQ -->
-        <section class="cta">
-            <div class="cta-content">
-                <div class="container px-5">
-                    <h1 class="text-white display-1 lh-1 mb-4">이용가이드</h1>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
-                    <h3 style="color: white;">Q.회원가입은 어떻게 하나요?</h3> <h4 style="color: white;">A. 버튼을 누르세요.</h4>
-
-                    <!-- <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://startbootstrap.com/theme/new-age" target="_blank">Download for free</a> -->
+                        <img class="mobile-img"
+								src="${path}/resources/user/assets/img/mobile.png" alt="mobile image"
+								width="500" height="500">
+						<img class="qr-img"
+								src="${path}/resources/user/assets/img/qrcode.png" alt="qrcode image"
+								width="200" height="200">
+						<p class="lead fw-normal text-muted mb-5 mb-lg-0" style="margin:0.4em">qr코드를 스캔해 모바일에서 이용해보세요! </p>
+                    
                 </div>
             </div>
         </section>

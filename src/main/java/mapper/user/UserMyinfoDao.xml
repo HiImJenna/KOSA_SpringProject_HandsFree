@@ -23,6 +23,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from users where userid=#{userid}
 	</delete>
 	
+	<select id="getMyReservationList" resultType="vo.UserReservationJoinVo">
+		select a.idx, c.name as storeName, a.name, a.cnt, a.price, to_char(a.payment_date, 'yy/mm/dd HH24:mm:ss') as pdate, to_char(a.sdate, 'yy/mm/dd HH24:mm:ss') as sdate, 
+               to_char(a.edate, 'yy/mm/dd HH24:mm:ss') as edate, nvl(b.idx, 0) as reviewstatus
+		from reservation a
+		join store c on a.storeid = c.storeid
+		left join review b on a.idx = b.rs_idx
+		where a.userid = #{userid}
+		order by a.sdate
+	</select>
+	
 	<select id="reserveInfo" resultType="HashMap">
 		select st.storeid, st.name as storename, st.phone, st.address, 
 		       rs.name as username, rs.cnt, rs.price, rs.sdate, rs.edate
@@ -33,5 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		where us.userid = #{userid}
 	</select>
+	
+	<select id="getUserFullName" resultType="String">
+		select concat(concat(last_name, ' '), first_name) as fullname 
+		from users
+		where userid=#{userid}
+	</select>
+	
+	<insert id="saveUserReview" parameterType="vo.user.UserReview">
+		insert into review(idx, rs_idx, name, content, grade, edate)
+		values(review_seq.nextval, #{rs_idx}, #{name}, #{content}, #{grade}, sysdate)
+	</insert>
 	
 </mapper>

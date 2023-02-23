@@ -25,11 +25,15 @@ public class UsermainController {
 		String destination = httpServletRequest.getParameter("destination");		
 		String dropDate = httpServletRequest.getParameter("dropDate");
 		String pickupDate = httpServletRequest.getParameter("pickupDate");
+		String sDate = httpServletRequest.getParameter("sdate");
+		String eDate = httpServletRequest.getParameter("edate");
+
 		
 		model.addAttribute("destination", destination);
 		model.addAttribute("dropDate", dropDate);
 		model.addAttribute("pickupDate", pickupDate);
-		
+		model.addAttribute("sDate", sDate);
+		model.addAttribute("eDate", eDate);
 		return "/user/search";
 	}
 	//	public ResponseEntity<?> getStore(@RequestParam Map<String, String> position){
@@ -44,9 +48,9 @@ public class UsermainController {
 		
 	 */
 	@GetMapping("selectStore")
-	public ResponseEntity<?> getStore(){
+	public ResponseEntity<?> getStore(String storeId){
 //		List<Map<String, String>> list =  userSearchService.getStore(latitude, longitude);
-		List<Map<String, String>> list =  userSearchService.getStore();
+		List<Map<String, String>> list =  userSearchService.getStore(storeId);
 		System.out.println(list);
 		System.out.println(list.toString());
 		return new ResponseEntity<>(list, HttpStatus.OK);
