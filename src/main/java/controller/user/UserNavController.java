@@ -2,6 +2,7 @@ package controller.user;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import controller.user.dto.UserReviewDto;
@@ -110,6 +113,8 @@ public class UserNavController {
 		model.addAttribute("list", list);		
 		return "user/myreserve";
 	}
+	
+	
 	
 	@PostMapping("users/reviews")
 	public String saveReview(HttpServletRequest request, Principal principal) {
