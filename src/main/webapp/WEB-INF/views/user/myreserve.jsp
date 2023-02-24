@@ -27,6 +27,9 @@
       crossorigin="anonymous"></script>
       	    <!--파비콘-->
         <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
+   
+   <!-- 별css -->
+   <link href="${path}/resources/admin/css/star.css" rel="stylesheet" />
 
 <head>
         <title>예약내역 👜</title>
@@ -64,12 +67,12 @@
            
          function activateReview(idx) {
               $("#cancelButton" + idx).show();
-              $("#reviewContent" + idx).show();
+              $(".reviewContent" + idx).show();
               $("#reviewButton" + idx).hide();
            }
            function deActivateReview(idx) {
               $("#cancelButton" + idx).hide();
-              $("#reviewContent" + idx).hide();
+              $(".reviewContent" + idx).hide();
               $("#reviewButton" + idx).show();
            }
         </script>
@@ -151,7 +154,7 @@
                                        <td style="vertical-align: middle">${item.sdate}</td>
                                        <td style="vertical-align: middle">${item.edate}</td>
                                        <c:choose>
-                                          <c:when test="${item.content eq null}">
+                                          <c:when test="${item.userContent eq null}">
                                              <td id="reviewTr${item.idx}" style="display: block">
                                                 <button class="btn btn-primary" onclick="activateReviewForm(${item.idx}, ${item.reviewstatus})">리뷰작성</button>
                                              </td>
@@ -194,16 +197,33 @@
                                              </td>
                                      </tr>
                                      <!-- 후기 보이는 부분 -->
-                                    <tr id="reviewContent${item.idx}" style="display: none">
-                                          <td colspan="1">
+                                    <tr class="reviewContent${item.idx}" style="display: none">
+                                    	  <td colspan="1">
                                           </td>
                                           <td colspan="1">
-                                             ㄴ
+                                          	ㄴ 나의 후기
                                           </td>
-                                           <td colspan="6">
-                                              ${item.content}
+                                           <td colspan="5">
+                                              ${item.userContent}
+                                           </td>
+                                           <td colspan="1">
+                                          	<c:forEach begin="${1}" end="${item.grade}" step="${1}">
+                                                <div class="nanny-icon star yellow"></div>
+											</c:forEach>
+                                          </td>
+                                    </tr>
+                                    <c:if test="${item.storeContent ne null}">
+                                    <tr class="reviewContent${item.idx}" style="display: none">
+	                                      <td colspan="2">
+	                                      </td>
+                                          <td colspan="1">
+                                             	ㄴ 점주 답글
+                                          </td>
+                                           <td colspan="5">
+                                              ${item.storeContent}
                                            </td>
                                     </tr>
+                                    </c:if>
                                           </c:otherwise>
                                           
                                           

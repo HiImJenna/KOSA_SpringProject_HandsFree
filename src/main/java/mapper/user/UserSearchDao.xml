@@ -22,4 +22,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       where sp.storeid = #{storeid}
 	</select>
 	
+	
+	<select id="shopOneDetail" resultType="HashMap">
+      select st.storeid, st.name, st.phone, st.address, st.latitude, st.longitude, std.notice, us.PROFILE_PATH,
+      std.manage_week_time, std.manage_sat_time, std.manage_sun_time from store st 
+      inner join store_details std on st.storeid = std.storeid
+      inner join storekeeper sp on sp.storeid = st.storeid
+      inner join users us on sp.storeid = us.userid
+      where sp.storeid = #{storeid}
+	</select>
+	
+	
+	
 </mapper>

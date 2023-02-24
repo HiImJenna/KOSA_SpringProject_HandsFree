@@ -65,6 +65,21 @@ padding: 0px;
 }
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;margin:10px 0 30px 10px;padding:5px;}
 
+
+#backBtn{
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    cursor: pointer;
+    background: #3B47F5;
+    color: #fff;
+    border-top-left-radius: 15px;
+    margin: 5px;
+    text-align: left;
+}
+
 </style>
 
 

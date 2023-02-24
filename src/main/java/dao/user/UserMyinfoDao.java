@@ -31,4 +31,6 @@ public interface UserMyinfoDao {
 	// 사용자 review 저장 하기
 	public int saveUserReview(UserReview review);
 
+	// 내 예약 정보 조회 V2
+	public List<UserReservationJoinVo> getMyReservationListV2(String userid);
 }

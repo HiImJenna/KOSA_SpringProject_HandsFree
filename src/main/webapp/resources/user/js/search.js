@@ -8,7 +8,8 @@ window.onload = function(){
    
    //DragAndDrop
    //태그값 가져오려면  document.getElementById("menu_wrap");
-   var chatData = $('#menu_wrap')[0]; 
+   var chatData = $('#menu_wrap')[0];
+   var storeId = '';
    chatData.addEventListener("dragstart", dragStart);
    chatData.addEventListener("drag", drag);
    chatData.addEventListener("dragover", dragOver);
@@ -44,24 +45,37 @@ window.onload = function(){
       var list_data = $(this).parents().eq(1);
       var title = list_data.find("h4").text();
       storeId = $(this).closest('div').data('obj');
-      console.log(storeId);
+
       var data = {
             title : list_data.find("h4").text(),
             name : 'asd',
             storeId : storeId
       };
-      //console.log(data);
-      /* console.log(JSON.stringify(data)); */
       $.ajax({
          type : "get",
          url : 'item',
          data:data,
          success : function(data){
+        	 /*detailBtn*/
+        	console.log(data);
             createForm(data);
-            /* $('#listGroup').empty();
-            var jsonData = JSON.parse(data);
-            $('#listGroup').append */
-            
+            var dataFirst = {
+                    title : title,
+                    type : 'information',
+                    storeId : storeId
+            };
+            $.ajax({
+                type : "get",
+                url : 'item/information',
+                data:dataFirst,
+                success : function(data){
+                   createTabView(data, 'information');
+                   console.log(data);
+                },
+                error:function (request, status, error){
+                          console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+                   }
+             }) 
          },
          error:function (request, status, error){
                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
@@ -71,12 +85,8 @@ window.onload = function(){
 
    
    $(document).on("click", "#reservationBtn", function(){
-      var storeId = $(this).closest('div').data('obj');
-      console.log(storeId);
-      
+      storeId = $(this).closest('div').data('obj');
    });
-   
-   
    
    
    $(document).on("click", "#information", function(){
@@ -94,10 +104,8 @@ window.onload = function(){
          url : 'item/information',
          data:data,
          success : function(data){
-            
-            console.log("정보데이터");
-            console.log(data);
             createTabView(data, 'information');
+            console.log(data);
          },
          error:function (request, status, error){
                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
@@ -108,8 +116,7 @@ window.onload = function(){
    $(document).on("click", "#review", function(){
       var list_data = $(this).parents().eq(1);
       var title = list_data.find("h4").text();
-      var storeId = $(this).closest('div').data('obj');
-      $('#tabView').empty()
+      $('#tabView').empty();
       var data = {
             title : title,
             type : 'review',
@@ -167,21 +174,37 @@ window.onload = function(){
    });
    
    
+   $(document).on("click", "#backBtn", function(){
+	   $('#itemDetails').remove();
+	   $('#listGroup').children().show();
+   })
+
+   
+   
    function createTabView(data, type){
 //      $('#tabView').children().hide();
+	   console.log(data);
       let itemTab = '';
       if(type === 'information')
       {
+    	 $('#tabView').empty();
          itemTab = `
-                  <div class="detail">
-                     <div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>
+                  <div class="detail">`
+                  if(data[0].NOTICE === null || data[0].NOTICE === undefined)
+            	  {
+                	  itemTab += `<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;공지가 없습니다.</div><br>`;
+            	  }
+                  else{
+                	  itemTab += `<div id=""><i class="bi bi-megaphone-fill"></i>&nbsp;${data[0].NOTICE}</div><br>`;                	  
+                  }
+                	  itemTab+= `
                      <div id=""><i class="bi bi-geo-alt-fill"></i>&nbsp;${data[0].ADDRESS}</div><br>
                      <div id=""><i class="bi bi-telephone-fill"></i>&nbsp;${data[0].PHONE}</div><br>
                      <div id=""><i class="bi bi-clock-fill"></i>&nbsp; 월~금 : ${data[0].MANAGE_WEEK_TIME}</div><br>
                      <div id="">&nbsp;&nbsp;&nbsp;&nbsp;          토요일 : ${data[0].MANAGE_SAT_TIME}</div><br>
                      <div id="">&nbsp;&nbsp;&nbsp;&nbsp;       일요일 : ${data[0].MANAGE_SUN_TIME}</div><br>
                         <se:authorize access="hasRole('ROLE_USER')"> 
-	                        <img class="chatBtn" id="chatBtn"  data-obj=${data.storeId}
+	                        <img class="chatBtn" id="chatBtn"  data-obj=${data.STOREID}
 	                             src="/resources/user/assets/img/chatBtn.png"
 	                             alt="이미지 없어유">
                         </se:authorize access>
@@ -236,7 +259,7 @@ window.onload = function(){
    function createReplyView(data){
 	   itemTab = `
 	      <div class="comment">
-	      답글시작
+	      답글
              <div class="top-part d-flex justify-content-between align-items-center">
                  <div class="d-flex">
                      <div class="user-infos">
@@ -263,12 +286,14 @@ window.onload = function(){
    
    //Json 전용 table 생성
    function createForm(data, way){
-      $('#listGroup').empty();
+      $('#listGroup').children().hide();
+      console.log(data);
       const itemDetail =`
-                  <table class="itemDetails table table-borderless">
+                  <table id="itemDetails" class="itemDetails table table-borderless">
                       <tr>
                           <th>
-                              <img class="item_img" alt="없음" src="resources/user/assets/img/shop.jpg">
+                          <button id="backBtn" class="backBtn"><i class="bi bi-caret-left"></i></button>
+                              <img class="item_img" alt="없음" src="${data.PROFILE_PATH}">
                           </th>
                       </tr>
                   
@@ -276,7 +301,7 @@ window.onload = function(){
                           <th>
                               <div class="detailsHeader">
     	  							보관소 🏠 <br>
-                                  <h4>${data.title}</h4>
+                                  <h4>${data.NAME}</h4>
                                    
                               </div>
                           </th>

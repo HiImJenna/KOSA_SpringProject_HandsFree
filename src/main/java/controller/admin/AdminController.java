@@ -25,12 +25,13 @@ import controller.admin.dto.StoreInfoUpdateDto;
 import service.ReservationService;
 import service.ReviewService;
 import service.admin.AdminService;
+import service.admin.ChartService;
 import service.admin.MailService;
 import service.file.FileService;
 import service.user.UserMyinfoService;
 import vo.Reservation;
-import vo.Review;
 import vo.admin.AdminReview;
+import vo.admin.Chart;
 import vo.admin.Email;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
@@ -58,6 +59,9 @@ public class AdminController {
 	
 	@Autowired
 	private ReservationService reservationservice;
+
+	@Autowired
+	private ChartService chartservice;
 	
 	@Autowired
 	private UserMyinfoService usermyinfoservice;
@@ -198,7 +202,34 @@ public class AdminController {
 	}
 
 	@GetMapping("admin/chart")   
-	public String chart() {
+	public String chart(Model model, Principal principal) {
+		String userId = principal.getName();
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
+		String storeId = principal.getName();
+		System.out.println("000");
+		System.out.println(storeId);
+		System.out.println("000");
+		Chart chart = chartservice.getChartCount(storeId);
+		model.addAttribute("m9", chart.getM9());
+		model.addAttribute("m10", chart.getM10());
+		model.addAttribute("m11", chart.getM11());
+		model.addAttribute("m12", chart.getM12());
+		model.addAttribute("m1", chart.getM1());
+		model.addAttribute("m2", chart.getM2());
+		System.out.println("111");
+		System.out.println(chart);
+		System.out.println("111");
+		Chart chart2 = chartservice.getChartSales(storeId);
+		model.addAttribute("s9", chart2.getS9());
+		model.addAttribute("s10", chart2.getS10());
+		model.addAttribute("s11", chart2.getS11());
+		model.addAttribute("s12", chart2.getS12());
+		model.addAttribute("s1", chart2.getS1());
+		model.addAttribute("s2", chart2.getS2());
+		System.out.println("222");
+		System.out.println(chart2);
+		System.out.println("222");
 		return "admin/mainInc/chart";
 	}
 	
