@@ -19,5 +19,9 @@ public class UserReservationJoinVo {
 	private String sdate;
 	private String edate;
 	private int reviewstatus;
-	private String content;
+	private String userContent;
+	private String userDate;
+	private String storeContent;
+	private String storeDate;
+	private int grade;
 }
