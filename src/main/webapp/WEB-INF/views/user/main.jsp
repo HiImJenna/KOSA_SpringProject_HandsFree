@@ -16,7 +16,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
         
-        <!-- 수정 부분 -->
+        <!-- 파비콘 -->
         <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
         
     </head>
@@ -49,13 +49,11 @@
 									name="destination" id="destination"></td>
 									</tr>
 								<tr>
-									<td style="vertical-align: middle"><i
-										class="bi bi-calendar3"></i></td>
+									<td style="vertical-align: middle"><i class="bi bi-shop"></i></td>
 									<td><input type="date" class="datebutton form-control" 
 										style="text-align: center; color:#646464;" name="sdate" id="sdate" required
 										aria-required="true" data-placeholder="맡기는 날" /></td>
-									<td style="vertical-align: middle"><i
-										class="bi bi-calendar3"></i></td>
+									<td style="vertical-align: middle"><i class="bi bi-shop"></i></td>
 									<td><input type="date" class="datebutton form-control"
 										style="text-align: center; color:#646464;" name="edate" id="edate" required
 										aria-required="true" data-placeholder="찾는 날" /></td>

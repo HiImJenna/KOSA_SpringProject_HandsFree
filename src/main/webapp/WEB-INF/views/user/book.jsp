@@ -26,7 +26,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <sec:authentication property="principal" var="principal"/>
-
+        <!-- 파비콘 -->
+        <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
