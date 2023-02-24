@@ -49,7 +49,8 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
    <!-- 커스텀 js -->
    <script type="text/javascript" src="${path}/resources/user/js/search.js"></script>
-   
+   <!-- 파비콘 -->
+   <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
 <style>
 body{
    font-family:"맑은 고딕", "고딕", "굴림";
@@ -135,23 +136,27 @@ padding: 0px;
                }
                const itemList = `
                <div class="shopList">
-              
+
+               
                   <img class="shop_img" alt="없음"
-                	  src=\${data.PROFILE_PATH }>
+                     src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
-                        보관소 👜<br>
+                        보관소<br>
+
                      <h4>\${data.NAME}</h4>
                         \${address}<br>
                      
                   </div>
                   <div class="list_button" data-obj=\${data.STOREID}>
                      <button type="button" class="btn btn-primary" id="detailBtn"
-                        style="margin-bottom: 15px; width: 80px; font-size: 12px;">상세보기</button>
-                     <br>														
-                     <button type="button" style="margin-bottom: 15px; width: 80px; font-size: 12px;" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
+
+                        style="margin-bottom: 15px; width: 80px; height: 30px; font-size: small;">상세보기</button>
+                     <br>                                          
+                     <button style="margin-bottom: 15px; width: 80px; height: 30px; font-size: small;" type="button" class="btn btn-primary" onclick="location.href='/users/userBook?STOREID=' + '\${data.STOREID}' + '&sDate=' + '${sDate}' + '&eDate=' + '${eDate}'">예약하기</button>
                   </div>
                </div>
-`;
+               `;
+
                $('#listGroup').append(itemList);
             }
          // 키워드 검색 완료 시 호출되는 콜백함수 입니다
@@ -181,8 +186,6 @@ padding: 0px;
                      
                      createList(obj);
                   }
-
-
                })
                
                                  
@@ -488,7 +491,7 @@ padding: 0px;
          
           // 메세지 그리기
          function chating(messageInfo){
-        	 console.log(messageInfo);
+            console.log(messageInfo);
              let nickname = messageInfo.userId;
              let message = messageInfo.content;
              

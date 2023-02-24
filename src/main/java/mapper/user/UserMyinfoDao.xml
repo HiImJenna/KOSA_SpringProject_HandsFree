@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join store c on a.storeid = c.storeid
 		left join review b on a.idx = b.rs_idx
 		where a.userid = #{userid}
-		order by a.sdate
+		order by a.sdate desc
 	</select>
 	
 	<select id="reserveInfo" resultType="HashMap">
