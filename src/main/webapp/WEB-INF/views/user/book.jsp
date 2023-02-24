@@ -32,6 +32,7 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 
+			var price = '';
 			$('#sTime, #eTime').on('change', calculateTimeDifference);
 			
 			function calculateTimeDifference(){
@@ -51,7 +52,7 @@
 			      var timeDiff = endDate.getTime() - startDate.getTime();
 			      // 시간 차이 출력
 			      var hours = Math.floor(timeDiff / (1000 * 60 * 60));
-			      var price = hours * 5000;
+			      price = hours * 2000;
 			    
 			      $('.value[name="price"]').text(price + '원');
 			    }
@@ -62,7 +63,6 @@
 		       console.log("결제버튼 눌림");
 		       var username = "${principal.username}";
 		       console.log(username)
-		       var price = "2000"; //가격 값 받아와야함
 		       payment(username);
 		    })
 		    
@@ -105,7 +105,7 @@
 		        var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
 		             tossPayments.requestPayment('카드', { // 결제 수단
 		               // 결제 정보
-		               amount: '2000',
+		               amount: price,
 		               orderId: 'QTIk82kxDPefXZC8MLFj0',
 		               orderName: "결제 진행",
 		               customerName: username,
@@ -220,8 +220,8 @@
 								<div class="title">결제 정보</div>
 							</div>
 							<div class="price-info clearfix">
-								<div class="item">기본 요금은 5000기준 입니다.</div>
-								<div class="value">1시간 x 5000원</div>
+								<div class="item">기본 요금은 2000기준 입니다.</div>
+								<div class="value">1시간 x 2000원</div>
 							</div>
 
 							<div class="separator"></div>

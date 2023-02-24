@@ -96,7 +96,8 @@ padding: 0px;
          
          //소켓 연결
          //webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-         const socket = new SockJS('http://localhost:8090/websocket');
+         //const socket = new SockJS('http://localhost:8090/websocket');
+         const socket = new SockJS('http://54.250.19.196:8080/websocket');
          const stomp = Stomp.over(socket);
          stomp.debug = null; //stomp 콘솔출력 X
          //구독 아이디 저장
@@ -241,19 +242,19 @@ padding: 0px;
              console.log("장소 : " + place_name);
              console.log("거리  : " + d);
              console.log("미터거리  : " + m); */
-             if(m <600){
+             if(m <= 1000){
                 return true;
              }else{
                 return false;   
              }
              
          }
-         //반경 600미터 원
+         //반경 1000미터 원
          function circle(lat, lon){
             //테스트 원값
             var circle = new kakao.maps.Circle({
                 center : new kakao.maps.LatLng(lat, lon),  // 원의 중심좌표 입니다 
-                radius: 600, // 미터 단위의 원의 반지름입니다 
+                radius: 1000, // 미터 단위의 원의 반지름입니다 
                 strokeWeight: 5, // 선의 두께입니다 
                 strokeColor: '#75B8FA', // 선의 색깔입니다
                 strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
