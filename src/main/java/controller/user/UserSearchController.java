@@ -25,7 +25,18 @@ public class UserSearchController {
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ResponseEntity<?> itemDetail(@RequestParam Map<String, Object> map){
-		return new ResponseEntity<>(map, HttpStatus.OK); 
+		String storeId = (String)map.get("storeId");
+		String profilePath = "\\resources\\defaultProfile\\crown.png";
+		Map<String, String> list = usersearchservice.shopOneDetail(storeId);
+		String value = "";
+		//PROFILE_PATH
+		
+		System.out.println(list.get("PROFILE_PATH"));
+		if(list.get("PROFILE_PATH").equals("/")) {
+			list.put("PROFILE_PATH", profilePath);
+		}
+			
+		return new ResponseEntity<>(list, HttpStatus.OK); 
 	}
 	
 	@GetMapping("information")
@@ -39,6 +50,7 @@ public class UserSearchController {
 	@GetMapping("review")
 	public ResponseEntity<?> itemReview(@RequestParam Map<String, Object> map){
 		String storeid = (String)map.get("storeId");
+		System.out.println(storeid);
 		List<Map<String, String>> list = reviewservice.getAllReviewList(storeid);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
