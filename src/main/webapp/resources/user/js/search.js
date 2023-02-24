@@ -120,12 +120,12 @@ window.onload = function(){
             url : 'item/review',
             data:data,
             success : function(data){
-            	console.log(review)
-            	console.log(data)
+            	console.log('review');
+            	console.log(data);
                length = data.length;
-               console.log(length); //1으로 잘 뜸
+               console.log('review data length : ' + length); //1으로 잘 뜸
             $.each(data, function(index, obj){
-               console.log(obj);
+               console.log('review obj : ' + obj);
                createTabView(obj, 'review');
             })
                
@@ -139,7 +139,8 @@ window.onload = function(){
    
    
    function createTabView(data, type){
-      console.log(data);
+      console.log('tab 키에 따른 data : ' + data);
+      console.log('data.STAR : ' + data.STAR);
       $('#tabView').children().hide();
       let itemTab = '';
       if(type === 'information')
@@ -192,15 +193,14 @@ window.onload = function(){
                                  </div>
                                  <div class="stars">
                                      <div class="score">
-                                         ${data.STAR}
+                                         ${data.STAR}.0
                                      </div>
-                                     <div class="all-stars">
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                     </div>
+								<div class="all-stars">`
+	        	let startNum = data.STAR
+	        	for(j = 0; j<startNum; j++){
+	        		itemTab += `<div class="nanny-icon star yellow"></div>&nbsp`
+	        	}
+				itemTab +=`</div>
                                  </div>
                              </div>
                              <div class="comment-content">${data.USERCONTENT}
@@ -210,6 +210,9 @@ window.onload = function(){
                  </div>
              </div>
          </div>
+         
+
+
                `;
       }else if(type == 'suggestion'){
          itemTab = `
@@ -239,9 +242,9 @@ window.onload = function(){
                       <tr>
                           <th>
                               <div class="detailsHeader">
-                              짐 보관소<br>
+    	  							보관소 🏠 <br>
                                   <h4>${data.title}</h4>
-                                   <i class="fa-solid fa-star"></i>
+                                   
                               </div>
                           </th>
                       </tr>

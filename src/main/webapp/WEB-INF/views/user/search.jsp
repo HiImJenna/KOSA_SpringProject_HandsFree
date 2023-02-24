@@ -75,6 +75,8 @@ padding: 0px;
       var lon='';
 
       $(document).ready(function(){
+    	  
+    	  
          
          //소켓 연결
          //webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
@@ -139,7 +141,7 @@ padding: 0px;
                   <img class="shop_img" alt="없음"
                 	  src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
-                        보관소<br>
+                        보관소 🏠<br>
                      <h4>\${data.NAME}</h4>
                         \${address}<br>
                      

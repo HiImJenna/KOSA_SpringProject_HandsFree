@@ -16025,7 +16025,6 @@ fieldset:disabled .btn-group-vertical {
 
 .shopList{
 	background-color: #efeff0;
-	padding-top:5px;
 	width: 380px;
 	height: 110px;
 	margin-bottom: 5px;
@@ -16040,7 +16039,7 @@ fieldset:disabled .btn-group-vertical {
 }
 
 .shop_img {
-	width: 30%;
+	width: 20%;
 	height: 90%;
 	margin: 7px;
 	border-radius: 5px;
@@ -16083,7 +16082,7 @@ fieldset:disabled .btn-group-vertical {
 
 .list_button {
 	float: right;
-
+	padding-top: 8px;
 	margin: 10px;
 }
 
