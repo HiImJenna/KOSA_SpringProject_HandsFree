@@ -201,10 +201,10 @@ window.onload = function(){
                                          </div>
                                      </div>
                                      <div class="name-date">
-                                         <div class="name"><b>${data.USERNAME}</b>
+                                         <div class="name"><b>사용자 ${data.USERNAME}</b>
                                          </div>
                                          <div class="date">
-                                             ${data.USEREDATE}
+                                             ${data.EDATE}
                                          </div>
                                      </div>
                                  </div>
@@ -248,7 +248,7 @@ window.onload = function(){
                          <div class="name"><b>${data.storeId}</b>
                          </div>
                          <div class="date">
-                             ${data.USEREDATE}
+                             ${data.EDATE}
                          </div>
                      </div>
                  </div>
