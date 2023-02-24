@@ -120,7 +120,7 @@
 						<br/>
 						<b>대표 이미지</b>
 						<br/> 
-						<img src="${profilePath}" height="70px" width="70px"/> 
+						<img src="${profilePath}" style="height: 70%; width: 30%; border-radius: 10px; "/> 
 						<br/>
 						<br/>
 						<div class="custom-file" style="width: 210px;">
@@ -140,7 +140,7 @@
 						<br/>
 						<b>짐 보관 갯수</b>
 						<br/> 
-						<div style="color:gray">* 최대 100개까지</div>ss
+						<div style="color:gray">* 최대 100개까지</div>
 						<input type="number" id="tentacles" min="1" max="100" value="${cnt}" name="storeCnt"> 개<br/> 
 						<br/><hr/><br>
 						<h5>영업시간</h5> 
