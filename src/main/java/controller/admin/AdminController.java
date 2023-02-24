@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import controller.admin.dto.AdminRegisterDto;
+import controller.admin.dto.AdminReviewSaveDto;
 import controller.admin.dto.AdminViewTimeDto;
 import controller.admin.dto.CalendarInfoDto;
 import controller.admin.dto.StoreInfoUpdateDto;
@@ -29,6 +30,7 @@ import service.file.FileService;
 import service.user.UserMyinfoService;
 import vo.Reservation;
 import vo.Review;
+import vo.admin.AdminReview;
 import vo.admin.Email;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
@@ -161,12 +163,19 @@ public class AdminController {
 	
 	@GetMapping("admin/review")   
 	public String review(Model model,Principal principal) {
-		String userId = principal.getName();
-		Store store = adminService.findStoreByUserId(userId);
-		List<Review> reviewList = reviewservice.getReviewList(userId);
-		model.addAttribute("reviewList", reviewList);
+		String storeId = principal.getName();
+		Store store = adminService.findStoreByUserId(storeId);
 		model.addAttribute("storeName", store.getName());
+		List<AdminReview> list = adminService.getAdminReviewListByStoreId(storeId);
+		model.addAttribute("list", list);
 		return "admin/mainInc/review";
+	}
+	
+	@PostMapping("/admin/review")
+	public String saveAdminReview(HttpServletRequest request) {
+		AdminReviewSaveDto dto = new AdminReviewSaveDto(request);
+		adminService.saveAdminReview(dto.toReview());
+		return "redirect:/admin/review";
 	}
 	
 	@GetMapping("admin/mail")   
