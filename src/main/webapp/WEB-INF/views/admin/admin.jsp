@@ -87,7 +87,7 @@
 		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
-					<strong>${storeName}</strong>
+					<strong>[Hands Free] ${storeName}</strong>
 				</h5>
 				<br />
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 기본정보를 볼 수 있는 페이지 입니다.</div>
