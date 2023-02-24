@@ -109,6 +109,7 @@ window.onload = function(){
       var list_data = $(this).parents().eq(1);
       var title = list_data.find("h4").text();
       var storeId = $(this).closest('div').data('obj');
+      $('#tabView').empty()
       var data = {
             title : title,
             type : 'review',
@@ -120,13 +121,42 @@ window.onload = function(){
             url : 'item/review',
             data:data,
             success : function(data){
-            	console.log('review');
-            	console.log(data);
                length = data.length;
-               console.log('review data length : ' + length); //1으로 잘 뜸
+               var twoData = data; 
+               
+               itemTab = `
+                   <div class="comments">
+                     <div class="d-flex resume-review">
+                              <span class="type-point">
+                                     •
+                                 </span>
+                                 (${length}) reviews
+                      </div>
+                    <div>
+                             <hr class="nanny-s<div class=" nanny-opinions">
+                             `;
+                 $('#tabView').append(itemTab);
+               
             $.each(data, function(index, obj){
-               console.log('review obj : ' + obj);
-               createTabView(obj, 'review');
+               var date = new Date(obj.USEREDATE);
+               var year = String(date.getYear()).substring(1);
+               var time = String(date.getHours()).padStart(2, "0") 
+               + ":" 
+               + String(date.getMinutes()).padStart(2, "0");
+               var sumDate = year + ":" + time;
+               obj.USEREDATE = sumDate;
+               console.log(obj);
+               if(obj.PARENT === null || obj.PARENT === undefined)
+            	   createTabView(obj, 'review');
+
+               $.each(twoData, function(index, replyObj){
+            	   if(obj.IDX === replyObj.PARENT){
+            		   createReplyView(replyObj)                		   
+            	   }
+               })
+
+            	  
+
             })
                
             },
@@ -138,9 +168,7 @@ window.onload = function(){
    
    
    function createTabView(data, type){
-      console.log('tab 키에 따른 data : ' + data);
-      console.log('data.STAR : ' + data.STAR);
-      $('#tabView').children().hide();
+//      $('#tabView').children().hide();
       let itemTab = '';
       if(type === 'information')
       {
@@ -160,20 +188,9 @@ window.onload = function(){
                       <br>
                   </div>
                   `;
-               
       }else if(type == 'review'){
          itemTab = `
             <div class="nanny-opinions">
-             <div class="comments">
-             <div class="d-flex resume-review">
-                      <span class="type-point">
-                             •
-                         </span>
-                         (${length}) reviews
-                     </div>
-                 <div>
-                     
-                     <hr class="nanny-s<div class=" nanny-opinions">
                      <div class="comments">
                          <div class="comment">
                              <div class="top-part d-flex justify-content-between align-items-center">
@@ -210,8 +227,16 @@ window.onload = function(){
                  </div>
              </div>
          </div>
-
-         <div class="comment">
+     </div> `;
+      }     
+      
+      $('#tabView').append(itemTab);
+   }
+   
+   function createReplyView(data){
+	   itemTab = `
+	      <div class="comment">
+	      답글시작
              <div class="top-part d-flex justify-content-between align-items-center">
                  <div class="d-flex">
                      <div class="user-infos">
@@ -231,11 +256,10 @@ window.onload = function(){
              <div class="comment-content">${data.USERCONTENT}
              </div>
          </div>
-     </div> `;
-      }     
-      
-      $('#tabView').append(itemTab);
+	   `;
+	   $('#tabView').append(itemTab);
    }
+   
    
    //Json 전용 table 생성
    function createForm(data, way){

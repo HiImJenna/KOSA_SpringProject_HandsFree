@@ -39,7 +39,7 @@ public class UserSearchController {
 	@GetMapping("review")
 	public ResponseEntity<?> itemReview(@RequestParam Map<String, Object> map){
 		String storeid = (String)map.get("storeId");
-		List<Map<String, String>> list = reviewservice.getReviewListUser(storeid);
+		List<Map<String, String>> list = reviewservice.getAllReviewList(storeid);
 		
 		return new ResponseEntity<>(list, HttpStatus.OK);
 		
