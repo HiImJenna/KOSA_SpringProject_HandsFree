@@ -126,7 +126,7 @@
                                           </div>
                                        </div>
                                     </div>
-                                    <div class="date">${user_date}</div>
+                                    <div class="date">${item.user_date}</div>
                                  </div>
                                  <br />
                                  <div class="comment-content">
@@ -142,7 +142,7 @@
            		  <c:when test="${item.store_idx ne null}">
            		  	<div>
 	                  <b>${storeName}</b>
-	                  <div style="float: right;">${store_date}</div>
+	                  <div style="float: right;">${item.store_date}</div>
 	                </div>
 	                <textarea style="width: 100%; height: 6.25em; resize: none;" readonly>${item.store_content}</textarea>
            		  </c:when>
