@@ -33,6 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by a.sdate desc
 	</select>
 	
+	<select id="getMyReservationListV2" resultType="vo.UserReservationJoinVo">
+		select a.idx, c.name as storeName, a.name, a.cnt, a.price, to_char(a.payment_date, 'yy/mm/dd HH24:mm:ss') as pdate, to_char(a.sdate, 'yy/mm/dd HH24:mm:ss') as sdate, 
+               to_char(a.edate, 'yy/mm/dd HH24:mm:ss') as edate, nvl(b.idx, 0) as reviewstatus, b.content as userContent, to_char(b.edate, 'yy-mm-dd') as userDate, 
+               d.content as storeContent, to_char(d.edate, 'yy-mm-dd') as storeDate, b.grade
+		from reservation a
+		join store c on a.storeid = c.storeid
+		left join (select * from review where parent is null) b on a.idx = b.rs_idx
+		left join (select * from review where parent is not null) d on a.idx = d.rs_idx
+		where a.userid = #{userid}
+		order by a.sdate desc
+	</select>
+	
 	<select id="reserveInfo" resultType="HashMap">
 		select st.storeid, st.name as storename, st.phone, st.address, 
 		       rs.name as username, rs.cnt, rs.price, rs.sdate, rs.edate

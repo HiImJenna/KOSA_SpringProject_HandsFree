@@ -3,6 +3,7 @@ package controller.user;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -105,7 +106,8 @@ public class UserNavController {
 	public String myreserve(Model model, Principal principal) {
 		String userId = principal.getName();
 		List<UserReservationJoinVo> list = usermyinfoservice.getReservationList(userId);
-		model.addAttribute("list", list);		
+		model.addAttribute("list", list);
+		System.out.println(list);
 		return "user/myreserve";
 	}
 	

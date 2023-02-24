@@ -82,7 +82,7 @@ public class UserMyinfoService {
 	// 사용자 예약 내역 가져오기
 	public List<UserReservationJoinVo> getReservationList(String userId) {
 		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
-		return dao.getMyReservationList(userId);
+		return dao.getMyReservationListV2(userId);
 	}
 	
 	// 사용자 리뷰 저장하기
