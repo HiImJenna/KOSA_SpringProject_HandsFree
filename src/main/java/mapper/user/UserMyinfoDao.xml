@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from reservation a
 		join store c on a.storeid = c.storeid
 		left join review b on a.idx = b.rs_idx
-		where a.userid = #{userid}
+		where a.userid = #{userid} and b.parent is null
 		order by a.sdate desc
 	</select>
 	
