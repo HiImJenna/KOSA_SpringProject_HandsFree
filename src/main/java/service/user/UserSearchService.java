@@ -40,4 +40,18 @@ public class UserSearchService {
 		System.out.println("shopDetail list : " + list);
 		return list;
 	}
+	
+	public Map<String, String> shopOneDetail(String storeId){
+		Map<String, String> list = null;
+		try {
+			UserSearchDao userSearchDao = sqlsession.getMapper(UserSearchDao.class);
+			list = userSearchDao.shopOneDetail(storeId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("shopDetail list : " + list);
+		return list;
+	}	
+	
 }

@@ -17,5 +17,7 @@ public interface UserSearchDao {
 	//상세정보 눌렀을 때 띄우는거
 	List<Map<String, String>> shopDetail(@Param("storeid") String storeId) throws ClassNotFoundException, SQLException;
 
+	//상세정보 눌렀을 때 하나만
+	Map<String, String> shopOneDetail(@Param("storeid") String storeId) throws ClassNotFoundException, SQLException;
 	
 }
