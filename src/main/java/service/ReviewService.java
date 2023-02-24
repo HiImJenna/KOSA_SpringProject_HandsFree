@@ -46,5 +46,17 @@ public class ReviewService {
 	}
 
 	
+	public List<Map<String, String>> getAllReviewList(String storeId){
+		ReviewDao reviewDao = sqlsession.getMapper(ReviewDao.class);
+		List<Map<String, String>> userReviewList=null;
+		try {
+			userReviewList = reviewDao.getAllReviewList(storeId);
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println("reviewService userReviewList : " + userReviewList);
+		return userReviewList;
+	}
+	
 	
 }
