@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dao.admin.AdminDao;
 import vo.admin.Admin;
+import vo.admin.AdminReview;
 import vo.admin.CalendarInfo;
+import vo.admin.RealReview;
 import vo.admin.Store;
 import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
@@ -60,5 +62,16 @@ public class AdminService {
 	public List<CalendarInfo> getCalendarList(String userId) {
 		AdminDao dao = sqlsession.getMapper(AdminDao.class);
 		return dao.getCalendarListByUserId(userId);
+	}
+	
+	public List<AdminReview> getAdminReviewListByStoreId(String storeId) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.getAdminReviewListByStoreId(storeId);
+	}
+	
+	@Transactional
+	public int saveAdminReview(RealReview review) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.saveAdminReview(review);
 	}
 }

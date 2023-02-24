@@ -49,7 +49,8 @@
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
    <!-- 커스텀 js -->
    <script type="text/javascript" src="${path}/resources/user/js/search.js"></script>
-   
+   <!-- 파비콘 -->
+   <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
 <style>
 body{
    font-family:"맑은 고딕", "고딕", "굴림";
@@ -139,7 +140,7 @@ padding: 0px;
                <div class="shopList">
                
                   <img class="shop_img" alt="없음"
-                	  src=\${data.PROFILE_PATH }>
+                     src=\${data.PROFILE_PATH }>
                   <div class="shop_info">
                         보관소 🏠<br>
                      <h4>\${data.NAME}</h4>
@@ -488,7 +489,7 @@ padding: 0px;
          
           // 메세지 그리기
          function chating(messageInfo){
-        	 console.log(messageInfo);
+            console.log(messageInfo);
              let nickname = messageInfo.userId;
              let message = messageInfo.content;
              
@@ -536,7 +537,7 @@ padding: 0px;
 
       <!-- 좌측 사이드바 -->
       <!-- Sidebar -->
-      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+      <nav style="background-color: #f8f8fb" id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
          <div class="position-sticky">
             <div id="listGroup" class="list-group list-group-flush mx-2 mt-4">
             </div>

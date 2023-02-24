@@ -71,4 +71,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from reservation
 		where storeid = #{storeid}
 	</select>
+	
+	<select id="getAdminReviewListByStoreId" resultType="vo.admin.AdminReview">
+		select A.idx as user_idx, A.rs_idx as reservation_idx, A.content as user_content, A.name as user_name, A.grade as user_grade, to_char(A.edate, 'YYYY-MM-DD') as user_date,
+       		   B.idx as store_idx, B.name as store_name, B.content as store_content, to_char(B.edate, 'YYYY-MM-DD') as store_date
+		from (select *
+      		  from review
+              where rs_idx in (select idx as rs_idx
+                       		   from reservation
+                       		   where storeid = #{storeId}) and
+              parent is null
+        ) A
+		left join review B on A.idx = B.parent
+	</select>
+	
+	<insert id="saveAdminReview" parameterType="vo.admin.RealReview">
+		insert into review(idx, rs_idx, parent, content, grade, edate, status)
+		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, 1)
+	</insert>
+	
 </mapper>
