@@ -88,7 +88,7 @@
 		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
-					<strong>[Hands Free] 교촌치킨 서울역점</strong>
+					<strong>[Hands Free] ${storeName}</strong>
 				</h5>
 				<br />
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 메일서비스를
