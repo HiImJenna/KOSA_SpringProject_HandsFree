@@ -61,6 +61,17 @@
         		$(reviewTr).show();
         		$(textarea).val('');
         	}
+        	
+			function activateReview(idx) {
+        		$("#cancelButton" + idx).show();
+        		$("#reviewContent" + idx).show();
+        		$("#reviewButton" + idx).hide();
+        	}
+        	function deActivateReview(idx) {
+        		$("#cancelButton" + idx).hide();
+        		$("#reviewContent" + idx).hide();
+        		$("#reviewButton" + idx).show();
+        	}
         </script>
         
     </head>
@@ -127,6 +138,7 @@
 											  	<c:forEach var="item" items="${list}" varStatus="s">
 											  	<!-- 한 세트 -->
 											    <tr>
+
 											      <th scope="row" style="vertical-align: middle">${s.count}</th>
 											      <td style="vertical-align: middle">${item.storeName}</td>
 											      <td style="vertical-align: middle">${item.cnt}</td>
@@ -167,7 +179,23 @@
 															<button type="submit" style="margin-top: 95px;" class="btn btn-primary">제출하기</button>
 											    		</td>
 											    	</form>
+
 											    </tr>
+											    <!-- 후기 보이는 부분 -->
+												<tr id="reviewContent${item.idx}" style="display: none">
+														<td colspan="1">
+														</td>
+														<td colspan="1">
+															ㄴ
+														</td>
+											    		<td colspan="6">
+											    			${item.content}
+											    		</td>
+												</tr>
+											      	</c:otherwise>
+											      	
+											      	
+											      </c:choose>
 											    <!-- 한 세트 -->
 											  	</c:forEach>
 											  </tbody>

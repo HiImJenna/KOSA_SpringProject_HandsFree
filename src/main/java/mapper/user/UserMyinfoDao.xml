@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMyReservationList" resultType="vo.UserReservationJoinVo">
 		select a.idx, c.name as storeName, a.name, a.cnt, a.price, to_char(a.payment_date, 'yy/mm/dd HH24:mm:ss') as pdate, to_char(a.sdate, 'yy/mm/dd HH24:mm:ss') as sdate, 
-               to_char(a.edate, 'yy/mm/dd HH24:mm:ss') as edate, nvl(b.idx, 0) as reviewstatus
+               to_char(a.edate, 'yy/mm/dd HH24:mm:ss') as edate, nvl(b.idx, 0) as reviewstatus, b.content
 		from reservation a
 		join store c on a.storeid = c.storeid
 		left join review b on a.idx = b.rs_idx
