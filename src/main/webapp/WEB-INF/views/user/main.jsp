@@ -51,11 +51,11 @@
 								<tr>
 									<td style="vertical-align: middle"><i class="bi bi-shop"></i></td>
 									<td><input type="date" class="datebutton form-control" 
-										style="text-align: center; color:#646464;" name="sdate" id="sdate" 
+										style="text-align: center; color:#646464;" name="sdate" id="sdate" required
 										aria-required="true" data-placeholder="맡기는 날" /></td>
 									<td style="vertical-align: middle"><i class="bi bi-shop"></i></td>
 									<td><input type="date" class="datebutton form-control"
-										style="text-align: center; color:#646464;" name="edate" id="edate" 
+										style="text-align: center; color:#646464;" name="edate" id="edate" required
 										aria-required="true" data-placeholder="찾는 날" /></td>
 								</tr>
 								<tr>
