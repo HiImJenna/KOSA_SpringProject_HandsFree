@@ -134,7 +134,6 @@ window.onload = function(){
                       console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
                }
          }) 
-
    });
    
    
@@ -166,13 +165,14 @@ window.onload = function(){
          itemTab = `
             <div class="nanny-opinions">
              <div class="comments">
-                 <div>
-                     <div class="d-flex resume-review">
+             <div class="d-flex resume-review">
                       <span class="type-point">
                              •
                          </span>
                          (${length}) reviews
                      </div>
+                 <div>
+                     
                      <hr class="nanny-s<div class=" nanny-opinions">
                      <div class="comments">
                          <div class="comment">
@@ -210,20 +210,29 @@ window.onload = function(){
                  </div>
              </div>
          </div>
-         
 
-
-               `;
-      }else if(type == 'suggestion'){
-         itemTab = `
-            <div class="">
-               <div id="">공지 : </div>
-               <div id="">주소 : </div>
-               <div id="">운영시간 : </div>
-               <div id="">번호 : </div>
-            </div>`;   
-      }
-      
+         <div class="comment">
+             <div class="top-part d-flex justify-content-between align-items-center">
+                 <div class="d-flex">
+                     <div class="user-infos">
+                         <div class="picture"
+                             style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
+                         </div>
+                     </div>
+                     <div class="name-date">
+                         <div class="name"><b>${data.storeId}</b>
+                         </div>
+                         <div class="date">
+                             ${data.USEREDATE}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="comment-content">${data.USERCONTENT}
+             </div>
+         </div>
+     </div> `;
+      }     
       
       $('#tabView').append(itemTab);
    }
