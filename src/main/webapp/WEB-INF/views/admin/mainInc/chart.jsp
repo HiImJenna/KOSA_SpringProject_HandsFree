@@ -91,17 +91,16 @@
 		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
-					<strong>[Hands Free] 교촌치킨 서울역점</strong>
+					<strong>[Hands Free] ${storeName}</strong>
 				</h5>
 				<br />
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 통계차트를
 					볼 수 있는 페이지 입니다.</div>
 			</div>
 			<br />
-			<h5 class="mb-0 text-center">
-				<strong>최근 30일 매출 보기</strong>
-			</h5>
 			<div class="card-body">
+			<h2 style="text-align: center">매출 & 예약건수</h2>
+			<br/>
 				<div id="container"></div>
 				<canvas class="my-4 w-100" id="myChart" height="380"></canvas>
 			</div>
@@ -118,25 +117,23 @@
 Highcharts.chart('container', {
 
     title: {
-        text: 'U.S Solar Employment Growth by Job Category, 2010-2020',
+        text: '<b>최근 6개월 현황</b>',
         align: 'left'
     },
 
     subtitle: {
-        text: 'Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>',
+        text: '',
         align: 'left'
     },
 
     yAxis: {
         title: {
-            text: 'Number of Employees'
+            text: '<b>금액 & 건수</b>'
         }
     },
 
     xAxis: {
-        accessibility: {
-            rangeDescription: 'Range: 2010 to 2020'
-        }
+        	categories :["<b>2022년 09월</b>","<b>2022년 10월</b>","<b>2022년 11월</b>","<b>2022년 12월</b>","<b>2023년 01월</b>", "<b>2023년 02월</b>"]
     },
 
     legend: {
@@ -150,30 +147,15 @@ Highcharts.chart('container', {
             label: {
                 connectorAllowed: false
             },
-            pointStart: 2010
         }
     },
 
     series: [{
-        name: 'Installation & Developers',
-        data: [43934, 48656, 65165, 81827, 112143, 142383,
-            171533, 165174, 155157, 161454, 154610]
+        name: '총 매출',
+        data: [${s9}, ${s10}, ${s11}, ${s12}, ${s1}, ${s2}]
     }, {
-        name: 'Manufacturing',
-        data: [24916, 37941, 29742, 29851, 32490, 30282,
-            38121, 36885, 33726, 34243, 31050]
-    }, {
-        name: 'Sales & Distribution',
-        data: [11744, 30000, 16005, 19771, 20185, 24377,
-            32147, 30912, 29243, 29213, 25663]
-    }, {
-        name: 'Operations & Maintenance',
-        data: [null, null, null, null, null, null, null,
-            null, 11164, 11218, 10077]
-    }, {
-        name: 'Other',
-        data: [21908, 5548, 8105, 11248, 8989, 11816, 18274,
-            17300, 13053, 11906, 10073]
+        name: '총 예약 건수',
+        data:  [${m9}, ${m10}, ${m11}, ${m12}, ${m1}, ${m2}]
     }],
 
     responsive: {
