@@ -3,8 +3,10 @@ package vo;
 import java.sql.Date;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Reservation {
 	private int idx;
 	private String userid;
