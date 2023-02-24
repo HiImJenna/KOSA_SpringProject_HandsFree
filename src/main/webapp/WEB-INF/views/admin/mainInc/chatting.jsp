@@ -125,7 +125,7 @@
 				const chatHtml = `
 			        <li>
 			        	<div class="notification">
-		            		<span>\${message}</span>
+		            		
 		            	</div>
 			        </li>`;
 				
@@ -289,11 +289,11 @@
 				let listHtml = "";
 				
 				$.each(roomList, function(index, obj){
-					if(obj.users !== nickname){
+					console.log(obj.users[0])
+					if(obj.users[0] !== nickname){
 						listHtml += `
 							<tr data-obj=\${JSON.stringify(obj)}>
-								<th scope="row">\${obj.roomNumber}</th>
-								<td>정우성</td>
+								<td>\${obj.users[0]}</td>
 								<td>2023.01.15.(일) <br />오후 09:00:00
 								</td>
 								<td>안녕하세요.</td>
@@ -397,13 +397,11 @@
 					<tbody style="text-align: center">
 						<tr>
 							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-							<td>예약건수</td>
-							<td>10건</td>
 						</tr>
 						<tr>
 							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
 							<td>채팅내역</td>
-							<td>7건</td>
+							<td>3건</td>
 						</tr>
 					</tbody>
 				</table>
@@ -412,7 +410,6 @@
 				<table class="table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
-							<th scope="col">예약번호</th>
 							<th scope="col">예약자명</th>
 							<th scope="col">채팅시간</th>
 							<th scope="col">채팅내용</th>
