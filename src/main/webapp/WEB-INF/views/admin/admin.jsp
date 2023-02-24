@@ -87,7 +87,7 @@
 		<div class="card">
 			<div class="card-header py-3">
 				<h5 class="mb-0 text-left">
-					<strong>${storeName}</strong>
+					<strong>[Hands Free] ${storeName}</strong>
 				</h5>
 				<br />
 				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 기본정보를 볼 수 있는 페이지 입니다.</div>
@@ -98,7 +98,7 @@
 				</div>
 				<h5>가게정보</h5>
 				<br /> <b>대표 이미지</b> <br /> 
-				<img src="${profilePath}" height="70px" width="70px" /> 
+				<img src="${profilePath}" style="height: 70%; width: 30%; border-radius: 10px; " /> 
 				<br /> <br /> <b>가게이름</b> <br /> ${storeName} <br />
 				<br /> <b>주소 </b><br /> ${address} <br /> <br /> <b>대표번호</b><br />
 				${phone} <br /> <br />

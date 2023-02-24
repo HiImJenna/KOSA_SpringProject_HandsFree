@@ -109,6 +109,7 @@ window.onload = function(){
       var list_data = $(this).parents().eq(1);
       var title = list_data.find("h4").text();
       var storeId = $(this).closest('div').data('obj');
+      $('#tabView').empty()
       var data = {
             title : title,
             type : 'review',
@@ -120,13 +121,42 @@ window.onload = function(){
             url : 'item/review',
             data:data,
             success : function(data){
-            	console.log(review)
-            	console.log(data)
                length = data.length;
-               console.log(length); //1으로 잘 뜸
+               var twoData = data; 
+               
+               itemTab = `
+                   <div class="comments">
+                     <div class="d-flex resume-review">
+                              <span class="type-point">
+                                     •
+                                 </span>
+                                 (${length}) reviews
+                      </div>
+                    <div>
+                             <hr class="nanny-s<div class=" nanny-opinions">
+                             `;
+                 $('#tabView').append(itemTab);
+               
             $.each(data, function(index, obj){
+               var date = new Date(obj.USEREDATE);
+               var year = String(date.getYear()).substring(1);
+               var time = String(date.getHours()).padStart(2, "0") 
+               + ":" 
+               + String(date.getMinutes()).padStart(2, "0");
+               var sumDate = year + ":" + time;
+               obj.USEREDATE = sumDate;
                console.log(obj);
-               createTabView(obj, 'review');
+               if(obj.PARENT === null || obj.PARENT === undefined)
+            	   createTabView(obj, 'review');
+
+               $.each(twoData, function(index, replyObj){
+            	   if(obj.IDX === replyObj.PARENT){
+            		   createReplyView(replyObj)                		   
+            	   }
+               })
+
+            	  
+
             })
                
             },
@@ -134,13 +164,11 @@ window.onload = function(){
                       console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
                }
          }) 
-
    });
    
    
    function createTabView(data, type){
-      console.log(data);
-      $('#tabView').children().hide();
+//      $('#tabView').children().hide();
       let itemTab = '';
       if(type === 'information')
       {
@@ -160,19 +188,9 @@ window.onload = function(){
                       <br>
                   </div>
                   `;
-               
       }else if(type == 'review'){
          itemTab = `
             <div class="nanny-opinions">
-             <div class="comments">
-                 <div>
-                     <div class="d-flex resume-review">
-                      <span class="type-point">
-                             •
-                         </span>
-                         (${length}) reviews
-                     </div>
-                     <hr class="nanny-s<div class=" nanny-opinions">
                      <div class="comments">
                          <div class="comment">
                              <div class="top-part d-flex justify-content-between align-items-center">
@@ -183,24 +201,23 @@ window.onload = function(){
                                          </div>
                                      </div>
                                      <div class="name-date">
-                                         <div class="name"><b>${data.USERNAME}</b>
+                                         <div class="name"><b>사용자 ${data.USERNAME}</b>
                                          </div>
                                          <div class="date">
-                                             ${data.USEREDATE}
+                                             ${data.EDATE}
                                          </div>
                                      </div>
                                  </div>
                                  <div class="stars">
                                      <div class="score">
-                                         ${data.STAR}
+                                         ${data.STAR}.0
                                      </div>
-                                     <div class="all-stars">
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                         <div class="nanny-icon star yellow"></div>
-                                     </div>
+								<div class="all-stars">`
+	        	let startNum = data.STAR
+	        	for(j = 0; j<startNum; j++){
+	        		itemTab += `<div class="nanny-icon star yellow"></div>&nbsp`
+	        	}
+				itemTab +=`</div>
                                  </div>
                              </div>
                              <div class="comment-content">${data.USERCONTENT}
@@ -210,20 +227,39 @@ window.onload = function(){
                  </div>
              </div>
          </div>
-               `;
-      }else if(type == 'suggestion'){
-         itemTab = `
-            <div class="">
-               <div id="">공지 : </div>
-               <div id="">주소 : </div>
-               <div id="">운영시간 : </div>
-               <div id="">번호 : </div>
-            </div>`;   
-      }
-      
+     </div> `;
+      }     
       
       $('#tabView').append(itemTab);
    }
+   
+   function createReplyView(data){
+	   itemTab = `
+	      <div class="comment">
+	      답글시작
+             <div class="top-part d-flex justify-content-between align-items-center">
+                 <div class="d-flex">
+                     <div class="user-infos">
+                         <div class="picture"
+                             style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
+                         </div>
+                     </div>
+                     <div class="name-date">
+                         <div class="name"><b>${data.storeId}</b>
+                         </div>
+                         <div class="date">
+                             ${data.EDATE}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="comment-content">${data.USERCONTENT}
+             </div>
+         </div>
+	   `;
+	   $('#tabView').append(itemTab);
+   }
+   
    
    //Json 전용 table 생성
    function createForm(data, way){
@@ -239,9 +275,9 @@ window.onload = function(){
                       <tr>
                           <th>
                               <div class="detailsHeader">
-                              짐 보관소<br>
+    	  							보관소 🏠 <br>
                                   <h4>${data.title}</h4>
-                                   <i class="fa-solid fa-star"></i>
+                                   
                               </div>
                           </th>
                       </tr>

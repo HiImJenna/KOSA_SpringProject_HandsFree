@@ -11341,7 +11341,8 @@ transform
 .resume-review {
 	align-items: center;
 	font-size: 16px;
-	line-height: 18px
+	line-height: 18px;
+	margin-top: 10px;
 }
 
 .resume-review .type-point {
@@ -11358,13 +11359,18 @@ transform
 }
 
 .comments {
-	font-size: 15px
+	font-size: 15px;
+}
+
+.comment {
+	background-color: red;
+	margin-top: 5px;
 }
 
 .stars {
 	display: flex;
 	align-items: baseline;
-	justify-content: flex-end
+	justify-content: flex-end;
 }
 
 .stars .score {

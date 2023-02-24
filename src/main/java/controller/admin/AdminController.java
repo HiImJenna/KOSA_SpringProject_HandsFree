@@ -148,16 +148,17 @@ public class AdminController {
 	
 	@GetMapping("admin/reserve")   
 	public String reserve(Model model, Principal principal) {
-		
 		String userId = principal.getName();
-		
+		model.addAttribute("storeName", adminService.findStoreByUserId(userId).getName());
 		List<Reservation> reservationList = reservationservice.getReservationList(userId);
 		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/reserve";
 	}
 	
 	@GetMapping("admin/chatting")   
-	public String chatting() {
+	public String chatting(Model model, Principal principal) {
+		String userId = principal.getName();
+		model.addAttribute("storeName", adminService.findStoreByUserId(userId).getName());
 		return "admin/mainInc/chatting";
 	}
 	
@@ -181,14 +182,18 @@ public class AdminController {
 	@GetMapping("admin/mail")   
 	public String mail(Model model, Principal principal) {
 		String userId = principal.getName();
-		
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
 		List<Reservation> reservationList = reservationservice.getReservationList(userId);
 		model.addAttribute("reservationList", reservationList);
 		return "admin/mainInc/mail";
 	}
 	
 	@GetMapping("admin/calendar")   
-	public String calendar() {
+	public String calendar(Model model, Principal principal) {
+		String userId = principal.getName();
+		Store store = adminService.findStoreByUserId(userId);
+		model.addAttribute("storeName", store.getName());
 		return "admin/mainInc/calendar";
 	}
 

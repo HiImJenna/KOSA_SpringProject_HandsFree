@@ -1,6 +1,7 @@
 package controller.user;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,6 +108,8 @@ public class UserNavController {
 		model.addAttribute("list", list);		
 		return "user/myreserve";
 	}
+	
+	
 	
 	@PostMapping("users/reviews")
 	public String saveReview(HttpServletRequest request, Principal principal) {

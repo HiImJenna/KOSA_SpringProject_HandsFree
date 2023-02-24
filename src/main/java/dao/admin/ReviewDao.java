@@ -19,5 +19,8 @@ public interface ReviewDao {
 	
 	//전체 리뷰
 	List<Map<String, String>> getReviewListUser(@Param("storeid") String storeId) throws ClassNotFoundException, SqlSessionException;
+	
+	//점주 답글 포함전체 리뷰
+	List<Map<String, String>> getAllReviewList(@Param("storeid") String storeId) throws ClassNotFoundException, SqlSessionException;
 
 }

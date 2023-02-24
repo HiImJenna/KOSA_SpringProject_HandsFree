@@ -20,6 +20,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where parent is null and r.status =1 and r.storeid=#{storeid} 
 		order by useredate desc
 	</select>
+	
+	<select id="getAllReviewList" resultType="HashMap">
+	    select v.idx, v.name as userName, v.edate as userEdate, v.parent, v.edate,
+			   v.grade as star, v.content as userContent 
+		from review v left join reservation r on v.rs_idx = r.idx 
+		where r.status =1 and r.storeid= #{storeid}
+		order by useredate asc
+	</select>
 
 
 </mapper>
