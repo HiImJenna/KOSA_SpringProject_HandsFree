@@ -30,7 +30,15 @@
    
    <!-- 별css -->
    <link href="${path}/resources/admin/css/star.css" rel="stylesheet" />
-
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-R3NH3D2T1E');
+	</script>
 <head>
         <title>예약내역 👜</title>
           <meta data-n-head="ssr" charset="utf-8">
@@ -103,14 +111,10 @@
                             <div class="row">
                                 <div class="col-12 col-md-6 content-col">
                                     <h1 class="color-nanny-dark">
-                                           예약 내역
+                                           	예약 내역 🗒️
                                     </h1>
                                 </div>
-                                <div class="col-md-6 text-right desktop help-text">
-                                    <div>예약 관련 문의사항이 있으시나요?
-                                        <a href="#" class="contact-us">문의하기</a>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-12 content-col">
                                     <div>
                                         <div class="table" style="text-align:center; ">
@@ -201,15 +205,16 @@
                                     	  <td colspan="1">
                                           </td>
                                           <td colspan="1">
-                                          	ㄴ 나의 후기
+                                          	<i class="bi bi-arrow-return-right"></i> 나의 후기
                                           </td>
                                            <td colspan="4">
+                                              <i class="bi bi-check2-square"></i>
                                               ${item.userContent}
                                            </td>
                                            <td colspan="1">
                                           	<c:forEach begin="${1}" end="${item.grade}" step="${1}">
                                                 <div class="nanny-icon star yellow"></div>
-											</c:forEach>
+											                      </c:forEach>
                                           </td>
                                           <td colspan="1">
                                           	<form action="/users/reviews/${item.reviewstatus}" method="post">
@@ -223,9 +228,11 @@
 	                                      <td colspan="2">
 	                                      </td>
                                           <td colspan="1">
-                                             	ㄴ 점주 답글
+                                             	<i class="bi bi-arrow-return-right"></i>
+                                             	 점주 답글
                                           </td>
                                            <td colspan="5">
+                                           	  <i class="bi bi-check2-square"></i>
                                               ${item.storeContent}
                                            </td>
                                     </tr>

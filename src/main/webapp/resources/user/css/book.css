@@ -11807,7 +11807,7 @@ iframe#_hjRemoteVarsFrame {
     padding: 22px;
     float: right;
     width: 400px;
-    margin-top: 50px;
+    margin-right: 200px;
 }
 .invoice .invoice-content .cancel {
     background-color: #fff7f6;
@@ -11833,6 +11833,43 @@ iframe#_hjRemoteVarsFrame {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+/* button */
+
+/*
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+*/
+.btn-1 {
+  background: #3E4BF1;
+  background: linear-gradient(0deg, #3E4BF1 0%, #2937F0 100%);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  float: right;
+  margin-top: 70px;
+}
+.btn-1:hover {
+   background: rgb(0,3,255);
+background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+}
+
 .invoice .invoice-content .title {
     font-family: Catamaran;
     font-weight: 600;
@@ -12397,6 +12434,16 @@ iframe#_hjRemoteVarsFrame {
     cursor: pointer;
     margin-right: 5px;
 }
+.bookselect {
+
+}
+
+.sdate {
+	margin-left: 15px;
+	float: left;
+
+	
+}
 .extra-payment .date-change .dates .vdatetime:last-child {
     margin-right: 0;
     margin-left: 5px;
@@ -12888,7 +12935,7 @@ iframe#_hjRemoteVarsFrame {
 .carddd {
     float: right;
     width: 400px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300&subset=latin-ext');

@@ -45,15 +45,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R3NH3D2T1E');
-</script>
 
 </head>
 <body>
@@ -70,7 +61,7 @@
 				data-toggle="pill" aria-current="true"> <i
 				class="fas fa-home fa-fw me-3"></i> <span>기본정보</span>
 			</a> <a href="javascript:;" onclick="location.href='/admin/reserve'"
-				class="list-group-item list-group-item-action py-2 ripple active"
+				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-tasks fa-fw me-3"></i><span>예약현황</span></a>
 			<a href="javascript:;" onclick="location.href='/admin/chatting'"
 				class="list-group-item list-group-item-action py-2 ripple"
@@ -87,6 +78,9 @@
 			<a href="javascript:;" onclick="location.href='/admin/chart'"
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
+			<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+				class="list-group-item list-group-item-action py-2 ripple active"
+				data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> <jsp:include
@@ -100,60 +94,74 @@
 					<strong>[Hands Free] ${storeName}</strong>
 				</h5>
 				<br />
-				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 예약현황을
-					볼 수 있는 페이지 입니다.</div>
+				<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 삭제된 리뷰를 관리하는 페이지 입니다.
+				<br/>
+				(삭제된 리뷰는 매일 자정 0시 완전 삭제 처리됩니다.)</div>
 			</div>
-			
 			<div class="card-body">
 				<br />
-				<h2 style="text-align: center">예약현황</h2>
+				<h2 style="text-align: center">삭제된 리뷰</h2>
 				<br />
-				<table class="table table-bordered">
-					<tbody style="text-align: center">
-						<tr>
-							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-							<td>예약건수</td>
-							<td>40건</td>
-						</tr>
-						<tr>
-							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
-							<td>결제금액</td>
-							<td>300,000원</td>
-						</tr>
-					</tbody>
-				</table>
-				<br />
-				<table class="table" style="text-align: center; font-size:12px; ">
+				<p style="text-align: right">
+					<button class="btn btn-outline-primary">즉시 삭제</button>
+				</p>
+				<!-- <form>
+					<div class="form-row align-items-center">
+						<div class="col-auto">
+							<label class="sr-only" for="inlineFormInput">Name</label>
+						</div>
+						<div class="col-auto">
+							<label class="sr-only" for="inlineFormInputGroup">고객조회하기</label>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+								<input type="text" class="form-control"
+									id="inlineFormInputGroup" placeholder="고객조회하기" />
+							</div>
+						</div>
+
+						<div class="col-auto">
+							<button type="submit" class="btn btn-outline-primary mb-2">
+								조회</button>
+						</div>
+					</div>
+				</form> -->
+
+				<table class="table table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
-							<th scope="col">예약번호</th>
-							<th scope="col">예약시간</th>
-							<th scope="col">이용날짜(시작)</th>
-							<th scope="col">이용날짜(종료)</th>
-							<th scope="col">짐 갯수</th>
-							<th scope="col">예약자명</th>
-							<th scope="col">예약자메일</th>
-							<th scope="col">결제금액</th>
+							<tr>
+								<td>작성자</td>
+								<td>리뷰내용</td>
+								<td>리뷰날짜</td>
+								<td>평점</td>
+							</tr>
 						</tr>
 					</thead>
-					<tbody>
 
-						<c:forEach var="reservationlist" items="${reservationList}" varStatus="status">
+
+					<tbody style="text-align: center;">
+						<c:forEach var="reservationlist" items="${reservationList}"
+							varStatus="status">
 							<tr>
-								<th scope="row">${reservationlist.idx}</th>
-								<td>${reservationlist.paymentdate}</td>
-								<td>${reservationlist.sdate}</td>
-								<td>${reservationlist.edate}</td>
-								<td>${reservationlist.cnt}</td>
-								<td>${reservationlist.name}</td>
-								<td>${reservationlist.userid}</td>
-								<td>${reservationlist.price}원</td>
+								<td style="vertical-align: middle;">${reservationlist.idx}</td>
+								<td style="vertical-align: middle;">${reservationlist.paymentdate}</td>
+								<td style="vertical-align: middle;">${reservationlist.name}</td>
+								<td style="vertical-align: middle;">${reservationlist.userid}</td>
+								<td>
+									<button type="button" class="btn btn-info"
+										onclick="location.href='/admin/mailForm?idx=${reservationlist.idx}'">메일전송</button>
+								</td>
 							</tr>
 						</c:forEach>
 
-						
+
 					</tbody>
 				</table>
+
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
 					<li class="page-item disabled"><span class="page-link"><<</span>
@@ -165,12 +173,15 @@
 					<li class="page-item"><a class="page-link" href="#">>></a></li>
 				</ul>
 				</nav>
+
+
+
 				<canvas class="my-4 w-100" height="30"></canvas>
 			</div>
 		</div>
 		</section>
 	</div>
-	</main>
+	</main> <!--Main layout-->
 </body>
 
 <!-- MDB -->
@@ -178,7 +189,6 @@
 	src="${path}/resources/admin/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <%-- <script type="text/javascript" src="${path}/resources/admin/js/admin.js"></script> --%>
-
 </html>
 
 

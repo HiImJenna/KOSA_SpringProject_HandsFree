@@ -28,10 +28,20 @@
 <sec:authentication property="principal" var="principal"/>
         <!-- 파비콘 -->
         <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
 
+			var price = '';
 			$('#sTime, #eTime').on('change', calculateTimeDifference);
 			
 			function calculateTimeDifference(){
@@ -51,7 +61,7 @@
 			      var timeDiff = endDate.getTime() - startDate.getTime();
 			      // 시간 차이 출력
 			      var hours = Math.floor(timeDiff / (1000 * 60 * 60));
-			      var price = hours * 5000;
+			      price = hours * 2000;
 			    
 			      $('.value[name="price"]').text(price + '원');
 			    }
@@ -62,7 +72,6 @@
 		       console.log("결제버튼 눌림");
 		       var username = "${principal.username}";
 		       console.log(username)
-		       var price = "2000"; //가격 값 받아와야함
 		       payment(username);
 		    })
 		    
@@ -105,7 +114,7 @@
 		        var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
 		             tossPayments.requestPayment('카드', { // 결제 수단
 		               // 결제 정보
-		               amount: '2000',
+		               amount: price,
 		               orderId: 'QTIk82kxDPefXZC8MLFj0',
 		               orderName: "결제 진행",
 		               customerName: username,
@@ -128,7 +137,7 @@
 
 	<div class="form">
 		<header>
-			<h2>예약하기</h2>
+			<h2>예약하기💲</h2>
 		</header>
 				<p>
 					<label>예약자명 : </label> <input type="text"
@@ -137,7 +146,6 @@
 					<label>이메일 : </label> 
 					<input type="text" id="userId" name="userId" value="${userId}" readonly>
 				</p>
-					<button id="payment-button" >결제하기</button>
 
 	</div>
 
@@ -148,7 +156,7 @@
 					<div class="place-infos clearfix">
 						<div class="place-text">
 							<div class="type">
-								<div class="address" id="storeName" name="storeName">${storeName}</div>
+								<div class="address" id="storeName" name="storeName">${storeName}</div>${profilePath}
 								<div class="nanny-type">전화번호 : ${phone}</div>
 								<div id="storeid" name ="storeid" class="nanny-type">이메일 : ${storeId}</div>
 								<div class="d-flex nanny-stars">
@@ -182,25 +190,26 @@
 					<div class="infos-part">
 						<div class="hide-tablet">
 							<div>
-								<p class="hide-tablet sections-title">날짜</p>
+								<p class="hide-tablet sections-title"><b>날짜</b></p>
 								<div class="date-change">
 									<div>
 										<div class="d-flex flex-row dates-picker">
 											<div class="dates d-flex flex-row">
-												<div class="vdatetime">
-													<p>맡기는 날</p>
-													<input type="date" class="datebutton" name="sdate" id="sdate" value="${sDate}" placeholder="맡기는 날" />
-													<select id='sTime' name='sTime'>
+												<div class="bookselect">
+												<p>맡기는 날</p>
+													<input type="date" class="sdate" name="sdate" id="sdate" value="${sDate}" placeholder="맡기는 날" />
+													<select id='sTime' name='sTime' class="sdate">
 														<option value='' selected>-- 선택 --</option>
 														<c:forEach items="${timeList}" var="time">
 															<option value='${time}'>${time}</option>
 														</c:forEach>
 													</select>
 												</div>
-												<div class="vdatetime">
+												
+												<div class="bookselect">
 													<p>찾는 날</p>
-													<input type="date" class="datebutton" name="edate" id="edate" value="${eDate}" placeholder="찾는 날" />
-													<select id='eTime' name='eTime'>
+													<input type="date" class="sdate" name="edate" id="edate" value="${eDate}" placeholder="찾는 날" />
+													<select id='eTime' name='eTime' class="sdate">
 														<option value='' selected>-- 선택 --</option>	
 														<c:forEach items="${timeList}" var="time">
 															<option value='${time}'>${time}</option>
@@ -220,8 +229,8 @@
 								<div class="title">결제 정보</div>
 							</div>
 							<div class="price-info clearfix">
-								<div class="item">기본 요금은 5000기준 입니다.</div>
-								<div class="value">1시간 x 5000원</div>
+								<div class="item">기본 요금은 2000기준 입니다.</div>
+								<div class="value">1시간 x 2000원</div>
 							</div>
 
 							<div class="separator"></div>
@@ -233,6 +242,8 @@
 							</div>
 						</div>
 					</div>
+										<button class="btn-1" id="payment-button" >결제하기</button>
+					
 				</div>
 			</div>
 		</div>

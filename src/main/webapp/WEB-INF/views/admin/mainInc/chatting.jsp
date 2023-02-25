@@ -47,7 +47,18 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<!-- STOMP -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
+
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
+<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
 </head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -56,7 +67,8 @@
 			console.log(nickname)
 			//소켓 연결
 			//webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-			const socket = new SockJS('http://localhost:8090/websocket');
+			//const socket = new SockJS('http://localhost:8090/websocket');
+			const socket = new SockJS('http://54.250.19.196:8080/websocket');
 			const stomp = Stomp.over(socket);
 			stomp.debug = null; //stomp 콘솔출력 X
 			//구독 아이디 저장

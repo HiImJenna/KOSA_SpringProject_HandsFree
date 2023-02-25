@@ -45,6 +45,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
 </head>
 <body>
 	<!--Main Navigation-->
@@ -77,6 +86,9 @@
 			<a href="javascript:;" onclick="location.href='/admin/chart'"
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
+			<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+				class="list-group-item list-group-item-action py-2 ripple"
+				data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> 

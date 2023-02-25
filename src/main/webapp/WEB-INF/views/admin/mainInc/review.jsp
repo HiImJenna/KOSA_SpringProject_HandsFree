@@ -46,6 +46,19 @@
 	
 	<!-- 별css -->
 	<link href="${path}/resources/admin/css/star.css" rel="stylesheet" />
+
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+
+	gtag('config', 'G-R3NH3D2T1E');
+</script>
 </head>
 <body>
    <!--Main Navigation-->
