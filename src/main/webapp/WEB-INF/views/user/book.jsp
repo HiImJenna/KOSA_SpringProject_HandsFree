@@ -108,8 +108,8 @@
    	                  }
     				
     			})
-    			
-				let successUrl = "http://localhost:8090/users/paymentreserve";
+    			/
+				let successUrl = "http://54.250.19.196:8080/users/paymentreserve";
 		        var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
 		        var tossPayments = TossPayments(clientKey) // 클라이언트 키로 초기화하기
 		             tossPayments.requestPayment('카드', { // 결제 수단

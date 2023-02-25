@@ -45,8 +45,35 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
 
 </head>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on("click", "#removeBtn" ,function(){
+			$.ajax({
+				url : "/OracleData/scheduler",
+				type : "GET",
+				success : function(room){
+					
+				},
+				error:function (request, status, error){
+	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+	            }
+			});
+		})
+		
+	})
+</script>
 <body>
 	<!--Main Navigation-->
 	<header> <!-- 좌측 사이드바 --> <!-- Sidebar --> <nav
@@ -103,33 +130,8 @@
 				<h2 style="text-align: center">삭제된 리뷰</h2>
 				<br />
 				<p style="text-align: right">
-					<button class="btn btn-outline-primary">즉시 삭제</button>
+					<button id ="removeBtn" class="btn btn-outline-primary">즉시 삭제</button>
 				</p>
-				<!-- <form>
-					<div class="form-row align-items-center">
-						<div class="col-auto">
-							<label class="sr-only" for="inlineFormInput">Name</label>
-						</div>
-						<div class="col-auto">
-							<label class="sr-only" for="inlineFormInputGroup">고객조회하기</label>
-							<div class="input-group mb-2">
-								<div class="input-group-prepend">
-									<div class="input-group-text">
-										<i class="fas fa-search"></i>
-									</div>
-								</div>
-								<input type="text" class="form-control"
-									id="inlineFormInputGroup" placeholder="고객조회하기" />
-							</div>
-						</div>
-
-						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-primary mb-2">
-								조회</button>
-						</div>
-					</div>
-				</form> -->
-
 				<table class="table table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
@@ -144,17 +146,13 @@
 
 
 					<tbody style="text-align: center;">
-						<c:forEach var="reservationlist" items="${reservationList}"
+						<c:forEach var="list" items="${list}"
 							varStatus="status">
 							<tr>
-								<td style="vertical-align: middle;">${reservationlist.idx}</td>
-								<td style="vertical-align: middle;">${reservationlist.paymentdate}</td>
-								<td style="vertical-align: middle;">${reservationlist.name}</td>
-								<td style="vertical-align: middle;">${reservationlist.userid}</td>
-								<td>
-									<button type="button" class="btn btn-info"
-										onclick="location.href='/admin/mailForm?idx=${reservationlist.idx}'">메일전송</button>
-								</td>
+								<td style="vertical-align: middle;">${list.user_name}</td>
+								<td style="vertical-align: middle;">${list.user_content}</td>
+								<td style="vertical-align: middle;">${list.user_date}</td>
+								<td style="vertical-align: middle;">${list.user_grade}</td>
 							</tr>
 						</c:forEach>
 
