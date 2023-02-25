@@ -17,18 +17,17 @@ public class FileService {
 	private final String PATH = "/files/upload";
 	
 	// 사업자 등록증 저장
-	public void saveAdminBusinesslicense(AdminRegisterDto dto) {
+	public void saveAdminBusinesslicense(AdminRegisterDto dto, HttpServletRequest request) {
+		
+		String basicPath = request.getServletContext().getRealPath("/files/");
+		createPath(basicPath);
+		createPath(basicPath + "upload/");
+		
 		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				File dir = new File(dto.getRealFilePath());
-				if (!dir.isDirectory()) {
-					dir.mkdir();
-				}
-				dir = new File(dto.getRealFilePath() + dto.getEmail());
-				if (!dir.isDirectory()) {
-					dir.mkdir();
-				}
+				createPath(dto.getRealFilePath());
+				createPath(dto.getRealFilePath() + dto.getEmail());
 				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
@@ -48,15 +47,8 @@ public class FileService {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				File dir = new File(dto.getProfile_path());
-				if (!dir.isDirectory()) {
-					dir.mkdir();
-				}
-				
-				dir = new File(dto.getProfile_path() + userId);
-				if (!dir.isDirectory()) {
-					dir.mkdir();
-				}
+				createPath(dto.getProfile_path());
+				createPath(dto.getProfile_path() + userId);
 				fs = new FileOutputStream(dto.getProfile_path() + userId + "\\" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
@@ -68,6 +60,13 @@ public class FileService {
 					e2.printStackTrace();
 				}
 			}
+		}
+	}
+	
+	private void createPath(String path) {
+		File dir = new File(path);
+		if (!dir.isDirectory()) {
+			dir.mkdir();
 		}
 	}
 }

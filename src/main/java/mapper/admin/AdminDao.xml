@@ -87,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="saveAdminReview" parameterType="vo.admin.RealReview">
 		insert into review(idx, rs_idx, parent, content, grade, edate, status)
-		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, 1)
+		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, #{status})
 	</insert>
 	
 </mapper>
