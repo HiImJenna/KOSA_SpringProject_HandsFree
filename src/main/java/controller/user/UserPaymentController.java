@@ -138,7 +138,7 @@ public class UserPaymentController {
 		long diffInHours = diffInMinutes / 60;
 		// 시간 차이를 시간으로 변환
 		
-		int price = (int)(diffInHours) * 5000;
+		int price = (int)(diffInHours) * 2000;
 		
 		
 		if(name.equals(""))
@@ -173,7 +173,7 @@ public class UserPaymentController {
 							Model model) {
 		
 		String userid = pri.getName();
-		int result = 0;
+		int result = 10;
 
 		
 		String icon = "";
