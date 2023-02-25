@@ -33,4 +33,7 @@ public interface UserMyinfoDao {
 
 	// 내 예약 정보 조회 V2
 	public List<UserReservationJoinVo> getMyReservationListV2(String userid);
+
+	// 내 예약 후기 삭제
+	public int deleteUserReview(int reviewIdx);
 }
