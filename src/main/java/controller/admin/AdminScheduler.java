@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +24,12 @@ public class AdminScheduler {
 	@Autowired
 	private AdminSchedulerService adminSchedulerService;
 	
-	@Autowired
-	private SqlSession sqlSession;
-	
 	@GetMapping("scheduler")
-	public void runStoredProcedure() {
-		System.out.println("들어옴");
-		sqlSession.update("BEGIN delete_review_date: END;");
+	public ResponseEntity<?> runStoredProcedure(Model model, Principal principal){
+		adminSchedulerService.runStoredProcedure();
+		String storeId = principal.getName();
+		List<AdminReview> list = adminSchedulerService.getReviewScheduler(storeId);
+		return new ResponseEntity<>(list, HttpStatus.OK); 
 	}
 	
 	@GetMapping("schedulerView")
@@ -36,7 +37,6 @@ public class AdminScheduler {
 		String storeId = principal.getName();
 		List<AdminReview> list = adminSchedulerService.getReviewScheduler(storeId);
 		model.addAttribute("list", list);
-		System.out.println(list.toString());
 		return "admin/mainInc/schedulerView";
 	}
 }
