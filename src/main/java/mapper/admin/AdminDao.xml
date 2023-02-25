@@ -79,15 +79,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       		  from review
               where rs_idx in (select idx as rs_idx
                        		   from reservation
-                       		   where storeid = #{storeId}) and
-              parent is null
+                       		   where storeid = #{storeId})
+              and parent is null and status = 1
         ) A
-		left join review B on A.idx = B.parent
+		left join review B on A.idx = B.parent and B.status = 1
+		order by A.edate desc
 	</select>
 	
 	<insert id="saveAdminReview" parameterType="vo.admin.RealReview">
 		insert into review(idx, rs_idx, parent, content, grade, edate, status)
-		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, #{status})
+		values(review_seq.nextval, #{reservationIdx}, #{parent}, #{content}, 0, sysdate, 1)
 	</insert>
+	
+	<update id="deleteAdminReview">
+		update review set status = 0 where idx = #{reviewIdx}
+	</update>
 	
 </mapper>
