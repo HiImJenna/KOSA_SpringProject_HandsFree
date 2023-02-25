@@ -34,6 +34,7 @@ public class UserReviewDto {
 				.content(content)
 				.grade(grade)
 				.name(userName)
+				.status(1)
 				.build();
 	}
 }
