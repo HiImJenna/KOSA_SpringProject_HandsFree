@@ -24,7 +24,15 @@
 	<link href="${path}/resources/user/css/user_main.css" rel="stylesheet" />
 	<!-- Jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
+	<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-R3NH3D2T1E');
+		</script>
 	<script type="text/javascript">
 		function activateTab(active_user) {
 			let left = document.getElementById('leftTab');
