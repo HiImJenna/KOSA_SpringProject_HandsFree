@@ -218,7 +218,6 @@
                                           </td>
                                           <td colspan="1">
                                           	<form action="/users/reviews/${item.reviewstatus}" method="post">
-                                          		<input type="hidden" name="_method" value="DELETE"/>
                                           		<button class="btn btn-danger" type="submit">삭제</button>
                                           	</form>
                                           </td>
