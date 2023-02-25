@@ -47,7 +47,18 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<!-- STOMP -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
+
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
+<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
 </head>
 	<script type="text/javascript">
 		$(document).ready(function(){

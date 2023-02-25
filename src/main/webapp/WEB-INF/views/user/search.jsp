@@ -38,6 +38,15 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
       integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
       crossorigin="anonymous"></script>
+      <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-R3NH3D2T1E');
+	</script>
    <!-- 아이콘 -->
    <script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
    <!-- Bootstrap icons-->

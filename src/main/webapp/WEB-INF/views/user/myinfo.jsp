@@ -22,6 +22,15 @@
 		crossorigin="anonymous"></script>
     <!-- 파비콘 -->
     <link rel="icon" href="${path}/resources/admin/img/loca3.png" /> 
+    <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-R3NH3D2T1E');
+	</script>
 <title>내 정보</title>
 <meta data-n-head="ssr" charset="utf-8">
 
