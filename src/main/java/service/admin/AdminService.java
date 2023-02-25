@@ -74,4 +74,10 @@ public class AdminService {
 		AdminDao dao = sqlsession.getMapper(AdminDao.class);
 		return dao.saveAdminReview(review);
 	}
+
+	@Transactional
+	public int deleteAdminReview(int reviewIdx) {
+		AdminDao dao = sqlsession.getMapper(AdminDao.class);
+		return dao.deleteAdminReview(reviewIdx);
+	}
 }

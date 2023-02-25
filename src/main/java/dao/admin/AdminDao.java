@@ -27,4 +27,5 @@ public interface AdminDao {
 	public List<CalendarInfo> getCalendarListByUserId(String userId);
 	public List<AdminReview> getAdminReviewListByStoreId(String storeId);
 	public int saveAdminReview(RealReview review);
+	public int deleteAdminReview(int reviewIdx);
 }

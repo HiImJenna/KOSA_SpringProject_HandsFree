@@ -158,6 +158,9 @@
 	                  <div style="float: right;">${item.store_date}</div>
 	                </div>
 	                <textarea style="width: 100%; height: 6.25em; resize: none;" readonly>${item.store_content}</textarea>
+	                <form style="text-align: right; margin-top: 10px;" method="post" action="${path}/admin/review/${item.store_idx}">
+                     	<button class="btn btn-outline-danger" type="submit">답글삭제</button>
+                  	</form>
            		  </c:when>
            		  <c:otherwise>
                   	<form action="${path}/admin/review?review=${item.user_idx}&reservation=${item.reservation_idx}" method="post">
