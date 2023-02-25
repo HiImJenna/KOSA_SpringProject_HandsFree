@@ -14,6 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="x-ua-compatible" content="ie=edge" />
 <title>Hands Free 점주님 페이지</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 파비콘 -->
 <link rel="icon" href="${path}/resources/admin/img/crown.png" />
 <!-- 4.6 부트스트랩 -->
@@ -60,16 +61,36 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(document).on("click", "#removeBtn" ,function(){
-			$.ajax({
-				url : "/OracleData/scheduler",
-				type : "GET",
-				success : function(room){
-					
-				},
-				error:function (request, status, error){
-	                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
-	            }
-			});
+			swal({
+				text: "강제로 스케줄링 돌리실껀가요?",
+				buttons: ["취소", "확인"],
+				closeOnClickOutside : false
+			}).then(function(value){
+				if(value){
+					$.ajax({
+						url : "/OracleData/scheduler",
+						type : "GET",
+						success : function(data){
+						     $("tbody").empty();
+						        // 새로운 내용 그리기
+						        $.each(data, function(index, list) {
+						            $("tbody").append(
+						                '<tr>' +
+						                '<td style="vertical-align: middle;">' + list.user_name + '</td>' +
+						                '<td style="vertical-align: middle;">' + list.user_content + '</td>' +
+						                '<td style="vertical-align: middle;">' + list.user_date + '</td>' +
+						                '<td style="vertical-align: middle;">' + list.user_grade + '</td>' +
+						                '</tr>'
+						            );
+						        });
+						},
+						error:function (request, status, error){
+			                   console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error)
+			            }
+					});
+				}
+			})
+			
 		})
 		
 	})

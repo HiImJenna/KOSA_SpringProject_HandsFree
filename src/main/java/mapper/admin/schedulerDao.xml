@@ -19,4 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join review B on A.idx = B.parent
 	</select>
 	
+	<select id="runStoredProcedure" statementType="CALLABLE">
+		{ call delete_review_data }
+	</select>
+	
 </mapper>

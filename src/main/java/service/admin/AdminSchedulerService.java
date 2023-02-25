@@ -19,4 +19,10 @@ public class AdminSchedulerService {
 		schedulerDao dao = sqlsession.getMapper(schedulerDao.class);
 		return dao.getReviewScheduler(storeId);
 	}
+	
+	public void runStoredProcedure() {
+		schedulerDao dao = sqlsession.getMapper(schedulerDao.class);
+		dao.runStoredProcedure();
+//		sqlsession.selectOne("call_delete_review_data");
+	}
 }
