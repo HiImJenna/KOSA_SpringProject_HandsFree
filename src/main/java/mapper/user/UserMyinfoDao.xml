@@ -63,8 +63,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="saveUserReview" parameterType="vo.user.UserReview">
-		insert into review(idx, rs_idx, name, content, grade, edate)
-		values(review_seq.nextval, #{rs_idx}, #{name}, #{content}, #{grade}, sysdate)
+		insert into review(idx, rs_idx, name, content, grade, edate, status)
+		values(review_seq.nextval, #{rs_idx}, #{name}, #{content}, #{grade}, sysdate, #{status})
 	</insert>
 	
 </mapper>

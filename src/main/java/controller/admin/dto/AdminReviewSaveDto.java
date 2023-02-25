@@ -30,6 +30,7 @@ public class AdminReviewSaveDto {
 				.parent(parent)
 				.reservationIdx(reservationIdx)
 				.content(content)
+				.status(1)
 				.build();
 	}
 }
