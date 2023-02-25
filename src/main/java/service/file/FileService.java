@@ -28,7 +28,7 @@ public class FileService {
 			try {
 				createPath(dto.getRealFilePath());
 				createPath(dto.getRealFilePath() + dto.getEmail());
-				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "\\" + dto.getFile().getOriginalFilename());
+				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "/" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -49,7 +49,7 @@ public class FileService {
 			try {
 				createPath(dto.getProfile_path());
 				createPath(dto.getProfile_path() + userId);
-				fs = new FileOutputStream(dto.getProfile_path() + userId + "\\" + dto.getFile().getOriginalFilename());
+				fs = new FileOutputStream(dto.getProfile_path() + userId + "/" + dto.getFile().getOriginalFilename());
 				fs.write(dto.getFile().getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
