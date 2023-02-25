@@ -193,7 +193,7 @@
                                                 <button class="btn btn-warning" onclick="activateReview(${item.idx})">리뷰보기</button>
                                              </td>
                                              <td id="cancelButton${item.idx}" style="display: none">
-                                                <button class="btn btn-danger" onclick="deActivateReview(${item.idx})">접기</button>
+                                                <button class="btn btn-warning" onclick="deActivateReview(${item.idx})">접기</button>
                                              </td>
                                      </tr>
                                      <!-- 후기 보이는 부분 -->
@@ -203,13 +203,19 @@
                                           <td colspan="1">
                                           	ㄴ 나의 후기
                                           </td>
-                                           <td colspan="5">
+                                           <td colspan="4">
                                               ${item.userContent}
                                            </td>
                                            <td colspan="1">
                                           	<c:forEach begin="${1}" end="${item.grade}" step="${1}">
                                                 <div class="nanny-icon star yellow"></div>
 											</c:forEach>
+                                          </td>
+                                          <td colspan="1">
+                                          	<form action="/users/reviews/${item.reviewstatus}" method="post">
+                                          		<input type="hidden" name="_method" value="DELETE"/>
+                                          		<button class="btn btn-danger" type="submit">삭제</button>
+                                          	</form>
                                           </td>
                                     </tr>
                                     <c:if test="${item.storeContent ne null}">
