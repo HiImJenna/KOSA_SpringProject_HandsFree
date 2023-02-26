@@ -45,7 +45,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
 
 </head>
 <body>
@@ -79,6 +87,9 @@
 			<a href="javascript:;" onclick="location.href='/admin/chart'"
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
+			<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+				class="list-group-item list-group-item-action py-2 ripple"
+				data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> <jsp:include
@@ -100,20 +111,6 @@
 				<br />
 				<h2 style="text-align: center">예약현황</h2>
 				<br />
-				<table class="table table-bordered">
-					<tbody style="text-align: center">
-						<tr>
-							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-							<td>예약건수</td>
-							<td>40건</td>
-						</tr>
-						<tr>
-							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
-							<td>결제금액</td>
-							<td>300,000원</td>
-						</tr>
-					</tbody>
-				</table>
 				<br />
 				<table class="table" style="text-align: center; font-size:12px; ">
 					<thead class="table-primary">
@@ -148,13 +145,6 @@
 				</table>
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
-					<li class="page-item disabled"><span class="page-link"><<</span>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active" aria-current="page"><span
-						class="page-link">2</span></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">>></a></li>
 				</ul>
 				</nav>
 				<canvas class="my-4 w-100" height="30"></canvas>

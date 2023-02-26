@@ -45,6 +45,15 @@
 		}
 	</script>
 	
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
 </head>
 <body>
 	<!--Main Navigation-->
@@ -95,6 +104,9 @@
 					<i class="fas fa-chart-bar fa-fw me-3"></i>
 					<span>통계</span>
 				</a>
+				<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+					class="list-group-item list-group-item-action py-2 ripple active"
+					data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 			</div>
 		</div>
 	</nav> <!-- Sidebar --> 

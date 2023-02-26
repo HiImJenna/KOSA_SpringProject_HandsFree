@@ -47,7 +47,18 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
 	<!-- STOMP -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
+
+<!-- Google tag (gtag.js) -->
+<script async
+	src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R3NH3D2T1E');
+</script>
+<link href="${path}/resources/user/css/chat.css" rel="stylesheet" />
 </head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -56,8 +67,8 @@
 			console.log(nickname)
 			//소켓 연결
 			//webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-			//const socket = new SockJS('http://localhost:8090/websocket');
-			const socket = new SockJS('http://54.250.19.196:8080/websocket');
+			const socket = new SockJS('http://localhost:8090/websocket');
+			//const socket = new SockJS('http://54.250.19.196:8080/websocket');
 			const stomp = Stomp.over(socket);
 			stomp.debug = null; //stomp 콘솔출력 X
 			//구독 아이디 저장
@@ -226,9 +237,6 @@
 						success : function(room){
 							chatingView();
 							initRoom(room, nickname);
-							room.message = nickname + "님이 참가하셨습니다";
-							console.log("채팅참가");
-							console.log(room.message);
 							stomp.send(
 									"/socket/notification/" + roomNumber, {}, 
 									JSON.stringify(room));
@@ -290,14 +298,13 @@
 				let listHtml = "";
 				
 				$.each(roomList, function(index, obj){
+					console.log(obj);
 					console.log(obj.users[0])
 					if(obj.users[0] !== nickname){
 						listHtml += `
 							<tr data-obj=\${JSON.stringify(obj)}>
 								<td>\${obj.users[0]}</td>
-								<td>2023.01.15.(일) <br />오후 09:00:00
-								</td>
-								<td>안녕하세요.</td>
+								<td>안녕하세요 예약문의...</td>
 								<td>
 									<button type="button" id="chatBtn" class="btn btn-info">입장</button>
 								</td>
@@ -374,6 +381,9 @@
 			<a href="javascript:;" onclick="location.href='/admin/chart'"
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
+			<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+				class="list-group-item list-group-item-action py-2 ripple"
+				data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> <jsp:include
@@ -394,25 +404,12 @@
 				<br />
 				<h2 style="text-align: center">채팅관리</h2>
 				<br />
-				<table class="table table-bordered">
-					<tbody style="text-align: center">
-						<tr>
-							<td><i class="fas fa-calendar-check fa-fw me-3"></i>날짜선택</td>
-						</tr>
-						<tr>
-							<td>2023.02.01(화) ~ 2023.02.05(토)</td>
-							<td>채팅내역</td>
-							<td>3건</td>
-						</tr>
-					</tbody>
-				</table>
 				<br />
 				<div id="togleView">
 				<table class="table" style="text-align: center">
 					<thead class="table-primary">
 						<tr>
 							<th scope="col">예약자명</th>
-							<th scope="col">채팅시간</th>
 							<th scope="col">채팅내용</th>
 							<th scope="col">채팅방</th>
 						</tr>
@@ -424,13 +421,7 @@
 				</div>
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
-					<li class="page-item disabled"><span class="page-link"><<</span>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active" aria-current="page"><span
-						class="page-link">2</span></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">>></a></li>
+
 				</ul>
 				</nav>
 				<canvas class="my-4 w-100" height="30"></canvas>

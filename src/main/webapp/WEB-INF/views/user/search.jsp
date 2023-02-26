@@ -38,6 +38,15 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
       integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
       crossorigin="anonymous"></script>
+      <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3NH3D2T1E"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-R3NH3D2T1E');
+	</script>
    <!-- 아이콘 -->
    <script src="https://kit.fontawesome.com/418779817b.js" crossorigin="anonymous"></script>
    <!-- Bootstrap icons-->
@@ -73,8 +82,6 @@ padding: 0px;
     left: 0;
     border: none;
     cursor: pointer;
-    background: #3B47F5;
-    color: #fff;
     border-top-left-radius: 15px;
     margin: 5px;
     text-align: left;
@@ -96,8 +103,8 @@ padding: 0px;
          
          //소켓 연결
          //webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-         //const socket = new SockJS('http://localhost:8090/websocket');
-         const socket = new SockJS('http://54.250.19.196:8080/websocket');
+         const socket = new SockJS('http://localhost:8090/websocket');
+         //const socket = new SockJS('http://54.250.19.196:8080/websocket');
          const stomp = Stomp.over(socket);
          stomp.debug = null; //stomp 콘솔출력 X
          //구독 아이디 저장
@@ -403,12 +410,9 @@ padding: 0px;
                userList(room.users);
                const chatHtml = `
                     <li>
-                       <div class="notification">
-                           <span>\${message}</span>
-                        </div>
                     </li>`;
                
-               $(".chat ul.chat_list").append(chatHtml);
+/*                $(".chat ul.chat_list").append(chatHtml); */
                $(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
             })
          }

@@ -1,6 +1,7 @@
 
 window.onload = function(){
    
+
    
 /*   var hostIndex = location.href.indexOf(location.host) + location.host.length;
    var contextPath = location.href.substring(hostIndex, location.href.indexOf ('/', hostIndex + 1));*/
@@ -145,19 +146,32 @@ window.onload = function(){
                  $('#tabView').append(itemTab);
                
             $.each(data, function(index, obj){
-               var date = new Date(obj.USEREDATE);
+            
+               var date = new Date(obj.EDATE);
                var year = String(date.getYear()).substring(1);
+               var month = date.getMonth() + 1;
+               var day = date.getDate(); 
                var time = String(date.getHours()).padStart(2, "0") 
                + ":" 
                + String(date.getMinutes()).padStart(2, "0");
-               var sumDate = year + ":" + time;
+               var sumDate = year + "-" + month + "-" + day + "   " + time;
                obj.USEREDATE = sumDate;
-               console.log(obj);
+               obj.EDATE = sumDate;
                if(obj.PARENT === null || obj.PARENT === undefined)
             	   createTabView(obj, 'review');
 
                $.each(twoData, function(index, replyObj){
             	   if(obj.IDX === replyObj.PARENT){
+                       var date = new Date(replyObj.EDATE);
+                       var year = String(date.getYear()).substring(1);
+                       var month = date.getMonth() + 1;
+                       var day = date.getDate(); 
+                       var time = String(date.getHours()).padStart(2, "0") 
+                       + ":" 
+                       + String(date.getMinutes()).padStart(2, "0");
+                       sumDate = year + "-" + month + "-" + day + "   " + time;
+                      
+            		   replyObj.EDATE = sumDate;
             		   createReplyView(replyObj)                		   
             	   }
                })
@@ -257,31 +271,23 @@ window.onload = function(){
    }
    
    function createReplyView(data){
+	   console.log(data);
 	   itemTab = `
-	      <div class="comment">
-	      답글
-             <div class="top-part d-flex justify-content-between align-items-center">
-                 <div class="d-flex">
-                     <div class="user-infos">
-                         <div class="picture"
-                             style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
-                         </div>
-                     </div>
-                     <div class="name-date">
-                         <div class="name"><b>${data.storeId}</b>
-                         </div>
-                         <div class="date">
-                             ${data.EDATE}
-                         </div>
-                     </div>
-                 </div>
+	      <div class="reply">
+		   <i class="bi bi-arrow-return-right"></i> 
+		   	<div class = "replyinfo">
+			   <div class="namedate"><b>점주</b></div>
+			   <div class="namedate">${data.EDATE}</div><br>
+			    <div class="comment-content"> ${data.USERCONTENT}</div>
+		   	</div>
+             
              </div>
-             <div class="comment-content">${data.USERCONTENT}
-             </div>
+             
          </div>
 	   `;
 	   $('#tabView').append(itemTab);
    }
+  
    
    
    //Json 전용 table 생성
@@ -292,7 +298,7 @@ window.onload = function(){
                   <table id="itemDetails" class="itemDetails table table-borderless">
                       <tr>
                           <th>
-                          <button id="backBtn" class="backBtn"><i class="bi bi-caret-left"></i></button>
+                          <button id="backBtn" class="backBtn"><i class="bi bi-backspace-fill"></i></button>
                               <img class="item_img" alt="없음" src="${data.PROFILE_PATH}">
                           </th>
                       </tr>
@@ -309,14 +315,14 @@ window.onload = function(){
                   
                       <tr class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
                           <th class="nav-item" role="presentation">
-                              <a id="firstTab" class="nav-link firstTab active" aria-current="page">
-                                  <div id="information">정보</div>
+                           <a id="firstTab" class="nav-link firstTab" aria-current="page" onclick="activateTab('first')">
+            					<div id="information"><b>정보</b></div>
                           </th>
                          
                           <th class="nav-item" role="presentation">
-                              <a id="secondTab" class="nav-link" aria-current="page">
-                                  <div id="review" data-obj=${data.storeId}>리뷰</div>
-                              </a>
+							  <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
+							            <div id="review" data-obj=${data.storeId}><b>리뷰</b></div>
+							  </a>
                           </th>
                       </tr>
                       </th>
@@ -331,46 +337,8 @@ window.onload = function(){
                   </div>
                   `;
       $('#listGroup').append(itemDetail);
-      //쓸수있음
-      // onclick="activateTab('first')"
-      //onclick="activateTab('second')"
-         
-      /* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
-          "<th>EMPNO</th>"+
-           "<th>ENAME</th>"+
-           "<th>JOB</th>"+
-           "<th>SAL</th>"+
-           "<th>EDIT</th><th>DELETE</th></tr></thead><tbody>";
-      $.each(data,function(index,emp){
-         opr += "<tr><td>"+emp.empno+
-         "</td><td>"+emp.ename+
-         "</td><td>"+emp.job+
-         "</td><td>"+emp.sal+
-         "</td><td><input type='button' onclick='empupdate(this)' value='수정' class ='update'  value2="+emp.empno+
-         "></td><td><input type='button' value='삭제' class ='delete' value2="+emp.empno+"></td></tr>";
-      });
-      opr+="<tr><td colspan='10'><input type='button' onclick='createinput(this)' value='추가'></td></tr></tbody></table>"; */
-
    }
-   
-/*   function activateTab(active){
-      let first = document.getElementById('firstTab');
-      let second = document.getElementById('secondTab');
-      let third = document.getElementById('thirdTab');
-      if(active == 'first'){
-         first.classList.add('active');
-         second.classList.remove('active');
-         third.classList.remove('active');
-      }else if(active == 'second'){
-         first.classList.remove('active');
-         second.classList.add('active');
-         third.classList.remove('active');
-      }else{
-         first.classList.remove('active');
-         second.classList.remove('active');
-         third.classList.add('active');
-      }
-   }*/
+
    
    
 }

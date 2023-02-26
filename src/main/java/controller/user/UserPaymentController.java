@@ -74,6 +74,8 @@ public class UserPaymentController {
 		model.addAttribute("eDate", eDate);
 		model.addAttribute("timeList", timeList);
 		
+		
+		
 		return "user/book";
 	}
 	

@@ -11362,8 +11362,30 @@ transform
 	font-size: 15px;
 }
 
+.reply {
+	margin-left: 50px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+
+.comment-content {
+	padding-left: 10px;
+	
+}
+
+.namedate {
+	float: left;
+	margin-left: 10px;
+	color: #505050;
+}
+
+.replyinfo {
+	
+}
+
 .comment {
-	background-color: red;
+	margin-left: 20px;
 	margin-top: 5px;
 }
 

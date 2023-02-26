@@ -39,8 +39,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                d.content as storeContent, to_char(d.edate, 'yy-mm-dd') as storeDate, b.grade
 		from reservation a
 		join store c on a.storeid = c.storeid
-		left join (select * from review where parent is null) b on a.idx = b.rs_idx
-		left join (select * from review where parent is not null) d on a.idx = d.rs_idx
+		left join (select * from review where parent is null and status = 1) b on a.idx = b.rs_idx
+		left join (select * from review where parent is not null and status = 1) d on a.idx = d.rs_idx
 		where a.userid = #{userid}
 		order by a.sdate desc
 	</select>
@@ -63,8 +63,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="saveUserReview" parameterType="vo.user.UserReview">
-		insert into review(idx, rs_idx, name, content, grade, edate)
-		values(review_seq.nextval, #{rs_idx}, #{name}, #{content}, #{grade}, sysdate)
+		insert into review(idx, rs_idx, name, content, grade, edate, status)
+		values(review_seq.nextval, #{rs_idx}, #{name}, #{content}, #{grade}, sysdate, #{status})
 	</insert>
+	
+	<update id="deleteUserReview">
+		update review set status = 0 where idx = #{reviewIdx}
+	</update>
 	
 </mapper>

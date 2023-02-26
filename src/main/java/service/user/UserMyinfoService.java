@@ -93,4 +93,10 @@ public class UserMyinfoService {
 		System.out.println(userFullName);
 		return dao.saveUserReview(dto.toUserReview(userFullName));
 	}
+
+	@Transactional
+	public int deleteUserReview(int reviewIdx) {
+		UserMyinfoDao dao = sqlsession.getMapper(UserMyinfoDao.class);
+		return dao.deleteUserReview(reviewIdx);
+	}
 }
