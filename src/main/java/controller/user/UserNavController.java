@@ -121,7 +121,7 @@ public class UserNavController {
 		return "redirect:/users/myreserve";
 	}
 	
-	@DeleteMapping("/users/reviews/{reviewIdx}")
+	@PostMapping("/users/reviews/{reviewIdx}")
 	public String deleteUserReview(@PathVariable int reviewIdx) {
 		usermyinfoservice.deleteUserReview(reviewIdx);
 		return "redirect:/users/myreserve";

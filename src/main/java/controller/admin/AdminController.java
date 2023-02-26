@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -180,6 +182,12 @@ public class AdminController {
 	public String saveAdminReview(HttpServletRequest request) {
 		AdminReviewSaveDto dto = new AdminReviewSaveDto(request);
 		adminService.saveAdminReview(dto.toReview());
+		return "redirect:/admin/review";
+	}
+	
+	@PostMapping("/admin/review/{reviewIdx}")
+	public String deleteAdminReview(@PathVariable int reviewIdx) {
+		adminService.deleteAdminReview(reviewIdx);
 		return "redirect:/admin/review";
 	}
 	
