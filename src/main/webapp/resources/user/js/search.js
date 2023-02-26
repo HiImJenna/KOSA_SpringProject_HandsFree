@@ -146,19 +146,32 @@ window.onload = function(){
                  $('#tabView').append(itemTab);
                
             $.each(data, function(index, obj){
-               var date = new Date(obj.USEREDATE);
+            
+               var date = new Date(obj.EDATE);
                var year = String(date.getYear()).substring(1);
+               var month = date.getMonth() + 1;
+               var day = date.getDate(); 
                var time = String(date.getHours()).padStart(2, "0") 
                + ":" 
                + String(date.getMinutes()).padStart(2, "0");
-               var sumDate = year + ":" + time;
+               var sumDate = year + "-" + month + "-" + day + "   " + time;
                obj.USEREDATE = sumDate;
-               console.log(obj);
+               obj.EDATE = sumDate;
                if(obj.PARENT === null || obj.PARENT === undefined)
             	   createTabView(obj, 'review');
 
                $.each(twoData, function(index, replyObj){
             	   if(obj.IDX === replyObj.PARENT){
+                       var date = new Date(replyObj.EDATE);
+                       var year = String(date.getYear()).substring(1);
+                       var month = date.getMonth() + 1;
+                       var day = date.getDate(); 
+                       var time = String(date.getHours()).padStart(2, "0") 
+                       + ":" 
+                       + String(date.getMinutes()).padStart(2, "0");
+                       sumDate = year + "-" + month + "-" + day + "   " + time;
+                      
+            		   replyObj.EDATE = sumDate;
             		   createReplyView(replyObj)                		   
             	   }
                })
@@ -258,27 +271,18 @@ window.onload = function(){
    }
    
    function createReplyView(data){
+	   console.log(data);
 	   itemTab = `
-	      <div class="comment">
-	      답글
-             <div class="top-part d-flex justify-content-between align-items-center">
-                 <div class="d-flex">
-                     <div class="user-infos">
-                         <div class="picture"
-                             style="background-image: url(&quot;/img/avatars/default_avatar.svg&quot;);">
-                         </div>
-                     </div>
-                     <div class="name-date">
-                         <div class="name"><b>${data.storeId}</b>
-                         </div>
-                         <div class="date">
-                             ${data.EDATE}
-                         </div>
-                     </div>
-                 </div>
+	      <div class="reply">
+		   <i class="bi bi-arrow-return-right"></i> 
+		   	<div class = "replyinfo">
+			   <div class="namedate"><b>점주</b></div>
+			   <div class="namedate">${data.EDATE}</div><br>
+			    <div class="comment-content"> ${data.USERCONTENT}</div>
+		   	</div>
+             
              </div>
-             <div class="comment-content">${data.USERCONTENT}
-             </div>
+             
          </div>
 	   `;
 	   $('#tabView').append(itemTab);
@@ -294,7 +298,7 @@ window.onload = function(){
                   <table id="itemDetails" class="itemDetails table table-borderless">
                       <tr>
                           <th>
-                          <button id="backBtn" class="backBtn"><i class="bi bi-caret-left"></i></button>
+                          <button id="backBtn" class="backBtn"><i class="bi bi-backspace-fill"></i></button>
                               <img class="item_img" alt="없음" src="${data.PROFILE_PATH}">
                           </th>
                       </tr>

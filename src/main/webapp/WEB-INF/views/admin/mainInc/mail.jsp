@@ -86,6 +86,9 @@
 			<a href="javascript:;" onclick="location.href='/admin/chart'"
 				class="list-group-item list-group-item-action py-2 ripple"
 				data-toggle="pill"><i class="fas fa-chart-bar fa-fw me-3"></i><span>통계</span></a>
+			<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
+				class="list-group-item list-group-item-action py-2 ripple"
+				data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 		</div>
 	</div>
 	</nav> <!-- Sidebar --> <jsp:include
@@ -170,13 +173,6 @@
 
 				<nav aria-label="..." style="text-align: center">
 				<ul class="pagination">
-					<li class="page-item disabled"><span class="page-link"><<</span>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active" aria-current="page"><span
-						class="page-link">2</span></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">>></a></li>
 				</ul>
 				</nav>
 

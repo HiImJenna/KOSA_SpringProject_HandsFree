@@ -82,8 +82,6 @@ padding: 0px;
     left: 0;
     border: none;
     cursor: pointer;
-    background: #3B47F5;
-    color: #fff;
     border-top-left-radius: 15px;
     margin: 5px;
     text-align: left;
