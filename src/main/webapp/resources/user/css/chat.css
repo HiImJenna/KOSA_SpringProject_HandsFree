@@ -130,7 +130,7 @@
 }
  
 .chat li {
-    font-size: 1.5rem;
+    /* font-size: 1.5rem; */
 }
 
 .adminChat li {
@@ -172,7 +172,7 @@
 }
  
 .chat li > div .nickname {
-	padding: 3px;	
+	/* padding: 3px;	 */
 }
 
 .adminChat li > div .nickname {
