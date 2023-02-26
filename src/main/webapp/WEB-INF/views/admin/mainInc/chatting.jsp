@@ -67,8 +67,8 @@
 			console.log(nickname)
 			//소켓 연결
 			//webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-			//const socket = new SockJS('http://localhost:8090/websocket');
-			const socket = new SockJS('http://54.250.19.196:8080/websocket');
+			const socket = new SockJS('http://localhost:8090/websocket');
+			//const socket = new SockJS('http://54.250.19.196:8080/websocket');
 			const stomp = Stomp.over(socket);
 			stomp.debug = null; //stomp 콘솔출력 X
 			//구독 아이디 저장
@@ -237,9 +237,6 @@
 						success : function(room){
 							chatingView();
 							initRoom(room, nickname);
-							room.message = nickname + "님이 참가하셨습니다";
-							console.log("채팅참가");
-							console.log(room.message);
 							stomp.send(
 									"/socket/notification/" + roomNumber, {}, 
 									JSON.stringify(room));

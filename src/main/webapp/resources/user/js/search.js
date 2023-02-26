@@ -1,6 +1,7 @@
 
 window.onload = function(){
    
+
    
 /*   var hostIndex = location.href.indexOf(location.host) + location.host.length;
    var contextPath = location.href.substring(hostIndex, location.href.indexOf ('/', hostIndex + 1));*/
@@ -282,6 +283,7 @@ window.onload = function(){
 	   `;
 	   $('#tabView').append(itemTab);
    }
+  
    
    
    //Json 전용 table 생성
@@ -309,14 +311,14 @@ window.onload = function(){
                   
                       <tr class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
                           <th class="nav-item" role="presentation">
-                              <a id="firstTab" class="nav-link firstTab active" aria-current="page">
-                                  <div id="information">정보</div>
+                           <a id="firstTab" class="nav-link firstTab" aria-current="page" onclick="activateTab('first')">
+            					<div id="information"><b>정보</b></div>
                           </th>
                          
                           <th class="nav-item" role="presentation">
-                              <a id="secondTab" class="nav-link" aria-current="page">
-                                  <div id="review" data-obj=${data.storeId}>리뷰</div>
-                              </a>
+							  <a id="secondTab" class="nav-link" aria-current="page" onclick="activateTab('second')">
+							            <div id="review" data-obj=${data.storeId}><b>리뷰</b></div>
+							  </a>
                           </th>
                       </tr>
                       </th>
@@ -331,46 +333,8 @@ window.onload = function(){
                   </div>
                   `;
       $('#listGroup').append(itemDetail);
-      //쓸수있음
-      // onclick="activateTab('first')"
-      //onclick="activateTab('second')"
-         
-      /* var opr="<table id='fresh-table' class='table'><tr>"+way+"</tr><thead><tr>"+
-          "<th>EMPNO</th>"+
-           "<th>ENAME</th>"+
-           "<th>JOB</th>"+
-           "<th>SAL</th>"+
-           "<th>EDIT</th><th>DELETE</th></tr></thead><tbody>";
-      $.each(data,function(index,emp){
-         opr += "<tr><td>"+emp.empno+
-         "</td><td>"+emp.ename+
-         "</td><td>"+emp.job+
-         "</td><td>"+emp.sal+
-         "</td><td><input type='button' onclick='empupdate(this)' value='수정' class ='update'  value2="+emp.empno+
-         "></td><td><input type='button' value='삭제' class ='delete' value2="+emp.empno+"></td></tr>";
-      });
-      opr+="<tr><td colspan='10'><input type='button' onclick='createinput(this)' value='추가'></td></tr></tbody></table>"; */
-
    }
-   
-/*   function activateTab(active){
-      let first = document.getElementById('firstTab');
-      let second = document.getElementById('secondTab');
-      let third = document.getElementById('thirdTab');
-      if(active == 'first'){
-         first.classList.add('active');
-         second.classList.remove('active');
-         third.classList.remove('active');
-      }else if(active == 'second'){
-         first.classList.remove('active');
-         second.classList.add('active');
-         third.classList.remove('active');
-      }else{
-         first.classList.remove('active');
-         second.classList.remove('active');
-         third.classList.add('active');
-      }
-   }*/
+
    
    
 }

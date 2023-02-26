@@ -105,8 +105,8 @@ padding: 0px;
          
          //소켓 연결
          //webSocket 대신 SockJS을 사용하므로 Stomp.client() 가 아닌 Stomp.over()를 사용한다
-         //const socket = new SockJS('http://localhost:8090/websocket');
-         const socket = new SockJS('http://54.250.19.196:8080/websocket');
+         const socket = new SockJS('http://localhost:8090/websocket');
+         //const socket = new SockJS('http://54.250.19.196:8080/websocket');
          const stomp = Stomp.over(socket);
          stomp.debug = null; //stomp 콘솔출력 X
          //구독 아이디 저장
@@ -412,12 +412,9 @@ padding: 0px;
                userList(room.users);
                const chatHtml = `
                     <li>
-                       <div class="notification">
-                           <span>\${message}</span>
-                        </div>
                     </li>`;
                
-               $(".chat ul.chat_list").append(chatHtml);
+/*                $(".chat ul.chat_list").append(chatHtml); */
                $(".chat ul").scrollTop($(".chat ul")[0].scrollHeight);
             })
          }
