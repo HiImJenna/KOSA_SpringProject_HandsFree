@@ -13,8 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       		  from review
               where status = 0 and rs_idx in (select idx as rs_idx
                        		   from reservation
-                       		   where storeid = #{storeId}) and
-              parent is null
+                       		   where storeid = #{storeId})
         ) A
 		left join review B on A.idx = B.parent
 	</select>
