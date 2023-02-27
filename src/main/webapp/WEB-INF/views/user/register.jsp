@@ -94,22 +94,11 @@
 			
 				<form id="userRegister" action="/users/register" method="post" data-sb-form-api-token="API_TOKEN">
 					<!-- 이메일 -->
-					<div class="row" style="height:58px; width: 526px; padding: 0px;">
-						<div class="col-10">
+					<div class="row" style="height:58px; padding: 0px;">
+						<div class="col">
 							<input style="height: 51px;" class="form-control" name="userid" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-						</div>
-						
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">인증요청</button>
-						</div>
-					</div>
-					
-					<!-- 이메일 인증 번호 입력 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" id="emailNumber" type="text" placeholder="이메일 인증번호" />
 						</div>
 					</div>
 					
@@ -157,20 +146,11 @@
 				<!-- 점주 회원 가입 -->
 				<form id="storeRegister" style="display: none;" action="${path}/admin/register" method="post" enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
 					<!-- 이메일 -->
-					<div class="row" style="height:58px; width: 526px; padding: 0px;">
-						<div class="col-10">
+					<div class="row" style="height:58px; padding: 0px;">
+						<div class="col">
 							<input style="height: 51px;" class="form-control" name="email" id="email" type="email" placeholder="이메일" data-sb-validations="required,email" />
 							<div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
 							<div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-						</div>
-						<div class="col-2">
-							<button style="width: 80px; height: 50px; padding: 0px;" type="button" class="btn btn-primary btn-sm">인증요청</button>
-						</div>
-					</div>
-					<!-- 이메일 인증 번호 입력 -->
-					<div class="row" style="height: 58px; padding: 0px;">
-						<div class="col">
-							<input style="height: 51px;" class="form-control" name="validateNumber" id="emailNumber" type="text" placeholder="이메일 인증번호" />
 						</div>
 					</div>
 					

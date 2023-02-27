@@ -105,7 +105,7 @@
 					<span>통계</span>
 				</a>
 				<a href="javascript:;" onclick="location.href='/OracleData/schedulerView'"
-					class="list-group-item list-group-item-action py-2 ripple active"
+					class="list-group-item list-group-item-action py-2 ripple"
 					data-toggle="pill"><i class="fas fa-clock fa-fw me-3"></i><span>삭제 리뷰관리</span></a>
 			</div>
 		</div>
@@ -117,7 +117,7 @@
 			<div class="card">
 				<div class="card-header py-3">
 					<h5 class="mb-0 text-left">
-						<strong>${storeName}</strong>
+						<strong>[Hands Free] ${storeName}</strong>
 					</h5>
 					<br />
 					<div style="color: #ff6e6e; font-size: x-small">*이 페이지는 기본정보를 수정할 수 있는 페이지 입니다.</div>
