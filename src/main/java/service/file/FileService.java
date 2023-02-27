@@ -26,10 +26,16 @@ public class FileService {
 		if (!dto.getFile().getOriginalFilename().equals("")) {
 			FileOutputStream fs = null;
 			try {
-				createPath(dto.getRealFilePath());
-				createPath(dto.getRealFilePath() + dto.getEmail());
-				fs = new FileOutputStream(dto.getRealFilePath() + dto.getEmail() + "/" + dto.getFile().getOriginalFilename());
-				fs.write(dto.getFile().getBytes());
+				 createPath(dto.getRealFilePath());
+			        createPath(dto.getRealFilePath() + dto.getEmail());
+			        File destFile = new File(dto.getRealFilePath() + dto.getEmail() + "/" + dto.getFile().getOriginalFilename());
+			        fs = new FileOutputStream(destFile);
+			        fs.write(dto.getFile().getBytes());
+			        
+			        // 파일 권한 설정
+			        destFile.setExecutable(false);
+			        destFile.setReadable(true);
+			        destFile.setWritable(false);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

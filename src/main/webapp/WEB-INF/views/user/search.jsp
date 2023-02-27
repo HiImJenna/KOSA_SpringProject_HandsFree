@@ -241,7 +241,7 @@ padding: 0px;
              var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
              var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
              var d = R * c; // Distance in km
-             var m = d * 1000;
+             var m = d * 500;
 /*               console.log("좌표 x : " + lat1);
              console.log("좌표 y : " + lng1);
              console.log("센터 x : " + lat2);
@@ -249,7 +249,7 @@ padding: 0px;
              console.log("장소 : " + place_name);
              console.log("거리  : " + d);
              console.log("미터거리  : " + m); */
-             if(m <= 1000){
+             if(m <= 500){
                 return true;
              }else{
                 return false;   
@@ -261,7 +261,7 @@ padding: 0px;
             //테스트 원값
             var circle = new kakao.maps.Circle({
                 center : new kakao.maps.LatLng(lat, lon),  // 원의 중심좌표 입니다 
-                radius: 1000, // 미터 단위의 원의 반지름입니다 
+                radius: 550, // 미터 단위의 원의 반지름입니다 
                 strokeWeight: 5, // 선의 두께입니다 
                 strokeColor: '#75B8FA', // 선의 색깔입니다
                 strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
