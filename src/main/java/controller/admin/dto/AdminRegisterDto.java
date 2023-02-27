@@ -22,7 +22,6 @@ import vo.admin.StoreDetails;
 import vo.admin.StoreKeeper;
 
 @Getter
-@AllArgsConstructor
 public class AdminRegisterDto {
 	private String email;
 	private String validateNumber;
@@ -36,6 +35,25 @@ public class AdminRegisterDto {
 	private String realFilePath;
 	private String storeName;
 	private String phone;
+	
+	public AdminRegisterDto(HttpServletRequest request, MultipartFile file) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		this.email = request.getParameter("email");
+		this.validateNumber = request.getParameter("validateNumber");
+		this.password = request.getParameter("password");
+		this.lastName = request.getParameter("lastName");
+		this.firstName = request.getParameter("firstName");
+		this.address = request.getParameter("address");
+		this.file = file;
+		this.storeName = request.getParameter("storeName");
+		this.phone = request.getParameter("phone");
+	}
 	
 	// 점주 비밀번호 암호화
 	public void encryptPassword(String encryptedPassword) {

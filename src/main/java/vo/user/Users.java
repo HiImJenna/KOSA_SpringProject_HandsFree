@@ -1,5 +1,7 @@
 package vo.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Builder;
@@ -28,5 +30,21 @@ public class Users {
 		this.last_name = last_name;
 		this.profile_path = profile_path;
 		this.realFilePath = realFilePath;
+	}
+
+	public Users(HttpServletRequest request) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (Exception e) {
+			e.getStackTrace();
+		}
+		
+		this.userid = request.getParameter("userid");
+		this.userpwd = request.getParameter("userpwd");
+		this.first_name = request.getParameter("first_name");
+		this.last_name = request.getParameter("last_name");
+		this.profile_path = null;
+		this.realFilePath = "/";
 	}
 }

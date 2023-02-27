@@ -265,7 +265,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/register")
-	public String adminRegister(AdminRegisterDto dto, HttpServletRequest request) {
+	public String adminRegister(HttpServletRequest request, MultipartFile file) {
+		
+		AdminRegisterDto dto = new AdminRegisterDto(request, file);
+		
 		// 경로 얻기 , 주소 기반 좌표 얻기, 비밀번호 암호화
 		dto.findFileRealPath(request);
 		dto.findCoordinates();
