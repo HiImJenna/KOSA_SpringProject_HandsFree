@@ -1,5 +1,7 @@
 package controller.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ public class UserSecurityController {
 
 	//POST 요청	**회원가입 처리**
 	@PostMapping("/users/register")
-	public String join(Users users) {
+	public String join(HttpServletRequest request) {
+		
+		Users users = new Users(request);
 		
 		String rawPwd = users.getUserpwd();
 		String encodedPwd = bCryptPasswordEncoder.encode(rawPwd);
